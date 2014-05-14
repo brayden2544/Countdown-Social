@@ -22,16 +22,10 @@
 		6E04695B191C36BE00482E79 /* capture_yep@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E046951191C36BE00482E79 /* capture_yep@2x.png */; };
 		6E886A41190DB418009E5A92 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E886A40190DB418009E5A92 /* FacebookSDK.framework */; };
 		6E886A44190DB575009E5A92 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E886A43190DB575009E5A92 /* LoginViewController.m */; };
-		6E886A48190DB9E1009E5A92 /* loginBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E886A47190DB9E1009E5A92 /* loginBackground.png */; };
 		6E886A4B190DD4F9009E5A92 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E886A4A190DD4F9009E5A92 /* ViewController.m */; };
 		6E886A4E190E05AC009E5A92 /* SetLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E886A4D190E05AC009E5A92 /* SetLocationViewController.m */; };
 		6E886A50190E1CC1009E5A92 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E886A4F190E1CC1009E5A92 /* MapKit.framework */; };
-		6E886A52190E1F87009E5A92 /* CurrentLocationButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E886A51190E1F87009E5A92 /* CurrentLocationButton.png */; };
-		6E886A54190E2319009E5A92 /* GlobeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E886A53190E2319009E5A92 /* GlobeButton.png */; };
-		6E886A58190E25F2009E5A92 /* MapBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E886A57190E25F2009E5A92 /* MapBackground.png */; };
 		6E886A5C190FF4F8009E5A92 /* ChooseLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E886A5B190FF4F8009E5A92 /* ChooseLocationViewController.m */; };
-		6E886A7219180953009E5A92 /* recordBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E886A7119180953009E5A92 /* recordBtn.png */; };
-		6E886A7419180A28009E5A92 /* switchCamera.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E886A7319180A28009E5A92 /* switchCamera.png */; };
 		6E967CB0190DA4960042AF93 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E967CAF190DA4960042AF93 /* Foundation.framework */; };
 		6E967CB2190DA4960042AF93 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E967CB1190DA4960042AF93 /* CoreGraphics.framework */; };
 		6E967CB4190DA4960042AF93 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E967CB3190DA4960042AF93 /* UIKit.framework */; };
@@ -45,10 +39,13 @@
 		6E967CD1190DA4960042AF93 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E967CB3190DA4960042AF93 /* UIKit.framework */; };
 		6E967CD9190DA4960042AF93 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6E967CD7190DA4960042AF93 /* InfoPlist.strings */; };
 		6E967CDB190DA4960042AF93 /* Countdown_SocialTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E967CDA190DA4960042AF93 /* Countdown_SocialTests.m */; };
-		6E967CE5190DA6B80042AF93 /* loginBackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6E967CE4190DA6B80042AF93 /* loginBackground.jpg */; };
-		6E967CE7190DA8CD0042AF93 /* fbSignIn.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6E967CE6190DA8CD0042AF93 /* fbSignIn.jpg */; };
-		6E967CE9190DA95D0042AF93 /* fbLogin.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E967CE8190DA95D0042AF93 /* fbLogin.png */; };
-		6E967CEB190DA9B40042AF93 /* brayden2544 wh.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E967CEA190DA9B40042AF93 /* brayden2544 wh.png */; };
+		6EB9D6AD1921B8450080E1C5 /* loadingScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB9D6AC1921B8450080E1C5 /* loadingScreen.png */; };
+		6EB9D6AF1921B89D0080E1C5 /* fbLogin.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB9D6AE1921B89D0080E1C5 /* fbLogin.png */; };
+		6EB9D6B11921B8EC0080E1C5 /* loginBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB9D6B01921B8EC0080E1C5 /* loginBackground.png */; };
+		6EB9D6B3192415310080E1C5 /* videoPreview.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB9D6B2192415310080E1C5 /* videoPreview.png */; };
+		6EB9D6B6192415D10080E1C5 /* VideoPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB9D6B5192415D10080E1C5 /* VideoPreviewViewController.m */; };
+		6EB9D6B9192426B90080E1C5 /* iLikeIt.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB9D6B7192426B90080E1C5 /* iLikeIt.png */; };
+		6EB9D6BA192426B90080E1C5 /* tryAgain.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB9D6B8192426B90080E1C5 /* tryAgain.png */; };
 		6EE4B411192138BD00C84C3A /* PBJGLProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE4B40A192138BD00C84C3A /* PBJGLProgram.m */; };
 		6EE4B412192138BD00C84C3A /* PBJMediaWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE4B40C192138BD00C84C3A /* PBJMediaWriter.m */; };
 		6EE4B413192138BD00C84C3A /* PBJVision.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE4B40E192138BD00C84C3A /* PBJVision.m */; };
@@ -86,19 +83,13 @@
 		6E886A40190DB418009E5A92 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		6E886A42190DB575009E5A92 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		6E886A43190DB575009E5A92 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		6E886A47190DB9E1009E5A92 /* loginBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = loginBackground.png; path = ../loginBackground.png; sourceTree = "<group>"; };
 		6E886A49190DD4F9009E5A92 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		6E886A4A190DD4F9009E5A92 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		6E886A4C190E05AC009E5A92 /* SetLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetLocationViewController.h; sourceTree = "<group>"; };
 		6E886A4D190E05AC009E5A92 /* SetLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetLocationViewController.m; sourceTree = "<group>"; };
 		6E886A4F190E1CC1009E5A92 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		6E886A51190E1F87009E5A92 /* CurrentLocationButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CurrentLocationButton.png; sourceTree = "<group>"; };
-		6E886A53190E2319009E5A92 /* GlobeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GlobeButton.png; sourceTree = "<group>"; };
-		6E886A57190E25F2009E5A92 /* MapBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MapBackground.png; path = ../MapBackground.png; sourceTree = "<group>"; };
 		6E886A5A190FF4F8009E5A92 /* ChooseLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseLocationViewController.h; sourceTree = "<group>"; };
 		6E886A5B190FF4F8009E5A92 /* ChooseLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseLocationViewController.m; sourceTree = "<group>"; };
-		6E886A7119180953009E5A92 /* recordBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recordBtn.png; sourceTree = "<group>"; };
-		6E886A7319180A28009E5A92 /* switchCamera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = switchCamera.png; sourceTree = "<group>"; };
 		6E967CAC190DA4960042AF93 /* Countdown Social.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Countdown Social.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E967CAF190DA4960042AF93 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6E967CB1190DA4960042AF93 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -116,10 +107,14 @@
 		6E967CD6190DA4960042AF93 /* Countdown SocialTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Countdown SocialTests-Info.plist"; sourceTree = "<group>"; };
 		6E967CD8190DA4960042AF93 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6E967CDA190DA4960042AF93 /* Countdown_SocialTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Countdown_SocialTests.m; sourceTree = "<group>"; };
-		6E967CE4190DA6B80042AF93 /* loginBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = loginBackground.jpg; path = ../../Images/loginBackground.jpg; sourceTree = "<group>"; };
-		6E967CE6190DA8CD0042AF93 /* fbSignIn.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = fbSignIn.jpg; path = ../../../Downloads/fbSignIn.jpg; sourceTree = "<group>"; };
-		6E967CE8190DA95D0042AF93 /* fbLogin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fbLogin.png; path = ../../Images/fbLogin.png; sourceTree = "<group>"; };
-		6E967CEA190DA9B40042AF93 /* brayden2544 wh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "brayden2544 wh.png"; path = "../../../Downloads/brayden2544 wh.png"; sourceTree = "<group>"; };
+		6EB9D6AC1921B8450080E1C5 /* loadingScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = loadingScreen.png; path = ../loadingScreen.png; sourceTree = "<group>"; };
+		6EB9D6AE1921B89D0080E1C5 /* fbLogin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fbLogin.png; path = ../fbLogin.png; sourceTree = "<group>"; };
+		6EB9D6B01921B8EC0080E1C5 /* loginBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = loginBackground.png; path = ../loginBackground.png; sourceTree = "<group>"; };
+		6EB9D6B2192415310080E1C5 /* videoPreview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = videoPreview.png; path = ../videoPreview.png; sourceTree = "<group>"; };
+		6EB9D6B4192415D10080E1C5 /* VideoPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPreviewViewController.h; sourceTree = "<group>"; };
+		6EB9D6B5192415D10080E1C5 /* VideoPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPreviewViewController.m; sourceTree = "<group>"; };
+		6EB9D6B7192426B90080E1C5 /* iLikeIt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iLikeIt.png; path = ../iLikeIt.png; sourceTree = "<group>"; };
+		6EB9D6B8192426B90080E1C5 /* tryAgain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tryAgain.png; path = ../tryAgain.png; sourceTree = "<group>"; };
 		6EE4B409192138BD00C84C3A /* PBJGLProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJGLProgram.h; sourceTree = "<group>"; };
 		6EE4B40A192138BD00C84C3A /* PBJGLProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJGLProgram.m; sourceTree = "<group>"; };
 		6EE4B40B192138BD00C84C3A /* PBJMediaWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJMediaWriter.h; sourceTree = "<group>"; };
@@ -218,6 +213,8 @@
 				6E967CBE190DA4960042AF93 /* AppDelegate.h */,
 				6E967CBF190DA4960042AF93 /* AppDelegate.m */,
 				6E967CC1190DA4960042AF93 /* Main.storyboard */,
+				6EB9D6B4192415D10080E1C5 /* VideoPreviewViewController.h */,
+				6EB9D6B5192415D10080E1C5 /* VideoPreviewViewController.m */,
 				6E046939191995B900482E79 /* LoginLoadViewController.h */,
 				6E04693A191995B900482E79 /* LoginLoadViewController.m */,
 				6E886A4C190E05AC009E5A92 /* SetLocationViewController.h */,
@@ -228,20 +225,7 @@
 				6E886A4A190DD4F9009E5A92 /* ViewController.m */,
 				6E886A42190DB575009E5A92 /* LoginViewController.h */,
 				6E886A43190DB575009E5A92 /* LoginViewController.m */,
-				6E046942191C36A200482E79 /* PBJViewController.h */,
-				6E046943191C36A200482E79 /* PBJViewController.m */,
-				6EE4B409192138BD00C84C3A /* PBJGLProgram.h */,
-				6EE4B40A192138BD00C84C3A /* PBJGLProgram.m */,
-				6EE4B40B192138BD00C84C3A /* PBJMediaWriter.h */,
-				6EE4B40C192138BD00C84C3A /* PBJMediaWriter.m */,
-				6EE4B40D192138BD00C84C3A /* PBJVision.h */,
-				6EE4B40E192138BD00C84C3A /* PBJVision.m */,
-				6EE4B40F192138BD00C84C3A /* PBJVisionUtilities.h */,
-				6EE4B410192138BD00C84C3A /* PBJVisionUtilities.m */,
-				6EE4B4151921395C00C84C3A /* PBJFocusView.h */,
-				6EE4B4161921395C00C84C3A /* PBJFocusView.m */,
-				6EE4B4171921395C00C84C3A /* PBJStrobeView.h */,
-				6EE4B4181921395C00C84C3A /* PBJStrobeView.m */,
+				6EB9D6BB1924285D0080E1C5 /* PBJVision */,
 				6E967CC7190DA4960042AF93 /* Images.xcassets */,
 				6E967CB6190DA4960042AF93 /* Supporting Files */,
 			);
@@ -251,17 +235,10 @@
 		6E967CB6190DA4960042AF93 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6EB9D6BC1924287C0080E1C5 /* VideoPreview */,
+				6EB9D6BD1924289F0080E1C5 /* Login */,
 				6E046947191C36BE00482E79 /* PBJ UI */,
-				6E967CE4190DA6B80042AF93 /* loginBackground.jpg */,
-				6E886A7119180953009E5A92 /* recordBtn.png */,
-				6E886A7319180A28009E5A92 /* switchCamera.png */,
-				6E886A57190E25F2009E5A92 /* MapBackground.png */,
-				6E886A47190DB9E1009E5A92 /* loginBackground.png */,
-				6E886A53190E2319009E5A92 /* GlobeButton.png */,
-				6E967CEA190DA9B40042AF93 /* brayden2544 wh.png */,
-				6E967CE8190DA95D0042AF93 /* fbLogin.png */,
-				6E886A51190E1F87009E5A92 /* CurrentLocationButton.png */,
-				6E967CE6190DA8CD0042AF93 /* fbSignIn.jpg */,
+				6EB9D6AC1921B8450080E1C5 /* loadingScreen.png */,
 				6E967CB7190DA4960042AF93 /* Countdown Social-Info.plist */,
 				6E967CB8190DA4960042AF93 /* InfoPlist.strings */,
 				6E967CBB190DA4960042AF93 /* main.m */,
@@ -286,6 +263,47 @@
 				6E967CD7190DA4960042AF93 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6EB9D6BB1924285D0080E1C5 /* PBJVision */ = {
+			isa = PBXGroup;
+			children = (
+				6E046942191C36A200482E79 /* PBJViewController.h */,
+				6E046943191C36A200482E79 /* PBJViewController.m */,
+				6EE4B409192138BD00C84C3A /* PBJGLProgram.h */,
+				6EE4B40A192138BD00C84C3A /* PBJGLProgram.m */,
+				6EE4B40B192138BD00C84C3A /* PBJMediaWriter.h */,
+				6EE4B40C192138BD00C84C3A /* PBJMediaWriter.m */,
+				6EE4B40D192138BD00C84C3A /* PBJVision.h */,
+				6EE4B40E192138BD00C84C3A /* PBJVision.m */,
+				6EE4B40F192138BD00C84C3A /* PBJVisionUtilities.h */,
+				6EE4B410192138BD00C84C3A /* PBJVisionUtilities.m */,
+				6EE4B4151921395C00C84C3A /* PBJFocusView.h */,
+				6EE4B4161921395C00C84C3A /* PBJFocusView.m */,
+				6EE4B4171921395C00C84C3A /* PBJStrobeView.h */,
+				6EE4B4181921395C00C84C3A /* PBJStrobeView.m */,
+			);
+			name = PBJVision;
+			sourceTree = "<group>";
+		};
+		6EB9D6BC1924287C0080E1C5 /* VideoPreview */ = {
+			isa = PBXGroup;
+			children = (
+				6EB9D6B7192426B90080E1C5 /* iLikeIt.png */,
+				6EB9D6B8192426B90080E1C5 /* tryAgain.png */,
+				6EB9D6B2192415310080E1C5 /* videoPreview.png */,
+			);
+			name = VideoPreview;
+			path = UI;
+			sourceTree = "<group>";
+		};
+		6EB9D6BD1924289F0080E1C5 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				6EB9D6B01921B8EC0080E1C5 /* loginBackground.png */,
+				6EB9D6AE1921B89D0080E1C5 /* fbLogin.png */,
+			);
+			name = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -365,28 +383,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EB9D6AF1921B89D0080E1C5 /* fbLogin.png in Resources */,
 				6E046953191C36BE00482E79 /* capture_focus@2x.png in Resources */,
 				6E046952191C36BE00482E79 /* capture_flip@2x.png in Resources */,
+				6EB9D6AD1921B8450080E1C5 /* loadingScreen.png in Resources */,
 				6E046957191C36BE00482E79 /* capture_onion_selected@2x.png in Resources */,
-				6E967CE7190DA8CD0042AF93 /* fbSignIn.jpg in Resources */,
+				6EB9D6B3192415310080E1C5 /* videoPreview.png in Resources */,
 				6E046959191C36BE00482E79 /* capture_rec_blink@2x.png in Resources */,
-				6E967CE9190DA95D0042AF93 /* fbLogin.png in Resources */,
 				6E967CC8190DA4960042AF93 /* Images.xcassets in Resources */,
-				6E886A54190E2319009E5A92 /* GlobeButton.png in Resources */,
 				6E046958191C36BE00482E79 /* capture_rec_base@2x.png in Resources */,
 				6E046954191C36BE00482E79 /* capture_focus_button@2x.png in Resources */,
-				6E886A52190E1F87009E5A92 /* CurrentLocationButton.png in Resources */,
-				6E886A58190E25F2009E5A92 /* MapBackground.png in Resources */,
+				6EB9D6B9192426B90080E1C5 /* iLikeIt.png in Resources */,
+				6EB9D6BA192426B90080E1C5 /* tryAgain.png in Resources */,
 				6E04695A191C36BE00482E79 /* capture_rec_off@2x.png in Resources */,
 				6E04695B191C36BE00482E79 /* capture_yep@2x.png in Resources */,
-				6E967CEB190DA9B40042AF93 /* brayden2544 wh.png in Resources */,
-				6E886A7219180953009E5A92 /* recordBtn.png in Resources */,
+				6EB9D6B11921B8EC0080E1C5 /* loginBackground.png in Resources */,
 				6E967CBA190DA4960042AF93 /* InfoPlist.strings in Resources */,
 				6E967CC3190DA4960042AF93 /* Main.storyboard in Resources */,
-				6E967CE5190DA6B80042AF93 /* loginBackground.jpg in Resources */,
-				6E886A48190DB9E1009E5A92 /* loginBackground.png in Resources */,
 				6E046956191C36BE00482E79 /* capture_onion@2x.png in Resources */,
-				6E886A7419180A28009E5A92 /* switchCamera.png in Resources */,
 				6E046955191C36BE00482E79 /* capture_focus_button_active@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,6 +426,7 @@
 				6EE4B413192138BD00C84C3A /* PBJVision.m in Sources */,
 				6E886A44190DB575009E5A92 /* LoginViewController.m in Sources */,
 				6E967CC0190DA4960042AF93 /* AppDelegate.m in Sources */,
+				6EB9D6B6192415D10080E1C5 /* VideoPreviewViewController.m in Sources */,
 				6EE4B41A1921395C00C84C3A /* PBJStrobeView.m in Sources */,
 				6E886A4B190DD4F9009E5A92 /* ViewController.m in Sources */,
 				6E967CBC190DA4960042AF93 /* main.m in Sources */,

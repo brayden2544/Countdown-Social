@@ -16,8 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="brayden2544 wh.png" translatesAutoresizingMaskIntoConstraints="NO" id="DUj-cN-f4b">
-                                <rect key="frame" x="47" y="155" width="226" height="233"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="loadingScreen.png" translatesAutoresizingMaskIntoConstraints="NO" id="VcP-LF-fme">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                         </subviews>
@@ -40,37 +40,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="loginBackground.png" translatesAutoresizingMaskIntoConstraints="NO" id="s0K-iv-6GU">
-                                <rect key="frame" x="-87" y="-59" width="566" height="753"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="loginBackground.png" translatesAutoresizingMaskIntoConstraints="NO" id="s0K-iv-6GU">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="brayden2544 wh.png" translatesAutoresizingMaskIntoConstraints="NO" id="2Xo-zg-aFG">
-                                <rect key="frame" x="94" y="136" width="135" height="135"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="12c-fx-0r6">
-                                <rect key="frame" x="19" y="62" width="282" height="73"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="Welcome to Countdown">
-                                        <attributes>
-                                            <color key="NSColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="37" name="Futura-CondensedMedium"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(Don't worry, we wont post anything on your Facebook)" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TmR-jk-kLT">
-                                <rect key="frame" x="20" y="470" width="282" height="78"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Futura-CondensedMedium" family="Futura" pointSize="13"/>
-                                <color key="textColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DaR-zQ-fw7">
-                                <rect key="frame" x="11" y="428" width="299" height="63"/>
+                                <rect key="frame" x="13" y="347" width="294" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="fbLogin.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -85,51 +60,45 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="399" y="123"/>
         </scene>
-        <!--Choose Location View Controller - SetLocationViewController-->
-        <scene sceneID="IPC-CO-azc">
+        <!--Video Preview View Controller-->
+        <scene sceneID="LcK-PT-nGM">
             <objects>
-                <viewController storyboardIdentifier="ChooseLocationViewController" title="SetLocationViewController" id="GPI-k5-XWc" customClass="ChooseLocationViewController" sceneMemberID="viewController">
+                <viewController id="7WH-jW-Q9H" customClass="VideoPreviewViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="rlg-dt-1Gl"/>
-                        <viewControllerLayoutGuide type="bottom" id="kn1-0m-8Qb"/>
+                        <viewControllerLayoutGuide type="top" id="7IB-Y3-7M7"/>
+                        <viewControllerLayoutGuide type="bottom" id="cE8-nV-4HF"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="BWb-Nz-G2m">
+                    <view key="view" contentMode="scaleToFill" id="p86-c9-r9r">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="loginBackground.png" translatesAutoresizingMaskIntoConstraints="NO" id="GQs-cG-8d8">
-                                <rect key="frame" x="0.0" y="0.0" width="345" height="633"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="videoPreview.png" translatesAutoresizingMaskIntoConstraints="NO" id="sFb-7m-PtN">
+                                <rect key="frame" x="0.0" y="-7" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YUt-Nc-Xec">
-                                <rect key="frame" x="0.0" y="440" width="320" height="62"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1O6-ML-wKo">
+                                <rect key="frame" x="170" y="500" width="150" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="CurrentLocationButton.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="N6j-aT-1cU" kind="modal" id="Q8b-1R-92G"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3y-4z-Ss0">
-                                <rect key="frame" x="0.0" y="81" width="321" height="61"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="GlobeButton.png">
+                                <state key="normal" image="iLikeIt.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4hH-ms-0lY" customClass="FBProfilePictureView">
-                                <rect key="frame" x="80" y="204" width="160" height="160"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6DT-qL-x7R">
+                                <rect key="frame" x="0.0" y="499" width="157" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </view>
+                                <state key="normal" image="tryAgain.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Yzc-uu-D9e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wGH-qo-wK6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="783" y="123"/>
+            <point key="canvasLocation" x="764" y="160"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="jSl-TF-kyz">
@@ -141,11 +110,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="CurrentLocationButton.png" width="649" height="139"/>
-        <image name="GlobeButton.png" width="649" height="139"/>
-        <image name="brayden2544 wh.png" width="1024" height="1024"/>
-        <image name="fbLogin.png" width="649" height="139"/>
-        <image name="loginBackground.png" width="426" height="639"/>
+        <image name="fbLogin.png" width="1212" height="196"/>
+        <image name="iLikeIt.png" width="542" height="132"/>
+        <image name="loadingScreen.png" width="1280" height="2272"/>
+        <image name="loginBackground.png" width="1284" height="2276"/>
+        <image name="tryAgain.png" width="542" height="132"/>
+        <image name="videoPreview.png" width="1280" height="2272"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

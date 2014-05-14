@@ -25,7 +25,10 @@
     }
     return self;
 }
-
+-(void) loadCamera{
+    PBJViewController *videorecorderviewcontroller = [[PBJViewController alloc] init];
+    [self presentViewController:videorecorderviewcontroller animated:YES completion:nil];
+}
 //gets current location and uploads it to API.
 -(void) locationManager:(CLLocationManager *)manager
            didUpdateToLocation:(CLLocation *)newLocation
@@ -46,7 +49,7 @@
         NSMutableURLRequest *urlRequest =
         [NSMutableURLRequest requestWithURL:url];
         
-        [urlRequest setHTTPBody:[[NSString stringWithFormat:@"lat=%g&long=%g", currentLocation.coordinate.longitude, currentLocation.coordinate.latitude] dataUsingEncoding:NSUTF8StringEncoding]];
+        [urlRequest setHTTPBody:[[NSString stringWithFormat:@"lat=%g&long=%g", currentLocation.coordinate.latitude, currentLocation.coordinate.longitude] dataUsingEncoding:NSUTF8StringEncoding]];
         
         FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
         
@@ -57,7 +60,7 @@
         [urlRequest setValue:FbToken forHTTPHeaderField:@"Access-Token"];
         
         
-        [urlRequest setTimeoutInterval:15.0f];
+        [urlRequest setTimeoutInterval:5.0f];
         [urlRequest setHTTPMethod:@"POST"];
         
         NSOperationQueue *queque = [[NSOperationQueue alloc] init];
@@ -98,16 +101,18 @@
     }
     
     [self.currentLocationManager stopUpdatingLocation];
-    
     //Check to see if user has video uploaded, if not, video upload screen is shown.
-    if ([[user objectForKey: @"video"]  isEqual: @"null"]){
+    if ([[user objectForKey: @"videoUri"]  isEqual: @"null"]){
         PBJViewController *videorecorderviewcontroller = [[PBJViewController alloc] init];
         [self presentViewController:videorecorderviewcontroller animated:YES completion:nil];
     }
     //If user has video, matching screen is uploaded.
     else {
         NSLog(@"present matching view controller here");
+        PBJViewController *videorecorderviewcontroller = [[PBJViewController alloc] init];
+        [self presentViewController:videorecorderviewcontroller animated:YES completion:nil];
     }
+
     
 }
 
