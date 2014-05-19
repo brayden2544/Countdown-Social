@@ -7,8 +7,16 @@
 //
 
 #import "VideoPreviewViewController.h"
+#import <MediaPlayer/MediaPlayer.h>
+#import "PBJViewController.h"
+
 
 @interface VideoPreviewViewController ()
+@property (nonatomic, strong) MPMoviePlayerController *moviePlayer;
+@property (nonatomic, strong) UIButton *playButton;
+@property (nonatomic, strong) NSString *videoPath;
+@property (nonatomic, strong) NSDictionary *currentVideo;
+
 
 @end
 
@@ -27,6 +35,10 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    PBJViewController *sharedPBJViewController = [PBJViewController sharedPBJViewController];
+    _videoPath = sharedPBJViewController.videoPath;
+    _currentVideo = sharedPBJViewController.videoDict;
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -34,6 +46,82 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+//Action to start playing video through playButton
+- (IBAction)playVideo:(id)sender {
+    [self startPlayingVideo: (id) sender];
+}
+
+- (void) startPlayingVideo:(id)paramSender{
+    //Construct url of file in application bundle that needs to get played by movie player
+    NSBundle *mainBundle = [NSBundle mainBundle];
+    
+    NSURL *url = [mainBundle URLForResource:_videoPath withExtension:@"m4v"];
+    
+    self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
+    
+    if (self.moviePlayer != nil){
+        [[NSNotificationCenter defaultCenter]
+         addObserver:self
+         selector:@selector(videoHasFinishedPlaying:)
+         name:MPMoviePlayerPlaybackDidFinishNotification
+         object:self.moviePlayer];
+        
+        NSLog(@"Video Player Successfully Instanciated");
+        
+        //Scale Player to fit Aspect Ratio
+        
+        [self.view addSubview:self.moviePlayer.view];
+        self.moviePlayer.view.frame = CGRectMake(10.0f, 55.0f, 300.0f, 460.0f);
+
+        
+        [self.moviePlayer setFullscreen:NO
+                               animated:NO];
+        
+        [self.moviePlayer play];
+    }
+    else {
+        NSLog(@"Failed to instanciate video player");
+    }
+}
+
+-(void) stopPlayingVideo:(id)paramSender {
+    
+    if (self.moviePlayer !=nil){
+        [[NSNotificationCenter defaultCenter]
+         removeObserver:self
+         name:MPMoviePlayerPlaybackDidFinishNotification
+         object:self.moviePlayer];
+    }
+}
+
+- (void) videoHasFinishedPlaying:(NSNotification *)paramNotification{
+    //Show reason why video stopped playing
+    NSNumber *reason =
+    paramNotification.userInfo
+    [MPMoviePlayerPlaybackDidFinishReasonUserInfoKey];
+    
+    if (reason !=nil){
+        NSInteger reasonAsInteger = [reason integerValue];
+        
+        switch (reasonAsInteger) {
+            case MPMovieFinishReasonPlaybackEnded:{
+                //Movie Ended Normally
+                break;
+            }
+            case MPMovieFinishReasonPlaybackError:{
+                //An error occured and movie ended
+            }
+            case MPMovieFinishReasonUserExited:{
+                //User ended video playback
+            }
+        }
+        NSLog(@"Finish reason = %ld", (long)reasonAsInteger);
+        [self stopPlayingVideo:nil];
+    }
+}
+
+
 
 /*
 #pragma mark - Navigation
@@ -45,5 +133,6 @@
     // Pass the selected object to the new view controller.
 }
 */
+
 
 @end

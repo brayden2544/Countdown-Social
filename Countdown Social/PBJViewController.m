@@ -34,6 +34,7 @@
 #import <GLKit/GLKit.h>
 #import <FacebookSDK/FacebookSDK.h>
 #import "AppDelegate.h"
+#import "VideoPreviewViewController.h"
 
 @interface ExtendedHitButton : UIButton
 
@@ -87,14 +88,30 @@
     BOOL _recording;
 
     ALAssetsLibrary *_assetLibrary;
-    __block NSDictionary *_currentVideo;
+   __block NSDictionary *_currentVideo;
 }
 
 @end
 
 @implementation PBJViewController
 
+@synthesize videoPath;
+@synthesize videoDict;
+
 #pragma mark - UIViewController
+
+#pragma mark - PBJViewController Shared Singleton
+
++ (id)sharedPBJViewController {
+    static PBJViewController *sharedPBJViewController = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedPBJViewController = [[self alloc] init];
+    });
+    return sharedPBJViewController;
+}
+
+
 
 - (BOOL)prefersStatusBarHidden
 {
@@ -674,13 +691,17 @@
          }
      }];
 
-    [_assetLibrary writeVideoAtPathToSavedPhotosAlbum:[NSURL URLWithString:videoPath] completionBlock:^(NSURL *assetURL, NSError *error1) {
+    //[_assetLibrary writeVideoAtPathToSavedPhotosAlbum:[NSURL URLWithString:videoPath] completionBlock:^(NSURL *assetURL, NSError *error1) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Saved!" message: @"Video Updloaded To Server."
                                                        delegate:self
                                               cancelButtonTitle:nil
                                               otherButtonTitles:@"OK", nil];
         [alert show];
-    }];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        VideoPreviewViewController *videoPreview = [storyboard instantiateViewControllerWithIdentifier:@"VideoPreviewViewController"];
+        [self presentViewController:videoPreview animated:YES completion:nil];
+
+   // }];
 }
 
 // progress

@@ -25,6 +25,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PBJViewController : UIViewController
+@interface PBJViewController : UIViewController {
+    NSString *videoPath;
+    NSDictionary *videoDict;
+}
+
+@property (nonatomic, retain) NSString* videoPath;
+@property (nonatomic, retain) NSDictionary *videoDict;
+
++(id)sharedPBJViewController;
 
 @end

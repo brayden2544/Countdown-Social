@@ -46,6 +46,10 @@
 		6EB9D6B6192415D10080E1C5 /* VideoPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB9D6B5192415D10080E1C5 /* VideoPreviewViewController.m */; };
 		6EB9D6B9192426B90080E1C5 /* iLikeIt.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB9D6B7192426B90080E1C5 /* iLikeIt.png */; };
 		6EB9D6BA192426B90080E1C5 /* tryAgain.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB9D6B8192426B90080E1C5 /* tryAgain.png */; };
+		6EC0FC0D192AC61000B72C44 /* PotentialMatchesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0FC0C192AC61000B72C44 /* PotentialMatchesViewController.m */; };
+		6EC0FC0F192AC6C700B72C44 /* PotentialMatchesBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0FC0E192AC6C700B72C44 /* PotentialMatchesBackground.png */; };
+		6EC0FC11192AC70E00B72C44 /* settingsButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0FC10192AC70E00B72C44 /* settingsButton.png */; };
+		6EC0FC13192AC71D00B72C44 /* matchesButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0FC12192AC71D00B72C44 /* matchesButton.png */; };
 		6EE4B411192138BD00C84C3A /* PBJGLProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE4B40A192138BD00C84C3A /* PBJGLProgram.m */; };
 		6EE4B412192138BD00C84C3A /* PBJMediaWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE4B40C192138BD00C84C3A /* PBJMediaWriter.m */; };
 		6EE4B413192138BD00C84C3A /* PBJVision.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE4B40E192138BD00C84C3A /* PBJVision.m */; };
@@ -115,6 +119,11 @@
 		6EB9D6B5192415D10080E1C5 /* VideoPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPreviewViewController.m; sourceTree = "<group>"; };
 		6EB9D6B7192426B90080E1C5 /* iLikeIt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iLikeIt.png; path = ../iLikeIt.png; sourceTree = "<group>"; };
 		6EB9D6B8192426B90080E1C5 /* tryAgain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tryAgain.png; path = ../tryAgain.png; sourceTree = "<group>"; };
+		6EC0FC0B192AC61000B72C44 /* PotentialMatchesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PotentialMatchesViewController.h; sourceTree = "<group>"; };
+		6EC0FC0C192AC61000B72C44 /* PotentialMatchesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PotentialMatchesViewController.m; sourceTree = "<group>"; };
+		6EC0FC0E192AC6C700B72C44 /* PotentialMatchesBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PotentialMatchesBackground.png; sourceTree = "<group>"; };
+		6EC0FC10192AC70E00B72C44 /* settingsButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settingsButton.png; sourceTree = "<group>"; };
+		6EC0FC12192AC71D00B72C44 /* matchesButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = matchesButton.png; sourceTree = "<group>"; };
 		6EE4B409192138BD00C84C3A /* PBJGLProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJGLProgram.h; sourceTree = "<group>"; };
 		6EE4B40A192138BD00C84C3A /* PBJGLProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJGLProgram.m; sourceTree = "<group>"; };
 		6EE4B40B192138BD00C84C3A /* PBJMediaWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJMediaWriter.h; sourceTree = "<group>"; };
@@ -213,6 +222,8 @@
 				6E967CBE190DA4960042AF93 /* AppDelegate.h */,
 				6E967CBF190DA4960042AF93 /* AppDelegate.m */,
 				6E967CC1190DA4960042AF93 /* Main.storyboard */,
+				6EC0FC0B192AC61000B72C44 /* PotentialMatchesViewController.h */,
+				6EC0FC0C192AC61000B72C44 /* PotentialMatchesViewController.m */,
 				6EB9D6B4192415D10080E1C5 /* VideoPreviewViewController.h */,
 				6EB9D6B5192415D10080E1C5 /* VideoPreviewViewController.m */,
 				6E046939191995B900482E79 /* LoginLoadViewController.h */,
@@ -238,8 +249,9 @@
 				6EB9D6BC1924287C0080E1C5 /* VideoPreview */,
 				6EB9D6BD1924289F0080E1C5 /* Login */,
 				6E046947191C36BE00482E79 /* PBJ UI */,
-				6EB9D6AC1921B8450080E1C5 /* loadingScreen.png */,
+				6EC0FC14192ACAFB00B72C44 /* PotentialMatches */,
 				6E967CB7190DA4960042AF93 /* Countdown Social-Info.plist */,
+				6EB9D6AC1921B8450080E1C5 /* loadingScreen.png */,
 				6E967CB8190DA4960042AF93 /* InfoPlist.strings */,
 				6E967CBB190DA4960042AF93 /* main.m */,
 				6E967CBD190DA4960042AF93 /* Countdown Social-Prefix.pch */,
@@ -304,6 +316,16 @@
 				6EB9D6AE1921B89D0080E1C5 /* fbLogin.png */,
 			);
 			name = Login;
+			sourceTree = "<group>";
+		};
+		6EC0FC14192ACAFB00B72C44 /* PotentialMatches */ = {
+			isa = PBXGroup;
+			children = (
+				6EC0FC10192AC70E00B72C44 /* settingsButton.png */,
+				6EC0FC12192AC71D00B72C44 /* matchesButton.png */,
+				6EC0FC0E192AC6C700B72C44 /* PotentialMatchesBackground.png */,
+			);
+			name = PotentialMatches;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -386,6 +408,7 @@
 				6EB9D6AF1921B89D0080E1C5 /* fbLogin.png in Resources */,
 				6E046953191C36BE00482E79 /* capture_focus@2x.png in Resources */,
 				6E046952191C36BE00482E79 /* capture_flip@2x.png in Resources */,
+				6EC0FC11192AC70E00B72C44 /* settingsButton.png in Resources */,
 				6EB9D6AD1921B8450080E1C5 /* loadingScreen.png in Resources */,
 				6E046957191C36BE00482E79 /* capture_onion_selected@2x.png in Resources */,
 				6EB9D6B3192415310080E1C5 /* videoPreview.png in Resources */,
@@ -393,7 +416,9 @@
 				6E967CC8190DA4960042AF93 /* Images.xcassets in Resources */,
 				6E046958191C36BE00482E79 /* capture_rec_base@2x.png in Resources */,
 				6E046954191C36BE00482E79 /* capture_focus_button@2x.png in Resources */,
+				6EC0FC0F192AC6C700B72C44 /* PotentialMatchesBackground.png in Resources */,
 				6EB9D6B9192426B90080E1C5 /* iLikeIt.png in Resources */,
+				6EC0FC13192AC71D00B72C44 /* matchesButton.png in Resources */,
 				6EB9D6BA192426B90080E1C5 /* tryAgain.png in Resources */,
 				6E04695A191C36BE00482E79 /* capture_rec_off@2x.png in Resources */,
 				6E04695B191C36BE00482E79 /* capture_yep@2x.png in Resources */,
@@ -434,6 +459,7 @@
 				6E886A5C190FF4F8009E5A92 /* ChooseLocationViewController.m in Sources */,
 				6EE4B4191921395C00C84C3A /* PBJFocusView.m in Sources */,
 				6E886A4E190E05AC009E5A92 /* SetLocationViewController.m in Sources */,
+				6EC0FC0D192AC61000B72C44 /* PotentialMatchesViewController.m in Sources */,
 				6EE4B414192138BD00C84C3A /* PBJVisionUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

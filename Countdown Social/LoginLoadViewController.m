@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "PBJViewController.h"
 #import "ChooseLocationViewController.h"
+#import "PotentialMatchesViewController.h"
 
 @interface LoginLoadViewController ()
 
@@ -88,6 +89,7 @@
                  NSLog(@"dictionary contains %@" , user);
                  
                  
+                 
              }
              else if ([data length] == 0 && error == nil){
                  NSLog(@"POST Nothing was downloaded.");
@@ -97,22 +99,24 @@
                  NSLog(@"POST BROKEN");
              }
          }];
+        //Check to see if user has video uploaded, if not, video upload screen is shown.
+        if ([[user objectForKey: @"videoUri"]  isEqual: @"null"]){
+            PBJViewController *videorecorderviewcontroller = [[PBJViewController alloc] init];
+            [self presentViewController:videorecorderviewcontroller animated:YES completion:nil];
+        }
+        //If user has video, matching screen is uploaded.
+        else {
+            NSLog(@"present matching view controller here");
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            PotentialMatchesViewController *potentialmatchesviewcontroller = [storyboard instantiateViewControllerWithIdentifier:@"PotentialMatchesViewController"];
+            [self presentViewController:potentialmatchesviewcontroller animated:YES completion:nil];
+        }
+
         
     }
     
     [self.currentLocationManager stopUpdatingLocation];
-    //Check to see if user has video uploaded, if not, video upload screen is shown.
-    if ([[user objectForKey: @"videoUri"]  isEqual: @"null"]){
-        PBJViewController *videorecorderviewcontroller = [[PBJViewController alloc] init];
-        [self presentViewController:videorecorderviewcontroller animated:YES completion:nil];
-    }
-    //If user has video, matching screen is uploaded.
-    else {
-        NSLog(@"present matching view controller here");
-        PBJViewController *videorecorderviewcontroller = [[PBJViewController alloc] init];
-        [self presentViewController:videorecorderviewcontroller animated:YES completion:nil];
-    }
-
+    
     
 }
 

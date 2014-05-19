@@ -65,7 +65,7 @@
         <!--Video Preview View Controller-->
         <scene sceneID="LcK-PT-nGM">
             <objects>
-                <viewController id="7WH-jW-Q9H" customClass="VideoPreviewViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VideoPreviewViewController" id="7WH-jW-Q9H" customClass="VideoPreviewViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7IB-Y3-7M7"/>
                         <viewControllerLayoutGuide type="bottom" id="cE8-nV-4HF"/>
@@ -91,6 +91,19 @@
                                 <state key="normal" image="tryAgain.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="N6j-aT-1cU" kind="modal" id="0Oq-hH-n0P"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PiQ-93-wCN">
+                                <rect key="frame" x="113" y="410" width="94" height="81"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="playVideo:" destination="7WH-jW-Q9H" eventType="touchUpInside" id="Op7-wN-IlQ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -108,12 +121,53 @@
             </objects>
             <point key="canvasLocation" x="1158" y="129"/>
         </scene>
+        <!--Potential Matches View Controller-->
+        <scene sceneID="Vze-J4-vkq">
+            <objects>
+                <viewController storyboardIdentifier="PotentialMatchesViewController" id="QP0-wH-HVL" customClass="PotentialMatchesViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HET-w5-XEp"/>
+                        <viewControllerLayoutGuide type="bottom" id="CPW-FN-Ouy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fwP-hm-ffD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PotentialMatchesBackground.png" translatesAutoresizingMaskIntoConstraints="NO" id="V0G-cq-RoN">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fal-KJ-nsc">
+                                <rect key="frame" x="269" y="27" width="17" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="matchesButton.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UzV-ct-iMA">
+                                <rect key="frame" x="26" y="27" width="29" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="settingsButton.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qzy-hH-Une" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1535" y="136"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="PotentialMatchesBackground.png" width="1264" height="2264"/>
         <image name="fbLogin.png" width="1212" height="196"/>
         <image name="iLikeIt.png" width="542" height="132"/>
         <image name="loadingScreen.png" width="1280" height="2272"/>
         <image name="loginBackground.png" width="1284" height="2276"/>
+        <image name="matchesButton.png" width="76" height="110"/>
+        <image name="settingsButton.png" width="114" height="98"/>
         <image name="tryAgain.png" width="542" height="132"/>
         <image name="videoPreview.png" width="1280" height="2272"/>
     </resources>

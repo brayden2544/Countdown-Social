@@ -1,26 +1,24 @@
 //
-//  SetLocationViewController.m
+//  PotentialMatchesViewController.m
 //  Countdown Social
 //
-//  Created by Brayden Adams on 4/27/14.
+//  Created by Brayden Adams on 5/19/14.
 //  Copyright (c) 2014 Brayden Adams. All rights reserved.
 //
 
-#import "SetLocationViewController.h"
-#import <FacebookSDK/FacebookSDK.h>
+#import "PotentialMatchesViewController.h"
 
-@interface SetLocationViewController ()
+@interface PotentialMatchesViewController ()
 
 @end
 
-@implementation SetLocationViewController
+@implementation PotentialMatchesViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        
     }
     return self;
 }
@@ -29,8 +27,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [FBProfilePictureView class];
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -39,15 +35,15 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    [segue destinationViewController];
+    // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-
+*/
 
 @end
