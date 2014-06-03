@@ -25,12 +25,12 @@
                   symbolName = "-[AppDelegate myLocationManger]"
                   moduleName = "Countdown Social"
                   urlString = "file:///Users/braydenadams/Documents/Countdown%20Social/Countdown%20Social/AppDelegate.h"
-                  timestampString = "422431681.722681"
+                  timestampString = "423517073.424881"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "20"
                   endingLineNumber = "20"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "24">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -39,12 +39,12 @@
                   symbolName = "-[AppDelegate setMyLocationManger:]"
                   moduleName = "Countdown Social"
                   urlString = "file:///Users/braydenadams/Documents/Countdown%20Social/Countdown%20Social/AppDelegate.h"
-                  timestampString = "422431681.723104"
+                  timestampString = "423517073.426025"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "20"
                   endingLineNumber = "20"
-                  offsetFromSymbolStart = "22">
+                  offsetFromSymbolStart = "31">
                </Location>
             </Locations>
          </BreakpointContent>

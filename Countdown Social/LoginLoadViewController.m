@@ -66,7 +66,7 @@
         [urlRequest setValue:FbToken forHTTPHeaderField:@"Access-Token"];
         
         
-        [urlRequest setTimeoutInterval:5.0f];
+        [urlRequest setTimeoutInterval:15.0f];
         [urlRequest setHTTPMethod:@"POST"];
         
         NSOperationQueue *queque = [[NSOperationQueue alloc] init];
@@ -130,7 +130,7 @@
                  self.currentLocationManager.delegate = self;
                  
                  [self.currentLocationManager startUpdatingLocation];
-                 NSLog(@"If Loop WOrking");
+                 NSLog(@"Updating Location");
              }
              else {
                  //TODO: Create code for manual selection of location.
@@ -154,20 +154,20 @@
 {
     NSLog(@"Successful Notification Alert");
     //Check to see if user has video uploaded, if not, video upload screen is shown.
-  //  if ((NSNull *)[user objectForKey: @"videoUri"] == [NSNull null]){
+  if ((NSNull *)[user objectForKey: @"videoUri"] == [NSNull null]){
         PBJViewController *pbjViewController = [[PBJViewController alloc] init];
         [self presentViewController:pbjViewController animated:YES completion:nil];
 
-    //}
+    }
     //If user has video, matching screen is uploaded.
-//    else {
-//        NSLog(@"present matching view controller here");
-//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//        //PotentialMatchesViewController *potentialmatchesviewcontroller = [storyboard instantiateViewControllerWithIdentifier:@"PotentialMatchesViewController"];
-//        ViewController *menuViewController = [storyboard instantiateViewControllerWithIdentifier:@"rootViewController"];
-//        [self presentViewController:menuViewController animated:YES completion:nil];
-//        
-//    }
+    else {
+        NSLog(@"present matching view controller here");
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        //PotentialMatchesViewController *potentialmatchesviewcontroller = [storyboard instantiateViewControllerWithIdentifier:@"PotentialMatchesViewController"];
+        ViewController *menuViewController = [storyboard instantiateViewControllerWithIdentifier:@"rootViewController"];
+        [self presentViewController:menuViewController animated:YES completion:nil];
+        
+    }
 
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 
