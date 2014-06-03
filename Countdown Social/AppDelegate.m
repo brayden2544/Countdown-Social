@@ -14,6 +14,8 @@
 
 @implementation AppDelegate
 
+@synthesize FBsession;
+
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
@@ -33,13 +35,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    
     [FBProfilePictureView class];
     
     // Whenever a person opens the app, check for a cached session
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
         
         // If there's one, just open the session silently, without showing the user the login UI
-        [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"user_email"]
+        [FBSession openActiveSessionWithReadPermissions:@[@"public_profile"]
                                            allowLoginUI:NO
                                       completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
                                           // Handler for session state changes
@@ -59,7 +63,7 @@
     // If the session was opened successfully
     if (!error && state == FBSessionStateOpen){
         NSString *FbToken = [session accessTokenData].accessToken;
-        _FBsession = session;
+        FBsession = session;
 
         NSLog(@"Successful LOGIN");
         UIViewController *loginloadviewcontrolller = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"LoginLoadViewController"];
@@ -68,7 +72,7 @@
 
        
         
-        NSLog(FbToken);
+        NSLog(@"FaceBook Token is %@",FbToken);
         
         // Show the user the logged-in UI
                    

@@ -93,23 +93,11 @@
 
 @end
 
+
 @implementation PBJViewController
 
-@synthesize videoPath;
-@synthesize videoDict;
 
 #pragma mark - UIViewController
-
-#pragma mark - PBJViewController Shared Singleton
-
-+ (id)sharedPBJViewController {
-    static PBJViewController *sharedPBJViewController = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedPBJViewController = [[self alloc] init];
-    });
-    return sharedPBJViewController;
-}
 
 
 
@@ -261,6 +249,7 @@
     _onionButton.imageView.frame = _onionButton.bounds;
     [_onionButton addTarget:self action:@selector(_handleOnionSkinningButton:) forControlEvents:UIControlEventTouchUpInside];
     [_captureDock addSubview:_onionButton];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -622,74 +611,84 @@
 
     _currentVideo = videoDict;
     
-       NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/690825080/video";
-    
-    NSURL *url = [NSURL URLWithString:urlAsString];
-    
-    NSMutableURLRequest *urlRequest =
-    [NSMutableURLRequest requestWithURL:url];
-    
-    NSString *videoPath = [videoDict  objectForKey:PBJVisionVideoPathKey];
-    NSURL *videoURL = [NSURL URLWithString:videoPath];
-    NSData *videoData = [[NSFileManager defaultManager] contentsAtPath:videoPath];
-
-    NSLog(@"%@",videoURL);
-    
-    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
-    
-    NSString *FbToken = [session accessTokenData].accessToken;
-    
-    NSLog(@"Token is %@", FbToken);
-    
-    NSString *postLength = [NSString stringWithFormat:@"%d", [videoData length]];
-    NSLog(@"stupid length%@",postLength);
-    
-    [urlRequest setValue:@"video/quicktime" forHTTPHeaderField:@"Content-Type"];
-    [urlRequest setValue:FbToken forHTTPHeaderField:@"Access-Token"];
-    [urlRequest setValue:postLength forHTTPHeaderField:@"Content-Length"];
-    [urlRequest setHTTPBody:videoData];
-    //NSLog(@"post thing %@", videoData);
-
-
-    
-    
-    [urlRequest setTimeoutInterval:15.0f];
-    [urlRequest setHTTPMethod:@"POST"];
-    
-    NSOperationQueue *queque = [[NSOperationQueue alloc] init];
-    
-    [NSURLConnection
-     sendAsynchronousRequest:urlRequest
-     queue:queque
-     completionHandler:^(NSURLResponse *response,
-                         NSData *data,
-                         NSError *error){
-         if ([data length] >0 && error == nil){
-             NSString *html =
-             [[NSString alloc] initWithData:data
-                                   encoding:NSUTF8StringEncoding];
-             
-             NSLog(@" POST HTML = %@", html);
-             
-             
-             
-             id UserJson = [NSJSONSerialization
-                            JSONObjectWithData:data
-                            options:NSJSONReadingAllowFragments
-                            error:&error];
-             NSDictionary *user = UserJson;
-             NSLog(@"dictionary contains %@" , user);
-             
-             
-         }
-         else if ([data length] == 0 && error == nil){
-             NSLog(@"POST Nothing was downloaded.");
-         }
-         else if (error !=nil){
-             NSLog(@"Error happened = %@", error);
-             NSLog(@"POST BROKEN");
-         }
-     }];
+//       NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/690825080/video";
+//    
+//    NSURL *url = [NSURL URLWithString:urlAsString];
+//    
+//    NSMutableURLRequest *urlRequest =
+//    [NSMutableURLRequest requestWithURL:url];
+//    
+//    NSString *videoPath = [videoDict  objectForKey:PBJVisionVideoPathKey];
+//    NSURL *videoURL = [NSURL URLWithString:videoPath];
+//    NSData *videoData = [[NSFileManager defaultManager] contentsAtPath:videoPath];
+//
+//    
+//    //Test to load video to other path temporarily
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentsDirectory = [paths objectAtIndex:0];
+//    NSString *videoFile =[[NSString alloc] initWithString: [documentsDirectory stringByAppendingPathComponent:videoPath]];
+//    [videoData writeToFile:videoFile atomically:YES];
+//    NSLog(@"%@",videoFile);
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    VideoPreviewViewController *videoPreview = [storyboard instantiateViewControllerWithIdentifier:@"VideoPreviewViewController"];
+//    videoPreview.videoFile = videoFile;
+//    
+//    
+//    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+//    
+//    NSString *FbToken = [session accessTokenData].accessToken;
+//    
+//    NSLog(@"Token is %@", FbToken);
+//    
+//    NSString *postLength = [NSString stringWithFormat:@"%d", [videoData length]];
+//    NSLog(@"stupid length%@",postLength);
+//    
+//    [urlRequest setValue:@"video/quicktime" forHTTPHeaderField:@"Content-Type"];
+//    [urlRequest setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+//    [urlRequest setValue:postLength forHTTPHeaderField:@"Content-Length"];
+//    [urlRequest setHTTPBody:videoData];
+//    //NSLog(@"post thing %@", videoData);
+//
+//
+//    
+//    
+//    [urlRequest setTimeoutInterval:15.0f];
+//    [urlRequest setHTTPMethod:@"POST"];
+//    
+//    NSOperationQueue *queque = [[NSOperationQueue alloc] init];
+//    
+//    [NSURLConnection
+//     sendAsynchronousRequest:urlRequest
+//     queue:queque
+//     completionHandler:^(NSURLResponse *response,
+//                         NSData *data,
+//                         NSError *error){
+//         if ([data length] >0 && error == nil){
+//             NSString *html =
+//             [[NSString alloc] initWithData:data
+//                                   encoding:NSUTF8StringEncoding];
+//             
+//             NSLog(@" POST HTML = %@", html);
+//             
+//             
+//             
+//             id UserJson = [NSJSONSerialization
+//                            JSONObjectWithData:data
+//                            options:NSJSONReadingAllowFragments
+//                            error:&error];
+//             NSDictionary *user = UserJson;
+//             NSLog(@"dictionary contains %@" , user);
+//             
+//             
+//         }
+//         else if ([data length] == 0 && error == nil){
+//             NSLog(@"POST Nothing was downloaded.");
+//         }
+//         else if (error !=nil){
+//             NSLog(@"Error happened = %@", error);
+//             NSLog(@"POST BROKEN");
+//         }
+//     }];
 
     //[_assetLibrary writeVideoAtPathToSavedPhotosAlbum:[NSURL URLWithString:videoPath] completionBlock:^(NSURL *assetURL, NSError *error1) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Saved!" message: @"Video Updloaded To Server."
@@ -697,9 +696,8 @@
                                               cancelButtonTitle:nil
                                               otherButtonTitles:@"OK", nil];
         [alert show];
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        VideoPreviewViewController *videoPreview = [storyboard instantiateViewControllerWithIdentifier:@"VideoPreviewViewController"];
-        [self presentViewController:videoPreview animated:YES completion:nil];
+    
+        //[self presentViewController:videoPreview animated:YES completion:nil];
 
    // }];
 }
@@ -715,5 +713,14 @@
 {
 //    NSLog(@"captured video (%f) seconds", vision.capturedVideoSeconds);
 }
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//    VideoPreviewViewController *videopreviewviewController = [segue destinationViewController];
+//    // Pass the selected object to the new view controller.
+//    [videopreviewviewController performSelector:@selector(setVideoDict:)
+//                                          withObject:videoDict];
+//    
+//}
 
 @end

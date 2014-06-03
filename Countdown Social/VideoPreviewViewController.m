@@ -7,15 +7,16 @@
 //
 
 #import "VideoPreviewViewController.h"
-#import <MediaPlayer/MediaPlayer.h>
 #import "PBJViewController.h"
+#import <MediaPlayer/MediaPlayer.h>
+
 
 
 @interface VideoPreviewViewController ()
 @property (nonatomic, strong) MPMoviePlayerController *moviePlayer;
 @property (nonatomic, strong) UIButton *playButton;
 @property (nonatomic, strong) NSString *videoPath;
-@property (nonatomic, strong) NSDictionary *currentVideo;
+@property (atomic, strong) NSDictionary *currentVideo;
 
 
 @end
@@ -35,9 +36,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    PBJViewController *sharedPBJViewController = [PBJViewController sharedPBJViewController];
-    _videoPath = sharedPBJViewController.videoPath;
-    _currentVideo = sharedPBJViewController.videoDict;
+    //PBJViewController *sharedPBJViewController = [PBJViewController sharedPBJViewController];
+   // _videoPath = sharedPBJViewController.videoPath;
+    //_currentVideo = sharedPBJViewController.videoDict;
 
 }
 
@@ -54,12 +55,13 @@
 
 - (void) startPlayingVideo:(id)paramSender{
     //Construct url of file in application bundle that needs to get played by movie player
-    NSBundle *mainBundle = [NSBundle mainBundle];
+    NSString *filepath   =   [[NSBundle mainBundle] pathForResource:_videoFile ofType:@"mp4"];
+    NSURL *url = [NSURL fileURLWithPath:_videoFile];
     
-    NSURL *url = [mainBundle URLForResource:_videoPath withExtension:@"m4v"];
-    
+    NSLog(@"%@", filepath);
     self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
-    
+    [self.moviePlayer setScalingMode:MPMovieScalingModeAspectFit];
+    self.moviePlayer.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     if (self.moviePlayer != nil){
         [[NSNotificationCenter defaultCenter]
          addObserver:self
@@ -72,11 +74,11 @@
         //Scale Player to fit Aspect Ratio
         
         [self.view addSubview:self.moviePlayer.view];
-        self.moviePlayer.view.frame = CGRectMake(10.0f, 55.0f, 300.0f, 460.0f);
+        //self.moviePlayer.view.frame = CGRectMake(10.0f, 55.0f, 300.0f, 460.0f);
 
         
-        [self.moviePlayer setFullscreen:NO
-                               animated:NO];
+        //[self.moviePlayer setFullscreen:YES
+          //                     animated:NO];
         
         [self.moviePlayer play];
     }

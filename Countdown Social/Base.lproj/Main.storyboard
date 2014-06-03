@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -60,7 +60,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="399" y="123"/>
+            <point key="canvasLocation" x="341" y="246"/>
         </scene>
         <!--Video Preview View Controller-->
         <scene sceneID="LcK-PT-nGM">
@@ -113,18 +113,53 @@
             </objects>
             <point key="canvasLocation" x="764" y="160"/>
         </scene>
-        <!--View Controller-->
+        <!--Menu View Controller-->
+        <scene sceneID="jf7-ns-qhC">
+            <objects>
+                <viewController storyboardIdentifier="rootViewController" id="Z0u-QQ-q8R" customClass="MenuViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="llK-Xy-cPY"/>
+                        <viewControllerLayoutGuide type="bottom" id="2QB-wu-Xyk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KbK-vE-r6F">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BAP-1F-Wvh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="759" y="825"/>
+        </scene>
+        <!--View Controller - Record Video-->
         <scene sceneID="jSl-TF-kyz">
             <objects>
-                <viewController storyboardIdentifier="VideoRecorderViewController" id="N6j-aT-1cU" customClass="PBJViewController" sceneMemberID="viewController"/>
+                <viewController storyboardIdentifier="VideoRecorderViewController" title="Record Video" id="N6j-aT-1cU" customClass="PBJViewController" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Zkj-tx-IAt"/>
+                </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q7z-8F-UQ0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1158" y="129"/>
+            <point key="canvasLocation" x="1174" y="471"/>
         </scene>
-        <!--Potential Matches View Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="KQt-lU-Pf4">
+            <objects>
+                <navigationController storyboardIdentifier="contentViewController" definesPresentationContext="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" navigationBarHidden="YES" id="Wlj-5m-54v" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2dM-T6-OJr">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="QP0-wH-HVL" kind="relationship" relationship="rootViewController" id="9hB-gL-VLc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H9b-Tp-KvN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1174" y="-244"/>
+        </scene>
+        <!--Potential Matches View Controller - Home-->
         <scene sceneID="Vze-J4-vkq">
             <objects>
-                <viewController storyboardIdentifier="PotentialMatchesViewController" id="QP0-wH-HVL" customClass="PotentialMatchesViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PotentialMatchesViewController" title="Home" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QP0-wH-HVL" customClass="PotentialMatchesViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HET-w5-XEp"/>
                         <viewControllerLayoutGuide type="bottom" id="CPW-FN-Ouy"/>
@@ -138,36 +173,121 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fal-KJ-nsc">
-                                <rect key="frame" x="269" y="27" width="17" height="25"/>
+                                <rect key="frame" x="277" y="27" width="17" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="matchesButton.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UzV-ct-iMA">
-                                <rect key="frame" x="26" y="27" width="29" height="25"/>
+                                <rect key="frame" x="16" y="27" width="29" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="settingsButton.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="presentLeftMenuViewController:" destination="QP0-wH-HVL" eventType="touchUpInside" id="s0z-4u-8ht"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="dsk-L7-Iqd"/>
+                    <navigationItem key="navigationItem" id="vwC-bL-I6l"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qzy-hH-Une" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1599" y="182"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Yhb-m3-6X1">
+            <objects>
+                <viewController storyboardIdentifier="rightMenuViewController" id="lIO-a2-lEU" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1yD-6a-Lvm"/>
+                        <viewControllerLayoutGuide type="bottom" id="5zb-1D-oNB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Mgl-Q4-iL9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vCw-SZ-uZi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1935" y="-39"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="9Xf-DI-qnJ">
+            <objects>
+                <viewController storyboardIdentifier="leftMenuViewController" id="pb2-5n-e4w" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="E1P-li-m37"/>
+                        <viewControllerLayoutGuide type="bottom" id="Xsa-vF-jdY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kB0-sR-hL4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Stars.png" translatesAutoresizingMaskIntoConstraints="NO" id="fqN-lH-h8g">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OVy-LQ-7a8">
+                                <rect key="frame" x="68" y="62" width="102" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                <state key="normal" title="Settings ">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jTb-6j-DJY">
+                                <rect key="frame" x="68" y="192" width="102" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                <state key="normal" title="Profile">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J37-gY-U2p">
+                                <rect key="frame" x="68" y="315" width="102" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                <state key="normal" title="Stats">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H5W-EM-pU7">
+                                <rect key="frame" x="68" y="434" width="102" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Logout">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Qzy-hH-Une" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H7Z-wB-pJK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1535" y="136"/>
+            <point key="canvasLocation" x="1855" y="673"/>
         </scene>
     </scenes>
     <resources>
-        <image name="PotentialMatchesBackground.png" width="1264" height="2264"/>
+        <image name="PotentialMatchesBackground.png" width="1278" height="2270"/>
+        <image name="Stars.png" width="320" height="568"/>
         <image name="fbLogin.png" width="1212" height="196"/>
         <image name="iLikeIt.png" width="542" height="132"/>
         <image name="loadingScreen.png" width="1280" height="2272"/>
         <image name="loginBackground.png" width="1284" height="2276"/>
         <image name="matchesButton.png" width="76" height="110"/>
-        <image name="settingsButton.png" width="114" height="98"/>
+        <image name="settingsButton.png" width="114" height="96"/>
         <image name="tryAgain.png" width="542" height="132"/>
         <image name="videoPreview.png" width="1280" height="2272"/>
     </resources>

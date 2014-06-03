@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-
 @interface PotentialMatchesViewController : ViewController
 
 @end

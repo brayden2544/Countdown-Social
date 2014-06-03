@@ -11,12 +11,16 @@
 #import "PBJViewController.h"
 #import "ChooseLocationViewController.h"
 #import "PotentialMatchesViewController.h"
+#import "MenuViewController.h"
 
 @interface LoginLoadViewController ()
 
 @end
 
 @implementation LoginLoadViewController
+
+@synthesize user;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,10 +30,10 @@
     }
     return self;
 }
--(void) loadCamera{
-    PBJViewController *videorecorderviewcontroller = [[PBJViewController alloc] init];
-    [self presentViewController:videorecorderviewcontroller animated:YES completion:nil];
-}
+//-(void) loadCamera{
+//    PBJViewController *videorecorderviewcontroller = [[PBJViewController alloc] init];
+//    [self presentViewController:videorecorderviewcontroller animated:YES completion:nil];
+//}
 //gets current location and uploads it to API.
 -(void) locationManager:(CLLocationManager *)manager
            didUpdateToLocation:(CLLocation *)newLocation
@@ -51,7 +55,8 @@
         [NSMutableURLRequest requestWithURL:url];
         
         [urlRequest setHTTPBody:[[NSString stringWithFormat:@"lat=%g&long=%g", currentLocation.coordinate.latitude, currentLocation.coordinate.longitude] dataUsingEncoding:NSUTF8StringEncoding]];
-        
+        [self.currentLocationManager stopUpdatingLocation];
+
         FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
         
         NSString *FbToken = [session accessTokenData].accessToken;
@@ -77,17 +82,14 @@
                  [[NSString alloc] initWithData:data
                                        encoding:NSUTF8StringEncoding];
                  
-                 NSLog(@" POST HTML = %@", html);
-                
-                 
-                 
                  id UserJson = [NSJSONSerialization
                                 JSONObjectWithData:data
                                 options:NSJSONReadingAllowFragments
                                 error:&error];
                  user = UserJson;
+                 [[NSNotificationCenter defaultCenter] postNotificationName:@"NSURLConnectionDidFinish" object:nil];
+
                  NSLog(@"dictionary contains %@" , user);
-                 
                  
                  
              }
@@ -99,23 +101,10 @@
                  NSLog(@"POST BROKEN");
              }
          }];
-        //Check to see if user has video uploaded, if not, video upload screen is shown.
-        if ([[user objectForKey: @"videoUri"]  isEqual: @"null"]){
-            PBJViewController *videorecorderviewcontroller = [[PBJViewController alloc] init];
-            [self presentViewController:videorecorderviewcontroller animated:YES completion:nil];
-        }
-        //If user has video, matching screen is uploaded.
-        else {
-            NSLog(@"present matching view controller here");
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            PotentialMatchesViewController *potentialmatchesviewcontroller = [storyboard instantiateViewControllerWithIdentifier:@"PotentialMatchesViewController"];
-            [self presentViewController:potentialmatchesviewcontroller animated:YES completion:nil];
-        }
-
+      
         
     }
     
-    [self.currentLocationManager stopUpdatingLocation];
     
     
 }
@@ -128,7 +117,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    //Waits for login request to complete from Countdown Api
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector (successfulLogin)
+                                            name:@"NSURLConnectionDidFinish"
+                                            object:nil];
     //Gets current Location of User
 
              if ([CLLocationManager locationServicesEnabled]) {
@@ -153,6 +146,31 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    NSLog(@"Memory Warning in LoginLoadViewController");
+}
+
+
+- (void) successfulLogin
+{
+    NSLog(@"Successful Notification Alert");
+    //Check to see if user has video uploaded, if not, video upload screen is shown.
+  //  if ((NSNull *)[user objectForKey: @"videoUri"] == [NSNull null]){
+        PBJViewController *pbjViewController = [[PBJViewController alloc] init];
+        [self presentViewController:pbjViewController animated:YES completion:nil];
+
+    //}
+    //If user has video, matching screen is uploaded.
+//    else {
+//        NSLog(@"present matching view controller here");
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//        //PotentialMatchesViewController *potentialmatchesviewcontroller = [storyboard instantiateViewControllerWithIdentifier:@"PotentialMatchesViewController"];
+//        ViewController *menuViewController = [storyboard instantiateViewControllerWithIdentifier:@"rootViewController"];
+//        [self presentViewController:menuViewController animated:YES completion:nil];
+//        
+//    }
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+
 }
 
 /*

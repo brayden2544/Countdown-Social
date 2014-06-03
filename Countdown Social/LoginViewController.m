@@ -56,18 +56,11 @@
                                            allowLoginUI:YES
                                       completionHandler:
          ^(FBSession *session, FBSessionState state, NSError *error) {
-             UIStoryboard *storyboard = self.storyboard;
                          // Retrieve the app delegate
              AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
              // Call the app delegate's sessionStateChanged:state:error method to handle session state changes
              [appDelegate sessionStateChanged:session state:state error:error];
                      }];
-//        ChooseLocationViewController *clvc = [self.storyboard instantiateViewControllerWithIdentifier:@"ChooseLocationViewController"];
-//        
-//        // Configure the new view controller here.
-//        NSLog(@"Successful LOGIN");
-//        [self presentViewController:clvc animated:YES completion:nil];
-
     }
 }
 

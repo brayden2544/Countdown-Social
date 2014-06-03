@@ -66,6 +66,8 @@ NSString * const PBJVisionPhotoThumbnailKey = @"PBJVisionPhotoThumbnailKey";
 
 NSString * const PBJVisionVideoPathKey = @"PBJVisionVideoPathKey";
 NSString * const PBJVisionVideoThumbnailKey = @"PBJVisionVideoThumbnailKey";
+NSString * const PBJVisionVideoCapturedDurationKey = @"PBJVisionVideoCapturedDurationKey";
+
 
 // PBJGLProgram shader uniforms for pixel format conversion on the GPU
 typedef NS_ENUM(GLint, PBJVisionUniformLocationTypes)
@@ -585,7 +587,7 @@ PBJMediaWriterDelegate>
         frameRate = connection.videoMaxFrameDuration.timescale;
 #pragma clang diagnostic pop
     }
-	
+    
 	return frameRate;
 }
 
@@ -632,7 +634,7 @@ PBJMediaWriterDelegate>
         _captureSessionPreset = AVCaptureSessionPresetMedium;
         
         // default audio/video configuration
-        _audioBitRate = 32000;
+        _audioBitRate = 64000;
         
         // Average bytes per second based on video dimensions
         // lower the bitRate, higher the compression
@@ -642,7 +644,7 @@ PBJMediaWriterDelegate>
         // 2975000, good for 1920 x 1080
         // 3750000, good for iFrame 960 x 540
         // 5000000, good for iFrame 1280 x 720
-        CGFloat bytesPerSecond = 50000;
+        CGFloat bytesPerSecond = 437500;
         _videoBitRate = bytesPerSecond * 8;
         
         // default flags
@@ -1640,6 +1642,8 @@ typedef void (^PBJVisionBlock)();
         _flags.paused = NO;
         
         void (^finishWritingCompletionHandler)(void) = ^{
+            Float64 capturedDuration = self.capturedVideoSeconds;
+            
             _lastTimestamp = kCMTimeInvalid;
             _startTimestamp = CMClockGetTime(CMClockGetHostTimeClock());
             _flags.interrupted = NO;
@@ -1649,6 +1653,8 @@ typedef void (^PBJVisionBlock)();
                 NSString *path = [_mediaWriter.outputURL path];
                 if (path)
                     [videoDict setObject:path forKey:PBJVisionVideoPathKey];
+                
+                [videoDict setObject:@(capturedDuration) forKey:PBJVisionVideoCapturedDurationKey];
                 
                 NSError *error = [_mediaWriter error];
                 if ([_delegate respondsToSelector:@selector(vision:capturedVideo:error:)]) {
@@ -1875,15 +1881,15 @@ typedef void (^PBJVisionBlock)();
             }
         }
         
-        currentTimestamp = CMSampleBufferGetPresentationTimeStamp(sampleBuffer);
-        if (CMTIME_IS_VALID(currentTimestamp) && CMTIME_IS_VALID(_startTimestamp) && CMTIME_IS_VALID(_maximumCaptureDuration)) {
+        // when a valid maxium duration is provided, end capture
+        if (CMTIME_IS_VALID(_maximumCaptureDuration)) {
+            // _lastTimestamp for interrupted recording, otherwise currentCaptureDuration
             CMTime currentCaptureDuration = CMTimeSubtract(currentTimestamp, _startTimestamp);
-            if (CMTIME_IS_VALID(currentCaptureDuration)) {
-                if (CMTIME_COMPARE_INLINE(currentCaptureDuration, >=, _maximumCaptureDuration)) {
-                    [self _enqueueBlockOnMainQueue:^{
-                        [self endVideoCapture];
-                    }];
-                }
+            CMTime timestamp = CMTIME_IS_VALID(_lastTimestamp) ? _lastTimestamp : currentCaptureDuration;
+            if (CMTIME_IS_VALID(timestamp) && CMTIME_COMPARE_INLINE(timestamp, >=, _maximumCaptureDuration)) {
+                [self _enqueueBlockOnMainQueue:^{
+                    [self endVideoCapture];
+                }];
             }
         }
         

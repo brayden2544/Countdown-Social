@@ -10,5 +10,8 @@
 
 @interface VideoPreviewViewController : ViewController
 
+@property(nonatomic) NSString *videoFile;
+
+
 @end
 
