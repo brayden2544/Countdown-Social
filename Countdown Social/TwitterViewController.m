@@ -41,14 +41,39 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    __block NSString *twitterUsername = nil;
+    //Request Twitter Information
+    
+    ACAccountStore *store = [[ACAccountStore alloc] init]; // Long-lived
+    ACAccountType *twitterType = [store accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+    NSDictionary *twitterDictionary = @{};
+[store requestAccessToAccountsWithType:twitterType options:nil completion:^(BOOL granted, NSError *error) {
+    
+        if(granted ==YES) {
+            NSArray *arrayOfAccounts = [store
+                                        accountsWithAccountType:twitterType];
+            
+            twitterUsername =[arrayOfAccounts objectAtIndex:0];
+            NSLog(@"Granted");
+            
+         
+
+            // Access has been granted, now we can access the accounts
+                   }
+        // Handle any error state here as you wish
+    }];
     self.twitterWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0,60,320,506)];
     self.twitterWebView.scalesPageToFit = YES;
     [self.view addSubview:self.twitterWebView];
     
-    NSURL *url = [NSURL URLWithString:@"http://www.twitter.com/b_rayd"];
+    NSString *stringURL = @"http://www.twitter.com/";
+    NSString *stringURl = [stringURL stringByAppendingString:twitterUsername];
+    NSURL *url = [NSURL URLWithString:stringURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
-   [self.twitterWebView loadRequest:request];
+    [self.twitterWebView loadRequest:request];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning

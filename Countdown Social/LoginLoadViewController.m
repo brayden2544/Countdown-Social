@@ -64,7 +64,7 @@
         [urlRequest setValue:FbToken forHTTPHeaderField:@"Access-Token"];
         
         
-        [urlRequest setTimeoutInterval:5.0f];
+        [urlRequest setTimeoutInterval:300.0f];
         [urlRequest setHTTPMethod:@"POST"];
         
         NSOperationQueue *queque = [[NSOperationQueue alloc] init];
@@ -188,7 +188,7 @@
             NSString *FbToken = [session accessTokenData].accessToken;
             [potentialMatchesRequest setValue:FbToken forHTTPHeaderField:@"Access-Token"];
 
-            [potentialMatchesRequest setTimeoutInterval:5.0f];
+            [potentialMatchesRequest setTimeoutInterval:300.0f];
             [potentialMatchesRequest setHTTPMethod:@"POST"];
             NSLog(@"IN DISPATCH");
             NSOperationQueue *potentialMatchesQueue = [[NSOperationQueue alloc] init];

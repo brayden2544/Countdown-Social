@@ -53,6 +53,8 @@
 		6EE4B414192138BD00C84C3A /* PBJVisionUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE4B410192138BD00C84C3A /* PBJVisionUtilities.m */; };
 		6EE4B4191921395C00C84C3A /* PBJFocusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE4B4161921395C00C84C3A /* PBJFocusView.m */; };
 		6EE4B41A1921395C00C84C3A /* PBJStrobeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE4B4181921395C00C84C3A /* PBJStrobeView.m */; };
+		6EF0026E194FC9EF00F32217 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF0026D194FC9EF00F32217 /* Social.framework */; };
+		6EF00270194FCA2000F32217 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF0026F194FCA2000F32217 /* Accounts.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +137,8 @@
 		6EE4B4161921395C00C84C3A /* PBJFocusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJFocusView.m; sourceTree = "<group>"; };
 		6EE4B4171921395C00C84C3A /* PBJStrobeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJStrobeView.h; sourceTree = "<group>"; };
 		6EE4B4181921395C00C84C3A /* PBJStrobeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJStrobeView.m; sourceTree = "<group>"; };
+		6EF0026D194FC9EF00F32217 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		6EF0026F194FCA2000F32217 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +146,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EF00270194FCA2000F32217 /* Accounts.framework in Frameworks */,
+				6EF0026E194FC9EF00F32217 /* Social.framework in Frameworks */,
 				6EC0FC2F192B145C00B72C44 /* Accelerate.framework in Frameworks */,
 				6E04693D191A877E00482E79 /* CoreLocation.framework in Frameworks */,
 				6E886A50190E1CC1009E5A92 /* MapKit.framework in Frameworks */,
@@ -200,6 +206,8 @@
 		6E967CAE190DA4960042AF93 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6EF0026F194FCA2000F32217 /* Accounts.framework */,
+				6EF0026D194FC9EF00F32217 /* Social.framework */,
 				6EC0FC2E192B145C00B72C44 /* Accelerate.framework */,
 				6E04693C191A877E00482E79 /* CoreLocation.framework */,
 				6E886A4F190E1CC1009E5A92 /* MapKit.framework */,
