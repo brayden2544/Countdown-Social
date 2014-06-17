@@ -14,7 +14,7 @@
 		6E50A471192D84F700930D02 /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E50A46D192D84F700930D02 /* RESideMenu.m */; };
 		6E50A472192D84F700930D02 /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E50A46F192D84F700930D02 /* UIViewController+RESideMenu.m */; };
 		6E50A475192D86FB00930D02 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E50A474192D86FB00930D02 /* MenuViewController.m */; };
-		6E50A477192D977300930D02 /* Stars@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E50A476192D977300930D02 /* Stars@2x.png */; };
+		6E50A477192D977300930D02 /* Stars.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E50A476192D977300930D02 /* Stars.png */; };
 		6E886A41190DB418009E5A92 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E886A40190DB418009E5A92 /* FacebookSDK.framework */; };
 		6E886A44190DB575009E5A92 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E886A43190DB575009E5A92 /* LoginViewController.m */; };
 		6E886A4B190DD4F9009E5A92 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E886A4A190DD4F9009E5A92 /* ViewController.m */; };
@@ -46,6 +46,7 @@
 		6EC0FC18192AD95A00B72C44 /* settingsButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0FC17192AD95A00B72C44 /* settingsButton.png */; };
 		6EC0FC1A192AD9AE00B72C44 /* matchesButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0FC19192AD9AE00B72C44 /* matchesButton.png */; };
 		6EC0FC2F192B145C00B72C44 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC0FC2E192B145C00B72C44 /* Accelerate.framework */; };
+		6ECE8112194A6F69007B3130 /* TwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECE8111194A6F69007B3130 /* TwitterViewController.m */; };
 		6EE4B411192138BD00C84C3A /* PBJGLProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE4B40A192138BD00C84C3A /* PBJGLProgram.m */; };
 		6EE4B412192138BD00C84C3A /* PBJMediaWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE4B40C192138BD00C84C3A /* PBJMediaWriter.m */; };
 		6EE4B413192138BD00C84C3A /* PBJVision.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE4B40E192138BD00C84C3A /* PBJVision.m */; };
@@ -78,7 +79,7 @@
 		6E50A46F192D84F700930D02 /* UIViewController+RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RESideMenu.m"; sourceTree = "<group>"; };
 		6E50A473192D86FB00930D02 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		6E50A474192D86FB00930D02 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
-		6E50A476192D977300930D02 /* Stars@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Stars@2x.png"; sourceTree = "<group>"; };
+		6E50A476192D977300930D02 /* Stars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stars.png; sourceTree = "<group>"; };
 		6E886A40190DB418009E5A92 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		6E886A42190DB575009E5A92 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		6E886A43190DB575009E5A92 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -120,6 +121,8 @@
 		6EC0FC17192AD95A00B72C44 /* settingsButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = settingsButton.png; path = ../settingsButton.png; sourceTree = "<group>"; };
 		6EC0FC19192AD9AE00B72C44 /* matchesButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = matchesButton.png; sourceTree = "<group>"; };
 		6EC0FC2E192B145C00B72C44 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		6ECE8110194A6F69007B3130 /* TwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterViewController.h; sourceTree = "<group>"; };
+		6ECE8111194A6F69007B3130 /* TwitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterViewController.m; sourceTree = "<group>"; };
 		6EE4B409192138BD00C84C3A /* PBJGLProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJGLProgram.h; sourceTree = "<group>"; };
 		6EE4B40A192138BD00C84C3A /* PBJGLProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJGLProgram.m; sourceTree = "<group>"; };
 		6EE4B40B192138BD00C84C3A /* PBJMediaWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJMediaWriter.h; sourceTree = "<group>"; };
@@ -223,6 +226,8 @@
 				6EB9D6B5192415D10080E1C5 /* VideoPreviewViewController.m */,
 				6E046939191995B900482E79 /* LoginLoadViewController.h */,
 				6E04693A191995B900482E79 /* LoginLoadViewController.m */,
+				6ECE8110194A6F69007B3130 /* TwitterViewController.h */,
+				6ECE8111194A6F69007B3130 /* TwitterViewController.m */,
 				6E886A4C190E05AC009E5A92 /* SetLocationViewController.h */,
 				6E886A4D190E05AC009E5A92 /* SetLocationViewController.m */,
 				6E886A5A190FF4F8009E5A92 /* ChooseLocationViewController.h */,
@@ -247,7 +252,7 @@
 				6EC0FC14192ACAFB00B72C44 /* PotentialMatches */,
 				6E967CB7190DA4960042AF93 /* Countdown Social-Info.plist */,
 				6EB9D6AC1921B8450080E1C5 /* loadingScreen.png */,
-				6E50A476192D977300930D02 /* Stars@2x.png */,
+				6E50A476192D977300930D02 /* Stars.png */,
 				6E967CB8190DA4960042AF93 /* InfoPlist.strings */,
 				6E967CBB190DA4960042AF93 /* main.m */,
 				6E967CBD190DA4960042AF93 /* Countdown Social-Prefix.pch */,
@@ -405,7 +410,7 @@
 				6EB9D6AD1921B8450080E1C5 /* loadingScreen.png in Resources */,
 				6EB9D6B3192415310080E1C5 /* videoPreview.png in Resources */,
 				6E967CC8190DA4960042AF93 /* Images.xcassets in Resources */,
-				6E50A477192D977300930D02 /* Stars@2x.png in Resources */,
+				6E50A477192D977300930D02 /* Stars.png in Resources */,
 				6EB9D6B9192426B90080E1C5 /* iLikeIt.png in Resources */,
 				6EB9D6BA192426B90080E1C5 /* tryAgain.png in Resources */,
 				6EC0FC18192AD95A00B72C44 /* settingsButton.png in Resources */,
@@ -439,6 +444,7 @@
 				6EE4B413192138BD00C84C3A /* PBJVision.m in Sources */,
 				6E50A472192D84F700930D02 /* UIViewController+RESideMenu.m in Sources */,
 				6E886A44190DB575009E5A92 /* LoginViewController.m in Sources */,
+				6ECE8112194A6F69007B3130 /* TwitterViewController.m in Sources */,
 				6E967CC0190DA4960042AF93 /* AppDelegate.m in Sources */,
 				6EB9D6B6192415D10080E1C5 /* VideoPreviewViewController.m in Sources */,
 				6E50A471192D84F700930D02 /* RESideMenu.m in Sources */,

@@ -149,7 +149,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="QP0-wH-HVL" kind="relationship" relationship="rootViewController" id="9hB-gL-VLc"/>
+                        <segue destination="QP0-wH-HVL" kind="relationship" relationship="rootViewController" id="dS5-wE-UgZ"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H9b-Tp-KvN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -255,10 +255,13 @@
                                 <rect key="frame" x="68" y="315" width="102" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
-                                <state key="normal" title="Stats">
+                                <state key="normal" title="Twitter">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="osf-Av-PJW" kind="modal" id="I8D-e4-Ku6"/>
+                                </connections>
                             </button>
                             <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H5W-EM-pU7">
                                 <rect key="frame" x="68" y="434" width="102" height="38"/>
@@ -273,15 +276,42 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Spg-0Q-lw1"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H7Z-wB-pJK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1855" y="673"/>
         </scene>
+        <!--Twitter View Controller-->
+        <scene sceneID="oZg-CH-fRs">
+            <objects>
+                <viewController id="osf-Av-PJW" customClass="TwitterViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CK8-je-6uV"/>
+                        <viewControllerLayoutGuide type="bottom" id="F6J-D8-qsK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="k2F-fr-ocx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o5G-9A-f9S">
+                                <rect key="frame" x="0.0" y="62" width="320" height="506"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="rKH-a3-Br4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Acz-Vs-rZc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2419" y="815"/>
+        </scene>
     </scenes>
     <resources>
         <image name="PotentialMatchesBackground.png" width="1278" height="2270"/>
-        <image name="Stars.png" width="320" height="568"/>
+        <image name="Stars.png" width="640" height="1136"/>
         <image name="fbLogin.png" width="1212" height="196"/>
         <image name="iLikeIt.png" width="542" height="132"/>
         <image name="loadingScreen.png" width="1280" height="2272"/>

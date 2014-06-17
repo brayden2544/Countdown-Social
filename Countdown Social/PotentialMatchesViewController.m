@@ -24,8 +24,19 @@
     return self;
 }
 
+
+
 - (void)viewDidLoad
 {
+   // dispatch_queue_t mainQueue = dispatch_get_main_queue();
+    
+    //used for UI Related Work
+    //dispatch_async(mainQueue, ^(void){
+    
+    
+    
+    //});
+   
 
 
 }
@@ -35,9 +46,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (IBAction)openSettings:(id)sender {
-    
-}
+
 
 /*
 #pragma mark - Navigation
