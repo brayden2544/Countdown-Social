@@ -7,6 +7,7 @@
 //
 
 #import "PotentialMatchesViewController.h"
+#import "LoginLoadViewController.h"
 
 @interface PotentialMatchesViewController ()
 
@@ -28,15 +29,8 @@
 
 - (void)viewDidLoad
 {
-   // dispatch_queue_t mainQueue = dispatch_get_main_queue();
+    LoginLoadViewController *obj =[LoginLoadViewController getInstance];
     
-    //used for UI Related Work
-    //dispatch_async(mainQueue, ^(void){
-    
-    
-    
-    //});
-   
 
 
 }

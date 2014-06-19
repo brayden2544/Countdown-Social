@@ -17,8 +17,7 @@ FBSession *FBsession;
 - (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error;
 
 @property (strong, nonatomic) UIWindow *window;
-@property (nonatomic, strong) CLLocationManager *myLocationManger;
-@property (nonatomic) FBSession *FBsession;
+@property (nonatomic, retain) FBSession *FBsession;
 
 
 

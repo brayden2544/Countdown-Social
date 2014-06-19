@@ -46,6 +46,7 @@
 		6EC0FC18192AD95A00B72C44 /* settingsButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0FC17192AD95A00B72C44 /* settingsButton.png */; };
 		6EC0FC1A192AD9AE00B72C44 /* matchesButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0FC19192AD9AE00B72C44 /* matchesButton.png */; };
 		6EC0FC2F192B145C00B72C44 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC0FC2E192B145C00B72C44 /* Accelerate.framework */; };
+		6ECB30F81952498200AB8854 /* InstagramViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECB30F71952498200AB8854 /* InstagramViewController.m */; };
 		6ECE8112194A6F69007B3130 /* TwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECE8111194A6F69007B3130 /* TwitterViewController.m */; };
 		6EE4B411192138BD00C84C3A /* PBJGLProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE4B40A192138BD00C84C3A /* PBJGLProgram.m */; };
 		6EE4B412192138BD00C84C3A /* PBJMediaWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE4B40C192138BD00C84C3A /* PBJMediaWriter.m */; };
@@ -123,6 +124,8 @@
 		6EC0FC17192AD95A00B72C44 /* settingsButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = settingsButton.png; path = ../settingsButton.png; sourceTree = "<group>"; };
 		6EC0FC19192AD9AE00B72C44 /* matchesButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = matchesButton.png; sourceTree = "<group>"; };
 		6EC0FC2E192B145C00B72C44 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		6ECB30F61952498200AB8854 /* InstagramViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramViewController.h; sourceTree = "<group>"; };
+		6ECB30F71952498200AB8854 /* InstagramViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramViewController.m; sourceTree = "<group>"; };
 		6ECE8110194A6F69007B3130 /* TwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterViewController.h; sourceTree = "<group>"; };
 		6ECE8111194A6F69007B3130 /* TwitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterViewController.m; sourceTree = "<group>"; };
 		6EE4B409192138BD00C84C3A /* PBJGLProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJGLProgram.h; sourceTree = "<group>"; };
@@ -234,6 +237,8 @@
 				6EB9D6B5192415D10080E1C5 /* VideoPreviewViewController.m */,
 				6E046939191995B900482E79 /* LoginLoadViewController.h */,
 				6E04693A191995B900482E79 /* LoginLoadViewController.m */,
+				6ECB30F61952498200AB8854 /* InstagramViewController.h */,
+				6ECB30F71952498200AB8854 /* InstagramViewController.m */,
 				6ECE8110194A6F69007B3130 /* TwitterViewController.h */,
 				6ECE8111194A6F69007B3130 /* TwitterViewController.m */,
 				6E886A4C190E05AC009E5A92 /* SetLocationViewController.h */,
@@ -460,6 +465,7 @@
 				6E886A4B190DD4F9009E5A92 /* ViewController.m in Sources */,
 				6E967CBC190DA4960042AF93 /* main.m in Sources */,
 				6E046946191C36A200482E79 /* PBJViewController.m in Sources */,
+				6ECB30F81952498200AB8854 /* InstagramViewController.m in Sources */,
 				6E886A5C190FF4F8009E5A92 /* ChooseLocationViewController.m in Sources */,
 				6EE4B4191921395C00C84C3A /* PBJFocusView.m in Sources */,
 				6E886A4E190E05AC009E5A92 /* SetLocationViewController.m in Sources */,

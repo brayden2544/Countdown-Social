@@ -20,6 +20,18 @@
 @implementation LoginLoadViewController
 
 @synthesize user;
+@synthesize potentialMatches;
+static LoginLoadViewController *instance = nil;
+
++(LoginLoadViewController *)getInstance{
+    @synchronized(self){
+        if(instance ==nil){
+            instance= [LoginLoadViewController new];
+        }
+    }
+    return instance;
+}
+
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -59,12 +71,10 @@
         
         NSString *FbToken = [session accessTokenData].accessToken;
         
-        NSLog(@"Token is %@", FbToken);
-        
         [urlRequest setValue:FbToken forHTTPHeaderField:@"Access-Token"];
         
         
-        [urlRequest setTimeoutInterval:300.0f];
+        [urlRequest setTimeoutInterval:30.0f];
         [urlRequest setHTTPMethod:@"POST"];
         
         NSOperationQueue *queque = [[NSOperationQueue alloc] init];
@@ -91,8 +101,9 @@
                                 error:&error];
                  user = UserJson;
 
+
                  NSLog(@"dictionary contains %@" , user);
-                 [[NSNotificationCenter defaultCenter] postNotificationName:@"NSURLConnectionDidFinish" object:nil];
+                 [self getPotentialMatches];
 
                  
              }
@@ -102,6 +113,7 @@
              else if (error !=nil){
                  NSLog(@"Error happened = %@", error);
                  NSLog(@"POST BROKEN");
+#warning TODO: Create alert and restart app in case of bad server connection.
              }
          }];
         });
@@ -159,83 +171,91 @@
     NSLog(@"Memory Warning in LoginLoadViewController");
 }
 
+- (void) getPotentialMatches
+{
+    //start filling Potential Matches Queue
+    dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+    
+    dispatch_async(concurrentQueue, ^{
+        //Download potential matches here
+        NSString *urlAsString =@"http://countdown-java-dev.elasticbeanstalk.com/user/";
+        // TODO:NSString *userID = [user objectForKey:@"uid"];
+        urlAsString = [urlAsString stringByAppendingString:@"690825080"];
+        urlAsString = [urlAsString stringByAppendingString:@"/nextPotentials"];
+        NSLog(@"%@", urlAsString);
+        
+        NSURL *PotentialMatchesUrl = [NSURL URLWithString:urlAsString];
+        
+        NSMutableURLRequest *potentialMatchesRequest = [NSMutableURLRequest requestWithURL:PotentialMatchesUrl];
+        
+        
+        FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+        
+        NSString *FbToken = [session accessTokenData].accessToken;
+        [potentialMatchesRequest setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+        
+        [potentialMatchesRequest setTimeoutInterval:30.0f];
+        [potentialMatchesRequest setHTTPMethod:@"POST"];
+        NSLog(@"IN DISPATCH");
+        NSOperationQueue *potentialMatchesQueue = [[NSOperationQueue alloc] init];
+        
+        [NSURLConnection
+         sendAsynchronousRequest:potentialMatchesRequest
+         queue:potentialMatchesQueue
+         completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+             
+             if ([data length] >0 && error == nil){
+                 NSString *html =
+                 [[NSString alloc] initWithData:data
+                                       encoding:NSUTF8StringEncoding];
+                 potentialMatches = [NSJSONSerialization
+                                     JSONObjectWithData:data
+                                     options:NSJSONReadingAllowFragments
+                                     error:&error];
+                 NSLog(@"%@",potentialMatches);
+                 [[NSNotificationCenter defaultCenter] postNotificationName:@"NSURLConnectionDidFinish" object:nil];
+
+                 
+             }
+             else if ([data length] == 0 && error == nil){
+                 NSLog(@"No Matches Downloaded");
+             }
+             else if (error !=nil){
+                 NSLog(@"Error happened with Potential Matches. = %@", error);
+                 
+             }
+         }];
+        
+        
+        
+    });
+ 
+}
 
 - (void) successfulLogin
 {
     
-    //start filling Potential Matches Queue
-    dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    
-    dispatch_async(concurrentQueue, ^{
-        
-       __block NSMutableArray *potentialMatches = nil;
-        
-        dispatch_async(concurrentQueue, ^{
-           //Download potential matches here
-            NSString *urlAsString =@"http://countdown-java-dev.elasticbeanstalk.com/user/";
-            // TODO:NSString *userID = [user objectForKey:@"uid"];
-            urlAsString = [urlAsString stringByAppendingString:@"690825080"];
-            urlAsString = [urlAsString stringByAppendingString:@"/nextPotentials"];
-            NSLog(@"%@", urlAsString);
+        dispatch_async(dispatch_get_main_queue(), ^{
+        // Update the UI
+        NSLog(@"Successful Notification Alert");
+        //Check to see if user has video uploaded, if not, video upload screen is shown.
+        if ((NSNull *)[user objectForKey: @"videoUri"] == [NSNull null]){
+            PBJViewController *pbjViewController = [[PBJViewController alloc] init];
+            [self presentViewController:pbjViewController animated:YES completion:nil];
             
-            NSURL *PotentialMatchesUrl = [NSURL URLWithString:urlAsString];
+        }
+        //If user has video, matching screen is uploaded.
+        else {
+            NSLog(@"present matching view controller here");
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            ViewController *menuViewController = [storyboard instantiateViewControllerWithIdentifier:@"rootViewController"];
+            [self presentViewController:menuViewController animated:YES completion:nil];
             
-            NSMutableURLRequest *potentialMatchesRequest = [NSMutableURLRequest requestWithURL:PotentialMatchesUrl];
-            
-            
-            FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
-            
-            NSString *FbToken = [session accessTokenData].accessToken;
-            [potentialMatchesRequest setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+        }
 
-            [potentialMatchesRequest setTimeoutInterval:300.0f];
-            [potentialMatchesRequest setHTTPMethod:@"POST"];
-            NSLog(@"IN DISPATCH");
-            NSOperationQueue *potentialMatchesQueue = [[NSOperationQueue alloc] init];
-            
-            [NSURLConnection
-             sendAsynchronousRequest:potentialMatchesRequest
-             queue:potentialMatchesQueue
-             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                
-                 if ([data length] >0 && error == nil){
-                     NSString *html =
-                     [[NSString alloc] initWithData:data
-                                           encoding:NSUTF8StringEncoding];
-                     NSLog(html);
-                     
-                     
-                 }
-                 else if ([data length] == 0 && error == nil){
-                     NSLog(@"POST Nothing was downloaded.");
-                 }
-                 else if (error !=nil){
-                     NSLog(@"Error happened = %@", error);
-                     NSLog(@"POST BROKEN");
-                 }
-             }];
-            
-            
-            
-        });
     });
-    
-    NSLog(@"Successful Notification Alert");
-    //Check to see if user has video uploaded, if not, video upload screen is shown.
-  if ((NSNull *)[user objectForKey: @"videoUri"] == [NSNull null]){
-        PBJViewController *pbjViewController = [[PBJViewController alloc] init];
-        [self presentViewController:pbjViewController animated:YES completion:nil];
-
-    }
-    //If user has video, matching screen is uploaded.
-    else {
-        NSLog(@"present matching view controller here");
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        ViewController *menuViewController = [storyboard instantiateViewControllerWithIdentifier:@"rootViewController"];
-        [self presentViewController:menuViewController animated:YES completion:nil];
-        
-    }
-
+   
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 
 }

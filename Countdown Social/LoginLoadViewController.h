@@ -14,7 +14,10 @@
 }
 @property (nonatomic,strong) CLLocationManager *currentLocationManager;
 @property (nonatomic) NSString *uid;
-@property (nonatomic) NSDictionary *user;
+@property (nonatomic, retain) NSDictionary *user;
+@property (nonatomic, retain) NSMutableArray *potentialMatches;
+
++(LoginLoadViewController*)getInstance;
 
 
 @end
