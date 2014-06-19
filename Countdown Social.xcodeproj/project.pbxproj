@@ -15,7 +15,7 @@
 		6E50A472192D84F700930D02 /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E50A46F192D84F700930D02 /* UIViewController+RESideMenu.m */; };
 		6E50A475192D86FB00930D02 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E50A474192D86FB00930D02 /* MenuViewController.m */; };
 		6E50A477192D977300930D02 /* Stars.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E50A476192D977300930D02 /* Stars.png */; };
-		6E886A41190DB418009E5A92 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E886A40190DB418009E5A92 /* FacebookSDK.framework */; };
+		6E7691CA195387DA006CA5DB /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E7691C9195387DA006CA5DB /* FacebookSDK.framework */; };
 		6E886A44190DB575009E5A92 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E886A43190DB575009E5A92 /* LoginViewController.m */; };
 		6E886A4B190DD4F9009E5A92 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E886A4A190DD4F9009E5A92 /* ViewController.m */; };
 		6E886A4E190E05AC009E5A92 /* SetLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E886A4D190E05AC009E5A92 /* SetLocationViewController.m */; };
@@ -83,7 +83,7 @@
 		6E50A473192D86FB00930D02 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		6E50A474192D86FB00930D02 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		6E50A476192D977300930D02 /* Stars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stars.png; sourceTree = "<group>"; };
-		6E886A40190DB418009E5A92 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		6E7691C9195387DA006CA5DB /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		6E886A42190DB575009E5A92 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		6E886A43190DB575009E5A92 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		6E886A49190DD4F9009E5A92 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -154,8 +154,8 @@
 				6EC0FC2F192B145C00B72C44 /* Accelerate.framework in Frameworks */,
 				6E04693D191A877E00482E79 /* CoreLocation.framework in Frameworks */,
 				6E886A50190E1CC1009E5A92 /* MapKit.framework in Frameworks */,
+				6E7691CA195387DA006CA5DB /* FacebookSDK.framework in Frameworks */,
 				6E967CB2190DA4960042AF93 /* CoreGraphics.framework in Frameworks */,
-				6E886A41190DB418009E5A92 /* FacebookSDK.framework in Frameworks */,
 				6E967CB4190DA4960042AF93 /* UIKit.framework in Frameworks */,
 				6E967CB0190DA4960042AF93 /* Foundation.framework in Frameworks */,
 			);
@@ -209,12 +209,12 @@
 		6E967CAE190DA4960042AF93 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6E7691C9195387DA006CA5DB /* FacebookSDK.framework */,
 				6EF0026F194FCA2000F32217 /* Accounts.framework */,
 				6EF0026D194FC9EF00F32217 /* Social.framework */,
 				6EC0FC2E192B145C00B72C44 /* Accelerate.framework */,
 				6E04693C191A877E00482E79 /* CoreLocation.framework */,
 				6E886A4F190E1CC1009E5A92 /* MapKit.framework */,
-				6E886A40190DB418009E5A92 /* FacebookSDK.framework */,
 				6E967CAF190DA4960042AF93 /* Foundation.framework */,
 				6E967CB1190DA4960042AF93 /* CoreGraphics.framework */,
 				6E967CB3190DA4960042AF93 /* UIKit.framework */,
@@ -605,6 +605,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Countdown Social/Countdown Social-Prefix.pch";
 				INFOPLIST_FILE = "Countdown Social/Countdown Social-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/braydenadams/Documents/FacebookSDK/FacebookSDK.framework/Versions/A,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -624,6 +628,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Countdown Social/Countdown Social-Prefix.pch";
 				INFOPLIST_FILE = "Countdown Social/Countdown Social-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/braydenadams/Documents/FacebookSDK/FacebookSDK.framework/Versions/A,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
