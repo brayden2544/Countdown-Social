@@ -11,6 +11,7 @@
 
 @interface LoginLoadViewController : ViewController <CLLocationManagerDelegate> {
     NSDictionary *user;
+    NSMutableArray *potentialMatches;
 }
 @property (nonatomic,strong) CLLocationManager *currentLocationManager;
 @property (nonatomic) NSString *uid;

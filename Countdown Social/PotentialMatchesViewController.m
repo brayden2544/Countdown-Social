@@ -7,9 +7,9 @@
 //
 
 #import "PotentialMatchesViewController.h"
-#import "LoginLoadViewController.h"
-
+#import "PotentialMatches.h"
 @interface PotentialMatchesViewController ()
+
 
 @end
 
@@ -25,13 +25,29 @@
     return self;
 }
 
-
+-(void) playVideo{
+    NSBundle *mainBundle = [NSBundle mainBundle];
+    NSURL *url = [mainBundle URLForResource:_videoUrl withExtension:@"mov"];
+    self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
+    self.moviePlayer.scalingMode = MPMovieScalingModeAspectFit;
+    
+    [self.view addSubview:self.moviePlayer.view];
+    
+    [self.moviePlayer setFullscreen:YES
+                           animated:NO];
+    NSLog(@"movie playing");
+    
+    [self.moviePlayer play];
+}
 
 - (void)viewDidLoad
 {
-    LoginLoadViewController *obj =[LoginLoadViewController getInstance];
+    PotentialMatches *obj =[PotentialMatches getInstance];
+   NSDictionary *currentPotentialMatch =[obj.potentialMatches objectAtIndex:0];
+    _videoUrl =[currentPotentialMatch objectForKey:@"videoUri"];
+    //[NSLog(@"WORK");
+     [self playVideo];
     
-
 
 }
 

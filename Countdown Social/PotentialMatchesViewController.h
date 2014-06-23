@@ -7,6 +7,11 @@
 //
 
 #import "ViewController.h"
-@interface PotentialMatchesViewController : ViewController
+#import <MediaPlayer/MediaPlayer.h>
 
+
+@interface PotentialMatchesViewController : ViewController
+@property (nonatomic,strong) MPMoviePlayerController *moviePlayer;
+@property (nonatomic,strong) UIButton *playButton;
+@property (nonatomic,strong) NSString *videoUrl;
 @end
