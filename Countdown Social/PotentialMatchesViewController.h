@@ -14,4 +14,10 @@
 @property (nonatomic,strong) MPMoviePlayerController *moviePlayer;
 @property (nonatomic,strong) UIButton *playButton;
 @property (nonatomic,strong) NSURL *videoUrl;
+@property (nonatomic,strong) NSString *name;
+
+@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
+@property (strong, nonatomic) IBOutlet UILabel *countdownLabel;
+
+
 @end
