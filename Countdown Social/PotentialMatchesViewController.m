@@ -24,27 +24,38 @@
     }
     return self;
 }
+- (IBAction)HoldPlay:(id)sender {
+    [self.moviePlayer play];
+}
+- (IBAction)ReleasePlay:(id)sender {
+    [self.moviePlayer pause];
+    
+}
+
 
 -(void) playVideo{
-    NSBundle *mainBundle = [NSBundle mainBundle];
-    NSURL *url = [mainBundle URLForResource:_videoUrl withExtension:@"mov"];
-    self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
-    self.moviePlayer.scalingMode = MPMovieScalingModeAspectFit;
-    
+    //NSBundle *mainBundle = [NSBundle mainBundle];
+    //NSURL *url = [mainBundle URLForResource:_videoUrl withExtension:@"mov"];
+    self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:_videoUrl];
+    //self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL URLWithString:@"http://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1211/sample_iTunes.mov"]];
+    self.moviePlayer.shouldAutoplay = NO;
+    self.moviePlayer.controlStyle =MPMovieControlStyleNone;
+    [self.moviePlayer.view setFrame:CGRectMake (0, 115, 320, 320)];
     [self.view addSubview:self.moviePlayer.view];
     
-    [self.moviePlayer setFullscreen:YES
-                           animated:NO];
-    NSLog(@"movie playing");
+    //self.moviePlayer.movieSourceType = MPMovieSourceTypeStreaming;
     
-    [self.moviePlayer play];
+    [self.moviePlayer setFullscreen:NO
+                           animated:NO];
+    NSLog(@"%@", _videoUrl);
+    
 }
 
 - (void)viewDidLoad
 {
     PotentialMatches *obj =[PotentialMatches getInstance];
    NSDictionary *currentPotentialMatch =[obj.potentialMatches objectAtIndex:0];
-    _videoUrl =[currentPotentialMatch objectForKey:@"videoUri"];
+    _videoUrl =[NSURL URLWithString:[currentPotentialMatch objectForKey:@"videoUri"]];
     //[NSLog(@"WORK");
      [self playVideo];
     
