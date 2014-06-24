@@ -8,6 +8,7 @@
 
 #import "TwitterViewController.h"
 #import "LoginLoadViewController.h"
+#import "User.h"
 
 @interface TwitterViewController ()
 @property(nonatomic, strong) UIWebView *twitterWebView;
@@ -80,8 +81,8 @@
     //Post twitter handle if we don't already have it.
     NSDictionary *user = nil;
     
-    LoginLoadViewController *obj =[LoginLoadViewController getInstance];
-    user = obj.user;
+    User *Userobj =  [User getInstance];
+    user = Userobj.user;
 
 #warning TODO: Make this if/then statement work correctly.
     //if ((NSNull *)[user objectForKey: @"twitter_username"] == [NSNull null]){
@@ -139,8 +140,8 @@
                                 options:NSJSONReadingAllowFragments
                                 error:&error];
                //  user = UserJson;
-                 LoginLoadViewController *obj =[LoginLoadViewController getInstance];
-                 obj.user = UserJson;
+                 User *Userobj =  [User getInstance];
+                 Userobj.user= UserJson;
                  
                  NSLog(@"Twitter Username and User Singleton Updated");
                  
