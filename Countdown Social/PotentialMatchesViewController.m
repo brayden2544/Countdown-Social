@@ -59,7 +59,7 @@
 
 - (void) videoHasFinishedPlaying:(NSNotification *)paramNotification{
     PotentialMatches *obj =[PotentialMatches getInstance];
-    [obj.PotentialMatches
+    //[obj.PotentialMatches
 }
 
 - (void)nextMatch{

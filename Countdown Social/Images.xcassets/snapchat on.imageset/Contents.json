@@ -1,0 +1,46 @@
+{
+  "images" : [
+    {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "fill",
+          "width" : 1,
+          "height" : 1
+        },
+        "capInsets" : {
+          "bottom" : 47,
+          "top" : 46,
+          "right" : 47,
+          "left" : 46
+        }
+      },
+      "idiom" : "universal",
+      "filename" : "snapchat on.png",
+      "scale" : "1x"
+    },
+    {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "fill",
+          "width" : 1,
+          "height" : 1
+        },
+        "capInsets" : {
+          "bottom" : 94,
+          "top" : 93,
+          "right" : 94,
+          "left" : 93
+        }
+      },
+      "idiom" : "universal",
+      "filename" : "snapchat on@2x.png",
+      "scale" : "2x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}
