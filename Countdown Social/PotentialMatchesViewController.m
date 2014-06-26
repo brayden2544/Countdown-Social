@@ -29,7 +29,30 @@
 }
 - (IBAction)ReleasePlay:(id)sender {
     [self.moviePlayer pause];
+    //Get a UIImage from the UIView
+    NSLog(@"blur capture");
+    UIGraphicsBeginImageContext(self.view.bounds.size);
+    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
     
+    //Blur the UIImage
+    CIImage *imageToBlur = [CIImage imageWithCGImage:viewImage.CGImage];
+    CIFilter *gaussianBlurFilter = [CIFilter filterWithName: @"CIGaussianBlur"];
+    [gaussianBlurFilter setValue:imageToBlur forKey: @"inputImage"];
+    [gaussianBlurFilter setValue:[NSNumber numberWithFloat: 10] forKey: @"inputRadius"]; //change number to increase/decrease blur
+    CIImage *resultImage = [gaussianBlurFilter valueForKey: @"outputImage"];
+    
+    //create UIImage from filtered image
+    UIImage *blurrredImage = [[UIImage alloc] initWithCIImage:resultImage];
+    
+    //Place the UIImage in a UIImageView
+    UIImageView *newView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    newView.image = blurrredImage;
+    
+    //insert blur UIImageView below transparent view inside the blur image container
+    //[blurContainerView insertSubview:newView belowSubview:transparentView];
+
 }
 
 
