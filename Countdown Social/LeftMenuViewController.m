@@ -7,8 +7,12 @@
 //
 
 #import "LeftMenuViewController.h"
+#import <FacebookSDK/FBProfilePictureView.h>
+#import <FacebookSDK/FBSession.h>
+#import "AppDelegate.h"
 
 @interface LeftMenuViewController ()
+@property (strong, nonatomic) IBOutlet FBProfilePictureView *userProfileImage;
 
 @end
 
@@ -23,10 +27,35 @@
     return self;
 }
 
+- (void)populateUserDetails
+{
+    if (FBSession.activeSession.isOpen) {
+        [[FBRequest requestForMe] startWithCompletionHandler:
+         ^(FBRequestConnection *connection,
+           NSDictionary<FBGraphUser> *user,
+           NSError *error) {
+             if (!error) {
+                 //self.userNameLabel.text = user.name;
+                 self.userProfileImage.profileID = user.id;
+             }
+         }];
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //Change Facebook profile image to be circular
+    self.userProfileImage.layer.borderColor = [UIColor blackColor].CGColor;
+    self.userProfileImage.layer.borderWidth = 3.0f;
+    self.userProfileImage.alpha = 0.8;
+    self.userProfileImage.layer.cornerRadius = 34.5;
+    self.userProfileImage.layer.masksToBounds=YES;
+    if (FBSession.activeSession.isOpen) {
+        [self populateUserDetails];
+    }
+    //self.userProfileImage.profileID = @"1550635096293126758";
 }
 
 - (void)didReceiveMemoryWarning

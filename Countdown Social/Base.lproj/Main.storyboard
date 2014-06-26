@@ -185,7 +185,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lly-ZH-8kJ">
-                                <rect key="frame" x="272" y="68" width="48" height="49"/>
+                                <rect key="frame" x="277" y="73" width="38" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="28"/>
@@ -270,6 +270,7 @@
                     <connections>
                         <outlet property="countdownLabel" destination="Lly-ZH-8kJ" id="xVX-rb-Y2q"/>
                         <outlet property="nameLabel" destination="6qH-yV-hP8" id="fyG-oV-HUD"/>
+                        <outlet property="timer" destination="Lly-ZH-8kJ" id="Ump-OK-jfQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qzy-hH-Une" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -373,12 +374,20 @@
                                     <color key="titleShadowColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 </state>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b0d-ue-XY1" customClass="FBProfilePictureView">
+                                <rect key="frame" x="77" y="26" width="69" height="69"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Spg-0Q-lw1"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="userProfileImage" destination="b0d-ue-XY1" id="dpr-uX-65i"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H7Z-wB-pJK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

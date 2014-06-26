@@ -10,6 +10,7 @@
 #import "PotentialMatches.h"
 @interface PotentialMatchesViewController ()
 
+@property (strong, nonatomic) IBOutlet UILabel *timer;
 
 @end
 
@@ -99,6 +100,10 @@
                                              selector:@selector(MPMoviePlayerLoadStateDidChange:)
                                                  name:MPMoviePlayerLoadStateDidChangeNotification
                                                object:nil];
+    //change countdown timer to circle.
+    self.timer.layer.cornerRadius = 19;
+    //make countdown timer transparent.
+    self.timer.alpha = .7;
     //get Next Match
     [self nextMatch];
     
