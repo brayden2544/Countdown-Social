@@ -1,0 +1,46 @@
+{
+  "images" : [
+    {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "fill",
+          "width" : 1,
+          "height" : 1
+        },
+        "capInsets" : {
+          "bottom" : 38,
+          "top" : 37,
+          "right" : 148,
+          "left" : 155
+        }
+      },
+      "idiom" : "universal",
+      "filename" : "menue buttons.png",
+      "scale" : "1x"
+    },
+    {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "fill",
+          "width" : 1,
+          "height" : 1
+        },
+        "capInsets" : {
+          "bottom" : 76,
+          "top" : 75,
+          "right" : 298,
+          "left" : 309
+        }
+      },
+      "idiom" : "universal",
+      "filename" : "menue buttons@2x.png",
+      "scale" : "2x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}
