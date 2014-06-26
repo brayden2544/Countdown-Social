@@ -22,6 +22,7 @@
 		6E886A4E190E05AC009E5A92 /* SetLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E886A4D190E05AC009E5A92 /* SetLocationViewController.m */; };
 		6E886A50190E1CC1009E5A92 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E886A4F190E1CC1009E5A92 /* MapKit.framework */; };
 		6E886A5C190FF4F8009E5A92 /* ChooseLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E886A5B190FF4F8009E5A92 /* ChooseLocationViewController.m */; };
+		6E92DFF1195CB28F009ECE27 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E92DFF0195CB28F009ECE27 /* UIImage+ImageEffects.m */; };
 		6E967CB0190DA4960042AF93 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E967CAF190DA4960042AF93 /* Foundation.framework */; };
 		6E967CB2190DA4960042AF93 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E967CB1190DA4960042AF93 /* CoreGraphics.framework */; };
 		6E967CB4190DA4960042AF93 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E967CB3190DA4960042AF93 /* UIKit.framework */; };
@@ -98,6 +99,8 @@
 		6E886A4F190E1CC1009E5A92 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6E886A5A190FF4F8009E5A92 /* ChooseLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseLocationViewController.h; sourceTree = "<group>"; };
 		6E886A5B190FF4F8009E5A92 /* ChooseLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseLocationViewController.m; sourceTree = "<group>"; };
+		6E92DFEF195CB28F009ECE27 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		6E92DFF0195CB28F009ECE27 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		6E967CAC190DA4960042AF93 /* Countdown Social.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Countdown Social.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E967CAF190DA4960042AF93 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6E967CB1190DA4960042AF93 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -264,6 +267,8 @@
 				6E886A4A190DD4F9009E5A92 /* ViewController.m */,
 				6E886A42190DB575009E5A92 /* LoginViewController.h */,
 				6E886A43190DB575009E5A92 /* LoginViewController.m */,
+				6E92DFEF195CB28F009ECE27 /* UIImage+ImageEffects.h */,
+				6E92DFF0195CB28F009ECE27 /* UIImage+ImageEffects.m */,
 				6E50A469192D84F700930D02 /* RESideMenu */,
 				6EB9D6BB1924285D0080E1C5 /* PBJVision */,
 				6E967CC7190DA4960042AF93 /* Images.xcassets */,
@@ -479,6 +484,7 @@
 				6EB9D6B6192415D10080E1C5 /* VideoPreviewViewController.m in Sources */,
 				6E50A471192D84F700930D02 /* RESideMenu.m in Sources */,
 				6EC94325195C8B6E0096F41F /* LeftMenuViewController.m in Sources */,
+				6E92DFF1195CB28F009ECE27 /* UIImage+ImageEffects.m in Sources */,
 				6EE4B41A1921395C00C84C3A /* PBJStrobeView.m in Sources */,
 				6E886A4B190DD4F9009E5A92 /* ViewController.m in Sources */,
 				6E967CBC190DA4960042AF93 /* main.m in Sources */,

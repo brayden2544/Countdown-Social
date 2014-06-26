@@ -8,9 +8,14 @@
 
 #import "PotentialMatchesViewController.h"
 #import "PotentialMatches.h"
+#import <AVFoundation/AVFoundation.h>
+#import "UIImage+ImageEffects.h"
+
 @interface PotentialMatchesViewController ()
 
 @property (strong, nonatomic) IBOutlet UILabel *timer;
+@property (retain) UIView *blur;
+@property (strong, nonatomic) UIImage *videoImage;
 
 @end
 
@@ -26,43 +31,60 @@
     return self;
 }
 - (IBAction)HoldPlay:(id)sender {
+    [self.blur removeFromSuperview];
     [self.moviePlayer play];
 }
+
+-(void)BlurImage{
+    // Snapshot scene into a UIImage.
+    dispatch_async(dispatch_get_main_queue(), ^{
+
+      
+    
+//    self.blur=[[UIImageView alloc] initWithImage:returnImage];
+//    self.blur.userInteractionEnabled = YES;
+//    self.blur.frame = self.moviePlayer.view.frame;
+//    [self.view addSubview:self.blur];
+    });
+   
+}
+- (void)CaptureSnapshot{
+    UIImage *thumbnail = [self.moviePlayer thumbnailImageAtTime:0.1
+                                                     timeOption:MPMovieTimeOptionNearestKeyFrame];
+    
+    CIContext *context = [CIContext contextWithOptions:nil];
+    CIImage *inputImage = [CIImage imageWithCGImage:thumbnail.CGImage];
+    
+    // setting up Gaussian Blur (we could use one of many filters offered by Core Image)
+    CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
+    [filter setValue:inputImage forKey:kCIInputImageKey];
+    [filter setValue:[NSNumber numberWithFloat:15.0f] forKey:@"inputRadius"];
+    CIImage *result = [filter valueForKey:kCIOutputImageKey];
+    
+    // CIGaussianBlur has a tendency to shrink the image a little,
+    // this ensures it matches up exactly to the bounds of our original image
+    CGImageRef cgImage = [context createCGImage:result fromRect:[inputImage extent]];
+    
+    UIImage *returnImage = [UIImage imageWithCGImage:cgImage];//create a UIImage for this function to "return" so that ARC can manage the memory of the blur... ARC can't manage CGImageRefs so we need to release it before this function "returns" and ends.
+    CGImageRelease(cgImage);//release CGImageRef because ARC doesn't manage this on its own.
+
+}
+
 - (IBAction)ReleasePlay:(id)sender {
     [self.moviePlayer pause];
-    //Get a UIImage from the UIView
-    NSLog(@"blur capture");
-    UIGraphicsBeginImageContext(self.view.bounds.size);
-    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    //Blur the UIImage
-    CIImage *imageToBlur = [CIImage imageWithCGImage:viewImage.CGImage];
-    CIFilter *gaussianBlurFilter = [CIFilter filterWithName: @"CIGaussianBlur"];
-    [gaussianBlurFilter setValue:imageToBlur forKey: @"inputImage"];
-    [gaussianBlurFilter setValue:[NSNumber numberWithFloat: 10] forKey: @"inputRadius"]; //change number to increase/decrease blur
-    CIImage *resultImage = [gaussianBlurFilter valueForKey: @"outputImage"];
-    
-    //create UIImage from filtered image
-    UIImage *blurrredImage = [[UIImage alloc] initWithCIImage:resultImage];
-    
-    //Place the UIImage in a UIImageView
-    UIImageView *newView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 115, 320, 320)];
-    newView.image = blurrredImage;
-    
-    //insert blur UIImageView below transparent view inside the blur image container
-    //[blurContainerView insertSubview:newView belowSubview:transparentView];
+    [self BlurImage];
 
 }
 
 
 -(void) playVideo{
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(videoHasFinishedPlaying:)
                                                  name:MPMoviePlayerPlaybackDidFinishNotification
                                                object:self.moviePlayer];
     
+    //remove blur view on play
     //NSBundle *mainBundle = [NSBundle mainBundle];
     //NSURL *url = [mainBundle URLForResource:_videoUrl withExtension:@"mov"];
     self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:_videoUrl];
@@ -110,6 +132,7 @@
     //play current Match Video
     [self playVideo];
     
+    
 
 }
 - (void)VideoTimer:(NSTimer *)timer{
@@ -142,6 +165,7 @@
 }
 
 
+
 /*
 #pragma mark - Navigation
 
@@ -153,4 +177,33 @@
 }
 */
 
+- (IBAction)enableInstagram:(id)sender {
+}
+
+- (IBAction)enableTwitter:(id)sender {
+}
+
+- (IBAction)enableSnapChat:(id)sender {
+}
+
+- (IBAction)enableFacebook:(id)sender {
+}
+
+- (IBAction)enablePhone:(id)sender {
+}
+
+- (IBAction)disableInstagram:(id)sender {
+}
+
+- (IBAction)disableTwitter:(id)sender {
+}
+
+- (IBAction)disableSnapChat:(id)sender {
+}
+
+- (IBAction)disableFacebook:(id)sender {
+}
+
+- (IBAction)disablePhone:(id)sender {
+}
 @end
