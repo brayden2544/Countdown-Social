@@ -47,7 +47,7 @@
     UIImage *blurrredImage = [[UIImage alloc] initWithCIImage:resultImage];
     
     //Place the UIImage in a UIImageView
-    UIImageView *newView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    UIImageView *newView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 115, 320, 320)];
     newView.image = blurrredImage;
     
     //insert blur UIImageView below transparent view inside the blur image container

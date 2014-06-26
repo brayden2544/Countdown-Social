@@ -294,10 +294,10 @@
             </objects>
             <point key="canvasLocation" x="1935" y="-39"/>
         </scene>
-        <!--View Controller-->
+        <!--Left Menu View Controller-->
         <scene sceneID="9Xf-DI-qnJ">
             <objects>
-                <viewController storyboardIdentifier="leftMenuViewController" id="pb2-5n-e4w" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="leftMenuViewController" id="pb2-5n-e4w" customClass="LeftMenuViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="E1P-li-m37"/>
                         <viewControllerLayoutGuide type="bottom" id="Xsa-vF-jdY"/>
