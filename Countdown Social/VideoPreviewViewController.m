@@ -9,6 +9,7 @@
 #import "VideoPreviewViewController.h"
 #import "PBJViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import "User.h"
 
 
 
@@ -35,10 +36,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    //PBJViewController *sharedPBJViewController = [PBJViewController sharedPBJViewController];
-   // _videoPath = sharedPBJViewController.videoPath;
-    //_currentVideo = sharedPBJViewController.videoDict;
+    User *obj =[User getInstance];
+    NSDictionary *user =obj.user;
+    _videoPath =[user objectForKey:@"videoUri"];
+    [self startPlayingVideo:nil];
 
 }
 
@@ -54,11 +55,8 @@
 }
 
 - (void) startPlayingVideo:(id)paramSender{
-    //Construct url of file in application bundle that needs to get played by movie player
-    NSString *filepath   =   [[NSBundle mainBundle] pathForResource:_videoFile ofType:@"mp4"];
-    NSURL *url = [NSURL fileURLWithPath:_videoFile];
-    
-    NSLog(@"%@", filepath);
+
+    NSURL *url = [NSURL URLWithString:_videoPath];
     self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
     [self.moviePlayer setScalingMode:MPMovieScalingModeAspectFit];
     self.moviePlayer.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
@@ -72,9 +70,9 @@
         NSLog(@"Video Player Successfully Instanciated");
         
         //Scale Player to fit Aspect Ratio
-        
+        [self.moviePlayer.view setFrame:CGRectMake (0, 80, 320, 320)];
+
         [self.view addSubview:self.moviePlayer.view];
-        //self.moviePlayer.view.frame = CGRectMake(10.0f, 55.0f, 300.0f, 460.0f);
 
         
         //[self.moviePlayer setFullscreen:YES

@@ -35,6 +35,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "AppDelegate.h"
 #import "VideoPreviewViewController.h"
+#import "User.h"
 
 @interface ExtendedHitButton : UIButton
 
@@ -611,18 +612,18 @@
 
     _currentVideo = videoDict;
     
-//       NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/690825080/video";
-//    
-//    NSURL *url = [NSURL URLWithString:urlAsString];
-//    
-//    NSMutableURLRequest *urlRequest =
-//    [NSMutableURLRequest requestWithURL:url];
-//    
-//    NSString *videoPath = [videoDict  objectForKey:PBJVisionVideoPathKey];
-//    NSURL *videoURL = [NSURL URLWithString:videoPath];
-//    NSData *videoData = [[NSFileManager defaultManager] contentsAtPath:videoPath];
-//
-//    
+       NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/690825080/video";
+    
+    NSURL *url = [NSURL URLWithString:urlAsString];
+    
+    NSMutableURLRequest *urlRequest =
+    [NSMutableURLRequest requestWithURL:url];
+    
+    NSString *videoPath = [videoDict  objectForKey:PBJVisionVideoPathKey];
+    NSURL *videoURL = [NSURL URLWithString:videoPath];
+    NSData *videoData = [[NSFileManager defaultManager] contentsAtPath:videoPath];
+
+    
 //    //Test to load video to other path temporarily
 //    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 //    NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -632,70 +633,78 @@
 //    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 //    VideoPreviewViewController *videoPreview = [storyboard instantiateViewControllerWithIdentifier:@"VideoPreviewViewController"];
 //    videoPreview.videoFile = videoFile;
-//    
-//    
-//    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
-//    
-//    NSString *FbToken = [session accessTokenData].accessToken;
-//    
-//    NSLog(@"Token is %@", FbToken);
-//    
-//    NSString *postLength = [NSString stringWithFormat:@"%d", [videoData length]];
-//    NSLog(@"stupid length%@",postLength);
-//    
-//    [urlRequest setValue:@"video/quicktime" forHTTPHeaderField:@"Content-Type"];
-//    [urlRequest setValue:FbToken forHTTPHeaderField:@"Access-Token"];
-//    [urlRequest setValue:postLength forHTTPHeaderField:@"Content-Length"];
-//    [urlRequest setHTTPBody:videoData];
-//    //NSLog(@"post thing %@", videoData);
-//
-//
-//    
-//    
-//    [urlRequest setTimeoutInterval:15.0f];
-//    [urlRequest setHTTPMethod:@"POST"];
-//    
-//    NSOperationQueue *queque = [[NSOperationQueue alloc] init];
-//    
-//    [NSURLConnection
-//     sendAsynchronousRequest:urlRequest
-//     queue:queque
-//     completionHandler:^(NSURLResponse *response,
-//                         NSData *data,
-//                         NSError *error){
-//         if ([data length] >0 && error == nil){
-//             NSString *html =
-//             [[NSString alloc] initWithData:data
-//                                   encoding:NSUTF8StringEncoding];
-//             
-//             NSLog(@" POST HTML = %@", html);
-//             
-//             
-//             
-//             id UserJson = [NSJSONSerialization
-//                            JSONObjectWithData:data
-//                            options:NSJSONReadingAllowFragments
-//                            error:&error];
-//             NSDictionary *user = UserJson;
-//             NSLog(@"dictionary contains %@" , user);
-//             
-//             
-//         }
-//         else if ([data length] == 0 && error == nil){
-//             NSLog(@"POST Nothing was downloaded.");
-//         }
-//         else if (error !=nil){
-//             NSLog(@"Error happened = %@", error);
-//             NSLog(@"POST BROKEN");
-//         }
-//     }];
+    
+    
+    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+    
+    NSString *FbToken = [session accessTokenData].accessToken;
+    
+    NSLog(@"Token is %@", FbToken);
+    
+    NSString *postLength = [NSString stringWithFormat:@"%d", [videoData length]];
+    NSLog(@"stupid length%@",postLength);
+    
+    [urlRequest setValue:@"video/quicktime" forHTTPHeaderField:@"Content-Type"];
+    [urlRequest setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    [urlRequest setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [urlRequest setHTTPBody:videoData];
+    //NSLog(@"post thing %@", videoData);
+
+
+    
+    
+    [urlRequest setTimeoutInterval:15.0f];
+    [urlRequest setHTTPMethod:@"POST"];
+    
+    NSOperationQueue *queque = [[NSOperationQueue alloc] init];
+    
+    [NSURLConnection
+     sendAsynchronousRequest:urlRequest
+     queue:queque
+     completionHandler:^(NSURLResponse *response,
+                         NSData *data,
+                         NSError *error){
+         if ([data length] >0 && error == nil){
+             NSString *html =
+             [[NSString alloc] initWithData:data
+                                   encoding:NSUTF8StringEncoding];
+             
+             NSLog(@" POST HTML = %@", html);
+             
+             
+             
+             id UserJson = [NSJSONSerialization
+                            JSONObjectWithData:data
+                            options:NSJSONReadingAllowFragments
+                            error:&error];
+             NSDictionary *user = UserJson;
+             User *userObj = [User getInstance];
+             userObj.user = user;
+             NSLog(@"dictionary contains %@" , user);
+             
+             
+         }
+         else if ([data length] == 0 && error == nil){
+             NSLog(@"POST Nothing was downloaded.");
+         }
+         else if (error !=nil){
+             NSLog(@"Error happened = %@", error);
+             NSLog(@"POST BROKEN");
+         }
+     }];
+    
+    //Present VideoPreviewController
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ViewController *menuViewController = [storyboard instantiateViewControllerWithIdentifier:@"VideoPreviewViewController"];
+    [self presentViewController:menuViewController animated:YES completion:nil];
+
 
     //[_assetLibrary writeVideoAtPathToSavedPhotosAlbum:[NSURL URLWithString:videoPath] completionBlock:^(NSURL *assetURL, NSError *error1) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Saved!" message: @"Video Updloaded To Server."
-                                                       delegate:self
-                                              cancelButtonTitle:nil
-                                              otherButtonTitles:@"OK", nil];
-        [alert show];
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Saved!" message: @"Video Updloaded To Server."
+//                                                       delegate:self
+//                                              cancelButtonTitle:nil
+//                                              otherButtonTitles:@"OK", nil];
+//        [alert show];
     
         //[self presentViewController:videoPreview animated:YES completion:nil];
 
