@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FacebookSDK/FBProfilePictureView.h>
+#import <FacebookSDK/FBSession.h>
+#import "AppDelegate.h"
 
 @interface LeftMenuViewController : UIViewController
+@property (strong, nonatomic) IBOutlet FBProfilePictureView *userProfileImage;
+
 
 @end

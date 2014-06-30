@@ -16,6 +16,7 @@
 @property (nonatomic, retain) NSMutableArray *potentialMatches;
 
 +(PotentialMatches*)getInstance;
++(PotentialMatches*)nextMatch;
 
 
 @end

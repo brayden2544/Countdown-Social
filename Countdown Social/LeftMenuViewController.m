@@ -7,17 +7,14 @@
 //
 
 #import "LeftMenuViewController.h"
-#import <FacebookSDK/FBProfilePictureView.h>
-#import <FacebookSDK/FBSession.h>
-#import "AppDelegate.h"
+
 
 @interface LeftMenuViewController ()
-@property (strong, nonatomic) IBOutlet FBProfilePictureView *userProfileImage;
 
 @end
 
 @implementation LeftMenuViewController
-
+@synthesize userProfileImage;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -55,7 +52,6 @@
     if (FBSession.activeSession.isOpen) {
         [self populateUserDetails];
     }
-    //self.userProfileImage.profileID = @"1550635096293126758";
 }
 
 - (void)didReceiveMemoryWarning

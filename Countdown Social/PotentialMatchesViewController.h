@@ -18,6 +18,7 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *countdownLabel;
+@property (strong, nonatomic) IBOutlet UILabel *meetLabel;
 
 @property (strong, nonatomic) IBOutlet UIButton *instagramDeselect;
 @property (strong, nonatomic) IBOutlet UIButton *twitterDeselect;

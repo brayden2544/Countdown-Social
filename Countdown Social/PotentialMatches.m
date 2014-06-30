@@ -21,6 +21,15 @@
    }); return instance;
     }
 
++(PotentialMatches *)nextMatch{
+    static PotentialMatches *instance = nil;
+    instance = [self getInstance];
+    NSMutableArray *matches = instance.potentialMatches;
+    [matches removeObjectAtIndex:0];
+     instance.potentialMatches = matches;
+    return instance;
+}
+
 //-(id)init{
 //    if (self = [super init]) {
 //        potentialMatches = [NSMutableArray arrayWithCapacity:100];
