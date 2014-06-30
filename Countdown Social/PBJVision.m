@@ -644,7 +644,7 @@ PBJMediaWriterDelegate>
         // 2975000, good for 1920 x 1080
         // 3750000, good for iFrame 960 x 540
         // 5000000, good for iFrame 1280 x 720
-        CGFloat bytesPerSecond = 437500;
+        CGFloat bytesPerSecond = 87500;
         _videoBitRate = bytesPerSecond * 8;
         
         // default flags

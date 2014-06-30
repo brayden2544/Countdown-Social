@@ -10,6 +10,7 @@
 #import "PBJViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "User.h"
+#import "VideoPath.h"
 
 
 
@@ -36,9 +37,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    User *obj =[User getInstance];
-    NSDictionary *user =obj.user;
-    _videoPath =[user objectForKey:@"videoUri"];
+//    User *obj =[User getInstance];
+//    NSDictionary *user =obj.user;
+//    _videoPath =[user objectForKey:@"videoUri"];
     [self startPlayingVideo:nil];
 
 }
@@ -55,9 +56,9 @@
 }
 
 - (void) startPlayingVideo:(id)paramSender{
-
-    NSURL *url = [NSURL URLWithString:_videoPath];
-    self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
+    VideoPath *obj = [VideoPath getInstance];
+    NSURL *url = [NSURL fileURLWithPath:obj.videoPath];
+    self.moviePlayer = [[MPMoviePlayerController alloc]initWithContentURL:url];
     [self.moviePlayer setScalingMode:MPMovieScalingModeAspectFit];
     self.moviePlayer.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     if (self.moviePlayer != nil){
@@ -117,7 +118,6 @@
             }
         }
         NSLog(@"Finish reason = %ld", (long)reasonAsInteger);
-        [self stopPlayingVideo:nil];
     }
 }
 

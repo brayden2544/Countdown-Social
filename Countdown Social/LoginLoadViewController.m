@@ -21,71 +21,6 @@
 
 @implementation LoginLoadViewController
 
-//@synthesize user;
-//-(id) init;
-//{
-//    self = [super init];
-//    if (!self) return nil;
-//    //start filling Potential Matches Queue
-//    dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-//    
-//    
-//    dispatch_async(concurrentQueue, ^{
-//        //Download potential matches here
-//        NSString *urlAsString =@"http://countdown-java-dev.elasticbeanstalk.com/user/";
-//        //NSString *userID = [user objectForKey:@"uid"];
-//        urlAsString = [urlAsString stringByAppendingString:@"690825080"];
-//        urlAsString = [urlAsString stringByAppendingString:@"/nextPotentials"];
-//        NSLog(@"%@", urlAsString);
-//        
-//        NSURL *PotentialMatchesUrl = [NSURL URLWithString:urlAsString];
-//        
-//        NSMutableURLRequest *potentialMatchesRequest = [NSMutableURLRequest requestWithURL:PotentialMatchesUrl];
-//        
-//        
-//        FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
-//        
-//        NSString *FbToken = [session accessTokenData].accessToken;
-//        [potentialMatchesRequest setValue:FbToken forHTTPHeaderField:@"Access-Token"];
-//        
-//        [potentialMatchesRequest setTimeoutInterval:30.0f];
-//        [potentialMatchesRequest setHTTPMethod:@"POST"];
-//        NSLog(@"IN DISPATCH");
-//        NSOperationQueue *potentialMatchesQueue = [[NSOperationQueue alloc] init];
-//        
-//        [NSURLConnection
-//         sendAsynchronousRequest:potentialMatchesRequest
-//         queue:potentialMatchesQueue
-//         completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-//             
-//             if ([data length] >0 && error == nil){
-//                 NSString *html =
-//                 [[NSString alloc] initWithData:data
-//                                       encoding:NSUTF8StringEncoding];
-//                 id potentialMatchesJson = [NSJSONSerialization
-//                                            JSONObjectWithData:data
-//                                            options:NSJSONReadingMutableContainers
-//                                            error:&error];
-//               PotentialMatches *obj =  [PotentialMatches getInstance];
-//                 [obj.potentialMatches addObject:potentialMatchesJson];
-//                 NSLog(@"%@",[obj.potentialMatches objectAtIndex:0]);
-//                 [[NSNotificationCenter defaultCenter] postNotificationName:@"NSURLConnectionDidFinish" object:nil];
-//                 
-//                 
-//             }
-//             else if ([data length] == 0 && error == nil){
-//                 NSLog(@"No Matches Downloaded");
-//             }
-//             else if (error !=nil){
-//                 NSLog(@"Error happened with Potential Matches. = %@", error);
-//                 
-//             }
-//         }];
-//        
-//        
-//        
-//    });    return self;
-//}
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -104,7 +39,8 @@
     NSLog(@"didUpdateToLocation: %@", newLocation);
     
     CLLocation *currentLocation = newLocation;
-    
+    [self.currentLocationManager stopUpdatingLocation];
+
     if (currentLocation !=nil){
         
         NSLog(@"Longitude %.8f", currentLocation.coordinate.longitude);
@@ -119,7 +55,6 @@
         [NSMutableURLRequest requestWithURL:url];
         
         [urlRequest setHTTPBody:[[NSString stringWithFormat:@"lat=%g&long=%g", currentLocation.coordinate.latitude, currentLocation.coordinate.longitude] dataUsingEncoding:NSUTF8StringEncoding]];
-        [self.currentLocationManager stopUpdatingLocation];
 
         FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
         
@@ -159,7 +94,7 @@
                  
 
                  NSLog(@"dictionary contains %@" , Userobj.user);
-                 [self getPotentialMatches];
+                 [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateLocationCompleted" object:nil];
 
                  
              }
@@ -172,7 +107,7 @@
 #warning TODO: Create alert and restart app in case of bad server connection.
              }
          }];
-        });
+       });
         
     }
     
@@ -184,11 +119,6 @@
     NSLog(@"Failed with error %@", error);
 }
 
-//void (^fillPotentialMatchesQueue)(void)= ^{
-//    
-//    NSString *urlAsString = @"http://www.countdownsocial.com/user/";
-//    urlAsString = [urlAsString NSStringbyAppendingString]
-//};
 
 - (void)viewDidLoad
 {
@@ -197,27 +127,35 @@
     //Waits for login request to complete from Countdown Api
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector (successfulLogin)
-                                            name:@"NSURLConnectionDidFinish"
+                                            name:@"LoginSuccessful"
                                             object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector (getPotentialMatches)
+                                                 name:@"UpdateLocationCompleted"
+                                               object:nil];
     //Gets current Location of User
-
-             if ([CLLocationManager locationServicesEnabled]) {
-                 
-                 self.currentLocationManager = [[CLLocationManager alloc] init];
-                 self.currentLocationManager.delegate = self;
-                 
-                 [self.currentLocationManager startUpdatingLocation];
-                 NSLog(@"Updating Location");
-             }
-             else {
-                 //TODO: Create code for manual selection of location.
-                 NSLog(@"Location services disabled");
-                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                 ChooseLocationViewController *chooseLocationViewController = [storyboard instantiateViewControllerWithIdentifier:@"ChooseLocationViewController"];
-                 [self presentViewController:chooseLocationViewController animated:YES completion:nil];
-             }
-
+    [self checkLocationServices];
     
+}
+
+- (void)checkLocationServices {
+    if ([CLLocationManager locationServicesEnabled]) {
+        
+        self.currentLocationManager = [[CLLocationManager alloc] init];
+        self.currentLocationManager.delegate = self;
+        self.currentLocationManager.distanceFilter = 500;
+        
+        [self.currentLocationManager startUpdatingLocation];
+        NSLog(@"Updating Location");
+    }
+    else {
+        //TODO: Create code for manual selection of location.
+        NSLog(@"Location services disabled");
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        ChooseLocationViewController *chooseLocationViewController = [storyboard instantiateViewControllerWithIdentifier:@"ChooseLocationViewController"];
+        [self presentViewController:chooseLocationViewController animated:YES completion:nil];
+    }
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -273,7 +211,7 @@
                  PotentialMatches *obj =[PotentialMatches getInstance];
                  [obj.potentialMatches addObjectsFromArray:potentialMatchesArray];
                  NSLog(@"%@",[obj.potentialMatches objectAtIndex:0]);
-                 [[NSNotificationCenter defaultCenter] postNotificationName:@"NSURLConnectionDidFinish" object:nil];
+                 [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSuccessful" object:nil];
 
                  
              }
@@ -299,19 +237,19 @@
         // Update the UI
         NSLog(@"Successful Notification Alert");
         //Check to see if user has video uploaded, if not, video upload screen is shown.
-        if ((NSNull *)[user objectForKey: @"videoUri"] == [NSNull null]){
-            PBJViewController *pbjViewController = [[PBJViewController alloc] init];
-            [self presentViewController:pbjViewController animated:YES completion:nil];
+        //if ((NSNull *)[user objectForKey: @"videoUri"] == [NSNull null]){
+//            PBJViewController *pbjViewController = [[PBJViewController alloc] init];
+//            [self presentViewController:pbjViewController animated:YES completion:nil];
             
-        }
+       // }
         //If user has video, matching screen is uploaded.
-        else {
+       // else {
             NSLog(@"present matching view controller here");
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             ViewController *menuViewController = [storyboard instantiateViewControllerWithIdentifier:@"rootViewController"];
             [self presentViewController:menuViewController animated:YES completion:nil];
             
-        }
+       // }
 
     });
    

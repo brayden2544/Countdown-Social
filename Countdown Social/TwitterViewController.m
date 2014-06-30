@@ -85,10 +85,10 @@
     user = Userobj.user;
 
 #warning TODO: Make this if/then statement work correctly.
-    //if ((NSNull *)[user objectForKey: @"twitter_username"] == [NSNull null]){
-[self twitterUsernameUpload];
+    if ((NSNull *)[user objectForKey: @"twitter_username"] == [NSNull null]){
+        [self twitterUsernameUpload];
         NSLog(@"Twitter username blank");
-    //}
+    }
 }
 
 -(void)twitterUsernameUpload

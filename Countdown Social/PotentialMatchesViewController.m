@@ -8,8 +8,10 @@
 
 #import "PotentialMatchesViewController.h"
 #import "PotentialMatches.h"
+#import "User.h"
 #import <AVFoundation/AVFoundation.h>
 #import "UIImage+ImageEffects.h"
+#import "AppDelegate.h"
 
 @interface PotentialMatchesViewController ()
 
@@ -17,12 +19,15 @@
 @property (retain) UIView *blur;
 @property (retain) UIView *darken;
 @property (strong, nonatomic) IBOutlet UIView *createMatch;
-
+@property  BOOL *playButtonHeld;
 @property (strong, nonatomic) UIImage *videoImage;
 
 @end
 
 @implementation PotentialMatchesViewController
+
+@synthesize currentPotentialMatch;
+@synthesize user;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,7 +42,10 @@
     [self.blur removeFromSuperview];
     self.createMatch.hidden = TRUE;
     [self.moviePlayer play];
+    _playButtonHeld = true;
 }
+
+
 
 -(void)PresentMatchingOptions{
     
@@ -62,22 +70,6 @@
 //    [self.view addSubview:self.darken];
         self.createMatch.hidden = false;
         [self.view insertSubview:self.createMatch aboveSubview:self.blur];
-        
-#warning do real checks to see if user has these disabled or not;
-        self.twitterSelect.hidden = FALSE;
-        self.phoneSelect.hidden=FALSE;
-        self.instagramSelect.hidden=FALSE;
-        self.snapchatSelect.hidden=FALSE;
-        self.facebookSelect.hidden=FALSE;
-        
-        self.twitterDeselect.enabled =FALSE;
-        self.phoneDeselect.enabled =FALSE;
-        self.instagramDeselect.enabled =FALSE;
-        self.snapchatDeselect.enabled =FALSE;
-        self.facebookDeselect.enabled =FALSE;
-
-
-        
         
     });
    
@@ -108,6 +100,7 @@
 - (IBAction)ReleasePlay:(id)sender {
     [self.moviePlayer pause];
     [self CaptureSnapshot];
+    _playButtonHeld = false;
 
 }
 
@@ -132,30 +125,98 @@
     //self.moviePlayer.movieSourceType = MPMovieSourceTypeStreaming;
     [self.moviePlayer setFullscreen:NO
                            animated:NO];
-    NSLog(@"Video Playing");
-    
+    NSLog(@"Video Loaded");
+
     
 
+}
+
+-(void) userPass{
+    NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/";
+    urlAsString = [urlAsString stringByAppendingString:[[currentPotentialMatch objectForKey:@"uid"] stringValue]];
+    urlAsString =[urlAsString stringByAppendingString:@"/pass"];
+    
+    NSURL *url = [NSURL URLWithString:urlAsString];
+    
+    NSMutableURLRequest *urlRequest =
+    [NSMutableURLRequest requestWithURL:url];
+    
+    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+    
+    
+    NSString *FbToken = [session accessTokenData].accessToken;
+    
+    
+    [urlRequest setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    
+    
+    [urlRequest setTimeoutInterval:30.0f];
+    [urlRequest setHTTPMethod:@"POST"];
+    
+    NSOperationQueue *queque = [[NSOperationQueue alloc] init];
+    dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+    dispatch_async(concurrentQueue, ^{
+        
+        
+        [NSURLConnection
+         sendAsynchronousRequest:urlRequest
+         queue:queque
+         completionHandler:^(NSURLResponse *response,
+                             NSData *data,
+                             NSError *error){
+             if ([data length] >0 && error == nil){
+                 NSString *html =
+                 [[NSString alloc] initWithData:data
+                                       encoding:NSUTF8StringEncoding];
+                 NSLog(@"%@",html);
+                 
+           
+    
+             }
+             else if ([data length] == 0 && error == nil){
+                 NSLog(@"POST Nothing was downloaded.");
+             }
+             else if (error !=nil){
+                 NSLog(@"Error happened = %@", error);
+                 NSLog(@"POST BROKEN");
+#warning TODO: Create alert and restart app in case of bad server connection.
+             }
+         }];
+    });
+    
+
+    [self nextMatch];
+    
+
+}
+
+- (void)setProfilePic{
+    NSString *picURL = @"http://graph.facebook.com/";
+    //NSString *uid =[[currentPotentialMatch objectForKey:@"uid"] stringValue];
+#warning enable this top one once we are using real users.
+    NSString *uid = @"1159358848";
+    picURL= [picURL stringByAppendingString:uid];
+    picURL = [picURL stringByAppendingString:@"/picture?width=200&height=200"];
+    NSURL *url = [NSURL URLWithString:picURL];
+    NSLog(@"%@",picURL);
+    NSData *imageData = [NSData dataWithContentsOfURL:url];
+    self.fbProfilePic.layer.cornerRadius = 82.0;
+    self.fbProfilePic.layer.masksToBounds = YES;
+    self.fbProfilePic.layer.borderColor = [UIColor colorWithRed:248 green:248 blue:248 alpha:0.4].CGColor;
+    self.fbProfilePic.layer.borderWidth = 2.0f;
+    //self.fbProfilePic.alpha = 0.8;
+
+    self.fbProfilePic.image = [UIImage imageWithData:imageData];
 }
 
 - (void) videoHasFinishedPlaying:(NSNotification *)paramNotification{
-    PotentialMatches *obj =[PotentialMatches nextMatch];
-    NSDictionary *currentPotentialMatch =[obj.potentialMatches objectAtIndex:0];
-    
-    _videoUrl =[NSURL URLWithString:[currentPotentialMatch objectForKey:@"videoUri"]];
-    NSString *name =[currentPotentialMatch objectForKey:@"firstName"];
-    _nameLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
-    _meetLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
-    
-    //play current Match Video
-    [self playVideo];
-
-    
-}
+    [self userPass];
+    }
 
 - (void)nextMatch{
     PotentialMatches *obj =[PotentialMatches nextMatch];
-    NSDictionary *currentPotentialMatch =[obj.potentialMatches objectAtIndex:0];
+    currentPotentialMatch =[obj.potentialMatches objectAtIndex:0];
     
     _videoUrl =[NSURL URLWithString:[currentPotentialMatch objectForKey:@"videoUri"]];
     NSString *name =[currentPotentialMatch objectForKey:@"firstName"];
@@ -164,8 +225,91 @@
     
     //play current Match Video
     [self playVideo];
+    [self setProfilePic];
 
 
+}
+
+- (void)firstMatch{
+    PotentialMatches *obj =[PotentialMatches getInstance];
+    currentPotentialMatch =[obj.potentialMatches objectAtIndex:0];
+    
+    _videoUrl =[NSURL URLWithString:[currentPotentialMatch objectForKey:@"videoUri"]];
+    NSString *name =[currentPotentialMatch objectForKey:@"firstName"];
+    _nameLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
+    _meetLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
+    
+    //play current Match Video
+    [self playVideo];
+    [self setProfilePic];
+    
+    
+}
+-(void)buttonCheck{
+    //Check for Twitter Account
+    if ((NSNull *)[user objectForKey: @"twitter_username"] == [NSNull null]){
+        self.twitterDeselect.hidden = FALSE;
+        self.twitterSelect.enabled = false;
+        self.twitterDeselect.enabled=TRUE;
+        NSLog(@"Twitter username blank");
+    }
+    else{
+        self.twitterDeselect.hidden = TRUE;
+        self.twitterSelect.enabled = TRUE;
+        self.twitterDeselect.enabled=false;
+        self.twitterSelect.hidden =false;
+    }
+    //Check for Instagram Account
+    if ([user objectForKey: @"instagram_username"]){
+        self.instagramDeselect.hidden = TRUE;
+        self.instagramSelect.enabled = TRUE;
+        self.instagramDeselect.enabled=false;
+        self.instagramSelect.hidden =false;
+        
+    }
+    else{
+        self.instagramDeselect.hidden = FALSE;
+        self.instagramSelect.enabled = false;
+        self.instagramDeselect.enabled=TRUE;
+        self.instagramSelect.hidden =TRUE;
+     
+    }
+    //Check for Phone Number
+    if ([user objectForKey: @"phone_number"]){
+        self.phoneDeselect.hidden = TRUE;
+        self.phoneSelect.enabled = TRUE;
+        self.phoneDeselect.enabled=false;
+        self.phoneSelect.hidden =false;
+        
+    }
+    else{
+        self.phoneDeselect.hidden = FALSE;
+        self.phoneSelect.enabled = false;
+        self.phoneDeselect.enabled=TRUE;
+        self.phoneSelect.hidden =TRUE;
+        
+    }
+    //Check for Snapchat Account
+    if ([user objectForKey: @"snapchat_username"]){
+        self.snapchatDeselect.hidden = TRUE;
+        self.snapchatSelect.enabled = TRUE;
+        self.snapchatDeselect.enabled=false;
+        self.snapchatSelect.hidden =false;
+        
+    }
+    else{
+        self.snapchatDeselect.hidden = FALSE;
+        self.snapchatSelect.enabled = false;
+        self.snapchatDeselect.enabled=TRUE;
+        self.snapchatSelect.hidden =TRUE;
+        
+    }
+
+    //Facebook is alwayas available
+    self.facebookSelect.hidden=FALSE;
+    self.facebookDeselect.enabled =FALSE;
+    
+    
 }
 
 - (void)viewDidLoad
@@ -174,12 +318,17 @@
                                              selector:@selector(MPMoviePlayerLoadStateDidChange:)
                                                  name:MPMoviePlayerLoadStateDidChangeNotification
                                                object:nil];
+    
+    //Pull in user object and check buttons.
+    User *obj = [User getInstance];
+    user = obj.user;
+    [self buttonCheck];
     //change countdown timer to circle.
     self.timer.layer.cornerRadius = 19;
     //make countdown timer transparent.
     self.timer.alpha = .7;
     //get Next Match
-    [self nextMatch];
+    [self firstMatch];
     
     
     
@@ -200,6 +349,9 @@
 {
     if ((self.moviePlayer.loadState & MPMovieLoadStatePlaythroughOK) == MPMovieLoadStatePlaythroughOK)
     {
+        if(_playButtonHeld == TRUE ){
+            [self.moviePlayer play];
+        }
         NSLog(@"content play length is %g seconds", self.moviePlayer.duration);
         NSTimer *t = [NSTimer scheduledTimerWithTimeInterval: .2
                                                       target: self
@@ -215,17 +367,6 @@
 }
 
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)enableInstagram:(id)sender {
     self.instagramSelect.hidden = FALSE;
@@ -288,6 +429,15 @@
     self.phoneSelect.hidden = TRUE;
     self.phoneDeselect.hidden=FALSE;
     self.phoneDeselect.enabled=TRUE;
-
 }
+
+- (IBAction)Like:(id)sender {
+    [self nextMatch];
+}
+
+- (IBAction)Pass:(id)sender {
+    [self userPass];
+}
+
+
 @end

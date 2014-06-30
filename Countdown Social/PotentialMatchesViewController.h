@@ -15,7 +15,10 @@
 @property (nonatomic,strong) UIButton *playButton;
 @property (nonatomic,strong) NSURL *videoUrl;
 @property (nonatomic,strong) NSString *name;
+@property (nonatomic, strong) NSDictionary *user;
+@property (nonatomic, strong) NSDictionary *currentPotentialMatch;
 
+@property (strong, nonatomic) IBOutlet UIImageView *fbProfilePic;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *countdownLabel;
 @property (strong, nonatomic) IBOutlet UILabel *meetLabel;
@@ -43,8 +46,10 @@
 - (IBAction)disableSnapChat:(id)sender;
 - (IBAction)disableFacebook:(id)sender;
 - (IBAction)disablePhone:(id)sender;
+- (IBAction)HoldPlay:(id)sender;
 
-
+- (IBAction)Pass:(id)sender;
+- (IBAction)Like:(id)sender;
 
 
 

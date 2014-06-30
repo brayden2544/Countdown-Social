@@ -30,12 +30,13 @@
 #import "PBJVision.h"
 #import "PBJVisionUtilities.h"
 
+#import <AVFoundation/AVFoundation.h>
+
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <GLKit/GLKit.h>
-#import <FacebookSDK/FacebookSDK.h>
-#import "AppDelegate.h"
+
+#import "VideoPath.h"
 #import "VideoPreviewViewController.h"
-#import "User.h"
 
 @interface ExtendedHitButton : UIButton
 
@@ -63,9 +64,9 @@
 @end
 
 @interface PBJViewController () <
-    UIGestureRecognizerDelegate,
-    PBJVisionDelegate,
-    UIAlertViewDelegate>
+UIGestureRecognizerDelegate,
+PBJVisionDelegate,
+UIAlertViewDelegate>
 {
     PBJStrobeView *_strobeView;
     UIButton *_doneButton;
@@ -75,7 +76,7 @@
     UIButton *_frameRateButton;
     UIButton *_onionButton;
     UIView *_captureDock;
-
+    
     UIView *_previewView;
     AVCaptureVideoPreviewLayer *_previewLayer;
     PBJFocusView *_focusView;
@@ -87,20 +88,16 @@
     UITapGestureRecognizer *_tapGestureRecognizer;
     
     BOOL _recording;
-
+    
     ALAssetsLibrary *_assetLibrary;
-   __block NSDictionary *_currentVideo;
+    __block NSDictionary *_currentVideo;
 }
 
 @end
 
-
 @implementation PBJViewController
 
-
 #pragma mark - UIViewController
-
-
 
 - (BOOL)prefersStatusBarHidden
 {
@@ -120,21 +117,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     self.view.backgroundColor = [UIColor blackColor];
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-
+    
     _assetLibrary = [[ALAssetsLibrary alloc] init];
     
     CGFloat viewWidth = CGRectGetWidth(self.view.frame);
-
+    
     // elapsed time and red dot
     _strobeView = [[PBJStrobeView alloc] initWithFrame:CGRectZero];
     CGRect strobeFrame = _strobeView.frame;
     strobeFrame.origin = CGPointMake(15.0f, 15.0f);
     _strobeView.frame = strobeFrame;
     [self.view addSubview:_strobeView];
-
+    
     // done button
     _doneButton = [ExtendedHitButton extendedHitButton];
     _doneButton.frame = CGRectMake(viewWidth - 20.0f - 20.0f, 20.0f, 20.0f, 20.0f);
@@ -142,7 +139,7 @@
     [_doneButton setImage:buttonImage forState:UIControlStateNormal];
     [_doneButton addTarget:self action:@selector(_handleDoneButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_doneButton];
-
+    
     // preview and AV layer
     _previewView = [[UIView alloc] initWithFrame:CGRectZero];
     _previewView.backgroundColor = [UIColor blackColor];
@@ -166,10 +163,10 @@
     view.hidden = YES;
     [[PBJVision sharedInstance] setPresentationFrame:_previewView.frame];
     [_previewView addSubview:_effectsViewController.view];
-
+    
     // focus view
     _focusView = [[PBJFocusView alloc] initWithFrame:CGRectZero];
-
+    
     // instruction label
     _instructionLabel = [[UILabel alloc] initWithFrame:self.view.bounds];
     _instructionLabel.textAlignment = NSTextAlignmentCenter;
@@ -204,7 +201,7 @@
     _gestureView.frame = gestureFrame;
     [self.view addSubview:_gestureView];
     [_gestureView addGestureRecognizer:_longPressGestureRecognizer];
-
+    
     // bottom dock
     _captureDock = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.bounds) - 60.0f, CGRectGetWidth(self.view.bounds), 60.0f)];
     _captureDock.backgroundColor = [UIColor clearColor];
@@ -250,13 +247,12 @@
     _onionButton.imageView.frame = _onionButton.bounds;
     [_onionButton addTarget:self action:@selector(_handleOnionSkinningButton:) forControlEvents:UIControlEventTouchUpInside];
     [_captureDock addSubview:_onionButton];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
+    
     // iOS 6 support
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     
@@ -279,7 +275,7 @@
 - (void)_startCapture
 {
     [UIApplication sharedApplication].idleTimerDisabled = YES;
-
+    
     [UIView animateWithDuration:0.2f delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         _instructionLabel.alpha = 0;
         _instructionLabel.transform = CGAffineTransformMakeTranslation(0, 10.0f);
@@ -295,7 +291,7 @@
         _instructionLabel.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
     }];
-
+    
     [[PBJVision sharedInstance] pauseVideoCapture];
     _effectsViewController.view.hidden = !_onionButton.selected;
 }
@@ -323,10 +319,10 @@
 {
     [_strobeView stop];
     _longPressGestureRecognizer.enabled = YES;
-
+    
     PBJVision *vision = [PBJVision sharedInstance];
     vision.delegate = self;
-
+    
     if ([vision isCameraDeviceAvailable:PBJCameraDeviceBack]) {
         [vision setCameraDevice:PBJCameraDeviceBack];
         _flipButton.hidden = NO;
@@ -362,7 +358,7 @@
     if (_focusButton.selected) {
         _tapGestureRecognizer.enabled = YES;
         _gestureView.hidden = YES;
-
+        
     } else {
         if (_focusView && [_focusView superview]) {
             [_focusView stopAnimation];
@@ -375,7 +371,7 @@
         _instructionLabel.alpha = 0;
     } completion:^(BOOL finished) {
         _instructionLabel.text = _focusButton.selected ? NSLocalizedString(@"Touch to focus", @"Touch to focus") :
-                                                         NSLocalizedString(@"Touch and hold to record", @"Touch and hold to record");
+        NSLocalizedString(@"Touch and hold to record", @"Touch and hold to record");
         [UIView animateWithDuration:0.15f delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             _instructionLabel.alpha = 1;
         } completion:^(BOOL finished1) {
@@ -417,7 +413,7 @@
 - (void)_handleLongPressGestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
 {
     switch (gestureRecognizer.state) {
-      case UIGestureRecognizerStateBegan:
+        case UIGestureRecognizerStateBegan:
         {
             if (!_recording)
                 [self _startCapture];
@@ -425,22 +421,22 @@
                 [self _resumeCapture];
             break;
         }
-      case UIGestureRecognizerStateEnded:
-      case UIGestureRecognizerStateCancelled:
-      case UIGestureRecognizerStateFailed:
+        case UIGestureRecognizerStateEnded:
+        case UIGestureRecognizerStateCancelled:
+        case UIGestureRecognizerStateFailed:
         {
             [self _pauseCapture];
             break;
         }
-      default:
-        break;
+        default:
+            break;
     }
 }
 
 - (void)_handleFocusTapGesterRecognizer:(UIGestureRecognizer *)gestureRecognizer
 {
     CGPoint tapPoint = [gestureRecognizer locationInView:_previewView];
-
+    
     // auto focus is occuring, display focus view
     CGPoint point = tapPoint;
     
@@ -456,7 +452,7 @@
     
     [_previewView addSubview:_focusView];
     [_focusView startAnimation];
-
+    
     CGPoint adjustPoint = [PBJVisionUtilities convertToPointOfInterestFromViewCoordinates:tapPoint inFrame:_previewView.frame];
     [[PBJVision sharedInstance] focusExposeAndAdjustWhiteBalanceAtAdjustedPoint:adjustPoint];
 }
@@ -601,7 +597,7 @@
 - (void)vision:(PBJVision *)vision capturedVideo:(NSDictionary *)videoDict error:(NSError *)error
 {
     _recording = NO;
-
+    
     if (error && [error.domain isEqual:PBJVisionErrorDomain] && error.code == PBJVisionErrorCancelled) {
         NSLog(@"recording session cancelled");
         return;
@@ -609,127 +605,51 @@
         NSLog(@"encounted an error in video capture (%@)", error);
         return;
     }
-
+    
     _currentVideo = videoDict;
     
-       NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/690825080/video";
-    
-    NSURL *url = [NSURL URLWithString:urlAsString];
-    
-    NSMutableURLRequest *urlRequest =
-    [NSMutableURLRequest requestWithURL:url];
-    
-    NSString *videoPath = [videoDict  objectForKey:PBJVisionVideoPathKey];
-    NSURL *videoURL = [NSURL URLWithString:videoPath];
-    NSData *videoData = [[NSFileManager defaultManager] contentsAtPath:videoPath];
-
-    
-//    //Test to load video to other path temporarily
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *documentsDirectory = [paths objectAtIndex:0];
-//    NSString *videoFile =[[NSString alloc] initWithString: [documentsDirectory stringByAppendingPathComponent:videoPath]];
-//    [videoData writeToFile:videoFile atomically:YES];
-//    NSLog(@"%@",videoFile);
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    VideoPreviewViewController *videoPreview = [storyboard instantiateViewControllerWithIdentifier:@"VideoPreviewViewController"];
-//    videoPreview.videoFile = videoFile;
-    
-    
-    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
-    
-    NSString *FbToken = [session accessTokenData].accessToken;
-    
-    NSLog(@"Token is %@", FbToken);
-    
-    NSString *postLength = [NSString stringWithFormat:@"%d", [videoData length]];
-    NSLog(@"stupid length%@",postLength);
-    
-    [urlRequest setValue:@"video/quicktime" forHTTPHeaderField:@"Content-Type"];
-    [urlRequest setValue:FbToken forHTTPHeaderField:@"Access-Token"];
-    [urlRequest setValue:postLength forHTTPHeaderField:@"Content-Length"];
-    [urlRequest setHTTPBody:videoData];
-    //NSLog(@"post thing %@", videoData);
-
-
-    
-    
-    [urlRequest setTimeoutInterval:15.0f];
-    [urlRequest setHTTPMethod:@"POST"];
-    
-    NSOperationQueue *queque = [[NSOperationQueue alloc] init];
-    
-    [NSURLConnection
-     sendAsynchronousRequest:urlRequest
-     queue:queque
-     completionHandler:^(NSURLResponse *response,
-                         NSData *data,
-                         NSError *error){
-         if ([data length] >0 && error == nil){
-             NSString *html =
-             [[NSString alloc] initWithData:data
-                                   encoding:NSUTF8StringEncoding];
-             
-             NSLog(@" POST HTML = %@", html);
-             
-             
-             
-             id UserJson = [NSJSONSerialization
-                            JSONObjectWithData:data
-                            options:NSJSONReadingAllowFragments
-                            error:&error];
-             NSDictionary *user = UserJson;
-             User *userObj = [User getInstance];
-             userObj.user = user;
-             NSLog(@"dictionary contains %@" , user);
-             
-             
-         }
-         else if ([data length] == 0 && error == nil){
-             NSLog(@"POST Nothing was downloaded.");
-         }
-         else if (error !=nil){
-             NSLog(@"Error happened = %@", error);
-             NSLog(@"POST BROKEN");
-         }
-     }];
-    
-    //Present VideoPreviewController
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    ViewController *menuViewController = [storyboard instantiateViewControllerWithIdentifier:@"VideoPreviewViewController"];
-    [self presentViewController:menuViewController animated:YES completion:nil];
-
-
-    //[_assetLibrary writeVideoAtPathToSavedPhotosAlbum:[NSURL URLWithString:videoPath] completionBlock:^(NSURL *assetURL, NSError *error1) {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Saved!" message: @"Video Updloaded To Server."
+    NSString *videoPath = [_currentVideo  objectForKey:PBJVisionVideoPathKey];
+//    [_assetLibrary writeVideoAtPathToSavedPhotosAlbum:[NSURL URLWithString:videoPath] completionBlock:^(NSURL *assetURL, NSError *error1) {
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Saved!" message: @"Saved to the camera roll."
 //                                                       delegate:self
 //                                              cancelButtonTitle:nil
 //                                              otherButtonTitles:@"OK", nil];
 //        [alert show];
+    VideoPath *obj = [VideoPath getInstance];
+    obj.videoPath = videoPath;
+        [self saveMyVideo:[NSURL URLWithString:videoPath]];
+  
     
-        //[self presentViewController:videoPreview animated:YES completion:nil];
-
+        
    // }];
+}
+- (void)saveMyVideo:(NSURL *)videoURL {
+    
+    NSLog(@"saving movie at: %@", videoURL);
+    
+    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    if ([library videoAtPathIsCompatibleWithSavedPhotosAlbum:videoURL])
+    {
+        [library writeVideoAtPathToSavedPhotosAlbum:videoURL
+                                    completionBlock:^(NSURL *assetURL, NSError *error){}
+         ];
+    }
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    VideoPreviewViewController *chooseLocationViewController = [storyboard instantiateViewControllerWithIdentifier:@"VideoPreviewViewController"];
+    [self presentViewController:chooseLocationViewController animated:YES completion:nil];
+    
 }
 
 // progress
 
 - (void)visionDidCaptureAudioSample:(PBJVision *)vision
 {
-//    NSLog(@"captured audio (%f) seconds", vision.capturedAudioSeconds);
+    //    NSLog(@"captured audio (%f) seconds", vision.capturedAudioSeconds);
 }
 
 - (void)visionDidCaptureVideoSample:(PBJVision *)vision
 {
-//    NSLog(@"captured video (%f) seconds", vision.capturedVideoSeconds);
+    //    NSLog(@"captured video (%f) seconds", vision.capturedVideoSeconds);
 }
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    VideoPreviewViewController *videopreviewviewController = [segue destinationViewController];
-//    // Pass the selected object to the new view controller.
-//    [videopreviewviewController performSelector:@selector(setVideoDict:)
-//                                          withObject:videoDict];
-//    
-//}
 
 @end

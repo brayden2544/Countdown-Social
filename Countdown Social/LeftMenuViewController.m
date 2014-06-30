@@ -33,7 +33,7 @@
            NSError *error) {
              if (!error) {
                  //self.userNameLabel.text = user.name;
-                 self.userProfileImage.profileID = user.id;
+                 self.userProfileImage.profileID = user.objectID;
              }
          }];
     }
@@ -44,7 +44,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //Change Facebook profile image to be circular
-    self.userProfileImage.layer.borderColor = [UIColor blackColor].CGColor;
+    self.userProfileImage.layer.borderColor = [UIColor colorWithRed:248 green:248 blue:248 alpha:0.4].CGColor;
     self.userProfileImage.layer.borderWidth = 3.0f;
     self.userProfileImage.alpha = 0.8;
     self.userProfileImage.layer.cornerRadius = 34.5;
