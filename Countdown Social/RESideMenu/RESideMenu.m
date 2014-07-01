@@ -118,17 +118,20 @@
 {
     [self __presentMenuViewContainerWithMenuViewController:self.leftMenuViewController];
     [self __showLeftMenuViewController];
+
 }
 
 - (void)presentRightMenuViewController
 {
     [self __presentMenuViewContainerWithMenuViewController:self.rightMenuViewController];
     [self __showRightMenuViewController];
+
 }
 
 - (void)hideMenuViewController
 {
     [self __hideMenuViewControllerAnimated:YES];
+  
 }
 
 - (void)setContentViewController:(UIViewController *)contentViewController animated:(BOOL)animated

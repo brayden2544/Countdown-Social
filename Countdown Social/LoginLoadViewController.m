@@ -210,9 +210,8 @@
                  NSMutableArray *potentialMatchesArray = potentialMatchesJson;
                  PotentialMatches *obj =[PotentialMatches getInstance];
                  [obj.potentialMatches addObjectsFromArray:potentialMatchesArray];
-                 NSLog(@"%@",[obj.potentialMatches objectAtIndex:0]);
                  [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSuccessful" object:nil];
-
+                 //NSlog(@"%@",potentialMatchesArray);
                  
              }
              else if ([data length] == 0 && error == nil){

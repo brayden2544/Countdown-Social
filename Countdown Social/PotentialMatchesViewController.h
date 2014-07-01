@@ -17,6 +17,7 @@
 @property (nonatomic,strong) NSString *name;
 @property (nonatomic, strong) NSDictionary *user;
 @property (nonatomic, strong) NSDictionary *currentPotentialMatch;
+@property  BOOL *menuOpen;
 
 @property (strong, nonatomic) IBOutlet UIImageView *fbProfilePic;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
@@ -51,8 +52,7 @@
 - (IBAction)Pass:(id)sender;
 - (IBAction)Like:(id)sender;
 
-
-
+- (void) playButtonReleased;
 
 
 @end

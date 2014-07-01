@@ -190,11 +190,15 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cv1-ZZ-k4Q">
                                 <rect key="frame" x="0.0" y="433" width="320" height="130"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="HoldPlay:" destination="QP0-wH-HVL" eventType="touchDown" id="1Oe-r3-kxM"/>
+                                    <action selector="ReleasePlay:" destination="QP0-wH-HVL" eventType="touchUpOutside" id="0Pl-Z8-oGq"/>
+                                    <action selector="ReleasePlay:" destination="QP0-wH-HVL" eventType="touchDragOutside" id="10D-mb-CtF"/>
+                                    <action selector="ReleasePlay:" destination="QP0-wH-HVL" eventType="touchDragExit" id="UaZ-Aq-dMr"/>
                                     <action selector="ReleasePlay:" destination="QP0-wH-HVL" eventType="touchUpInside" id="mLh-2L-XjZ"/>
                                 </connections>
                             </button>
@@ -395,8 +399,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg4" translatesAutoresizingMaskIntoConstraints="NO" id="kDd-oz-ALY">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg2" translatesAutoresizingMaskIntoConstraints="NO" id="kDd-oz-ALY">
+                                <rect key="frame" x="-1" y="-1" width="322" height="570"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <tableView clipsSubviews="YES" alpha="0.34999999999999998" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="pjV-MJ-RqC">
@@ -459,7 +463,6 @@
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="searchDisplayController" destination="Gv6-2S-TDX" id="zpg-WB-JjP"/>
@@ -568,7 +571,6 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Spg-0Q-lw1"/>
@@ -655,7 +657,7 @@
         <image name="Instagram  on" width="93" height="93"/>
         <image name="PotentialMatchesBackground.png" width="1278" height="2270"/>
         <image name="Preview2" width="225" height="44"/>
-        <image name="bg4" width="642" height="1138"/>
+        <image name="bg2" width="642" height="1138"/>
         <image name="check yes + check no1x" width="411" height="144"/>
         <image name="facebook off" width="96" height="95"/>
         <image name="facebook on" width="94" height="93"/>
@@ -680,6 +682,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="eGo-dY-kBD"/>
+        <segue reference="A4l-RU-mwV"/>
     </inferredMetricsTieBreakers>
 </document>

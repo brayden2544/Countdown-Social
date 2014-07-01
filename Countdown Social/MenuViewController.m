@@ -8,6 +8,7 @@
 
 #import "MenuViewController.h"
 #import "RESideMenu.h"
+#import "PotentialMatchesViewController.h"
 
 @interface MenuViewController ()
 
@@ -38,7 +39,7 @@
 - (void)sideMenu:(RESideMenu *)sideMenu didShowMenuViewController:(UIViewController *)menuViewController
 {
     NSLog(@"didShowMenuViewController: %@", NSStringFromClass([menuViewController class]));
-}
+   }
 
 - (void)sideMenu:(RESideMenu *)sideMenu willHideMenuViewController:(UIViewController *)menuViewController
 {

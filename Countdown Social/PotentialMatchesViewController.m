@@ -28,6 +28,8 @@
 
 @synthesize currentPotentialMatch;
 @synthesize user;
+@synthesize moviePlayer;
+@synthesize menuOpen;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -47,9 +49,8 @@
 
 
 
--(void)PresentMatchingOptions{
-    
-}
+
+
 
 /*Blurs and Presents Screenshot of Currenet Matching Video*/
 -(void)BlurImage{
@@ -96,22 +97,25 @@
     CGImageRelease(cgImage);//release CGImageRef because ARC doesn't manage this on its own.
     [self BlurImage];
 }
-
-- (IBAction)ReleasePlay:(id)sender {
+- (void) playButtonReleased {
     [self.moviePlayer pause];
     [self CaptureSnapshot];
     _playButtonHeld = false;
+}
+- (IBAction)ReleasePlay:(id)sender {
+    [self playButtonReleased];
 
 }
 
 
 -(void) playVideo{
 
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(videoHasFinishedPlaying:)
-                                                 name:MPMoviePlayerPlaybackDidFinishNotification
-                                               object:self.moviePlayer];
-    
+        if (menuOpen == false){
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(videoHasFinishedPlaying:)
+                                                         name:MPMoviePlayerPlaybackDidFinishNotification
+                                                       object:self.moviePlayer];
+
     //remove blur view on play
     //NSBundle *mainBundle = [NSBundle mainBundle];
     //NSURL *url = [mainBundle URLForResource:_videoUrl withExtension:@"mov"];
@@ -127,7 +131,7 @@
                            animated:NO];
     NSLog(@"Video Loaded");
 
-    
+    }
 
 }
 
@@ -185,9 +189,7 @@
          }];
     });
     
-
     [self nextMatch];
-    
 
 }
 
@@ -211,38 +213,80 @@
 }
 
 - (void) videoHasFinishedPlaying:(NSNotification *)paramNotification{
-    [self userPass];
+    int reason = [[[paramNotification userInfo] valueForKey:MPMoviePlayerPlaybackDidFinishReasonUserInfoKey] intValue];
+    if (reason == MPMovieFinishReasonPlaybackEnded) {
+        //movie finished playing
+        [self userPass];
+    }else if (reason == MPMovieFinishReasonUserExited) {
+        //user hit the done button
+    }else if (reason == MPMovieFinishReasonPlaybackError) {
+        //error
+    }
     }
 
 - (void)nextMatch{
     PotentialMatches *obj =[PotentialMatches nextMatch];
-    currentPotentialMatch =[obj.potentialMatches objectAtIndex:0];
-    
+    NSLog(@"@%@",obj.potentialMatches);
+    if ([obj.potentialMatches objectAtIndex:0] == [NSNull null]){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"You're Out!" message: @"There are no more users near you."
+                                                                                     delegate:self
+                                                                            cancelButtonTitle:@"Cancel"
+                                                                            otherButtonTitles:@"Try Again", @"Leave App", nil];
+        [alert show];
+
+    }
+    else {
+        NSLog(@"Next Match");
+        currentPotentialMatch =[obj.potentialMatches objectAtIndex:0];
     _videoUrl =[NSURL URLWithString:[currentPotentialMatch objectForKey:@"videoUri"]];
-    NSString *name =[currentPotentialMatch objectForKey:@"firstName"];
+    //NSString *name =[currentPotentialMatch objectForKey:@"firstName"];
     _nameLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
     _meetLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
     
     //play current Match Video
     [self playVideo];
     [self setProfilePic];
-
+    }
 
 }
+//Alert showing there are no more users or a server error has occured.
+- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex{
+    NSLog(@"login in again hoping for more matches. button index = %d",buttonIndex);
+    
+    if (buttonIndex == 1){
+    [self nextMatch];
+    }
+    if (buttonIndex ==2){
+        exit(0);
+    }
+}
+
 
 - (void)firstMatch{
     PotentialMatches *obj =[PotentialMatches getInstance];
-    currentPotentialMatch =[obj.potentialMatches objectAtIndex:0];
+    NSLog(@"@%@",obj.potentialMatches);
+
+    if ([obj.potentialMatches count] == 0){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"You're Out!" message: @"There are no more users near you."
+                                                       delegate:self
+                                              cancelButtonTitle:nil
+                                              otherButtonTitles:@"Try Again", nil];
+        [alert show];
+        
+    }
+    else {
     
+        currentPotentialMatch =[obj.potentialMatches objectAtIndex:0];
     _videoUrl =[NSURL URLWithString:[currentPotentialMatch objectForKey:@"videoUri"]];
-    NSString *name =[currentPotentialMatch objectForKey:@"firstName"];
+    //NSString *name =[currentPotentialMatch objectForKey:@"firstName"];
     _nameLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
     _meetLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
     
     //play current Match Video
     [self playVideo];
+        NSLog(@"first Match");
     [self setProfilePic];
-    
+    }
     
 }
 -(void)buttonCheck{
@@ -318,7 +362,8 @@
                                              selector:@selector(MPMoviePlayerLoadStateDidChange:)
                                                  name:MPMoviePlayerLoadStateDidChangeNotification
                                                object:nil];
-    
+    //Set menu open to false
+    menuOpen = false;
     //Pull in user object and check buttons.
     User *obj = [User getInstance];
     user = obj.user;
@@ -328,6 +373,7 @@
     //make countdown timer transparent.
     self.timer.alpha = .7;
     //get Next Match
+    NSLog(@"ViewDidLoad");
     [self firstMatch];
     
     
@@ -347,10 +393,11 @@
 }
 - (void)MPMoviePlayerLoadStateDidChange:(NSNotification *)notification
 {
-    if ((self.moviePlayer.loadState & MPMovieLoadStatePlaythroughOK) == MPMovieLoadStatePlaythroughOK)
+    if ((self.moviePlayer.loadState & MPMovieLoadStatePlayable) == MPMovieLoadStatePlayable)
     {
-        if(_playButtonHeld == TRUE ){
+        if(_playButtonHeld == TRUE){
             [self.moviePlayer play];
+            NSLog(@"New movie played");
         }
         NSLog(@"content play length is %g seconds", self.moviePlayer.duration);
         NSTimer *t = [NSTimer scheduledTimerWithTimeInterval: .2
