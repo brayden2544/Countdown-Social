@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		6E04693B191995B900482E79 /* LoginLoadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E04693A191995B900482E79 /* LoginLoadViewController.m */; };
 		6E04693D191A877E00482E79 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E04693C191A877E00482E79 /* CoreLocation.framework */; };
-		6E046946191C36A200482E79 /* PBJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E046943191C36A200482E79 /* PBJViewController.m */; };
 		6E50A470192D84F700930D02 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E50A46B192D84F700930D02 /* RECommonFunctions.m */; };
 		6E50A471192D84F700930D02 /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E50A46D192D84F700930D02 /* RESideMenu.m */; };
 		6E50A472192D84F700930D02 /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E50A46F192D84F700930D02 /* UIViewController+RESideMenu.m */; };
@@ -24,6 +23,25 @@
 		6E886A5C190FF4F8009E5A92 /* ChooseLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E886A5B190FF4F8009E5A92 /* ChooseLocationViewController.m */; };
 		6E92DFF1195CB28F009ECE27 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E92DFF0195CB28F009ECE27 /* UIImage+ImageEffects.m */; };
 		6E92DFF4196217AD009ECE27 /* VideoPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E92DFF3196217AD009ECE27 /* VideoPath.m */; };
+		6E92E00019628E24009ECE27 /* PBJGLProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E92DFF619628E24009ECE27 /* PBJGLProgram.m */; };
+		6E92E00119628E24009ECE27 /* PBJMediaWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E92DFF819628E24009ECE27 /* PBJMediaWriter.m */; };
+		6E92E00219628E24009ECE27 /* PBJVision.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E92DFFA19628E24009ECE27 /* PBJVision.m */; };
+		6E92E00319628E24009ECE27 /* PBJVisionUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E92DFFC19628E24009ECE27 /* PBJVisionUtilities.m */; };
+		6E92E00419628E24009ECE27 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 6E92DFFE19628E24009ECE27 /* Shader.fsh */; };
+		6E92E00519628E24009ECE27 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 6E92DFFF19628E24009ECE27 /* Shader.vsh */; };
+		6E92E01719628E94009ECE27 /* PBJFocusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E92E00719628E94009ECE27 /* PBJFocusView.m */; };
+		6E92E01819628E94009ECE27 /* PBJStrobeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E92E00919628E94009ECE27 /* PBJStrobeView.m */; };
+		6E92E01919628E94009ECE27 /* PBJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E92E00B19628E94009ECE27 /* PBJViewController.m */; };
+		6E92E01A19628E94009ECE27 /* capture_flip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E92E00D19628E94009ECE27 /* capture_flip@2x.png */; };
+		6E92E01B19628E94009ECE27 /* capture_focus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E92E00E19628E94009ECE27 /* capture_focus@2x.png */; };
+		6E92E01C19628E94009ECE27 /* capture_focus_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E92E00F19628E94009ECE27 /* capture_focus_button@2x.png */; };
+		6E92E01D19628E94009ECE27 /* capture_focus_button_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E92E01019628E94009ECE27 /* capture_focus_button_active@2x.png */; };
+		6E92E01E19628E94009ECE27 /* capture_onion@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E92E01119628E94009ECE27 /* capture_onion@2x.png */; };
+		6E92E01F19628E94009ECE27 /* capture_onion_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E92E01219628E94009ECE27 /* capture_onion_selected@2x.png */; };
+		6E92E02019628E94009ECE27 /* capture_rec_base@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E92E01319628E94009ECE27 /* capture_rec_base@2x.png */; };
+		6E92E02119628E94009ECE27 /* capture_rec_blink@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E92E01419628E94009ECE27 /* capture_rec_blink@2x.png */; };
+		6E92E02219628E94009ECE27 /* capture_rec_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E92E01519628E94009ECE27 /* capture_rec_off@2x.png */; };
+		6E92E02319628E94009ECE27 /* capture_yep@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E92E01619628E94009ECE27 /* capture_yep@2x.png */; };
 		6E967CB0190DA4960042AF93 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E967CAF190DA4960042AF93 /* Foundation.framework */; };
 		6E967CB2190DA4960042AF93 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E967CB1190DA4960042AF93 /* CoreGraphics.framework */; };
 		6E967CB4190DA4960042AF93 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E967CB3190DA4960042AF93 /* UIKit.framework */; };
@@ -53,12 +71,6 @@
 		6EC94325195C8B6E0096F41F /* LeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC94324195C8B6E0096F41F /* LeftMenuViewController.m */; };
 		6ECB30F81952498200AB8854 /* InstagramViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECB30F71952498200AB8854 /* InstagramViewController.m */; };
 		6ECE8112194A6F69007B3130 /* TwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECE8111194A6F69007B3130 /* TwitterViewController.m */; };
-		6EE4B411192138BD00C84C3A /* PBJGLProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE4B40A192138BD00C84C3A /* PBJGLProgram.m */; };
-		6EE4B412192138BD00C84C3A /* PBJMediaWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE4B40C192138BD00C84C3A /* PBJMediaWriter.m */; };
-		6EE4B413192138BD00C84C3A /* PBJVision.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE4B40E192138BD00C84C3A /* PBJVision.m */; };
-		6EE4B414192138BD00C84C3A /* PBJVisionUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE4B410192138BD00C84C3A /* PBJVisionUtilities.m */; };
-		6EE4B4191921395C00C84C3A /* PBJFocusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE4B4161921395C00C84C3A /* PBJFocusView.m */; };
-		6EE4B41A1921395C00C84C3A /* PBJStrobeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE4B4181921395C00C84C3A /* PBJStrobeView.m */; };
 		6EF0026E194FC9EF00F32217 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF0026D194FC9EF00F32217 /* Social.framework */; };
 		6EF00270194FCA2000F32217 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF0026F194FCA2000F32217 /* Accounts.framework */; };
 /* End PBXBuildFile section */
@@ -77,8 +89,6 @@
 		6E046939191995B900482E79 /* LoginLoadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginLoadViewController.h; sourceTree = "<group>"; };
 		6E04693A191995B900482E79 /* LoginLoadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginLoadViewController.m; sourceTree = "<group>"; };
 		6E04693C191A877E00482E79 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		6E046942191C36A200482E79 /* PBJViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJViewController.h; sourceTree = "<group>"; };
-		6E046943191C36A200482E79 /* PBJViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJViewController.m; sourceTree = "<group>"; };
 		6E50A46A192D84F700930D02 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
 		6E50A46B192D84F700930D02 /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
 		6E50A46C192D84F700930D02 /* RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESideMenu.h; sourceTree = "<group>"; };
@@ -104,6 +114,32 @@
 		6E92DFF0195CB28F009ECE27 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		6E92DFF2196217AD009ECE27 /* VideoPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPath.h; sourceTree = "<group>"; };
 		6E92DFF3196217AD009ECE27 /* VideoPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPath.m; sourceTree = "<group>"; };
+		6E92DFF519628E24009ECE27 /* PBJGLProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJGLProgram.h; sourceTree = "<group>"; };
+		6E92DFF619628E24009ECE27 /* PBJGLProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJGLProgram.m; sourceTree = "<group>"; };
+		6E92DFF719628E24009ECE27 /* PBJMediaWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJMediaWriter.h; sourceTree = "<group>"; };
+		6E92DFF819628E24009ECE27 /* PBJMediaWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJMediaWriter.m; sourceTree = "<group>"; };
+		6E92DFF919628E24009ECE27 /* PBJVision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJVision.h; sourceTree = "<group>"; };
+		6E92DFFA19628E24009ECE27 /* PBJVision.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJVision.m; sourceTree = "<group>"; };
+		6E92DFFB19628E24009ECE27 /* PBJVisionUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJVisionUtilities.h; sourceTree = "<group>"; };
+		6E92DFFC19628E24009ECE27 /* PBJVisionUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJVisionUtilities.m; sourceTree = "<group>"; };
+		6E92DFFE19628E24009ECE27 /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
+		6E92DFFF19628E24009ECE27 /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
+		6E92E00619628E94009ECE27 /* PBJFocusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJFocusView.h; sourceTree = "<group>"; };
+		6E92E00719628E94009ECE27 /* PBJFocusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJFocusView.m; sourceTree = "<group>"; };
+		6E92E00819628E94009ECE27 /* PBJStrobeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJStrobeView.h; sourceTree = "<group>"; };
+		6E92E00919628E94009ECE27 /* PBJStrobeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJStrobeView.m; sourceTree = "<group>"; };
+		6E92E00A19628E94009ECE27 /* PBJViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJViewController.h; sourceTree = "<group>"; };
+		6E92E00B19628E94009ECE27 /* PBJViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJViewController.m; sourceTree = "<group>"; };
+		6E92E00D19628E94009ECE27 /* capture_flip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "capture_flip@2x.png"; sourceTree = "<group>"; };
+		6E92E00E19628E94009ECE27 /* capture_focus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "capture_focus@2x.png"; sourceTree = "<group>"; };
+		6E92E00F19628E94009ECE27 /* capture_focus_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "capture_focus_button@2x.png"; sourceTree = "<group>"; };
+		6E92E01019628E94009ECE27 /* capture_focus_button_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "capture_focus_button_active@2x.png"; sourceTree = "<group>"; };
+		6E92E01119628E94009ECE27 /* capture_onion@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "capture_onion@2x.png"; sourceTree = "<group>"; };
+		6E92E01219628E94009ECE27 /* capture_onion_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "capture_onion_selected@2x.png"; sourceTree = "<group>"; };
+		6E92E01319628E94009ECE27 /* capture_rec_base@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "capture_rec_base@2x.png"; sourceTree = "<group>"; };
+		6E92E01419628E94009ECE27 /* capture_rec_blink@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "capture_rec_blink@2x.png"; sourceTree = "<group>"; };
+		6E92E01519628E94009ECE27 /* capture_rec_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "capture_rec_off@2x.png"; sourceTree = "<group>"; };
+		6E92E01619628E94009ECE27 /* capture_yep@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "capture_yep@2x.png"; sourceTree = "<group>"; };
 		6E967CAC190DA4960042AF93 /* Countdown Social.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Countdown Social.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E967CAF190DA4960042AF93 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6E967CB1190DA4960042AF93 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -143,18 +179,6 @@
 		6ECB30F71952498200AB8854 /* InstagramViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramViewController.m; sourceTree = "<group>"; };
 		6ECE8110194A6F69007B3130 /* TwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterViewController.h; sourceTree = "<group>"; };
 		6ECE8111194A6F69007B3130 /* TwitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterViewController.m; sourceTree = "<group>"; };
-		6EE4B409192138BD00C84C3A /* PBJGLProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJGLProgram.h; sourceTree = "<group>"; };
-		6EE4B40A192138BD00C84C3A /* PBJGLProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJGLProgram.m; sourceTree = "<group>"; };
-		6EE4B40B192138BD00C84C3A /* PBJMediaWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJMediaWriter.h; sourceTree = "<group>"; };
-		6EE4B40C192138BD00C84C3A /* PBJMediaWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJMediaWriter.m; sourceTree = "<group>"; };
-		6EE4B40D192138BD00C84C3A /* PBJVision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJVision.h; sourceTree = "<group>"; };
-		6EE4B40E192138BD00C84C3A /* PBJVision.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJVision.m; sourceTree = "<group>"; };
-		6EE4B40F192138BD00C84C3A /* PBJVisionUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJVisionUtilities.h; sourceTree = "<group>"; };
-		6EE4B410192138BD00C84C3A /* PBJVisionUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJVisionUtilities.m; sourceTree = "<group>"; };
-		6EE4B4151921395C00C84C3A /* PBJFocusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJFocusView.h; sourceTree = "<group>"; };
-		6EE4B4161921395C00C84C3A /* PBJFocusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJFocusView.m; sourceTree = "<group>"; };
-		6EE4B4171921395C00C84C3A /* PBJStrobeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJStrobeView.h; sourceTree = "<group>"; };
-		6EE4B4181921395C00C84C3A /* PBJStrobeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJStrobeView.m; sourceTree = "<group>"; };
 		6EF0026D194FC9EF00F32217 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		6EF0026F194FCA2000F32217 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -200,6 +224,55 @@
 				6E50A46F192D84F700930D02 /* UIViewController+RESideMenu.m */,
 			);
 			path = RESideMenu;
+			sourceTree = "<group>";
+		};
+		6E92DFFD19628E24009ECE27 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				6E92DFFE19628E24009ECE27 /* Shader.fsh */,
+				6E92DFFF19628E24009ECE27 /* Shader.vsh */,
+			);
+			path = Shaders;
+			sourceTree = "<group>";
+		};
+		6E92E00C19628E94009ECE27 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				6E92E00D19628E94009ECE27 /* capture_flip@2x.png */,
+				6E92E00E19628E94009ECE27 /* capture_focus@2x.png */,
+				6E92E00F19628E94009ECE27 /* capture_focus_button@2x.png */,
+				6E92E01019628E94009ECE27 /* capture_focus_button_active@2x.png */,
+				6E92E01119628E94009ECE27 /* capture_onion@2x.png */,
+				6E92E01219628E94009ECE27 /* capture_onion_selected@2x.png */,
+				6E92E01319628E94009ECE27 /* capture_rec_base@2x.png */,
+				6E92E01419628E94009ECE27 /* capture_rec_blink@2x.png */,
+				6E92E01519628E94009ECE27 /* capture_rec_off@2x.png */,
+				6E92E01619628E94009ECE27 /* capture_yep@2x.png */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		6E92E02419628EA3009ECE27 /* PBJVision */ = {
+			isa = PBXGroup;
+			children = (
+				6E92DFF519628E24009ECE27 /* PBJGLProgram.h */,
+				6E92DFF619628E24009ECE27 /* PBJGLProgram.m */,
+				6E92DFF719628E24009ECE27 /* PBJMediaWriter.h */,
+				6E92DFF819628E24009ECE27 /* PBJMediaWriter.m */,
+				6E92DFF919628E24009ECE27 /* PBJVision.h */,
+				6E92DFFA19628E24009ECE27 /* PBJVision.m */,
+				6E92DFFB19628E24009ECE27 /* PBJVisionUtilities.h */,
+				6E92DFFC19628E24009ECE27 /* PBJVisionUtilities.m */,
+				6E92E00619628E94009ECE27 /* PBJFocusView.h */,
+				6E92E00719628E94009ECE27 /* PBJFocusView.m */,
+				6E92E00819628E94009ECE27 /* PBJStrobeView.h */,
+				6E92E00919628E94009ECE27 /* PBJStrobeView.m */,
+				6E92E00A19628E94009ECE27 /* PBJViewController.h */,
+				6E92E00B19628E94009ECE27 /* PBJViewController.m */,
+				6E92E00C19628E94009ECE27 /* UI */,
+				6E92DFFD19628E24009ECE27 /* Shaders */,
+			);
+			name = PBJVision;
 			sourceTree = "<group>";
 		};
 		6E967CA3190DA4960042AF93 = {
@@ -274,8 +347,8 @@
 				6E886A43190DB575009E5A92 /* LoginViewController.m */,
 				6E92DFEF195CB28F009ECE27 /* UIImage+ImageEffects.h */,
 				6E92DFF0195CB28F009ECE27 /* UIImage+ImageEffects.m */,
+				6E92E02419628EA3009ECE27 /* PBJVision */,
 				6E50A469192D84F700930D02 /* RESideMenu */,
-				6EB9D6BB1924285D0080E1C5 /* PBJVision */,
 				6E967CC7190DA4960042AF93 /* Images.xcassets */,
 				6E967CB6190DA4960042AF93 /* Supporting Files */,
 			);
@@ -314,27 +387,6 @@
 				6E967CD7190DA4960042AF93 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		6EB9D6BB1924285D0080E1C5 /* PBJVision */ = {
-			isa = PBXGroup;
-			children = (
-				6E046942191C36A200482E79 /* PBJViewController.h */,
-				6E046943191C36A200482E79 /* PBJViewController.m */,
-				6EE4B409192138BD00C84C3A /* PBJGLProgram.h */,
-				6EE4B40A192138BD00C84C3A /* PBJGLProgram.m */,
-				6EE4B40B192138BD00C84C3A /* PBJMediaWriter.h */,
-				6EE4B40C192138BD00C84C3A /* PBJMediaWriter.m */,
-				6EE4B40D192138BD00C84C3A /* PBJVision.h */,
-				6EE4B40E192138BD00C84C3A /* PBJVision.m */,
-				6EE4B40F192138BD00C84C3A /* PBJVisionUtilities.h */,
-				6EE4B410192138BD00C84C3A /* PBJVisionUtilities.m */,
-				6EE4B4151921395C00C84C3A /* PBJFocusView.h */,
-				6EE4B4161921395C00C84C3A /* PBJFocusView.m */,
-				6EE4B4171921395C00C84C3A /* PBJStrobeView.h */,
-				6EE4B4181921395C00C84C3A /* PBJStrobeView.m */,
-			);
-			name = PBJVision;
 			sourceTree = "<group>";
 		};
 		6EB9D6BC1924287C0080E1C5 /* VideoPreview */ = {
@@ -448,15 +500,27 @@
 				6EB9D6AD1921B8450080E1C5 /* loadingScreen.png in Resources */,
 				6EB9D6B3192415310080E1C5 /* videoPreview.png in Resources */,
 				6E967CC8190DA4960042AF93 /* Images.xcassets in Resources */,
+				6E92E01C19628E94009ECE27 /* capture_focus_button@2x.png in Resources */,
 				6E50A477192D977300930D02 /* Stars.png in Resources */,
 				6EB9D6B9192426B90080E1C5 /* iLikeIt.png in Resources */,
 				6EB9D6BA192426B90080E1C5 /* tryAgain.png in Resources */,
+				6E92E02119628E94009ECE27 /* capture_rec_blink@2x.png in Resources */,
 				6EC0FC18192AD95A00B72C44 /* settingsButton.png in Resources */,
+				6E92E02219628E94009ECE27 /* capture_rec_off@2x.png in Resources */,
+				6E92E02019628E94009ECE27 /* capture_rec_base@2x.png in Resources */,
 				6EC0FC1A192AD9AE00B72C44 /* matchesButton.png in Resources */,
+				6E92E02319628E94009ECE27 /* capture_yep@2x.png in Resources */,
+				6E92E01F19628E94009ECE27 /* capture_onion_selected@2x.png in Resources */,
 				6EB9D6B11921B8EC0080E1C5 /* loginBackground.png in Resources */,
 				6E967CBA190DA4960042AF93 /* InfoPlist.strings in Resources */,
 				6EC0FC16192AD87B00B72C44 /* PotentialMatchesBackground.png in Resources */,
+				6E92E01D19628E94009ECE27 /* capture_focus_button_active@2x.png in Resources */,
+				6E92E00419628E24009ECE27 /* Shader.fsh in Resources */,
+				6E92E01E19628E94009ECE27 /* capture_onion@2x.png in Resources */,
 				6E967CC3190DA4960042AF93 /* Main.storyboard in Resources */,
+				6E92E01A19628E94009ECE27 /* capture_flip@2x.png in Resources */,
+				6E92E00519628E24009ECE27 /* Shader.vsh in Resources */,
+				6E92E01B19628E94009ECE27 /* capture_focus@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,32 +539,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6EE4B412192138BD00C84C3A /* PBJMediaWriter.m in Sources */,
 				6E04693B191995B900482E79 /* LoginLoadViewController.m in Sources */,
-				6EE4B411192138BD00C84C3A /* PBJGLProgram.m in Sources */,
 				6E50A470192D84F700930D02 /* RECommonFunctions.m in Sources */,
-				6EE4B413192138BD00C84C3A /* PBJVision.m in Sources */,
 				6E50A472192D84F700930D02 /* UIViewController+RESideMenu.m in Sources */,
+				6E92E00019628E24009ECE27 /* PBJGLProgram.m in Sources */,
 				6E886A44190DB575009E5A92 /* LoginViewController.m in Sources */,
 				6ECE8112194A6F69007B3130 /* TwitterViewController.m in Sources */,
 				6EC9431A1958D04E0096F41F /* User.m in Sources */,
 				6E967CC0190DA4960042AF93 /* AppDelegate.m in Sources */,
+				6E92E01819628E94009ECE27 /* PBJStrobeView.m in Sources */,
+				6E92E00119628E24009ECE27 /* PBJMediaWriter.m in Sources */,
 				6E7691CD195398ED006CA5DB /* PotentialMatches.m in Sources */,
 				6EB9D6B6192415D10080E1C5 /* VideoPreviewViewController.m in Sources */,
 				6E50A471192D84F700930D02 /* RESideMenu.m in Sources */,
 				6EC94325195C8B6E0096F41F /* LeftMenuViewController.m in Sources */,
 				6E92DFF1195CB28F009ECE27 /* UIImage+ImageEffects.m in Sources */,
-				6EE4B41A1921395C00C84C3A /* PBJStrobeView.m in Sources */,
 				6E886A4B190DD4F9009E5A92 /* ViewController.m in Sources */,
+				6E92E00319628E24009ECE27 /* PBJVisionUtilities.m in Sources */,
 				6E967CBC190DA4960042AF93 /* main.m in Sources */,
-				6E046946191C36A200482E79 /* PBJViewController.m in Sources */,
 				6ECB30F81952498200AB8854 /* InstagramViewController.m in Sources */,
+				6E92E01719628E94009ECE27 /* PBJFocusView.m in Sources */,
 				6E886A5C190FF4F8009E5A92 /* ChooseLocationViewController.m in Sources */,
-				6EE4B4191921395C00C84C3A /* PBJFocusView.m in Sources */,
+				6E92E01919628E94009ECE27 /* PBJViewController.m in Sources */,
 				6E886A4E190E05AC009E5A92 /* SetLocationViewController.m in Sources */,
 				6EC0FC0D192AC61000B72C44 /* PotentialMatchesViewController.m in Sources */,
-				6EE4B414192138BD00C84C3A /* PBJVisionUtilities.m in Sources */,
 				6E92DFF4196217AD009ECE27 /* VideoPath.m in Sources */,
+				6E92E00219628E24009ECE27 /* PBJVision.m in Sources */,
 				6E50A475192D86FB00930D02 /* MenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

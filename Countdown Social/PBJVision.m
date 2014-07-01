@@ -80,12 +80,12 @@ typedef NS_ENUM(GLint, PBJVisionUniformLocationTypes)
 ///
 
 @interface PBJVision () <
-AVCaptureAudioDataOutputSampleBufferDelegate,
-AVCaptureVideoDataOutputSampleBufferDelegate,
-PBJMediaWriterDelegate>
+    AVCaptureAudioDataOutputSampleBufferDelegate,
+    AVCaptureVideoDataOutputSampleBufferDelegate,
+    PBJMediaWriterDelegate>
 {
     // AV
-    
+
     AVCaptureSession *_captureSession;
     
     AVCaptureDevice *_captureDeviceFront;
@@ -95,18 +95,18 @@ PBJMediaWriterDelegate>
     AVCaptureDeviceInput *_captureDeviceInputFront;
     AVCaptureDeviceInput *_captureDeviceInputBack;
     AVCaptureDeviceInput *_captureDeviceInputAudio;
-    
+
     AVCaptureStillImageOutput *_captureOutputPhoto;
     AVCaptureAudioDataOutput *_captureOutputAudio;
     AVCaptureVideoDataOutput *_captureOutputVideo;
-    
+
     // vision core
-    
+
     PBJMediaWriter *_mediaWriter;
-    
+
     dispatch_queue_t _captureSessionDispatchQueue;
     dispatch_queue_t _captureVideoDispatchQueue;
-    
+
     PBJCameraDevice _cameraDevice;
     PBJCameraMode _cameraMode;
     PBJCameraOrientation _cameraOrientation;
@@ -114,7 +114,7 @@ PBJMediaWriterDelegate>
     PBJFocusMode _focusMode;
     PBJExposureMode _exposureMode;
     PBJFlashMode _flashMode;
-    
+
     NSString *_captureSessionPreset;
     PBJOutputFormat _outputFormat;
     
@@ -128,20 +128,20 @@ PBJMediaWriterDelegate>
     
     AVCaptureVideoPreviewLayer *_previewLayer;
     CGRect _cleanAperture;
-    
+
     CMTime _startTimestamp;
     CMTime _lastTimestamp;
     
     CMTime _maximumCaptureDuration;
-    
+
     // sample buffer rendering
-    
+
     PBJCameraDevice _bufferDevice;
     PBJCameraOrientation _bufferOrientation;
     size_t _bufferWidth;
     size_t _bufferHeight;
     CGRect _presentationFrame;
-    
+
     EAGLContext *_context;
     PBJGLProgram *_program;
     CVOpenGLESTextureRef _lumaTexture;
@@ -255,9 +255,9 @@ PBJMediaWriterDelegate>
 
 - (void)setCameraOrientation:(PBJCameraOrientation)cameraOrientation
 {
-    if (cameraOrientation == _cameraOrientation)
+     if (cameraOrientation == _cameraOrientation)
         return;
-    _cameraOrientation = cameraOrientation;
+     _cameraOrientation = cameraOrientation;
     
     if ([_previewLayer.connection isVideoOrientationSupported])
         [self _setOrientationForConnection:_previewLayer.connection];
@@ -267,7 +267,7 @@ PBJMediaWriterDelegate>
 {
     if (!connection || ![connection isVideoOrientationSupported])
         return;
-    
+
     AVCaptureVideoOrientation orientation = AVCaptureVideoOrientationPortrait;
     switch (_cameraOrientation) {
         case PBJCameraOrientationPortraitUpsideDown:
@@ -284,7 +284,7 @@ PBJMediaWriterDelegate>
             orientation = AVCaptureVideoOrientationPortrait;
             break;
     }
-    
+
     [connection setVideoOrientation:orientation];
 }
 
@@ -301,7 +301,7 @@ PBJMediaWriterDelegate>
     
     SEL targetDelegateMethodBeforeChange;
     SEL targetDelegateMethodAfterChange;
-    
+
     if (changeDevice) {
         targetDelegateMethodBeforeChange = @selector(visionCameraDeviceWillChange:);
         targetDelegateMethodAfterChange = @selector(visionCameraDeviceDidChange:);
@@ -314,7 +314,7 @@ PBJMediaWriterDelegate>
         targetDelegateMethodBeforeChange = @selector(visionOutputFormatWillChange:);
         targetDelegateMethodAfterChange = @selector(visionOutputFormatDidChange:);
     }
-    
+
     if ([_delegate respondsToSelector:targetDelegateMethodBeforeChange]) {
         // At this point, `targetDelegateMethodBeforeChange` will always refer to a valid selector, as
         // from the sequence of conditionals above. Also the enclosing `if` statement ensures
@@ -335,7 +335,7 @@ PBJMediaWriterDelegate>
     // since there is no session in progress, set and bail
     if (!_captureSession) {
         _flags.changingModes = NO;
-        
+            
         if ([_delegate respondsToSelector:targetDelegateMethodAfterChange]) {
             // At this point, `targetDelegateMethodAfterChange` will always refer to a valid selector, as
             // from the sequence of conditionals above. Also the enclosing `if` statement ensures
@@ -434,7 +434,7 @@ PBJMediaWriterDelegate>
     } else if (error) {
         DLog(@"error locking device for exposure mode change (%@)", error);
     }
-    
+
 }
 
 - (BOOL)isFlashAvailable
@@ -447,37 +447,37 @@ PBJMediaWriterDelegate>
     BOOL shouldChangeFlashMode = (_flashMode != flashMode);
     if (![_currentDevice hasFlash] || !shouldChangeFlashMode)
         return;
-    
+
     _flashMode = flashMode;
     
     NSError *error = nil;
     if (_currentDevice && [_currentDevice lockForConfiguration:&error]) {
         
         switch (_cameraMode) {
-            case PBJCameraModePhoto:
-            {
-                if ([_currentDevice isFlashModeSupported:(AVCaptureFlashMode)_flashMode]) {
-                    [_currentDevice setFlashMode:(AVCaptureFlashMode)_flashMode];
-                }
-                break;
+          case PBJCameraModePhoto:
+          {
+            if ([_currentDevice isFlashModeSupported:(AVCaptureFlashMode)_flashMode]) {
+                [_currentDevice setFlashMode:(AVCaptureFlashMode)_flashMode];
             }
-            case PBJCameraModeVideo:
-            {
-                if ([_currentDevice isFlashModeSupported:(AVCaptureFlashMode)_flashMode]) {
-                    [_currentDevice setFlashMode:AVCaptureFlashModeOff];
-                }
-                
-                if ([_currentDevice isTorchModeSupported:(AVCaptureTorchMode)_flashMode]) {
-                    [_currentDevice setTorchMode:(AVCaptureTorchMode)_flashMode];
-                }
-                break;
+            break;
+          }
+          case PBJCameraModeVideo:
+          {
+            if ([_currentDevice isFlashModeSupported:(AVCaptureFlashMode)_flashMode]) {
+                [_currentDevice setFlashMode:AVCaptureFlashModeOff];
             }
-            default:
-                break;
+            
+            if ([_currentDevice isTorchModeSupported:(AVCaptureTorchMode)_flashMode]) {
+                [_currentDevice setTorchMode:(AVCaptureTorchMode)_flashMode];
+            }
+            break;
+          }
+          default:
+            break;
         }
-        
+    
         [_currentDevice unlockForConfiguration];
-        
+    
     } else if (error) {
         DLog(@"error locking device for flash mode change (%@)", error);
     }
@@ -496,20 +496,20 @@ PBJMediaWriterDelegate>
     if (isRecording) {
         [self pauseVideoCapture];
     }
-    
+
     CMTime fps = CMTimeMake(1, (int32_t)videoFrameRate);
-    
+
     if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
         
         AVCaptureDevice *videoDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
         AVCaptureDeviceFormat *supportingFormat = nil;
         int32_t maxWidth = 0;
-        
+
         NSArray *formats = [videoDevice formats];
         for (AVCaptureDeviceFormat *format in formats) {
             NSArray *videoSupportedFrameRateRanges = format.videoSupportedFrameRateRanges;
             for (AVFrameRateRange *range in videoSupportedFrameRateRanges) {
-                
+    
                 CMFormatDescriptionRef desc = format.formatDescription;
                 CMVideoDimensions dimensions = CMVideoFormatDescriptionGetDimensions(desc);
                 int32_t width = dimensions.width;
@@ -537,9 +537,9 @@ PBJMediaWriterDelegate>
             if ([_delegate respondsToSelector:@selector(visionDidChangeVideoFormatAndFrameRate:)])
                 [_delegate visionDidChangeVideoFormatAndFrameRate:self];
         }];
-        
+            
     } else {
-        
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
         AVCaptureConnection *connection = [_currentOutput connectionWithMediaType:AVMediaTypeVideo];
@@ -561,7 +561,7 @@ PBJMediaWriterDelegate>
                 [_delegate visionDidChangeVideoFormatAndFrameRate:self];
         }];
 #pragma clang diagnostic pop
-        
+
     }
     
     if (isRecording) {
@@ -573,13 +573,13 @@ PBJMediaWriterDelegate>
 {
     if (!_currentDevice)
         return 0;
-    
+
     NSInteger frameRate = 0;
     
     if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
-        
+
         frameRate = _currentDevice.activeVideoMaxFrameDuration.timescale;
-        
+    
     } else {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
@@ -587,7 +587,7 @@ PBJMediaWriterDelegate>
         frameRate = connection.videoMaxFrameDuration.timescale;
 #pragma clang diagnostic pop
     }
-    
+	
 	return frameRate;
 }
 
@@ -595,7 +595,7 @@ PBJMediaWriterDelegate>
 {
     if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
         AVCaptureDevice *videoDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-        
+
         NSArray *formats = [videoDevice formats];
         for (AVCaptureDeviceFormat *format in formats) {
             NSArray *videoSupportedFrameRateRanges = [format videoSupportedFrameRateRanges];
@@ -613,7 +613,7 @@ PBJMediaWriterDelegate>
         return (connection.isVideoMaxFrameDurationSupported && connection.isVideoMinFrameDurationSupported);
 #pragma clang diagnostic pop
     }
-    
+
     return NO;
 }
 
@@ -632,10 +632,10 @@ PBJMediaWriterDelegate>
         [self _setupGL];
         
         _captureSessionPreset = AVCaptureSessionPresetMedium;
-        
+
         // default audio/video configuration
         _audioBitRate = 64000;
-        
+
         // Average bytes per second based on video dimensions
         // lower the bitRate, higher the compression
         // 87500, good for 480 x 360
@@ -644,19 +644,19 @@ PBJMediaWriterDelegate>
         // 2975000, good for 1920 x 1080
         // 3750000, good for iFrame 960 x 540
         // 5000000, good for iFrame 1280 x 720
-        CGFloat bytesPerSecond = 87500;
+        CGFloat bytesPerSecond = 437500;
         _videoBitRate = bytesPerSecond * 8;
         
         // default flags
         _flags.thumbnailEnabled = YES;
-        
+
         // setup queues
         _captureSessionDispatchQueue = dispatch_queue_create("PBJVisionSession", DISPATCH_QUEUE_SERIAL); // protects session
         _captureVideoDispatchQueue = dispatch_queue_create("PBJVisionVideo", DISPATCH_QUEUE_SERIAL); // protects capture
         
         _previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:nil];
         
-        _maximumCaptureDuration = CMTimeMakeWithSeconds(6, 1);
+        _maximumCaptureDuration = CMTimeMake(6, 1);
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_applicationWillEnterForeground:) name:@"UIApplicationWillEnterForegroundNotification" object:[UIApplication sharedApplication]];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_applicationDidEnterBackground:) name:@"UIApplicationDidEnterBackgroundNotification" object:[UIApplication sharedApplication]];
@@ -668,7 +668,7 @@ PBJMediaWriterDelegate>
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     _delegate = nil;
-    
+
     [self _cleanUpTextures];
     
     if (_videoTextureCache) {
@@ -728,13 +728,13 @@ typedef void (^PBJVisionBlock)();
     if (cvError) {
         NSLog(@"error CVOpenGLESTextureCacheCreate (%d)", cvError);
     }
-    
+
     _captureSession = [[AVCaptureSession alloc] init];
     
     // capture devices
     _captureDeviceFront = [PBJVisionUtilities captureDeviceForPosition:AVCaptureDevicePositionFront];
     _captureDeviceBack = [PBJVisionUtilities captureDeviceForPosition:AVCaptureDevicePositionBack];
-    
+
     // capture device inputs
     NSError *error = nil;
     _captureDeviceInputFront = [AVCaptureDeviceInput deviceInputWithDevice:_captureDeviceFront error:&error];
@@ -765,10 +765,10 @@ typedef void (^PBJVisionBlock)();
     if (_cameraMode != PBJCameraModePhoto)
     	[_captureOutputAudio setSampleBufferDelegate:self queue:_captureVideoDispatchQueue];
     [_captureOutputVideo setSampleBufferDelegate:self queue:_captureVideoDispatchQueue];
-    
+
     // capture device initial settings
     _videoFrameRate = 30;
-    
+
     // add notification observers
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     
@@ -796,10 +796,10 @@ typedef void (^PBJVisionBlock)();
 {
     if (!_captureSession)
         return;
-    
+
     // remove notification observers (we don't want to just 'remove all' because we're also observing background notifications
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-    
+        
     // session notifications
     [notificationCenter removeObserver:self name:AVCaptureSessionRuntimeErrorNotification object:_captureSession];
     [notificationCenter removeObserver:self name:AVCaptureSessionDidStartRunningNotification object:_captureSession];
@@ -812,14 +812,14 @@ typedef void (^PBJVisionBlock)();
     
     // capture device notifications
     [notificationCenter removeObserver:self name:AVCaptureDeviceSubjectAreaDidChangeNotification object:nil];
-    
+
     // only KVO use
     [_captureOutputPhoto removeObserver:self forKeyPath:@"capturingStillImage"];
     [_currentDevice removeObserver:self forKeyPath:@"adjustingFocus"];
     [_currentDevice removeObserver:self forKeyPath:@"adjustingExposure"];
     [_currentDevice removeObserver:self forKeyPath:@"flashMode"];
     [_currentDevice removeObserver:self forKeyPath:@"torchMode"];
-    
+
     _captureOutputPhoto = nil;
     _captureOutputAudio = nil;
     _captureOutputVideo = nil;
@@ -829,10 +829,10 @@ typedef void (^PBJVisionBlock)();
     
     _captureDeviceInputFront = nil;
     _captureDeviceInputBack = nil;
-    
+
     _captureDeviceFront = nil;
     _captureDeviceBack = nil;
-    
+
     _captureSession = nil;
     
     _currentDevice = nil;
@@ -859,15 +859,15 @@ typedef void (^PBJVisionBlock)();
     }
     
     BOOL shouldSwitchDevice = (_currentDevice == nil) ||
-    ((_currentDevice == _captureDeviceFront) && (_cameraDevice != PBJCameraDeviceFront)) ||
-    ((_currentDevice == _captureDeviceBack) && (_cameraDevice != PBJCameraDeviceBack));
+                              ((_currentDevice == _captureDeviceFront) && (_cameraDevice != PBJCameraDeviceFront)) ||
+                              ((_currentDevice == _captureDeviceBack) && (_cameraDevice != PBJCameraDeviceBack));
     
     BOOL shouldSwitchMode = (_currentOutput == nil) ||
-    ((_currentOutput == _captureOutputPhoto) && (_cameraMode != PBJCameraModePhoto)) ||
-    ((_currentOutput == _captureOutputVideo) && (_cameraMode != PBJCameraModeVideo));
+                            ((_currentOutput == _captureOutputPhoto) && (_cameraMode != PBJCameraModePhoto)) ||
+                            ((_currentOutput == _captureOutputVideo) && (_cameraMode != PBJCameraModeVideo));
     
     DLog(@"switchDevice %d switchMode %d", shouldSwitchDevice, shouldSwitchMode);
-    
+
     if (!shouldSwitchDevice && !shouldSwitchMode)
         return;
     
@@ -881,32 +881,32 @@ typedef void (^PBJVisionBlock)();
     
     if (shouldSwitchDevice) {
         switch (_cameraDevice) {
-            case PBJCameraDeviceFront:
-            {
-                if (_captureDeviceInputBack)
-                    [_captureSession removeInput:_captureDeviceInputBack];
-                
-                if (_captureDeviceInputFront && [_captureSession canAddInput:_captureDeviceInputFront]) {
-                    [_captureSession addInput:_captureDeviceInputFront];
-                    newDeviceInput = _captureDeviceInputFront;
-                    newCaptureDevice = _captureDeviceFront;
-                }
-                break;
+          case PBJCameraDeviceFront:
+          {
+            if (_captureDeviceInputBack)
+                [_captureSession removeInput:_captureDeviceInputBack];
+            
+            if (_captureDeviceInputFront && [_captureSession canAddInput:_captureDeviceInputFront]) {
+                [_captureSession addInput:_captureDeviceInputFront];
+                newDeviceInput = _captureDeviceInputFront;
+                newCaptureDevice = _captureDeviceFront;
             }
-            case PBJCameraDeviceBack:
-            {
-                if (_captureDeviceInputFront)
-                    [_captureSession removeInput:_captureDeviceInputFront];
-                
-                if (_captureDeviceInputBack && [_captureSession canAddInput:_captureDeviceInputBack]) {
-                    [_captureSession addInput:_captureDeviceInputBack];
-                    newDeviceInput = _captureDeviceInputBack;
-                    newCaptureDevice = _captureDeviceBack;
-                }
-                break;
+            break;
+          }
+          case PBJCameraDeviceBack:
+          {
+            if (_captureDeviceInputFront)
+                [_captureSession removeInput:_captureDeviceInputFront];
+            
+            if (_captureDeviceInputBack && [_captureSession canAddInput:_captureDeviceInputBack]) {
+                [_captureSession addInput:_captureDeviceInputBack];
+                newDeviceInput = _captureDeviceInputBack;
+                newCaptureDevice = _captureDeviceBack;
             }
-            default:
-                break;
+            break;
+          }
+          default:
+            break;
         }
         
     } // shouldSwitchDevice
@@ -914,23 +914,23 @@ typedef void (^PBJVisionBlock)();
     // setup session input/output
     
     if (shouldSwitchMode) {
-        
+    
         // disable audio when in use for photos, otherwise enable it
         
     	if (self.cameraMode == PBJCameraModePhoto) {
-            
+        
         	[_captureSession removeInput:_captureDeviceInputAudio];
         	[_captureSession removeOutput:_captureOutputAudio];
-            
+    	
         } else if (!_captureDeviceAudio && !_captureDeviceInputAudio && !_captureOutputAudio) {
-            
+        
             NSError *error = nil;
             _captureDeviceAudio = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
             _captureDeviceInputAudio = [AVCaptureDeviceInput deviceInputWithDevice:_captureDeviceAudio error:&error];
             if (error) {
                 DLog(@"error setting up audio input (%@)", error);
             }
-            
+
             _captureOutputAudio = [[AVCaptureAudioDataOutput alloc] init];
             [_captureOutputAudio setSampleBufferDelegate:self queue:_captureVideoDispatchQueue];
             
@@ -974,17 +974,17 @@ typedef void (^PBJVisionBlock)();
     
     if (!newCaptureDevice)
         newCaptureDevice = _currentDevice;
-    
+
     if (!newCaptureOutput)
         newCaptureOutput = _currentOutput;
-    
+
     // setup video connection
     AVCaptureConnection *videoConnection = [_captureOutputVideo connectionWithMediaType:AVMediaTypeVideo];
     
     // setup input/output
     
     NSString *sessionPreset = _captureSessionPreset;
-    
+
     if ( newCaptureOutput && (newCaptureOutput == _captureOutputVideo) && videoConnection ) {
         
         // setup video orientation
@@ -993,13 +993,13 @@ typedef void (^PBJVisionBlock)();
         // setup video stabilization, if available
         if ([videoConnection isVideoStabilizationSupported])
             [videoConnection setEnablesVideoStabilizationWhenAvailable:YES];
-        
+
         // discard late frames
         [_captureOutputVideo setAlwaysDiscardsLateVideoFrames:NO];
         
         // specify video preset
         sessionPreset = _captureSessionPreset;
-        
+
         // setup video settings
         // kCVPixelFormatType_420YpCbCr8BiPlanarFullRange Bi-Planar Component Y'CbCr 8-bit 4:2:0, full-range (luma=[0,255] chroma=[1,255])
         // baseAddr points to a big-endian CVPlanarPixelBufferInfo_YCbCrBiPlanar struct
@@ -1014,7 +1014,7 @@ typedef void (^PBJVisionBlock)();
                 supportsVideoRangeYUV = YES;
             }
         }
-        
+
         NSDictionary *videoSettings = nil;
         if (supportsFullRangeYUV) {
             videoSettings = @{ (id)kCVPixelBufferPixelFormatTypeKey : @(kCVPixelFormatType_420YpCbCr8BiPlanarFullRange) };
@@ -1026,31 +1026,31 @@ typedef void (^PBJVisionBlock)();
         
         // setup video device configuration
         if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
-            
+
             NSError *error = nil;
             if ([newCaptureDevice lockForConfiguration:&error]) {
-                
+            
                 // smooth autofocus for videos
                 if ([newCaptureDevice isSmoothAutoFocusSupported])
                     [newCaptureDevice setSmoothAutoFocusEnabled:YES];
                 
                 [newCaptureDevice unlockForConfiguration];
-                
+        
             } else if (error) {
                 DLog(@"error locking device for video device configuration (%@)", error);
             }
-            
+        
         }
         
     } else if ( newCaptureOutput && (newCaptureOutput == _captureOutputPhoto) ) {
-        
+    
         // specify photo preset
         sessionPreset = AVCaptureSessionPresetPhoto;
-        
+    
         // setup photo settings
         NSDictionary *photoSettings = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                       AVVideoCodecJPEG, AVVideoCodecKey,
-                                       nil];
+                                        AVVideoCodecJPEG, AVVideoCodecKey,
+                                        nil];
         [_captureOutputPhoto setOutputSettings:photoSettings];
         
         // setup photo device configuration
@@ -1061,17 +1061,17 @@ typedef void (^PBJVisionBlock)();
                 [newCaptureDevice setAutomaticallyEnablesLowLightBoostWhenAvailable:YES];
             
             [newCaptureDevice unlockForConfiguration];
-            
+        
         } else if (error) {
             DLog(@"error locking device for photo device configuration (%@)", error);
         }
-        
+            
     }
-    
+
     // apply presets
     if ([_captureSession canSetSessionPreset:sessionPreset])
         [_captureSession setSessionPreset:sessionPreset];
-    
+
     // KVO
     if (newCaptureDevice) {
         [_currentDevice removeObserver:self forKeyPath:@"adjustingFocus"];
@@ -1095,7 +1095,7 @@ typedef void (^PBJVisionBlock)();
     
     if (newCaptureOutput)
         _currentOutput = newCaptureOutput;
-    
+
     [_captureSession commitConfiguration];
     
     DLog(@"capture session setup");
@@ -1110,7 +1110,7 @@ typedef void (^PBJVisionBlock)();
             [self _setupCamera];
             [self _setupSession];
         }
-        
+    
         if (_previewLayer && _previewLayer.session != _captureSession) {
             _previewLayer.session = _captureSession;
             [self _setOrientationForConnection:_previewLayer.connection];
@@ -1131,17 +1131,17 @@ typedef void (^PBJVisionBlock)();
 }
 
 - (void)stopPreview
-{
+{    
     [self _enqueueBlockOnCaptureSessionQueue:^{
         if (!_flags.previewRunning)
             return;
-        
+
         if (_previewLayer)
             _previewLayer.connection.enabled = YES;
-        
+
         if ([_captureSession isRunning])
             [_captureSession stopRunning];
-        
+
         [self _executeBlockOnMainQueue:^{
             if ([_delegate respondsToSelector:@selector(visionSessionDidStopPreview:)]) {
                 [_delegate visionSessionDidStopPreview:self];
@@ -1162,7 +1162,7 @@ typedef void (^PBJVisionBlock)();
 
 - (void)_focusStarted
 {
-    //    DLog(@"focus started");
+//    DLog(@"focus started");
     if ([_delegate respondsToSelector:@selector(visionWillStartFocus:)])
         [_delegate visionWillStartFocus:self];
 }
@@ -1176,7 +1176,7 @@ typedef void (^PBJVisionBlock)();
     if (!isFocusing && isAutoFocusEnabled) {
         NSError *error = nil;
         if ([_currentDevice lockForConfiguration:&error]) {
-            
+        
             [_currentDevice setSubjectAreaChangeMonitoringEnabled:YES];
             [_currentDevice unlockForConfiguration];
             
@@ -1184,10 +1184,10 @@ typedef void (^PBJVisionBlock)();
             DLog(@"error locking device post exposure for subject area change monitoring (%@)", error);
         }
     }
-    
+
     if ([_delegate respondsToSelector:@selector(visionDidStopFocus:)])
         [_delegate visionDidStopFocus:self];
-    //    DLog(@"focus ended");
+//    DLog(@"focus ended");
 }
 
 - (void)_exposureChangeStarted
@@ -1202,9 +1202,9 @@ typedef void (^PBJVisionBlock)();
     BOOL isContinuousAutoExposureEnabled = [_currentDevice exposureMode] == AVCaptureExposureModeContinuousAutoExposure;
     BOOL isExposing = [_currentDevice isAdjustingExposure];
     BOOL isFocusSupported = [_currentDevice isFocusModeSupported:AVCaptureFocusModeContinuousAutoFocus];
-    
+
     if (isContinuousAutoExposureEnabled && !isExposing && !isFocusSupported) {
-        
+
         NSError *error = nil;
         if ([_currentDevice lockForConfiguration:&error]) {
             
@@ -1214,9 +1214,9 @@ typedef void (^PBJVisionBlock)();
         } else if (error) {
             DLog(@"error locking device post exposure for subject area change monitoring (%@)", error);
         }
-        
+
     }
-    
+
     if ([_delegate respondsToSelector:@selector(visionDidChangeExposure:)])
         [_delegate visionDidChangeExposure:self];
     //    DLog(@"exposure change ended");
@@ -1226,12 +1226,12 @@ typedef void (^PBJVisionBlock)();
 {
     if ([_currentDevice isAdjustingFocus] || [_currentDevice isAdjustingExposure])
         return;
-    
+
     NSError *error = nil;
     if ([_currentDevice lockForConfiguration:&error]) {
-        
+    
         BOOL isFocusAtPointSupported = [_currentDevice isFocusPointOfInterestSupported];
-        
+    
         if (isFocusAtPointSupported && [_currentDevice isFocusModeSupported:AVCaptureFocusModeAutoFocus]) {
             AVCaptureFocusMode fm = [_currentDevice focusMode];
             [_currentDevice setFocusPointOfInterest:adjustedPoint];
@@ -1248,10 +1248,10 @@ typedef void (^PBJVisionBlock)();
 {
     if ([_currentDevice isAdjustingExposure])
         return;
-    
+
     NSError *error = nil;
     if ([_currentDevice lockForConfiguration:&error]) {
-        
+    
         BOOL isExposureAtPointSupported = [_currentDevice isExposurePointOfInterestSupported];
         if (isExposureAtPointSupported && [_currentDevice isExposureModeSupported:AVCaptureExposureModeContinuousAutoExposure]) {
             AVCaptureExposureMode em = [_currentDevice exposureMode];
@@ -1269,11 +1269,11 @@ typedef void (^PBJVisionBlock)();
 {
     if ([_currentDevice isAdjustingFocus] || [_currentDevice isAdjustingExposure])
         return;
-    
+
     // only notify clients when focus is triggered from an event
     if ([_delegate respondsToSelector:@selector(visionWillStartFocus:)])
         [_delegate visionWillStartFocus:self];
-    
+
     CGPoint focusPoint = CGPointMake(0.5f, 0.5f);
     [self focusAtAdjustedPointOfInterest:focusPoint];
 }
@@ -1283,14 +1283,14 @@ typedef void (^PBJVisionBlock)();
 {
     if ([_currentDevice isAdjustingFocus] || [_currentDevice isAdjustingExposure])
         return;
-    
+
     NSError *error = nil;
     if ([_currentDevice lockForConfiguration:&error]) {
-        
+    
         BOOL isFocusAtPointSupported = [_currentDevice isFocusPointOfInterestSupported];
         BOOL isExposureAtPointSupported = [_currentDevice isExposurePointOfInterestSupported];
         BOOL isWhiteBalanceModeSupported = [_currentDevice isWhiteBalanceModeSupported:AVCaptureWhiteBalanceModeContinuousAutoWhiteBalance];
-        
+    
         if (isFocusAtPointSupported && [_currentDevice isFocusModeSupported:AVCaptureFocusModeAutoFocus]) {
             [_currentDevice setFocusPointOfInterest:adjustedPoint];
             [_currentDevice setFocusMode:AVCaptureFocusModeAutoFocus];
@@ -1413,8 +1413,8 @@ typedef void (^PBJVisionBlock)();
             imageOrientation = UIImageOrientationLeftMirrored;
             break;
         case 6:
-            imageOrientation = UIImageOrientationRight;
-            break;
+           imageOrientation = UIImageOrientationRight;
+           break;
         case 7:
             imageOrientation = UIImageOrientationRightMirrored;
             break;
@@ -1451,68 +1451,68 @@ typedef void (^PBJVisionBlock)();
         DLog(@"session is not setup properly for capture");
         return;
     }
-    
+
     AVCaptureConnection *connection = [_currentOutput connectionWithMediaType:AVMediaTypeVideo];
     [self _setOrientationForConnection:connection];
     
     [_captureOutputPhoto captureStillImageAsynchronouslyFromConnection:connection completionHandler:
-     ^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
-         
-         if (!imageDataSampleBuffer) {
-             DLog(@"failed to obtain image data sample buffer");
-             return;
-         }
-         
-         if (error) {
-             if ([_delegate respondsToSelector:@selector(vision:capturedPhoto:error:)]) {
-                 [_delegate vision:self capturedPhoto:nil error:error];
-             }
-             return;
-         }
-         
-         NSMutableDictionary *photoDict = [[NSMutableDictionary alloc] init];
-         NSDictionary *metadata = nil;
-         
-         // add photo metadata (ie EXIF: Aperture, Brightness, Exposure, FocalLength, etc)
-         metadata = (__bridge NSDictionary *)CMCopyDictionaryOfAttachments(kCFAllocatorDefault, imageDataSampleBuffer, kCMAttachmentMode_ShouldPropagate);
-         if (metadata) {
-             [photoDict setObject:metadata forKey:PBJVisionPhotoMetadataKey];
-             CFRelease((__bridge CFTypeRef)(metadata));
-         } else {
-             DLog(@"failed to generate metadata for photo");
-         }
-         
-         // add JPEG, UIImage, thumbnail
-         NSData *jpegData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
-         if (jpegData) {
-             // add JPEG
-             [photoDict setObject:jpegData forKey:PBJVisionPhotoJPEGKey];
-             
-             // add image
-             UIImage *image = [self _uiimageFromJPEGData:jpegData];
-             if (image) {
-                 [photoDict setObject:image forKey:PBJVisionPhotoImageKey];
-             } else {
-                 DLog(@"failed to create image from JPEG");
-                 // TODO: return delegate on error
-             }
-             
-             // add thumbnail
-             if (_flags.thumbnailEnabled) {
-                 UIImage *thumbnail = [self _thumbnailJPEGData:jpegData];
-                 if (thumbnail)
-                     [photoDict setObject:thumbnail forKey:PBJVisionPhotoThumbnailKey];
-             }
-             
-         }
-         
-         if ([_delegate respondsToSelector:@selector(vision:capturedPhoto:error:)]) {
-             [_delegate vision:self capturedPhoto:photoDict error:error];
-         }
-         
-         // run a post shot focus
-         [self performSelector:@selector(_adjustFocusExposureAndWhiteBalance) withObject:nil afterDelay:0.5f];
-     }];
+    ^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
+        
+        if (!imageDataSampleBuffer) {
+            DLog(@"failed to obtain image data sample buffer");
+            return;
+        }
+    
+        if (error) {
+            if ([_delegate respondsToSelector:@selector(vision:capturedPhoto:error:)]) {
+                [_delegate vision:self capturedPhoto:nil error:error];
+            }
+            return;
+        }
+    
+        NSMutableDictionary *photoDict = [[NSMutableDictionary alloc] init];
+        NSDictionary *metadata = nil;
+
+        // add photo metadata (ie EXIF: Aperture, Brightness, Exposure, FocalLength, etc)
+        metadata = (__bridge NSDictionary *)CMCopyDictionaryOfAttachments(kCFAllocatorDefault, imageDataSampleBuffer, kCMAttachmentMode_ShouldPropagate);
+        if (metadata) {
+            [photoDict setObject:metadata forKey:PBJVisionPhotoMetadataKey];
+            CFRelease((__bridge CFTypeRef)(metadata));
+        } else {
+            DLog(@"failed to generate metadata for photo");
+        }
+        
+        // add JPEG, UIImage, thumbnail
+        NSData *jpegData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
+        if (jpegData) {
+            // add JPEG
+            [photoDict setObject:jpegData forKey:PBJVisionPhotoJPEGKey];
+            
+            // add image
+            UIImage *image = [self _uiimageFromJPEGData:jpegData];
+            if (image) {
+                [photoDict setObject:image forKey:PBJVisionPhotoImageKey];
+            } else {
+                DLog(@"failed to create image from JPEG");
+                // TODO: return delegate on error
+            }
+            
+            // add thumbnail
+            if (_flags.thumbnailEnabled) {
+                UIImage *thumbnail = [self _thumbnailJPEGData:jpegData];
+                if (thumbnail)
+                    [photoDict setObject:thumbnail forKey:PBJVisionPhotoThumbnailKey];
+            }
+            
+        }
+        
+        if ([_delegate respondsToSelector:@selector(vision:capturedPhoto:error:)]) {
+            [_delegate vision:self capturedPhoto:photoDict error:error];
+        }
+        
+        // run a post shot focus
+        [self performSelector:@selector(_adjustFocusExposureAndWhiteBalance) withObject:nil afterDelay:0.5f];
+    }];
 }
 
 #pragma mark - video
@@ -1536,12 +1536,12 @@ typedef void (^PBJVisionBlock)();
     }
     
     DLog(@"starting video capture");
-    
-    [self _enqueueBlockOnCaptureVideoQueue:^{
         
+    [self _enqueueBlockOnCaptureVideoQueue:^{
+
         if (_flags.recording || _flags.paused)
             return;
-        
+	
         NSString *guid = [[NSUUID new] UUIDString];
         NSString *outputPath = [NSString stringWithFormat:@"%@video_%@.mp4", NSTemporaryDirectory(), guid];
         NSURL *outputURL = [NSURL fileURLWithPath:outputPath];
@@ -1552,19 +1552,19 @@ typedef void (^PBJVisionBlock)();
                 return;
             }
         }
-        
+
         if (!outputPath || [outputPath length] == 0)
             return;
-        
+
         if (_mediaWriter)
             _mediaWriter.delegate = nil;
         
         _mediaWriter = [[PBJMediaWriter alloc] initWithOutputURL:outputURL];
         _mediaWriter.delegate = self;
-        
+
         AVCaptureConnection *videoConnection = [_captureOutputVideo connectionWithMediaType:AVMediaTypeVideo];
         [self _setOrientationForConnection:videoConnection];
-        
+
         _startTimestamp = CMClockGetTime(CMClockGetHostTimeClock());
         _lastTimestamp = kCMTimeInvalid;
         
@@ -1573,7 +1573,7 @@ typedef void (^PBJVisionBlock)();
         _flags.interrupted = NO;
         _flags.videoWritten = NO;
         
-        [self _enqueueBlockOnMainQueue:^{
+        [self _enqueueBlockOnMainQueue:^{                
             if ([_delegate respondsToSelector:@selector(visionDidStartVideoCapture:)])
                 [_delegate visionDidStartVideoCapture:self];
         }];
@@ -1585,14 +1585,14 @@ typedef void (^PBJVisionBlock)();
     [self _enqueueBlockOnCaptureVideoQueue:^{
         if (!_flags.recording)
             return;
-        
+
         if (!_mediaWriter) {
             DLog(@"media writer unavailable to stop");
             return;
         }
-        
+
         DLog(@"pausing video capture");
-        
+
         _flags.paused = YES;
         _flags.interrupted = YES;
         
@@ -1600,7 +1600,7 @@ typedef void (^PBJVisionBlock)();
             if ([_delegate respondsToSelector:@selector(visionDidPauseVideoCapture:)])
                 [_delegate visionDidPauseVideoCapture:self];
         }];
-    }];
+    }];    
 }
 
 - (void)resumeVideoCapture
@@ -1608,25 +1608,25 @@ typedef void (^PBJVisionBlock)();
     [self _enqueueBlockOnCaptureVideoQueue:^{
         if (!_flags.recording || !_flags.paused)
             return;
-        
+ 
         if (!_mediaWriter) {
             DLog(@"media writer unavailable to resume");
             return;
         }
-        
+ 
         DLog(@"resuming video capture");
-        
+       
         _flags.paused = NO;
-        
+
         [self _enqueueBlockOnMainQueue:^{
             if ([_delegate respondsToSelector:@selector(visionDidResumeVideoCapture:)])
                 [_delegate visionDidResumeVideoCapture:self];
         }];
-    }];
+    }];    
 }
 
 - (void)endVideoCapture
-{
+{    
     DLog(@"ending video capture");
     
     [self _enqueueBlockOnCaptureVideoQueue:^{
@@ -1647,15 +1647,15 @@ typedef void (^PBJVisionBlock)();
             _lastTimestamp = kCMTimeInvalid;
             _startTimestamp = CMClockGetTime(CMClockGetHostTimeClock());
             _flags.interrupted = NO;
-            
+
             [self _enqueueBlockOnMainQueue:^{
                 NSMutableDictionary *videoDict = [[NSMutableDictionary alloc] init];
                 NSString *path = [_mediaWriter.outputURL path];
                 if (path)
                     [videoDict setObject:path forKey:PBJVisionVideoPathKey];
-                
+
                 [videoDict setObject:@(capturedDuration) forKey:PBJVisionVideoCapturedDurationKey];
-                
+
                 NSError *error = [_mediaWriter error];
                 if ([_delegate respondsToSelector:@selector(vision:capturedVideo:error:)]) {
                     [_delegate vision:self capturedVideo:videoDict error:error];
@@ -1678,7 +1678,7 @@ typedef void (^PBJVisionBlock)();
             _lastTimestamp = kCMTimeInvalid;
             _startTimestamp = CMClockGetTime(CMClockGetHostTimeClock());
             _flags.interrupted = NO;
-            
+
             [self _enqueueBlockOnMainQueue:^{
                 NSError *error = [NSError errorWithDomain:PBJVisionErrorDomain code:PBJVisionErrorCancelled userInfo:nil];
                 if ([_delegate respondsToSelector:@selector(vision:capturedVideo:error:)]) {
@@ -1695,7 +1695,7 @@ typedef void (^PBJVisionBlock)();
 - (BOOL)_setupMediaWriterAudioInputWithSampleBuffer:(CMSampleBufferRef)sampleBuffer
 {
     CMFormatDescriptionRef formatDescription = CMSampleBufferGetFormatDescription(sampleBuffer);
-    
+
 	const AudioStreamBasicDescription *asbd = CMAudioFormatDescriptionGetStreamBasicDescription(formatDescription);
     if (!asbd) {
         DLog(@"audio stream description used with non-audio format description");
@@ -1704,7 +1704,7 @@ typedef void (^PBJVisionBlock)();
     
 	unsigned int channels = asbd->mChannelsPerFrame;
     double sampleRate = asbd->mSampleRate;
-    
+
     DLog(@"audio stream setup, channels (%d) sampleRate (%f)", channels, sampleRate);
     
     size_t aclSize = 0;
@@ -1716,7 +1716,7 @@ typedef void (^PBJVisionBlock)();
                                                 AVSampleRateKey :  @(sampleRate),
                                                 AVEncoderBitRateKey : @(_audioBitRate),
                                                 AVChannelLayoutKey : currentChannelLayoutData };
-    
+
     return [_mediaWriter setupAudioOutputDeviceWithSettings:audioCompressionSettings];
 }
 
@@ -1749,7 +1749,7 @@ typedef void (^PBJVisionBlock)();
     NSDictionary *compressionSettings = @{ AVVideoProfileLevelKey : AVVideoProfileLevelH264Baseline30,
                                            AVVideoAverageBitRateKey : @(_videoBitRate),
                                            AVVideoMaxKeyFrameIntervalKey : @(_videoFrameRate) };
-    
+
 	NSDictionary *videoSettings = @{ AVVideoCodecKey : AVVideoCodecH264,
                                      AVVideoScalingModeKey : AVVideoScalingModeResizeAspectFill,
                                      AVVideoWidthKey : @(videoDimensions.width),
@@ -1771,12 +1771,12 @@ typedef void (^PBJVisionBlock)();
             CFRelease(sampleBuffer);
             return;
         }
-        
+    
         if (!_flags.recording || _flags.paused) {
             CFRelease(sampleBuffer);
             return;
         }
-        
+
         if (!_mediaWriter) {
             CFRelease(sampleBuffer);
             return;
@@ -1793,19 +1793,19 @@ typedef void (^PBJVisionBlock)();
             [self _setupMediaWriterVideoInputWithSampleBuffer:sampleBuffer];
             DLog(@"ready for video (%d)", _mediaWriter.isVideoReady);
         }
-        
+
         BOOL isReadyToRecord = (_mediaWriter.isAudioReady && _mediaWriter.isVideoReady);
         if (!isReadyToRecord) {
             CFRelease(sampleBuffer);
             return;
         }
-        
+
         CMTime currentTimestamp = CMSampleBufferGetPresentationTimeStamp(sampleBuffer);
-        
+
         // calculate the length of the interruption
         if (_flags.interrupted && isAudio) {
             _flags.interrupted = NO;
-            
+
             // calculate the appropriate time offset
             if (CMTIME_IS_VALID(currentTimestamp)) {
                 if (CMTIME_IS_VALID(_lastTimestamp)) {
@@ -1821,7 +1821,7 @@ typedef void (^PBJVisionBlock)();
         }
         
         CMSampleBufferRef bufferToWrite = NULL;
-        
+
         if (_lastTimestamp.value > 0) {
             bufferToWrite = [PBJVisionUtilities createOffsetSampleBufferWithSampleBuffer:sampleBuffer usingTimeOffset:_lastTimestamp];
             if (!bufferToWrite) {
@@ -1831,7 +1831,7 @@ typedef void (^PBJVisionBlock)();
             bufferToWrite = sampleBuffer;
             CFRetain(bufferToWrite);
         }
-        
+
         if (isVideo && !_flags.interrupted) {
             
             if (bufferToWrite) {
@@ -1861,14 +1861,14 @@ typedef void (^PBJVisionBlock)();
             }
             
         } else if (isAudio && !_flags.interrupted) {
-            
+
             if (bufferToWrite && _flags.videoWritten) {
                 // update the last audio timestamp
                 CMTime time = CMSampleBufferGetPresentationTimeStamp(bufferToWrite);
                 CMTime duration = CMSampleBufferGetDuration(bufferToWrite);
                 if (duration.value > 0)
                     time = CMTimeAdd(time, duration);
-                
+
                 if (time.value > _mediaWriter.audioTimestamp.value) {
                     [_mediaWriter writeSampleBuffer:bufferToWrite ofType:AVMediaTypeAudio];
                 }
@@ -1881,24 +1881,33 @@ typedef void (^PBJVisionBlock)();
             }
         }
         
-        // when a valid maxium duration is provided, end capture
-        if (CMTIME_IS_VALID(_maximumCaptureDuration)) {
-            // _lastTimestamp for interrupted recording, otherwise currentCaptureDuration
+        currentTimestamp = CMSampleBufferGetPresentationTimeStamp(sampleBuffer);
+        
+        if (!_flags.interrupted && CMTIME_IS_VALID(currentTimestamp) && CMTIME_IS_VALID(_startTimestamp) && CMTIME_IS_VALID(_maximumCaptureDuration)) {
+            
+            if (CMTIME_IS_VALID(_lastTimestamp)) {
+                // Current time stamp is actually timstamp with data from globalClock
+                // In case, if we had interruption, then _lastTimeStamp
+                // will have infromation about the time diff between globalClock and assetWriterClock
+                // So in case if we had interruption we need to remove that offset from "currentTimestamp"
+                currentTimestamp = CMTimeSubtract(currentTimestamp, _lastTimestamp);
+            }
             CMTime currentCaptureDuration = CMTimeSubtract(currentTimestamp, _startTimestamp);
-            CMTime timestamp = CMTIME_IS_VALID(_lastTimestamp) ? _lastTimestamp : currentCaptureDuration;
-            if (CMTIME_IS_VALID(timestamp) && CMTIME_COMPARE_INLINE(timestamp, >=, _maximumCaptureDuration)) {
-                [self _enqueueBlockOnMainQueue:^{
-                    [self endVideoCapture];
-                }];
+            if (CMTIME_IS_VALID(currentCaptureDuration)) {
+                if (CMTIME_COMPARE_INLINE(currentCaptureDuration, >=, _maximumCaptureDuration)) {
+                    [self _enqueueBlockOnMainQueue:^{
+                        [self endVideoCapture];
+                    }];
+                }
             }
         }
-        
+            
         if (bufferToWrite)
             CFRelease(bufferToWrite);
         
         CFRelease(sampleBuffer);
     }];
-    
+
 }
 
 #pragma mark - App NSNotifications
@@ -1921,7 +1930,7 @@ typedef void (^PBJVisionBlock)();
     DLog(@"applicationDidEnterBackground");
     if (_flags.recording)
         [self pauseVideoCapture];
-    
+
     if (_flags.previewRunning) {
         [self stopPreview];
         [self _enqueueBlockOnCaptureSessionQueue:^{
@@ -1970,7 +1979,7 @@ typedef void (^PBJVisionBlock)();
 
 - (void)_sessionStarted:(NSNotification *)notification
 {
-    [self _enqueueBlockOnMainQueue:^{
+    [self _enqueueBlockOnMainQueue:^{        
         if ([notification object] == _captureSession) {
             DLog(@"session was started");
             
@@ -1994,7 +2003,7 @@ typedef void (^PBJVisionBlock)();
                     [_currentDevice addObserver:self forKeyPath:@"torchAvailable" options:NSKeyValueObservingOptionNew context:(__bridge void *)PBJVisionTorchAvailabilityObserverContext];
                 }
             }
-            
+        
             if ([_delegate respondsToSelector:@selector(visionSessionDidStart:)]) {
                 [_delegate visionSessionDidStart:self];
             }
@@ -2008,7 +2017,7 @@ typedef void (^PBJVisionBlock)();
         DLog(@"session was stopped");
         if (_flags.recording)
             [self endVideoCapture];
-        
+    
         [self _enqueueBlockOnMainQueue:^{
             if ([notification object] == _captureSession) {
                 if ([_delegate respondsToSelector:@selector(visionSessionDidStop:)]) {
@@ -2069,14 +2078,14 @@ typedef void (^PBJVisionBlock)();
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if ( context == (__bridge void *)PBJVisionFocusObserverContext ) {
-        
+    
         BOOL isFocusing = [[change objectForKey:NSKeyValueChangeNewKey] boolValue];
         if (isFocusing) {
             [self _focusStarted];
         } else {
             [self _focusEnded];
         }
-        
+    
     }
     else if ( context == (__bridge void *)PBJVisionExposureObserverContext ) {
         
@@ -2098,7 +2107,7 @@ typedef void (^PBJVisionBlock)();
         }];
         
 	} else if ( context == (__bridge void *)PBJVisionFlashModeObserverContext ||
-               context == (__bridge void *)PBJVisionTorchModeObserverContext ) {
+              context == (__bridge void *)PBJVisionTorchModeObserverContext ) {
         
         //        DLog(@"flash/torch mode did change");
         [self _enqueueBlockOnMainQueue:^{
@@ -2107,7 +2116,7 @@ typedef void (^PBJVisionBlock)();
         }];
         
 	} else if ( context == (__bridge void *)(PBJVisionCaptureStillImageIsCapturingStillImageObserverContext) ) {
-        
+    
 		BOOL isCapturingStillImage = [[change objectForKey:NSKeyValueChangeNewKey] boolValue];
 		if ( isCapturingStillImage ) {
             [self _willCapturePhoto];
@@ -2141,22 +2150,22 @@ typedef void (^PBJVisionBlock)();
 {
     if (!_context)
         return;
-    
+
     if (!_videoTextureCache)
         return;
-    
+
     CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
-    
+
     if (CVPixelBufferLockBaseAddress(imageBuffer, 0) != kCVReturnSuccess)
         return;
-    
+
     [EAGLContext setCurrentContext:_context];
-    
+
     [self _cleanUpTextures];
-    
+
     size_t width = CVPixelBufferGetWidth(imageBuffer);
     size_t height = CVPixelBufferGetHeight(imageBuffer);
-    
+
     // only bind the vertices once or if parameters change
     
     if (_bufferWidth != width ||
@@ -2179,24 +2188,24 @@ typedef void (^PBJVisionBlock)();
     // Y-plane
     glActiveTexture(GL_TEXTURE0);
     error = CVOpenGLESTextureCacheCreateTextureFromImage(kCFAllocatorDefault,
-                                                         _videoTextureCache,
-                                                         imageBuffer,
-                                                         NULL,
-                                                         GL_TEXTURE_2D,
-                                                         GL_RED_EXT,
-                                                         (GLsizei)_bufferWidth,
-                                                         (GLsizei)_bufferHeight,
-                                                         GL_RED_EXT,
-                                                         GL_UNSIGNED_BYTE,
-                                                         0,
-                                                         &_lumaTexture);
+                                                        _videoTextureCache,
+                                                        imageBuffer,
+                                                        NULL,
+                                                        GL_TEXTURE_2D,
+                                                        GL_RED_EXT,
+                                                        (GLsizei)_bufferWidth,
+                                                        (GLsizei)_bufferHeight,
+                                                        GL_RED_EXT,
+                                                        GL_UNSIGNED_BYTE,
+                                                        0,
+                                                        &_lumaTexture);
     if (error) {
         DLog(@"error CVOpenGLESTextureCacheCreateTextureFromImage (%d)", error);
     }
     
     glBindTexture(CVOpenGLESTextureGetTarget(_lumaTexture), CVOpenGLESTextureGetName(_lumaTexture));
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE); 
     
     // UV-plane
     glActiveTexture(GL_TEXTURE1);
@@ -2222,17 +2231,17 @@ typedef void (^PBJVisionBlock)();
     
     if (CVPixelBufferUnlockBaseAddress(imageBuffer, 0) != kCVReturnSuccess)
         return;
-    
+
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
 
 - (void)_cleanUpTextures
 {
     CVOpenGLESTextureCacheFlush(_videoTextureCache, 0);
-    
+
     if (_lumaTexture) {
         CFRelease(_lumaTexture);
-        _lumaTexture = NULL;
+        _lumaTexture = NULL;        
     }
     
     if (_chromaTexture) {
@@ -2246,23 +2255,23 @@ typedef void (^PBJVisionBlock)();
 
 - (void)_setupBuffers
 {
-    
-    // unit square for testing
-    //    static const GLfloat unitSquareVertices[] = {
-    //        -1.0f, -1.0f,
-    //        1.0f, -1.0f,
-    //        -1.0f,  1.0f,
-    //        1.0f,  1.0f,
-    //    };
+
+// unit square for testing
+//    static const GLfloat unitSquareVertices[] = {
+//        -1.0f, -1.0f,
+//        1.0f, -1.0f,
+//        -1.0f,  1.0f,
+//        1.0f,  1.0f,
+//    };
     
     CGSize inputSize = CGSizeMake(_bufferWidth, _bufferHeight);
     CGRect insetRect = AVMakeRectWithAspectRatioInsideRect(inputSize, _presentationFrame);
     
     CGFloat widthScale = CGRectGetHeight(_presentationFrame) / CGRectGetHeight(insetRect);
     CGFloat heightScale = CGRectGetWidth(_presentationFrame) / CGRectGetWidth(insetRect);
-    
+
     static GLfloat vertices[8];
-    
+
     vertices[0] = (GLfloat) -widthScale;
     vertices[1] = (GLfloat) -heightScale;
     vertices[2] = (GLfloat) widthScale;
@@ -2271,7 +2280,7 @@ typedef void (^PBJVisionBlock)();
     vertices[5] = (GLfloat) heightScale;
     vertices[6] = (GLfloat) widthScale;
     vertices[7] = (GLfloat) heightScale;
-    
+
     static const GLfloat textureCoordinates[] = {
         0.0f, 1.0f,
         1.0f, 1.0f,
@@ -2304,7 +2313,7 @@ typedef void (^PBJVisionBlock)();
 - (void)_setupGL
 {
     static GLint uniforms[PBJVisionUniformCount];
-    
+
     [EAGLContext setCurrentContext:_context];
     
     NSBundle *bundle = [NSBundle mainBundle];
@@ -2319,7 +2328,7 @@ typedef void (^PBJVisionBlock)();
     uniforms[PBJVisionUniformY] = [_program uniformLocation:@"u_samplerY"];
     uniforms[PBJVisionUniformUV] = [_program uniformLocation:@"u_samplerUV"];
     [_program use];
-    
+            
     glUniform1i(uniforms[PBJVisionUniformY], 0);
     glUniform1i(uniforms[PBJVisionUniformUV], 1);
 }
@@ -2327,7 +2336,7 @@ typedef void (^PBJVisionBlock)();
 - (void)_destroyGL
 {
     [EAGLContext setCurrentContext:_context];
-    
+
     _program = nil;
     
     if ([EAGLContext currentContext] == _context) {

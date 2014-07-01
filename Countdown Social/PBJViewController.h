@@ -27,6 +27,6 @@
 
 @interface PBJViewController : UIViewController
 
-
+@property IBOutlet UIProgressView *recordProgressView;
 
 @end

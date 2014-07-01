@@ -40,6 +40,8 @@
 //    User *obj =[User getInstance];
 //    NSDictionary *user =obj.user;
 //    _videoPath =[user objectForKey:@"videoUri"];
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+
     [self startPlayingVideo:nil];
 
 }
@@ -62,12 +64,6 @@
     [self.moviePlayer setScalingMode:MPMovieScalingModeAspectFit];
     self.moviePlayer.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     if (self.moviePlayer != nil){
-        [[NSNotificationCenter defaultCenter]
-         addObserver:self
-         selector:@selector(videoHasFinishedPlaying:)
-         name:MPMoviePlayerPlaybackDidFinishNotification
-         object:self.moviePlayer];
-        
         NSLog(@"Video Player Successfully Instanciated");
         
         //Scale Player to fit Aspect Ratio
@@ -89,10 +85,7 @@
 -(void) stopPlayingVideo:(id)paramSender {
     
     if (self.moviePlayer !=nil){
-        [[NSNotificationCenter defaultCenter]
-         removeObserver:self
-         name:MPMoviePlayerPlaybackDidFinishNotification
-         object:self.moviePlayer];
+        
     }
 }
 
