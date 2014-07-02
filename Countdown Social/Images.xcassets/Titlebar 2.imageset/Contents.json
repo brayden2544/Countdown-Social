@@ -1,0 +1,46 @@
+{
+  "images" : [
+    {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "fill",
+          "width" : 1,
+          "height" : 1
+        },
+        "capInsets" : {
+          "bottom" : 55,
+          "top" : 55,
+          "right" : 324,
+          "left" : 315
+        }
+      },
+      "idiom" : "universal",
+      "filename" : "Titlebar 2.png",
+      "scale" : "1x"
+    },
+    {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "fill",
+          "width" : 1,
+          "height" : 1
+        },
+        "capInsets" : {
+          "bottom" : 111,
+          "top" : 110,
+          "right" : 646,
+          "left" : 633
+        }
+      },
+      "idiom" : "universal",
+      "filename" : "Titlebar 2@2x.png",
+      "scale" : "2x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}
