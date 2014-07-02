@@ -11,7 +11,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "User.h"
 #import "VideoPath.h"
-
+#import "AppDelegate.h"
 
 
 @interface VideoPreviewViewController ()
@@ -88,6 +88,78 @@
         
     }
 }
+-(void)uploadProfileVideo{
+    NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/690825080/video";
+    
+    NSURL *url = [NSURL URLWithString:urlAsString];
+    
+    NSMutableURLRequest *urlRequest =
+    [NSMutableURLRequest requestWithURL:url];
+    
+    VideoPath *obj = [VideoPath getInstance];
+    _videoPath = obj.videoPath;
+    //NSURL *videoURL = [NSURL URLWithString:_videoPath];
+    NSData *videoData = [[NSFileManager defaultManager] contentsAtPath:_videoPath];
+    
+    //NSLog(@"%@",videoURL);
+    
+    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+    
+    NSString *FbToken = [session accessTokenData].accessToken;
+    
+    NSLog(@"Token is %@", FbToken);
+    
+    NSString *postLength = [NSString stringWithFormat:@"%d", [videoData length]];
+    NSLog(@"stupid length%@",postLength);
+    
+    [urlRequest setValue:@"video/quicktime" forHTTPHeaderField:@"Content-Type"];
+    [urlRequest setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    [urlRequest setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [urlRequest setHTTPBody:videoData];
+    //NSLog(@"post thing %@", videoData);
+    
+    
+    
+    
+    [urlRequest setTimeoutInterval:15.0f];
+    [urlRequest setHTTPMethod:@"POST"];
+    
+    NSOperationQueue *queque = [[NSOperationQueue alloc] init];
+    
+    [NSURLConnection
+     sendAsynchronousRequest:urlRequest
+     queue:queque
+     completionHandler:^(NSURLResponse *response,
+                         NSData *data,
+                         NSError *error){
+         if ([data length] >0 && error == nil){
+             NSString *html =
+             [[NSString alloc] initWithData:data
+                                   encoding:NSUTF8StringEncoding];
+             
+             NSLog(@" POST HTML = %@", html);
+             
+             
+             
+             id UserJson = [NSJSONSerialization
+                            JSONObjectWithData:data
+                            options:NSJSONReadingAllowFragments
+                            error:&error];
+             NSDictionary *user = UserJson;
+             NSLog(@"dictionary contains %@" , user);
+             
+             
+         }
+         else if ([data length] == 0 && error == nil){
+             NSLog(@"POST Nothing was downloaded.");
+         }
+         else if (error !=nil){
+             NSLog(@"Error happened = %@", error);
+             NSLog(@"POST BROKEN");
+         }
+     }];
+
+}
 
 - (void) videoHasFinishedPlaying:(NSNotification *)paramNotification{
     //Show reason why video stopped playing
@@ -128,4 +200,9 @@
 */
 
 
+//Action when user approves video and wants to approve it.
+- (IBAction)approveVideo:(id)sender {
+    [self uploadProfileVideo];
+    
+}
 @end
