@@ -78,24 +78,20 @@
                                 <rect key="frame" x="89" y="35" width="142" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="check yes + check no1x" translatesAutoresizingMaskIntoConstraints="NO" id="66p-hb-7LO">
-                                <rect key="frame" x="56" y="449" width="209" height="73"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wAT-Qc-odj">
+                                <rect key="frame" x="200" y="448" width="86" height="86"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wAT-Qc-odj">
-                                <rect key="frame" x="189" y="449" width="76" height="73"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
+                                <state key="normal" backgroundImage="accept">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="Z0u-QQ-q8R" kind="modal" id="lGm-7n-vRL"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AGV-YA-2Jo">
-                                <rect key="frame" x="56" y="449" width="76" height="73"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AGV-YA-2Jo">
+                                <rect key="frame" x="34" y="448" width="86" height="86"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
+                                <state key="normal" backgroundImage="decline">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -492,7 +488,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AF84BB2B-7D56-420C-8D68-81C5A9A9319E" translatesAutoresizingMaskIntoConstraints="NO" id="leg-IE-gmZ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CB755087-0FA6-4426-B85F-3846AF6CF7B9" translatesAutoresizingMaskIntoConstraints="NO" id="leg-IE-gmZ">
                                 <rect key="frame" x="0.0" y="28" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
@@ -558,7 +554,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="656F2F2A-5DAC-4D58-8A13-3377C81DAC97" translatesAutoresizingMaskIntoConstraints="NO" id="oUf-y4-hTo">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="C54A0E8A-5055-4499-A886-7C11B95980B3" translatesAutoresizingMaskIntoConstraints="NO" id="oUf-y4-hTo">
                                 <rect key="frame" x="0.0" y="-3" width="320" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -781,7 +777,7 @@ By adding your twitter, you’ll get more followers.</string>
         </scene>
     </scenes>
     <resources>
-        <image name="656F2F2A-5DAC-4D58-8A13-3377C81DAC97" width="640" height="111">
+        <image name="C54A0E8A-5055-4499-A886-7C11B95980B3" width="640" height="111">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -5590,7 +5586,7 @@ AARkqAAEZK0ABGS1AARkuAAEZMoABGTNAARk0gAAAAAAAAQBAAAAAAAAAD8AAAAAAAAAAAAAAAAABGTU
 A
 </mutableData>
         </image>
-        <image name="AF84BB2B-7D56-420C-8D68-81C5A9A9319E" width="640" height="1025">
+        <image name="CB755087-0FA6-4426-B85F-3846AF6CF7B9" width="640" height="1025">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -49401,10 +49397,11 @@ ACgZWgAoGV0AKBliAAAAAAAABAEAAAAAAAAAPwAAAAAAAAAAAAAAAAAoGWQ
         <image name="Instagram  on" width="93" height="93"/>
         <image name="PotentialMatchesBackground.png" width="1278" height="2270"/>
         <image name="Preview2" width="225" height="44"/>
+        <image name="accept" width="104" height="104"/>
         <image name="add account" width="57" height="56"/>
         <image name="back button" width="63" height="63"/>
         <image name="bg2" width="642" height="1138"/>
-        <image name="check yes + check no1x" width="411" height="144"/>
+        <image name="decline" width="104" height="104"/>
         <image name="facebook off" width="96" height="95"/>
         <image name="facebook on" width="94" height="93"/>
         <image name="fb unlinked" width="595" height="97"/>
