@@ -366,6 +366,9 @@
     [self buttonCheck];
     //change countdown timer to circle.
     self.timer.layer.cornerRadius = 19;
+    countdownTimer = [[CountdownTimer alloc]init];
+    [countdownTimer changePercentage:100];
+    [self.view addSubview:countdownTimer];
     //make countdown timer transparent.
     self.timer.alpha = .7;
     //get Next Match
@@ -379,15 +382,35 @@
 -(void)viewDidDisappear:(BOOL)animated{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
 - (void)VideoTimer:(NSTimer *)timer{
-    NSTimeInterval timeRemaining = self.moviePlayer.duration - self.moviePlayer.currentPlaybackTime;
+    //Initialize CountdownTimer
+    NSTimeInterval timeRemaining =(1 -(self.moviePlayer.currentPlaybackTime / self.moviePlayer.duration))*100;
+    NSNumber *time = [NSNumber numberWithDouble:timeRemaining];
+    //countdownTimer = [[CountdownTimer alloc]init];
+    [countdownTimer changePercentage:timeRemaining];
+    //[self.view addSubview:countdownTimer];
+
+    
+    //Get time remaining of users profile
+    
+    //Set label to time remaining
     _countdownLabel.text = [NSString stringWithFormat:@"%.0f", timeRemaining];
-    if (timeRemaining < 2){
-        _countdownLabel.backgroundColor = [UIColor colorWithRed:(247/255.0) green:(104/255.0) blue:(68/255.0) alpha:1];
-    }
-    else{
-        _countdownLabel.backgroundColor = [UIColor colorWithRed:(74/255.0) green:(74/255.0) blue:(74/255.0) alpha:1];
-    }
+//    NSNumber *time = [NSNumber numberWithFloat:self.moviePlayer.currentPlaybackTime/6.1f];
+//    [self performSelector:@selector(setProgress:) withObject:time afterDelay:0.0];
+    
+    
+    
+    
+    
+    
+    
+    //    if (timeRemaining < 2){
+//        _countdownLabel.backgroundColor = [UIColor colorWithRed:(247/255.0) green:(104/255.0) blue:(68/255.0) alpha:1];
+//    }
+//    else{
+//        _countdownLabel.backgroundColor = [UIColor colorWithRed:(74/255.0) green:(74/255.0) blue:(74/255.0) alpha:1];
+//    }
     
 }
 - (void)MPMoviePlayerLoadStateDidChange:(NSNotification *)notification
@@ -399,7 +422,7 @@
             NSLog(@"New movie played");
         }
         NSLog(@"content play length is %g seconds", self.moviePlayer.duration);
-        NSTimer *t = [NSTimer scheduledTimerWithTimeInterval: .2
+        NSTimer *t = [NSTimer scheduledTimerWithTimeInterval: .05
                                                       target: self
                                                     selector:@selector(VideoTimer:)
                                                     userInfo: nil repeats:YES];

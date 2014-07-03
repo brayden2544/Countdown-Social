@@ -71,6 +71,7 @@
 		6EC94325195C8B6E0096F41F /* LeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC94324195C8B6E0096F41F /* LeftMenuViewController.m */; };
 		6ECB30F81952498200AB8854 /* InstagramViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECB30F71952498200AB8854 /* InstagramViewController.m */; };
 		6ECE8112194A6F69007B3130 /* TwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECE8111194A6F69007B3130 /* TwitterViewController.m */; };
+		6ED73BF01965130F00539389 /* CountdownTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED73BEF1965130F00539389 /* CountdownTimer.m */; };
 		6EF0026E194FC9EF00F32217 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF0026D194FC9EF00F32217 /* Social.framework */; };
 		6EF00270194FCA2000F32217 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF0026F194FCA2000F32217 /* Accounts.framework */; };
 /* End PBXBuildFile section */
@@ -179,6 +180,8 @@
 		6ECB30F71952498200AB8854 /* InstagramViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramViewController.m; sourceTree = "<group>"; };
 		6ECE8110194A6F69007B3130 /* TwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterViewController.h; sourceTree = "<group>"; };
 		6ECE8111194A6F69007B3130 /* TwitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterViewController.m; sourceTree = "<group>"; };
+		6ED73BEE1965130F00539389 /* CountdownTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountdownTimer.h; sourceTree = "<group>"; };
+		6ED73BEF1965130F00539389 /* CountdownTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountdownTimer.m; sourceTree = "<group>"; };
 		6EF0026D194FC9EF00F32217 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		6EF0026F194FCA2000F32217 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -317,6 +320,8 @@
 				6E967CBE190DA4960042AF93 /* AppDelegate.h */,
 				6E967CBF190DA4960042AF93 /* AppDelegate.m */,
 				6E967CC1190DA4960042AF93 /* Main.storyboard */,
+				6ED73BEE1965130F00539389 /* CountdownTimer.h */,
+				6ED73BEF1965130F00539389 /* CountdownTimer.m */,
 				6EC94323195C8B6E0096F41F /* LeftMenuViewController.h */,
 				6EC94324195C8B6E0096F41F /* LeftMenuViewController.m */,
 				6E50A473192D86FB00930D02 /* MenuViewController.h */,
@@ -564,6 +569,7 @@
 				6E886A4E190E05AC009E5A92 /* SetLocationViewController.m in Sources */,
 				6EC0FC0D192AC61000B72C44 /* PotentialMatchesViewController.m in Sources */,
 				6E92DFF4196217AD009ECE27 /* VideoPath.m in Sources */,
+				6ED73BF01965130F00539389 /* CountdownTimer.m in Sources */,
 				6E92E00219628E24009ECE27 /* PBJVision.m in Sources */,
 				6E50A475192D86FB00930D02 /* MenuViewController.m in Sources */,
 			);

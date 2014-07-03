@@ -8,9 +8,14 @@
 
 #import "ViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import "CountdownTimer.h"
 
 
-@interface PotentialMatchesViewController : ViewController
+@interface PotentialMatchesViewController : ViewController 
+{
+    CountdownTimer *countdownTimer;
+}
+
 @property (nonatomic,strong) MPMoviePlayerController *moviePlayer;
 @property (nonatomic,strong) UIButton *playButton;
 @property (nonatomic,strong) NSURL *videoUrl;
