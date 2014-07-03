@@ -553,68 +553,24 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="instagram account on" translatesAutoresizingMaskIntoConstraints="NO" id="3HZ-qv-FXC">
-                                <rect key="frame" x="-19" y="217" width="127" height="63"/>
+                                <rect key="frame" x="-27" y="218" width="127" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1lJ-vk-mw6">
-                                <rect key="frame" x="251" y="220" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                <state key="normal" image="add account">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="connectInstagram:" destination="cm5-s6-Yax" eventType="touchUpInside" id="Ffy-kT-13T"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ixW-ew-5aL">
-                                <rect key="frame" x="251" y="466" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                <state key="normal" image="add account">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="connectPhone:" destination="cm5-s6-Yax" eventType="touchUpInside" id="ajA-bV-sdp"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x90-7S-6Qc">
-                                <rect key="frame" x="251" y="390" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                <state key="normal" image="add account">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="connectSnapchat:" destination="cm5-s6-Yax" eventType="touchUpInside" id="Q3V-zb-6f2"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ixX-qc-lc0">
-                                <rect key="frame" x="251" y="298" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                <state key="normal" image="add account">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="connectTwitter:" destination="cm5-s6-Yax" eventType="touchUpInside" id="XnR-gE-H4s"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Facebook automatically links during login." lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="180" translatesAutoresizingMaskIntoConstraints="NO" id="sfs-hv-Q2Z">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Facebook automatically links during login." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="180" translatesAutoresizingMaskIntoConstraints="NO" id="sfs-hv-Q2Z">
                                 <rect key="frame" x="79" y="143" width="180" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="15"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Prove you’re no catfish, link your Insta.. " lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="150" translatesAutoresizingMaskIntoConstraints="NO" id="IA5-zy-SH0">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Prove you’re no catfish, link your Insta.. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="150" translatesAutoresizingMaskIntoConstraints="NO" id="IA5-zy-SH0">
                                 <rect key="frame" x="79" y="224" width="150" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="15"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="180" translatesAutoresizingMaskIntoConstraints="NO" id="ZHY-Vk-j6p">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="180" translatesAutoresizingMaskIntoConstraints="NO" id="ZHY-Vk-j6p">
                                 <rect key="frame" x="79" y="275" width="180" height="104"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <string key="text">Warning: 
@@ -623,64 +579,146 @@ By adding your twitter,  you’ll get more followers.</string>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tired of not getting snaps? This will help." lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="150" translatesAutoresizingMaskIntoConstraints="NO" id="AP3-Fe-0ZQ">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tired of not getting snaps? This will help." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="150" translatesAutoresizingMaskIntoConstraints="NO" id="AP3-Fe-0ZQ">
                                 <rect key="frame" x="72" y="390" width="150" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="15"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add your number to make chatting that much easier." lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="150" translatesAutoresizingMaskIntoConstraints="NO" id="0iE-ps-Laa">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add your number to make chatting that much easier." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="150" translatesAutoresizingMaskIntoConstraints="NO" id="0iE-ps-Laa">
                                 <rect key="frame" x="72" y="464" width="150" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="15"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XdB-KX-do6">
-                                <rect key="frame" x="206" y="251" width="46" height="30"/>
+                            <imageView userInteractionEnabled="NO" alpha="0.69999999999999973" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="add account button" translatesAutoresizingMaskIntoConstraints="NO" id="S0v-BK-ibq">
+                                <rect key="frame" x="260" y="230" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Edit">
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" alpha="0.69999999999999973" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="add account button" translatesAutoresizingMaskIntoConstraints="NO" id="G9J-aM-KMr">
+                                <rect key="frame" x="260" y="310" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" alpha="0.69999999999999973" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="add account button" translatesAutoresizingMaskIntoConstraints="NO" id="0xw-YQ-QYq">
+                                <rect key="frame" x="260" y="401" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" alpha="0.69999999999999973" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="add account button" translatesAutoresizingMaskIntoConstraints="NO" id="AMG-ll-NR7">
+                                <rect key="frame" x="260" y="476" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2aU-N4-Mxl">
+                                <rect key="frame" x="5" y="138" width="306" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="editInstagram:" destination="cm5-s6-Yax" eventType="touchUpInside" id="yGT-Zc-UvJ"/>
+                                    <action selector="viewFacebook:" destination="cm5-s6-Yax" eventType="touchUpInside" id="CwK-QP-ivc"/>
+                                    <action selector="viewFacebookProfile:" destination="cm5-s6-Yax" eventType="touchUpInside" id="AyA-Xh-2jH"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kvs-ei-RZY">
-                                <rect key="frame" x="265" y="328" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WIw-mR-uPt">
+                                <rect key="frame" x="7" y="218" width="306" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Edit">
+                                <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="editTwitter:" destination="cm5-s6-Yax" eventType="touchUpInside" id="t3I-Ev-FRJ"/>
+                                    <action selector="connectInstagram:" destination="cm5-s6-Yax" eventType="touchUpInside" id="6RM-ea-eCk"/>
+                                    <action selector="viewFacebook:" destination="cm5-s6-Yax" eventType="touchUpInside" id="Gj4-6h-IiA"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eYf-yH-kXo">
-                                <rect key="frame" x="206" y="420" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IOc-ik-mDJ">
+                                <rect key="frame" x="7" y="299" width="306" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Edit">
+                                <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="editSnapchat:" destination="cm5-s6-Yax" eventType="touchUpInside" id="cy3-4Q-mfx"/>
+                                    <action selector="connectTwitter:" destination="cm5-s6-Yax" eventType="touchUpInside" id="dl0-J5-dmp"/>
+                                    <action selector="viewFacebook:" destination="cm5-s6-Yax" eventType="touchUpInside" id="PBr-QH-5HC"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0th-5Q-e2L">
-                                <rect key="frame" x="206" y="497" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aMP-YV-EwI">
+                                <rect key="frame" x="7" y="389" width="306" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Edit">
+                                <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="editPhone:" destination="cm5-s6-Yax" eventType="touchUpInside" id="XdM-Mc-ywH"/>
+                                    <action selector="connectSnapchat:" destination="cm5-s6-Yax" eventType="touchUpInside" id="yn5-YL-RG3"/>
+                                    <action selector="viewFacebook:" destination="cm5-s6-Yax" eventType="touchUpInside" id="Vev-dt-Wjb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZCA-08-XQd">
+                                <rect key="frame" x="7" y="463" width="306" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="connectPhone:" destination="cm5-s6-Yax" eventType="touchUpInside" id="skQ-9b-rQr"/>
+                                    <action selector="viewFacebook:" destination="cm5-s6-Yax" eventType="touchUpInside" id="gf3-W4-Nfl"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0xz-fo-rTn">
+                                <rect key="frame" x="5" y="218" width="240" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ViewInstagramProfile:" destination="cm5-s6-Yax" eventType="touchUpInside" id="4M0-XF-yxy"/>
+                                    <action selector="viewFacebook:" destination="cm5-s6-Yax" eventType="touchUpInside" id="n2v-Qf-ddJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="plH-pE-Wvh">
+                                <rect key="frame" x="12" y="299" width="240" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ViewInstagramProfile:" destination="cm5-s6-Yax" eventType="touchUpInside" id="DHF-BS-oir"/>
+                                    <action selector="viewFacebook:" destination="cm5-s6-Yax" eventType="touchUpInside" id="Yd0-AR-jn7"/>
+                                    <action selector="viewTwitterProfile:" destination="cm5-s6-Yax" eventType="touchUpInside" id="ZIO-BY-wL8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q5m-AX-xjD">
+                                <rect key="frame" x="19" y="389" width="240" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="viewSnapchatProfile:" destination="cm5-s6-Yax" eventType="touchUpInside" id="jhX-qh-TzQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aF-oq-2hp">
+                                <rect key="frame" x="12" y="464" width="240" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="viewPhoneProfile:" destination="cm5-s6-Yax" eventType="touchUpInside" id="voF-Qf-65J"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="addInstagram" destination="S0v-BK-ibq" id="EDR-Rr-nVt"/>
+                        <outlet property="addPhone" destination="AMG-ll-NR7" id="8Cu-wf-9Sy"/>
+                        <outlet property="addSnapchat" destination="0xw-YQ-QYq" id="SXc-Rz-SNk"/>
+                        <outlet property="addTwitter" destination="G9J-aM-KMr" id="kTm-MT-cN7"/>
+                        <outlet property="connectInstagramButton" destination="WIw-mR-uPt" id="Qjg-M0-h7G"/>
+                        <outlet property="connectPhoneButton" destination="ZCA-08-XQd" id="2eV-tv-lMX"/>
+                        <outlet property="connectSnapchatButton" destination="aMP-YV-EwI" id="40f-mf-H9H"/>
+                        <outlet property="connectTwitterButton" destination="IOc-ik-mDJ" id="LGI-WD-fta"/>
                         <outlet property="facebookConnected" destination="ngD-Fa-B6l" id="7ul-ZS-YXa"/>
                         <outlet property="facebookLabel" destination="sfs-hv-Q2Z" id="Vma-Vt-NEl"/>
                         <outlet property="instagramConnected" destination="3HZ-qv-FXC" id="Zgt-jo-UjN"/>
@@ -695,6 +733,11 @@ By adding your twitter,  you’ll get more followers.</string>
                         <outlet property="twitterConnected" destination="was-Vv-3ha" id="Uxc-Tf-O8R"/>
                         <outlet property="twitterDisconnected" destination="was-Vv-3ha" id="UQE-4V-9tS"/>
                         <outlet property="twitterLabel" destination="ZHY-Vk-j6p" id="vgQ-PR-1Pb"/>
+                        <outlet property="viewFacebookButton" destination="2aU-N4-Mxl" id="MrZ-fn-xWj"/>
+                        <outlet property="viewInstagramProfileButton" destination="0xz-fo-rTn" id="u4J-y6-xyG"/>
+                        <outlet property="viewPhoneButton" destination="4aF-oq-2hp" id="h1a-gw-1wZ"/>
+                        <outlet property="viewSnapchatButton" destination="q5m-AX-xjD" id="DGA-uG-P8m"/>
+                        <outlet property="viewTwitterButton" destination="plH-pE-Wvh" id="Sio-eZ-ZlW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="daz-Ga-MZJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -890,7 +933,7 @@ By adding your twitter,  you’ll get more followers.</string>
         <image name="accept" width="104" height="104"/>
         <image name="account navbar" width="640" height="137"/>
         <image name="accounts opaque bar" width="532" height="122"/>
-        <image name="add account" width="57" height="56"/>
+        <image name="add account button" width="57" height="56"/>
         <image name="back button" width="100" height="100"/>
         <image name="bottom left camera" width="206" height="131"/>
         <image name="decline" width="104" height="104"/>
