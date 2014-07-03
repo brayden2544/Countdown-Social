@@ -47,7 +47,7 @@
     self.userProfileImage.layer.borderColor = [UIColor colorWithRed:248 green:248 blue:248 alpha:0.4].CGColor;
     self.userProfileImage.layer.borderWidth = 3.0f;
     self.userProfileImage.alpha = 0.8;
-    self.userProfileImage.layer.cornerRadius = 34.5;
+    self.userProfileImage.layer.cornerRadius = self.userProfileImage.frame.size.height/2;
     self.userProfileImage.layer.masksToBounds=YES;
     if (FBSession.activeSession.isOpen) {
         [self populateUserDetails];
