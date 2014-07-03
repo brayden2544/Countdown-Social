@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface InstagramViewController : UIViewController
+@interface InstagramViewController : UIViewController<UIWebViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIButton *returnToPotentialMatches;
 

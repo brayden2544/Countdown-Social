@@ -116,11 +116,7 @@
                                                          name:MPMoviePlayerPlaybackDidFinishNotification
                                                        object:self.moviePlayer];
 
-    //remove blur view on play
-    //NSBundle *mainBundle = [NSBundle mainBundle];
-    //NSURL *url = [mainBundle URLForResource:_videoUrl withExtension:@"mov"];
     self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:_videoUrl];
-    //self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL URLWithString:@"http://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1211/sample_iTunes.mov"]];
     self.moviePlayer.shouldAutoplay = NO;
     self.moviePlayer.controlStyle =MPMovieControlStyleNone;
     [self.moviePlayer.view setFrame:CGRectMake (0, 115, 320, 320)];
@@ -379,6 +375,9 @@
     
     
 
+}
+-(void)viewDidDisappear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 - (void)VideoTimer:(NSTimer *)timer{
     NSTimeInterval timeRemaining = self.moviePlayer.duration - self.moviePlayer.currentPlaybackTime;

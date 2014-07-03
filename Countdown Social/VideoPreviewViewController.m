@@ -37,32 +37,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    User *obj =[User getInstance];
-//    NSDictionary *user =obj.user;
-//    _videoPath =[user objectForKey:@"videoUri"];
-    [[NSNotificationCenter defaultCenter]removeObserver:self];
-
+    //Start Playing User's newly recorded video
     [self startPlayingVideo:nil];
 
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
-//Action to start playing video through playButton
-- (IBAction)playVideo:(id)sender {
-    [self startPlayingVideo: (id) sender];
-}
-
+//Method to start playing video preview
 - (void) startPlayingVideo:(id)paramSender{
+    
+    //Get instance of videopath and init MPMoviePlayerController with videoPath
     VideoPath *obj = [VideoPath getInstance];
     NSURL *url = [NSURL fileURLWithPath:obj.videoPath];
     self.moviePlayer = [[MPMoviePlayerController alloc]initWithContentURL:url];
+    
+    //Movie Player Settings.
     [self.moviePlayer setScalingMode:MPMovieScalingModeAspectFit];
     self.moviePlayer.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    self.moviePlayer.controlStyle =MPMovieControlStyleNone;
+    self.moviePlayer.shouldAutoplay = TRUE;
+    [self.moviePlayer setRepeatMode:MPMovieRepeatModeOne];
     if (self.moviePlayer != nil){
         NSLog(@"Video Player Successfully Instanciated");
         
@@ -71,10 +65,6 @@
 
         [self.view addSubview:self.moviePlayer.view];
 
-        
-        //[self.moviePlayer setFullscreen:YES
-          //                     animated:NO];
-        
         [self.moviePlayer play];
     }
     else {
@@ -82,12 +72,8 @@
     }
 }
 
--(void) stopPlayingVideo:(id)paramSender {
-    
-    if (self.moviePlayer !=nil){
-        
-    }
-}
+
+//Posts profile video to servers.
 -(void)uploadProfileVideo{
     NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/690825080/video";
     
@@ -98,27 +84,20 @@
     
     VideoPath *obj = [VideoPath getInstance];
     _videoPath = obj.videoPath;
-    //NSURL *videoURL = [NSURL URLWithString:_videoPath];
     NSData *videoData = [[NSFileManager defaultManager] contentsAtPath:_videoPath];
     
-    //NSLog(@"%@",videoURL);
     
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     
     NSString *FbToken = [session accessTokenData].accessToken;
-    
-    NSLog(@"Token is %@", FbToken);
+
     
     NSString *postLength = [NSString stringWithFormat:@"%d", [videoData length]];
-    NSLog(@"stupid length%@",postLength);
     
     [urlRequest setValue:@"video/quicktime" forHTTPHeaderField:@"Content-Type"];
     [urlRequest setValue:FbToken forHTTPHeaderField:@"Access-Token"];
     [urlRequest setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [urlRequest setHTTPBody:videoData];
-    //NSLog(@"post thing %@", videoData);
-    
-    
     
     
     [urlRequest setTimeoutInterval:15.0f];
@@ -155,37 +134,11 @@
          }
          else if (error !=nil){
              NSLog(@"Error happened = %@", error);
-             NSLog(@"POST BROKEN");
+             NSLog(@"Video Not Uploaded");
          }
      }];
 
 }
-
-- (void) videoHasFinishedPlaying:(NSNotification *)paramNotification{
-    //Show reason why video stopped playing
-    NSNumber *reason =
-    paramNotification.userInfo
-    [MPMoviePlayerPlaybackDidFinishReasonUserInfoKey];
-    
-    if (reason !=nil){
-        NSInteger reasonAsInteger = [reason integerValue];
-        
-        switch (reasonAsInteger) {
-            case MPMovieFinishReasonPlaybackEnded:{
-                //Movie Ended Normally
-                break;
-            }
-            case MPMovieFinishReasonPlaybackError:{
-                //An error occured and movie ended
-            }
-            case MPMovieFinishReasonUserExited:{
-                //User ended video playback
-            }
-        }
-        NSLog(@"Finish reason = %ld", (long)reasonAsInteger);
-    }
-}
-
 
 
 /*
