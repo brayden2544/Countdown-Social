@@ -37,21 +37,63 @@
     }
     return self;
 }
+-(BOOL)webView:(UIWebView *)instagramWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+    
+    NSString* urlString = [[request URL] absoluteString];
+    NSURL *Url = [request URL];
+    NSArray *UrlParts = [Url pathComponents];
+    // do any of the following here
+    if ([[UrlParts objectAtIndex:(1)] isEqualToString:@"MAMP"]) {
+        //if ([urlString hasPrefix: @"localhost"]) {
+        NSRange tokenParam = [urlString rangeOfString: @"access_token="];
+        if (tokenParam.location != NSNotFound) {
+            NSString* token = [urlString substringFromIndex: NSMaxRange(tokenParam)];
+            
+            // If there are more args, don't include them in the token:
+            NSRange endRange = [token rangeOfString: @"&"];
+            if (endRange.location != NSNotFound)
+                token = [token substringToIndex: endRange.location];
+            
+            NSLog(@"access token %@", token);
+            if ([token length] > 0 ) {
+                // display the photos here
+               // instagramTableViewController *iController = [[instagramPhotosTableViewController alloc] initWithStyle:UITableViewStylePlain];
+                NSString* redirectUrl = [[NSString alloc] initWithFormat:@"https://instagram.com/lpaulich"];
+                NSURL *url = [NSURL URLWithString:redirectUrl];
+                NSURLRequest *request = [NSURLRequest requestWithURL:url];
+                self.instagramWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0,60,320,506)];
+
+                [self.instagramWebView loadRequest:request];
+                [self.view addSubview:self.instagramWebView];
+            }
+            // use delegate if you want
+            //[self.delegate instagramLoginSucceededWithToken: token];
+            
+        }
+        else {
+            // Handle the access rejected case here.
+            NSLog(@"rejected case, user denied request");
+        }
+        return NO;
+    }
+    return YES;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.instagramWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0,60,320,506)];
+    UIWebView* instagramWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0,60,320,506)];
     self.instagramWebView.scalesPageToFit = YES;
-    [self.view addSubview:self.instagramWebView];
     
-    NSString *stringURL = @"http://www.instagram.com/";
+    NSString *stringURL = @"http://www.instagram.com/oauth/authorize/?client_id=932befca29884b378bfa33415fe71da6&redirect_uri=http://localhost:8888/MAMP/&response_type=token";
     //NSString *stringURl = [stringURL stringByAppendingString:twitterUsername];
     NSURL *url = [NSURL URLWithString:stringURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
-    [self.instagramWebView loadRequest:request];
+    [instagramWebView loadRequest:request];
+    instagramWebView.delegate = self;
+    [self.view addSubview:instagramWebView];
     
     
 }
@@ -67,16 +109,5 @@
     UIViewController *menuViewController = [storyboard instantiateViewControllerWithIdentifier:@"rootViewController"];
     [self presentViewController:menuViewController animated:YES completion:nil];
 }
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end
