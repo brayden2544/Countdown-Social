@@ -54,28 +54,21 @@
 
 /*Blurs and Presents Screenshot of Currenet Matching Video*/
 -(void)BlurImage{
-    // Snapshot scene into a UIImage.
-    dispatch_async(dispatch_get_main_queue(), ^{
 
-      
-    //Blur Video Screenshot and add it infront of video
-    self.blur=[[UIImageView alloc] initWithImage:_videoImage];
-    self.blur.userInteractionEnabled = YES;
-    self.blur.frame = self.moviePlayer.view.frame;
-    [self.view addSubview:self.blur];
-        
-//    //Add dark image in front of blurred screenshot video
-//    self.darken=[[UIView alloc]initWithFrame:CGRectMake(0, 115, 320, 320)];
-//    [self.darken setBackgroundColor:[UIColor blackColor]];
-//    self.darken.alpha=0.5;
-//    [self.view addSubview:self.darken];
+        //Blur Video Screenshot and add it infront of video
+        self.blur=[[UIImageView alloc] initWithImage:_videoImage];
+        self.blur.userInteractionEnabled = YES;
+        self.blur.frame = self.moviePlayer.view.frame;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.view addSubview:self.blur];
         self.createMatch.hidden = false;
         [self.view insertSubview:self.createMatch aboveSubview:self.blur];
         
     });
    
 }
-/*Captures Screenshot of Currenet Matching Video*/
+/*Captures Screenshot of Current Matching Video*/
 - (void)CaptureSnapshot{
     UIImage *thumbnail = [self.moviePlayer thumbnailImageAtTime:0.1
                                                      timeOption:MPMovieTimeOptionNearestKeyFrame];
@@ -199,7 +192,7 @@
     NSURL *url = [NSURL URLWithString:picURL];
     NSLog(@"%@",picURL);
     NSData *imageData = [NSData dataWithContentsOfURL:url];
-    self.fbProfilePic.layer.cornerRadius = 82.0;
+    self.fbProfilePic.layer.cornerRadius = self.fbProfilePic.frame.size.height/2;
     self.fbProfilePic.layer.masksToBounds = YES;
     self.fbProfilePic.layer.borderColor = [UIColor colorWithRed:248 green:248 blue:248 alpha:0.4].CGColor;
     self.fbProfilePic.layer.borderWidth = 2.0f;

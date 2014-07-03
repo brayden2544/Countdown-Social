@@ -36,7 +36,7 @@
 }
 
 
-
+//Code to make a border around the countdown circle
 
 //- (void)drawRect:(CGRect)rect
 //{
