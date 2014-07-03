@@ -10,7 +10,6 @@
 #import "PotentialMatches.h"
 #import "User.h"
 #import <AVFoundation/AVFoundation.h>
-#import "UIImage+ImageEffects.h"
 #import "AppDelegate.h"
 
 @interface PotentialMatchesViewController ()
