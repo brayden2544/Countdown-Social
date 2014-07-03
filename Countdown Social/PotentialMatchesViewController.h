@@ -26,7 +26,6 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView *fbProfilePic;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
-@property (strong, nonatomic) IBOutlet UILabel *countdownLabel;
 @property (strong, nonatomic) IBOutlet UILabel *meetLabel;
 
 @property (strong, nonatomic) IBOutlet UIButton *instagramDeselect;

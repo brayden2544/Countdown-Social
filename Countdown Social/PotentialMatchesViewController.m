@@ -395,7 +395,6 @@
     //Get time remaining of users profile
     
     //Set label to time remaining
-    _countdownLabel.text = [NSString stringWithFormat:@"%.0f", timeRemaining];
 //    NSNumber *time = [NSNumber numberWithFloat:self.moviePlayer.currentPlaybackTime/6.1f];
 //    [self performSelector:@selector(setProgress:) withObject:time afterDelay:0.0];
     

@@ -1,0 +1,46 @@
+{
+  "images" : [
+    {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "fill",
+          "width" : 1,
+          "height" : 1
+        },
+        "capInsets" : {
+          "bottom" : 61,
+          "top" : 60,
+          "right" : 60,
+          "left" : 60
+        }
+      },
+      "idiom" : "universal",
+      "filename" : "twitter account off.png",
+      "scale" : "1x"
+    },
+    {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "fill",
+          "width" : 1,
+          "height" : 1
+        },
+        "capInsets" : {
+          "bottom" : 122,
+          "top" : 121,
+          "right" : 121,
+          "left" : 120
+        }
+      },
+      "idiom" : "universal",
+      "filename" : "twitter account off@2x.png",
+      "scale" : "2x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}
