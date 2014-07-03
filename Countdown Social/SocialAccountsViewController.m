@@ -46,4 +46,25 @@
 }
 */
 
+- (IBAction)connectInstagram:(id)sender {
+}
+- (IBAction)connectSnapchat:(id)sender {
+}
+
+- (IBAction)connectTwitter:(id)sender {
+}
+
+- (IBAction)connectPhone:(id)sender {
+}
+- (IBAction)editInstagram:(id)sender {
+}
+
+- (IBAction)editTwitter:(id)sender {
+}
+
+- (IBAction)editSnapchat:(id)sender {
+}
+
+- (IBAction)editPhone:(id)sender {
+}
 @end
