@@ -12,11 +12,13 @@
 
 @interface TwitterViewController ()
 @property(nonatomic, strong) UIWebView *twitterWebView;
+@property(nonatomic, strong) NSString *twitter_username;
 
 
 @end
 
 @implementation TwitterViewController
+@synthesize twitter_username;
 
 //Shows loading animation while Twitter Page is Loading
 -(void)webViewDidStartLoad:(UIWebView *)webView{
@@ -55,24 +57,28 @@
         if(granted ==YES) {
             NSArray *arrayOfAccounts = [store
                                         accountsWithAccountType:twitterType];
-            
-            //NSString *twitterUsername =[arrayOfAccounts objectAtIndex:0];
-            NSLog(@"Granted");
+                    NSLog(@"Granted");
             
          
 
             // Access has been granted, now we can access the accounts
-            NSLog(@"%@",arrayOfAccounts);
+            twitter_username = [[arrayOfAccounts valueForKey:@"username"] firstObject];
+            NSLog(@"%@",twitter_username.length);
+            if (twitter_username.length ==0){
+                NSLog(@"No account associated with this phone");
+            }else{
+            [self twitterUsernameUpload];
+            }
+
             
         }
         // Handle any error state here as you wish
     }];
-    self.twitterWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0,60,320,506)];
+    self.twitterWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0,60,325,506)];
     self.twitterWebView.scalesPageToFit = YES;
     [self.view addSubview:self.twitterWebView];
     
     NSString *stringURL = @"http://www.twitter.com/";
-    //NSString *stringURl = [stringURL stringByAppendingString:twitterUsername];
     NSURL *url = [NSURL URLWithString:stringURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
@@ -85,10 +91,9 @@
     user = Userobj.user;
 
 #warning TODO: Make this if/then statement work correctly.
-    if ((NSNull *)[user objectForKey: @"twitter_username"] == [NSNull null]){
-        [self twitterUsernameUpload];
+    //if ([[user objectForKey: @"twitter_username"]isKindOfClass:[NSNull class]]){
         NSLog(@"Twitter username blank");
-    }
+    //}
 }
 
 -(void)twitterUsernameUpload
@@ -99,8 +104,7 @@
     
     NSMutableURLRequest *urlRequest =
     [NSMutableURLRequest requestWithURL:url];
-    NSString *twitterUsername = @"Dude";
-    [urlRequest setHTTPBody:[[NSString stringWithFormat:@"twitter_username=%@",twitterUsername] dataUsingEncoding:NSUTF8StringEncoding]];
+    [urlRequest setHTTPBody:[[NSString stringWithFormat:@"twitter_username=%@",twitter_username] dataUsingEncoding:NSUTF8StringEncoding]];
     
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     

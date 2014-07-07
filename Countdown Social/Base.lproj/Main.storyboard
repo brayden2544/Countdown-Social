@@ -798,6 +798,9 @@ By adding your twitter,  you’ll get more followers.</string>
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 </state>
+                                <connections>
+                                    <segue destination="osf-Av-PJW" kind="modal" id="Dzz-GX-pLQ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" alpha="0.75" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0uB-jN-Mdz">
                                 <rect key="frame" x="46" y="184" width="130" height="32"/>
@@ -897,7 +900,7 @@ By adding your twitter,  you’ll get more followers.</string>
         <!--Twitter View Controller-->
         <scene sceneID="oZg-CH-fRs">
             <objects>
-                <viewController id="osf-Av-PJW" customClass="TwitterViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TwitterViewController" id="osf-Av-PJW" customClass="TwitterViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CK8-je-6uV"/>
                         <viewControllerLayoutGuide type="bottom" id="F6J-D8-qsK"/>

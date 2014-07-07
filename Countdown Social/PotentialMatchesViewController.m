@@ -281,15 +281,16 @@
 -(void)buttonCheck{
     //Check for Twitter Account
     if ([[user objectForKey: @"twitter_username"] isKindOfClass:[NSNull class]]){
-        self.twitterDeselect.hidden = TRUE;
-        self.twitterSelect.enabled = TRUE;
-        self.twitterDeselect.enabled=false;
-        self.twitterSelect.hidden =false;
-    }
-    else{
-        self.twitterDeselect.hidden = FALSE;
+        self.twitterDeselect.hidden = false;
         self.twitterSelect.enabled = false;
         self.twitterDeselect.enabled=TRUE;
+        self.twitterSelect.hidden =TRUE;
+    }
+    else{
+        self.twitterDeselect.hidden = TRUE;
+        self.twitterSelect.enabled = TRUE;
+        self.twitterDeselect.enabled=FALSE;
+        self.twitterSelect.hidden=FALSE;
         NSLog(@"Twitter username blank");
     }
    
@@ -413,21 +414,28 @@
 
 
 - (IBAction)enableInstagram:(id)sender {
-    if ([[user objectForKeyedSubscript:@"instagram_username"] isKindOfClass:[NSNull class]]) {
+    //if ([[user objectForKeyedSubscript:@"instagram_username"] isKindOfClass:[NSNull class]]) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         InstagramViewController *instagramViewController = [storyboard instantiateViewControllerWithIdentifier:@"InstagramViewController"];
-        [self presentViewController:instagramViewController animated:YES completion:nil];    }
-    else {
-        self.instagramSelect.hidden = FALSE;
-        self.instagramSelect.enabled=TRUE;
-        self.instagramDeselect.hidden=TRUE;
-    }
+        [self presentViewController:instagramViewController animated:YES completion:nil];
+    // }
+//    else {
+//        self.instagramSelect.hidden = FALSE;
+//        self.instagramSelect.enabled=TRUE;
+//        self.instagramDeselect.hidden=TRUE;
+//    }
 }
 
 - (IBAction)enableTwitter:(id)sender {
+    if ([[user objectForKeyedSubscript:@"twitter_username"] isKindOfClass:[NSNull class]]) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewController *twitterViewController = [storyboard instantiateViewControllerWithIdentifier:@"TwitterViewController"];
+        [self presentViewController:twitterViewController animated:YES completion:nil];    }
+    else {
     self.twitterSelect.hidden=FALSE;
     self.twitterSelect.enabled=TRUE;
     self.twitterDeselect.hidden=TRUE;
+    }
 }
 
 - (IBAction)enableSnapChat:(id)sender {
