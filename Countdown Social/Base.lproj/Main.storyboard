@@ -867,7 +867,7 @@ By adding your twitter,  you’ll get more followers.</string>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Insta navbar" translatesAutoresizingMaskIntoConstraints="NO" id="aM9-Lb-rUC">
-                                <rect key="frame" x="0.0" y="-1" width="323" height="69"/>
+                                <rect key="frame" x="0.0" y="-1" width="323" height="73"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ijd-pT-0du">
