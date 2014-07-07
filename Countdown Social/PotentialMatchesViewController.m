@@ -413,7 +413,7 @@
 
 
 - (IBAction)enableInstagram:(id)sender {
-    if ([[user objectForKeyedSubscript:@"instagram_username"] isKindOfClass:[NSNull class]]){
+    if ([[user objectForKeyedSubscript:@"instagram_username"] isKindOfClass:[NSNull class]]) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         InstagramViewController *instagramViewController = [storyboard instantiateViewControllerWithIdentifier:@"InstagramViewController"];
         [self presentViewController:instagramViewController animated:YES completion:nil];    }

@@ -19,6 +19,7 @@
 
 @synthesize instagram_token;
 @synthesize instagram_username;
+@synthesize instagram_code;
 
 //Shows loading animation while Twitter Page is Loading
 -(void)webViewDidStartLoad:(UIWebView *)webView{
@@ -51,17 +52,17 @@
     // do any of the following here
     if ([[UrlParts objectAtIndex:(1)] isEqualToString:@"MAMP"]) {
         //if ([urlString hasPrefix: @"localhost"]) {
-        NSRange tokenParam = [urlString rangeOfString: @"access_token="];
+        NSRange tokenParam = [urlString rangeOfString: @"code="];
         if (tokenParam.location != NSNotFound) {
-           instagram_token = [urlString substringFromIndex: NSMaxRange(tokenParam)];
+           instagram_code = [urlString substringFromIndex: NSMaxRange(tokenParam)];
             
             // If there are more args, don't include them in the token:
-            NSRange endRange = [instagram_token rangeOfString: @"&"];
+            NSRange endRange = [instagram_code rangeOfString: @"&"];
             if (endRange.location != NSNotFound)
-                instagram_token = [instagram_token substringToIndex: endRange.location];
+                instagram_code = [instagram_code substringToIndex: endRange.location];
             
             NSLog(@"access token %@", instagram_token);
-            if ([instagram_token length] > 0 ) {
+            if ([instagram_code length] > 0 ) {
                 NSString* redirectUrl = [[NSString alloc] initWithFormat:@"https://instagram.com/"];
                 NSURL *url = [NSURL URLWithString:redirectUrl];
                 NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -91,11 +92,11 @@
     NSDictionary *user = obj.user;
     
     // Do any additional setup after loading the view.
-    if ([[user objectForKey:@"instagram_username"]isKindOfClass:[NSNull class]]){
-    UIWebView* instagramWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0,60,320,506)];
+    //if ([[user objectForKey:@"instagram_token"]isKindOfClass:[NSNull class]]){
+    UIWebView* instagramWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0,65,320,506)];
     self.instagramWebView.scalesPageToFit = YES;
     
-    NSString *stringURL = @"http://www.instagram.com/oauth/authorize/?client_id=932befca29884b378bfa33415fe71da6&redirect_uri=http://localhost:8888/MAMP/&response_type=token";
+    NSString *stringURL = @"http://www.instagram.com/oauth/authorize/?client_id=932befca29884b378bfa33415fe71da6&redirect_uri=http://localhost:8888/MAMP/&response_type=code";
     //NSString *stringURl = [stringURL stringByAppendingString:twitterUsername];
     NSURL *url = [NSURL URLWithString:stringURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -103,7 +104,7 @@
     [instagramWebView loadRequest:request];
     instagramWebView.delegate = self;
     [self.view addSubview:instagramWebView];
-    }
+    //}
     
     
 }
@@ -128,7 +129,7 @@
     
     NSMutableURLRequest *urlRequest =
     [NSMutableURLRequest requestWithURL:url];
-    [urlRequest setHTTPBody:[[NSString stringWithFormat:@"instagram_username=%@,instagram_token=%@",instagram_username, instagram_token] dataUsingEncoding:NSUTF8StringEncoding]];
+    [urlRequest setHTTPBody:[[NSString stringWithFormat:@"instagram_username=%@&instagram_token=%@",instagram_username, instagram_token] dataUsingEncoding:NSUTF8StringEncoding]];
     
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     
@@ -194,17 +195,8 @@
     
     NSMutableURLRequest *urlRequest =
     [NSMutableURLRequest requestWithURL:url];
-    [urlRequest setHTTPBody:[[NSString stringWithFormat:@"client_id=932befca29884b378bfa33415fe71da6,client_secret=04b3374e51ca416e89d108c177de4e5c,grant_type=authorization_code,redirect_uri=http://localhost:8888/MAMP/, code=%@", instagram_token] dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    //FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
-    
-    
-   // NSString *FbToken = [session accessTokenData].accessToken;
-    
-    // NSLog(@"Token is %@", FbToken);
-    
-    //[urlRequest setValue:FbToken forHTTPHeaderField:@"Access-Token"];
-    
+    [urlRequest setHTTPBody:[[NSString stringWithFormat:@"client_id=932befca29884b378bfa33415fe71da6&client_secret=04b3374e51ca416e89d108c177de4e5c&grant_type=authorization_code&redirect_uri=http://localhost:8888/MAMP/&code=%@", instagram_code] dataUsingEncoding:NSUTF8StringEncoding]];
+
     
     [urlRequest setTimeoutInterval:30.0f];
     [urlRequest setHTTPMethod:@"POST"];
@@ -230,10 +222,17 @@
                                 JSONObjectWithData:data
                                 options:NSJSONReadingAllowFragments
                                 error:&error];
+                 NSDictionary *instagram = [UserJson objectForKey:@"user"];
               
                  
-                 NSLog(@"instagram info retrieved %@",html);
+                 NSLog(@"instagram info retrieved %@",instagram);
                  
+                 //Set values for token and username based on info received from Instagram
+                 instagram_token = [UserJson objectForKey:@"access_token"];
+                 instagram_username = [instagram objectForKey:@"username"];
+                 
+                 //Upload new token and username to instagram.
+                 [self instagramUsernameUpload];
                  
              }
              else if ([data length] == 0 && error == nil){
