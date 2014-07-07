@@ -857,7 +857,7 @@ By adding your twitter,  you’ll get more followers.</string>
         <!--Instagram View Controller-->
         <scene sceneID="Klf-ap-CRz">
             <objects>
-                <viewController id="Gg6-lq-8xp" customClass="InstagramViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InstagramViewController" id="Gg6-lq-8xp" customClass="InstagramViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Oqe-N9-7lm"/>
                         <viewControllerLayoutGuide type="bottom" id="1Wx-Aq-lJU"/>

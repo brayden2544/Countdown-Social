@@ -11,6 +11,7 @@
 #import "User.h"
 #import <AVFoundation/AVFoundation.h>
 #import "AppDelegate.h"
+#import "InstagramViewController.h"
 
 @interface PotentialMatchesViewController ()
 
@@ -279,63 +280,68 @@
 }
 -(void)buttonCheck{
     //Check for Twitter Account
-    if ((NSNull *)[user objectForKey: @"twitter_username"] == [NSNull null]){
-        self.twitterDeselect.hidden = FALSE;
-        self.twitterSelect.enabled = false;
-        self.twitterDeselect.enabled=TRUE;
-        NSLog(@"Twitter username blank");
-    }
-    else{
+    if ([[user objectForKey: @"twitter_username"] isKindOfClass:[NSNull class]]){
         self.twitterDeselect.hidden = TRUE;
         self.twitterSelect.enabled = TRUE;
         self.twitterDeselect.enabled=false;
         self.twitterSelect.hidden =false;
     }
-    //Check for Instagram Account
-    if ([user objectForKey: @"instagram_username"]){
+    else{
+        self.twitterDeselect.hidden = FALSE;
+        self.twitterSelect.enabled = false;
+        self.twitterDeselect.enabled=TRUE;
+        NSLog(@"Twitter username blank");
+    }
+   
+           //Check for Instagram Account
+    if ([[user objectForKey: @"instagram_username"]isKindOfClass:[NSNull class]]){
+        self.instagramDeselect.hidden = FALSE;
+        self.instagramSelect.enabled = false;
+        self.instagramDeselect.enabled=TRUE;
+        self.instagramSelect.hidden =TRUE;
+        
+    }
+    else{
         self.instagramDeselect.hidden = TRUE;
         self.instagramSelect.enabled = TRUE;
         self.instagramDeselect.enabled=false;
         self.instagramSelect.hidden =false;
         
     }
-    else{
-        self.instagramDeselect.hidden = FALSE;
-        self.instagramSelect.enabled = false;
-        self.instagramDeselect.enabled=TRUE;
-        self.instagramSelect.hidden =TRUE;
-     
-    }
-    //Check for Phone Number
-    if ([user objectForKey: @"phone_number"]){
-        self.phoneDeselect.hidden = TRUE;
-        self.phoneSelect.enabled = TRUE;
-        self.phoneDeselect.enabled=false;
-        self.phoneSelect.hidden =false;
-        
-    }
-    else{
+
+            //Check for Phone Number
+    if ([[user objectForKey: @"phone_number"]isKindOfClass:[NSNull class]]){
         self.phoneDeselect.hidden = FALSE;
         self.phoneSelect.enabled = false;
         self.phoneDeselect.enabled=TRUE;
         self.phoneSelect.hidden =TRUE;
         
     }
-    //Check for Snapchat Account
-    if ([user objectForKey: @"snapchat_username"]){
-        self.snapchatDeselect.hidden = TRUE;
-        self.snapchatSelect.enabled = TRUE;
-        self.snapchatDeselect.enabled=false;
-        self.snapchatSelect.hidden =false;
+    else{
+        self.phoneDeselect.hidden = TRUE;
+        self.phoneSelect.enabled = TRUE;
+        self.phoneDeselect.enabled=false;
+        self.phoneSelect.hidden =false;
         
     }
-    else{
+
+           //Check for Snapchat Account
+    if ([[user objectForKey: @"snapchat_username"]isKindOfClass:[NSNull class]]){
         self.snapchatDeselect.hidden = FALSE;
         self.snapchatSelect.enabled = false;
         self.snapchatDeselect.enabled=TRUE;
         self.snapchatSelect.hidden =TRUE;
         
     }
+    else{
+        self.snapchatDeselect.hidden = TRUE;
+        self.snapchatSelect.enabled = TRUE;
+        self.snapchatDeselect.enabled=false;
+        self.snapchatSelect.hidden =false;
+        
+    }
+
+        
 
     //Facebook is alwayas available
     self.facebookSelect.hidden=FALSE;
@@ -379,30 +385,8 @@
     //Initialize CountdownTimer
     NSTimeInterval timeRemaining =(1 -(self.moviePlayer.currentPlaybackTime / self.moviePlayer.duration))*100;
     NSNumber *time = [NSNumber numberWithDouble:timeRemaining];
-    //countdownTimer = [[CountdownTimer alloc]init];
     [countdownTimer changePercentage:timeRemaining];
-    //[self.view addSubview:countdownTimer];
 
-    
-    //Get time remaining of users profile
-    
-    //Set label to time remaining
-//    NSNumber *time = [NSNumber numberWithFloat:self.moviePlayer.currentPlaybackTime/6.1f];
-//    [self performSelector:@selector(setProgress:) withObject:time afterDelay:0.0];
-    
-    
-    
-    
-    
-    
-    
-    //    if (timeRemaining < 2){
-//        _countdownLabel.backgroundColor = [UIColor colorWithRed:(247/255.0) green:(104/255.0) blue:(68/255.0) alpha:1];
-//    }
-//    else{
-//        _countdownLabel.backgroundColor = [UIColor colorWithRed:(74/255.0) green:(74/255.0) blue:(74/255.0) alpha:1];
-//    }
-    
 }
 - (void)MPMoviePlayerLoadStateDidChange:(NSNotification *)notification
 {
@@ -429,9 +413,15 @@
 
 
 - (IBAction)enableInstagram:(id)sender {
-    self.instagramSelect.hidden = FALSE;
-    self.instagramSelect.enabled=TRUE;
-    self.instagramDeselect.hidden=TRUE;
+    if ([[user objectForKeyedSubscript:@"instagram_username"] isKindOfClass:[NSNull class]]){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        InstagramViewController *instagramViewController = [storyboard instantiateViewControllerWithIdentifier:@"InstagramViewController"];
+        [self presentViewController:instagramViewController animated:YES completion:nil];    }
+    else {
+        self.instagramSelect.hidden = FALSE;
+        self.instagramSelect.enabled=TRUE;
+        self.instagramDeselect.hidden=TRUE;
+    }
 }
 
 - (IBAction)enableTwitter:(id)sender {

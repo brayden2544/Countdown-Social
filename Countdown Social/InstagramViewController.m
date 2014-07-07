@@ -7,6 +7,8 @@
 //
 
 #import "InstagramViewController.h"
+#import "User.h"
+#import "AppDelegate.h"
 
 @interface InstagramViewController ()
 @property(nonatomic, strong) UIWebView *instagramWebView;
@@ -14,6 +16,9 @@
 @end
 
 @implementation InstagramViewController
+
+@synthesize instagram_token;
+@synthesize instagram_username;
 
 //Shows loading animation while Twitter Page is Loading
 -(void)webViewDidStartLoad:(UIWebView *)webView{
@@ -42,23 +47,22 @@
     NSString* urlString = [[request URL] absoluteString];
     NSURL *Url = [request URL];
     NSArray *UrlParts = [Url pathComponents];
+    NSLog(@"Instagram Info = %@",Url);
     // do any of the following here
     if ([[UrlParts objectAtIndex:(1)] isEqualToString:@"MAMP"]) {
         //if ([urlString hasPrefix: @"localhost"]) {
         NSRange tokenParam = [urlString rangeOfString: @"access_token="];
         if (tokenParam.location != NSNotFound) {
-            NSString* token = [urlString substringFromIndex: NSMaxRange(tokenParam)];
+           instagram_token = [urlString substringFromIndex: NSMaxRange(tokenParam)];
             
             // If there are more args, don't include them in the token:
-            NSRange endRange = [token rangeOfString: @"&"];
+            NSRange endRange = [instagram_token rangeOfString: @"&"];
             if (endRange.location != NSNotFound)
-                token = [token substringToIndex: endRange.location];
+                instagram_token = [instagram_token substringToIndex: endRange.location];
             
-            NSLog(@"access token %@", token);
-            if ([token length] > 0 ) {
-                // display the photos here
-               // instagramTableViewController *iController = [[instagramPhotosTableViewController alloc] initWithStyle:UITableViewStylePlain];
-                NSString* redirectUrl = [[NSString alloc] initWithFormat:@"https://instagram.com/lpaulich"];
+            NSLog(@"access token %@", instagram_token);
+            if ([instagram_token length] > 0 ) {
+                NSString* redirectUrl = [[NSString alloc] initWithFormat:@"https://instagram.com/"];
                 NSURL *url = [NSURL URLWithString:redirectUrl];
                 NSURLRequest *request = [NSURLRequest requestWithURL:url];
                 self.instagramWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0,60,320,506)];
@@ -82,7 +86,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    User *obj = [User getInstance];
+    NSDictionary *user = obj.user;
+    
     // Do any additional setup after loading the view.
+    if ([[user objectForKey:@"instagram_username"]isKindOfClass:[NSNull class]]){
     UIWebView* instagramWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0,60,320,506)];
     self.instagramWebView.scalesPageToFit = YES;
     
@@ -94,6 +102,7 @@
     [instagramWebView loadRequest:request];
     instagramWebView.delegate = self;
     [self.view addSubview:instagramWebView];
+    }
     
     
 }
@@ -109,5 +118,138 @@
     UIViewController *menuViewController = [storyboard instantiateViewControllerWithIdentifier:@"rootViewController"];
     [self presentViewController:menuViewController animated:YES completion:nil];
 }
+
+-(void)instagramUsernameUpload
+{
+    NSString *urlAsString =@"http://api-dev.countdownsocial.com/user";
+    
+    NSURL *url = [NSURL URLWithString:urlAsString];
+    
+    NSMutableURLRequest *urlRequest =
+    [NSMutableURLRequest requestWithURL:url];
+    [urlRequest setHTTPBody:[[NSString stringWithFormat:@"instagram_username=%@,instagram_token=%@",instagram_username, instagram_token] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+    
+    
+    NSString *FbToken = [session accessTokenData].accessToken;
+    
+    // NSLog(@"Token is %@", FbToken);
+    
+    [urlRequest setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    
+    
+    [urlRequest setTimeoutInterval:30.0f];
+    [urlRequest setHTTPMethod:@"POST"];
+    
+    NSOperationQueue *queque = [[NSOperationQueue alloc] init];
+    dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+    dispatch_async(concurrentQueue, ^{
+        
+        
+        [NSURLConnection
+         sendAsynchronousRequest:urlRequest
+         queue:queque
+         completionHandler:^(NSURLResponse *response,
+                             NSData *data,
+                             NSError *error){
+             if ([data length] >0 && error == nil){
+                 NSString *html =
+                 [[NSString alloc] initWithData:data
+                                       encoding:NSUTF8StringEncoding];
+                 NSLog(html);
+                 
+                 id UserJson = [NSJSONSerialization
+                                JSONObjectWithData:data
+                                options:NSJSONReadingAllowFragments
+                                error:&error];
+                 //  user = UserJson;
+                 User *Userobj =  [User getInstance];
+                 Userobj.user= UserJson;
+                 
+                 NSLog(@"Instagram Username, Token and User Singleton Updated");
+                 
+                 
+             }
+             else if ([data length] == 0 && error == nil){
+                 NSLog(@"POST Nothing was downloaded.");
+             }
+             else if (error !=nil){
+                 NSLog(@"Error happened = %@", error);
+                 NSLog(@"POST BROKEN");
+#warning TODO: Create alert and restart app in case of bad server connection.
+             }
+         }];
+    });
+    
+}
+
+-(void)retrieveInstagramUsername
+{
+    NSString *urlAsString =@"http://api-dev.countdownsocial.com/user";
+    
+    NSURL *url = [NSURL URLWithString:urlAsString];
+    
+    NSMutableURLRequest *urlRequest =
+    [NSMutableURLRequest requestWithURL:url];
+    [urlRequest setHTTPBody:[[NSString stringWithFormat:@"instagram_username=%@,instagram_token=%@",instagram_username, instagram_token] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+    
+    
+    NSString *FbToken = [session accessTokenData].accessToken;
+    
+    // NSLog(@"Token is %@", FbToken);
+    
+    [urlRequest setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    
+    
+    [urlRequest setTimeoutInterval:30.0f];
+    [urlRequest setHTTPMethod:@"POST"];
+    
+    NSOperationQueue *queque = [[NSOperationQueue alloc] init];
+    dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+    dispatch_async(concurrentQueue, ^{
+        
+        
+        [NSURLConnection
+         sendAsynchronousRequest:urlRequest
+         queue:queque
+         completionHandler:^(NSURLResponse *response,
+                             NSData *data,
+                             NSError *error){
+             if ([data length] >0 && error == nil){
+                 NSString *html =
+                 [[NSString alloc] initWithData:data
+                                       encoding:NSUTF8StringEncoding];
+                 NSLog(html);
+                 
+                 id UserJson = [NSJSONSerialization
+                                JSONObjectWithData:data
+                                options:NSJSONReadingAllowFragments
+                                error:&error];
+                 //  user = UserJson;
+                 User *Userobj =  [User getInstance];
+                 Userobj.user= UserJson;
+                 
+                 NSLog(@"Instagram Username, Token and User Singleton Updated");
+                 
+                 
+             }
+             else if ([data length] == 0 && error == nil){
+                 NSLog(@"POST Nothing was downloaded.");
+             }
+             else if (error !=nil){
+                 NSLog(@"Error happened = %@", error);
+                 NSLog(@"POST BROKEN");
+#warning TODO: Create alert and restart app in case of bad server connection.
+             }
+         }];
+    });
+    
+}
+
 
 @end

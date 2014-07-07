@@ -38,7 +38,7 @@
 
 -(void)buttonCheck{
     //Check for Twitter Account
-    if ([user objectForKey: @"twitter_username"]){
+    if ([[user objectForKey: @"twitter_username"] isKindOfClass:[NSNull class]]){
         self.twitterDisconnected.hidden = TRUE;
         self.twitterConnected.hidden=FALSE;
        // self.addTwitter.enabled=FALSE;
@@ -57,7 +57,7 @@
     }
     
     //Check for Instagram Account
-    if ([user objectForKey: @"instagram_username"]){
+    if ([[user objectForKey: @"instagram_username"] isKindOfClass:[NSNull class]]){
         self.instagramDisconnected.hidden = TRUE;
         self.instagramConnected.hidden=FALSE;
         //self.addInstagram.enabled=FALSE;
@@ -75,7 +75,7 @@
         NSLog(@"Instagram username blank");
     }
          //Check for Phone Number
-    if ([user objectForKey: @"phone_number"]){
+    if ([[user objectForKey: @"phone_number"]isKindOfClass:[NSNull class]]){
         self.phoneDisconnected.hidden = TRUE;
         self.phoneConnected.hidden=FALSE;
        // self.addPhone.enabled=FALSE;
@@ -95,7 +95,7 @@
 
   
     //Check for Snapchat Account
-    if ([user objectForKey: @"snapchat_username"]){
+    if ([[user objectForKey: @"snapchat_username"]isKindOfClass:[NSNull class]]){
         self.snapchatDisconnected.hidden = TRUE;
         self.snapchatConnected.hidden=FALSE;
         //self.addSnapchat.enabled=FALSE;
@@ -144,21 +144,28 @@
 }
 
 - (IBAction)connectPhone:(id)sender {
+    
 }
 - (IBAction)editInstagram:(id)sender {
+    
 }
 
 - (IBAction)editTwitter:(id)sender {
 }
 
 - (IBAction)editSnapchat:(id)sender {
+    
 }
 
 - (IBAction)editPhone:(id)sender {
+    
 }
 - (IBAction)viewFacebook:(id)sender {
+    
 }
+
 - (IBAction)ViewInstagramProfile:(id)sender {
+    
 }
 
 - (IBAction)viewFacebookProfile:(id)sender {

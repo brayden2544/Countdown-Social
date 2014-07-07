@@ -11,6 +11,7 @@
 @interface InstagramViewController : UIViewController<UIWebViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIButton *returnToPotentialMatches;
-
+@property (strong, nonatomic) NSString *instagram_token;
+@property (strong, nonatomic) NSString *instagram_username;
 
 @end
