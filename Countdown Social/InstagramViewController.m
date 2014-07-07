@@ -65,10 +65,11 @@
                 NSString* redirectUrl = [[NSString alloc] initWithFormat:@"https://instagram.com/"];
                 NSURL *url = [NSURL URLWithString:redirectUrl];
                 NSURLRequest *request = [NSURLRequest requestWithURL:url];
-                self.instagramWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0,60,320,506)];
+                self.instagramWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0,65,320,506)];
 
                 [self.instagramWebView loadRequest:request];
                 [self.view addSubview:self.instagramWebView];
+                [self RequestInstagramInfo];
             }
             // use delegate if you want
             //[self.delegate instagramLoginSucceededWithToken: token];
@@ -185,24 +186,24 @@
     
 }
 
--(void)retrieveInstagramUsername
+-(void)RequestInstagramInfo
 {
-    NSString *urlAsString =@"http://api-dev.countdownsocial.com/user";
+    NSString *urlAsString =@"https://api.instagram.com/oauth/access_token";
     
     NSURL *url = [NSURL URLWithString:urlAsString];
     
     NSMutableURLRequest *urlRequest =
     [NSMutableURLRequest requestWithURL:url];
-    [urlRequest setHTTPBody:[[NSString stringWithFormat:@"instagram_username=%@,instagram_token=%@",instagram_username, instagram_token] dataUsingEncoding:NSUTF8StringEncoding]];
+    [urlRequest setHTTPBody:[[NSString stringWithFormat:@"client_id=932befca29884b378bfa33415fe71da6,client_secret=04b3374e51ca416e89d108c177de4e5c,grant_type=authorization_code,redirect_uri=http://localhost:8888/MAMP/, code=%@", instagram_token] dataUsingEncoding:NSUTF8StringEncoding]];
     
-    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+    //FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     
     
-    NSString *FbToken = [session accessTokenData].accessToken;
+   // NSString *FbToken = [session accessTokenData].accessToken;
     
     // NSLog(@"Token is %@", FbToken);
     
-    [urlRequest setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    //[urlRequest setValue:FbToken forHTTPHeaderField:@"Access-Token"];
     
     
     [urlRequest setTimeoutInterval:30.0f];
@@ -224,17 +225,14 @@
                  NSString *html =
                  [[NSString alloc] initWithData:data
                                        encoding:NSUTF8StringEncoding];
-                 NSLog(html);
                  
                  id UserJson = [NSJSONSerialization
                                 JSONObjectWithData:data
                                 options:NSJSONReadingAllowFragments
                                 error:&error];
-                 //  user = UserJson;
-                 User *Userobj =  [User getInstance];
-                 Userobj.user= UserJson;
+              
                  
-                 NSLog(@"Instagram Username, Token and User Singleton Updated");
+                 NSLog(@"instagram info retrieved %@",html);
                  
                  
              }
