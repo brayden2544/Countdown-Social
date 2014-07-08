@@ -19,11 +19,14 @@
 @property (nonatomic, strong) UIButton *playButton;
 @property (nonatomic, strong) NSString *videoPath;
 @property (atomic, strong) NSDictionary *currentVideo;
+@property (nonatomic,strong) NSDictionary *user;
 
 
 @end
 
 @implementation VideoPreviewViewController
+
+@synthesize user;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -75,7 +78,11 @@
 
 //Posts profile video to servers.
 -(void)uploadProfileVideo{
-    NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/690825080/video";
+    User *userObj = [User getInstance];
+    user = userObj.user;
+    NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/";
+    urlAsString = [urlAsString stringByAppendingFormat:@"%@",[user objectForKey:@"uid"]];
+    urlAsString = [urlAsString stringByAppendingString:@"/video"];
     
     NSURL *url = [NSURL URLWithString:urlAsString];
     

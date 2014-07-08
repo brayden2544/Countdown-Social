@@ -729,7 +729,7 @@
                                     <action selector="editPhone:" destination="cm5-s6-Yax" eventType="touchUpInside" id="ogz-wY-2U0"/>
                                 </connections>
                             </button>
-                            <view alpha="0.95999999999999996" contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2fR-vW-flO" customClass="SnapchatView">
+                            <view hidden="YES" alpha="0.95999999999999996" contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2fR-vW-flO" customClass="SnapchatView">
                                 <rect key="frame" x="5" y="90" width="308" height="244"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -785,7 +785,7 @@
                                         <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view alpha="0.95999997854232788" contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NQ3-Sk-8RX" customClass="SnapchatView">
+                                    <view hidden="YES" alpha="0.95999997854232788" contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NQ3-Sk-8RX" customClass="PhoneNumberView">
                                         <rect key="frame" x="0.0" y="0.0" width="308" height="244"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
@@ -816,6 +816,9 @@
                                                 <state key="normal" image="Phone set button">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="setPhoneNumberButton:" destination="NQ3-Sk-8RX" eventType="touchUpInside" id="AH8-T6-dRk"/>
+                                                </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Line" translatesAutoresizingMaskIntoConstraints="NO" id="CDy-2X-8yn">
                                                 <rect key="frame" x="18" y="60" width="272" height="1"/>
@@ -845,6 +848,9 @@
                                                 <integer key="value" value="12"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="phoneNumberText" destination="ZW1-l3-Vfe" id="3HP-w9-vay"/>
+                                        </connections>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
