@@ -37,6 +37,13 @@
 }
 
 -(void)buttonCheck{
+    //Add Facebook Text
+    NSString *name = [user objectForKey:@"firstName"];
+    name =[name stringByAppendingString:@" "];
+    name = [name stringByAppendingString:[user objectForKey:@"lastName"]];
+    NSLog(@"%@",name);
+    self.facebookLabel.text = name;
+    self.facebookLabel.textAlignment = 0;
     //Check for Twitter Account
     if ([[user objectForKey: @"twitter_username"] isKindOfClass:[NSNull class]]){
         self.twitterDisconnected.hidden = FALSE;
@@ -147,12 +154,17 @@
 - (IBAction)connectInstagram:(id)sender {
 }
 - (IBAction)connectSnapchat:(id)sender {
+
+    NSLog(@"Add snapchat button pushed");
 }
 
 - (IBAction)connectTwitter:(id)sender {
 }
 
 - (IBAction)connectPhone:(id)sender {
+    
+    NSLog(@"Add phone button pushed");
+
     
 }
 - (IBAction)editInstagram:(id)sender {

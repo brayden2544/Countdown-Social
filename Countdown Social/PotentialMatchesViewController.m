@@ -384,7 +384,6 @@
 - (void)VideoTimer:(NSTimer *)timer{
     //Initialize CountdownTimer
     NSTimeInterval timeRemaining =(1 -(self.moviePlayer.currentPlaybackTime / self.moviePlayer.duration))*100;
-    NSNumber *time = [NSNumber numberWithDouble:timeRemaining];
     [countdownTimer changePercentage:timeRemaining];
 
 }
@@ -428,6 +427,7 @@
 - (IBAction)enableTwitter:(id)sender {
     if ([[user objectForKeyedSubscript:@"twitter_username"] isKindOfClass:[NSNull class]]) {
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"You can't match with others on Twitter until you have your Twitter account linked" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Social Account Settings", nil];
+        [actionSheet showInView:self.view];
     }
             else {
     self.twitterSelect.hidden=FALSE;
@@ -503,12 +503,23 @@
 }
 
 - (IBAction)Like:(id)sender {
-    [self nextMatch];
+    if ([currentPotentialMatch count] >0){
+        [self nextMatch];
+
+    }
+    else{
+    }
 }
 
 - (IBAction)Pass:(id)sender {
-    [self userPass];
+    if ([currentPotentialMatch count] >0){
+        [self userPass];
+
+    }
+    else{
+    }
 }
+         
 
 
 @end

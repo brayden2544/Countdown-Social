@@ -88,8 +88,10 @@
     static PotentialMatches *instance = nil;
     instance = [self getInstance];
     NSMutableArray *matches = instance.potentialMatches;
+    if ([matches count ] > 0){
     [matches removeObjectAtIndex:0];
      instance.potentialMatches = matches;
+    }
     NSLog(@"@%d",[instance.potentialMatches count]);
 
     if ([matches count] <= 2 ){
