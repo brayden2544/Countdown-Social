@@ -63,7 +63,6 @@
 
             // Access has been granted, now we can access the accounts
             twitter_username = [[arrayOfAccounts valueForKey:@"username"] firstObject];
-            NSLog(@"%@",twitter_username.length);
             if (twitter_username.length ==0){
                 NSLog(@"No account associated with this phone");
             }else{
