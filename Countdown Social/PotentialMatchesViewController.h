@@ -11,7 +11,7 @@
 #import "CountdownTimer.h"
 
 
-@interface PotentialMatchesViewController : ViewController 
+@interface PotentialMatchesViewController : ViewController <UIActionSheetDelegate>
 {
     CountdownTimer *countdownTimer;
 }

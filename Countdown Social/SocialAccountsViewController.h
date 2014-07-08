@@ -13,13 +13,6 @@
 /*User Dictionary*/
 @property (strong, nonatomic) NSDictionary *user;
 
-/*Labels*/
-@property (strong, nonatomic) IBOutlet UILabel *facebookLabel;
-@property (strong, nonatomic) IBOutlet UILabel *instagramLabel;
-@property (strong, nonatomic) IBOutlet UILabel *twitterLabel;
-@property (strong, nonatomic) IBOutlet UILabel *snapchatLabel;
-@property (strong, nonatomic) IBOutlet UILabel *phoneLabel;
-
 
 /*ConnectedImages*/
 @property (strong, nonatomic) IBOutlet UIImageView *facebookConnected;
@@ -85,6 +78,12 @@
 - (IBAction)viewSnapchatProfile:(id)sender;
 - (IBAction)viewPhoneProfile:(id)sender;
 
+/*Label Outlets*/
+@property (strong, nonatomic) IBOutlet UILabel *facebookLabel;
+@property (strong, nonatomic) IBOutlet UILabel *instagramLabel;
+@property (strong, nonatomic) IBOutlet UILabel *twitterLabel;
+@property (strong, nonatomic) IBOutlet UILabel *snapchatLabel;
+@property (strong, nonatomic) IBOutlet UILabel *phoneLabel;
 
 
 

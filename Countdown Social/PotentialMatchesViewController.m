@@ -267,7 +267,6 @@
     
         currentPotentialMatch =[obj.potentialMatches objectAtIndex:0];
     _videoUrl =[NSURL URLWithString:[currentPotentialMatch objectForKey:@"videoUri"]];
-    //NSString *name =[currentPotentialMatch objectForKey:@"firstName"];
     _nameLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
     _meetLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
     
@@ -414,24 +413,23 @@
 
 
 - (IBAction)enableInstagram:(id)sender {
-    //if ([[user objectForKeyedSubscript:@"instagram_username"] isKindOfClass:[NSNull class]]) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        InstagramViewController *instagramViewController = [storyboard instantiateViewControllerWithIdentifier:@"InstagramViewController"];
-        [self presentViewController:instagramViewController animated:YES completion:nil];
-    // }
-//    else {
-//        self.instagramSelect.hidden = FALSE;
-//        self.instagramSelect.enabled=TRUE;
-//        self.instagramDeselect.hidden=TRUE;
-//    }
+    if([[user objectForKeyedSubscript:@"instagram_username"] isKindOfClass:[NSNull class]]) {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"You can't match with others on Instagram until you have your Instagram account linked" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Social Account Settings", nil];
+        
+        [actionSheet showInView:self.view];
+     }
+    else {
+        self.instagramSelect.hidden = FALSE;
+        self.instagramSelect.enabled=TRUE;
+        self.instagramDeselect.hidden=TRUE;
+   }
 }
 
 - (IBAction)enableTwitter:(id)sender {
     if ([[user objectForKeyedSubscript:@"twitter_username"] isKindOfClass:[NSNull class]]) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        UIViewController *twitterViewController = [storyboard instantiateViewControllerWithIdentifier:@"TwitterViewController"];
-        [self presentViewController:twitterViewController animated:YES completion:nil];    }
-    else {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"You can't match with others on Twitter until you have your Twitter account linked" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Social Account Settings", nil];
+    }
+            else {
     self.twitterSelect.hidden=FALSE;
     self.twitterSelect.enabled=TRUE;
     self.twitterDeselect.hidden=TRUE;
@@ -439,9 +437,16 @@
 }
 
 - (IBAction)enableSnapChat:(id)sender {
+    if ([[user objectForKey:@"snapchat_username"] isKindOfClass:[NSNull class]]){
+          UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"You can't match with others on Snapchat until you add your Snapchat username" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Social Account Settings", nil];
+        
+        [actionSheet showInView:self.view];
+    }
+    else{
     self.snapchatSelect.hidden=FALSE;
     self.snapchatSelect.enabled=TRUE;
     self.snapchatDeselect.hidden=TRUE;
+    }
 }
 
 - (IBAction)enableFacebook:(id)sender {
@@ -451,9 +456,17 @@
 }
 
 - (IBAction)enablePhone:(id)sender {
+    if ([[user objectForKey:@"phone_number"] isKindOfClass:[NSNull class]]){
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"To be able to use this feature you first need to have your phone number added" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Social Account Settings", nil];
+        
+        [actionSheet showInView:self.view];
+    }
+    else{
+
     self.phoneSelect.hidden=FALSE;
     self.phoneSelect.enabled=TRUE;
     self.phoneDeselect.hidden=TRUE;
+}
 }
 
 - (IBAction)disableInstagram:(id)sender {

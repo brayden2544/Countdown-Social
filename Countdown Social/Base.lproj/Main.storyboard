@@ -720,19 +720,19 @@ By adding your twitter,  you’ll get more followers.</string>
                         <outlet property="connectSnapchatButton" destination="aMP-YV-EwI" id="40f-mf-H9H"/>
                         <outlet property="connectTwitterButton" destination="IOc-ik-mDJ" id="LGI-WD-fta"/>
                         <outlet property="facebookConnected" destination="ngD-Fa-B6l" id="7ul-ZS-YXa"/>
-                        <outlet property="facebookLabel" destination="sfs-hv-Q2Z" id="Vma-Vt-NEl"/>
+                        <outlet property="facebookLabel" destination="sfs-hv-Q2Z" id="UyW-Ny-a8A"/>
                         <outlet property="instagramConnected" destination="3HZ-qv-FXC" id="Zgt-jo-UjN"/>
                         <outlet property="instagramDisconnected" destination="3HZ-qv-FXC" id="rem-N2-6nv"/>
-                        <outlet property="instagramLabel" destination="IA5-zy-SH0" id="i9R-SC-sDH"/>
+                        <outlet property="instagramLabel" destination="IA5-zy-SH0" id="zm4-GF-Wav"/>
                         <outlet property="phoneConnected" destination="CNv-93-uuG" id="Fav-FU-RSi"/>
                         <outlet property="phoneDisconnected" destination="CNv-93-uuG" id="bwQ-lD-Du5"/>
-                        <outlet property="phoneLabel" destination="0iE-ps-Laa" id="ij4-zG-CWY"/>
+                        <outlet property="phoneLabel" destination="0iE-ps-Laa" id="VNs-Wr-Dyx"/>
                         <outlet property="snapchatConnected" destination="HZd-At-69O" id="hZT-Tp-SEQ"/>
                         <outlet property="snapchatDisconnected" destination="HZd-At-69O" id="uzo-gE-yep"/>
-                        <outlet property="snapchatLabel" destination="AP3-Fe-0ZQ" id="8Tr-4f-4vX"/>
+                        <outlet property="snapchatLabel" destination="AP3-Fe-0ZQ" id="yva-Zc-qoQ"/>
                         <outlet property="twitterConnected" destination="was-Vv-3ha" id="Uxc-Tf-O8R"/>
                         <outlet property="twitterDisconnected" destination="was-Vv-3ha" id="UQE-4V-9tS"/>
-                        <outlet property="twitterLabel" destination="ZHY-Vk-j6p" id="vgQ-PR-1Pb"/>
+                        <outlet property="twitterLabel" destination="ZHY-Vk-j6p" id="269-d2-1Zm"/>
                         <outlet property="viewFacebookButton" destination="2aU-N4-Mxl" id="MrZ-fn-xWj"/>
                         <outlet property="viewInstagramProfileButton" destination="0xz-fo-rTn" id="u4J-y6-xyG"/>
                         <outlet property="viewPhoneButton" destination="4aF-oq-2hp" id="h1a-gw-1wZ"/>
