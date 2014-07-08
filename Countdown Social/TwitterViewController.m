@@ -63,7 +63,10 @@
 
             // Access has been granted, now we can access the accounts
             twitter_username = [[arrayOfAccounts valueForKey:@"username"] firstObject];
+<<<<<<< HEAD
             NSLog(@"%@",arrayOfAccounts);
+=======
+>>>>>>> FETCH_HEAD
             if (twitter_username.length ==0){
                 NSLog(@"No account associated with this phone");
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"No Twitter Accounts Found" message: @"Please go to >Settings >Twitter and sign in with a valid Twitter Account"

@@ -9,14 +9,14 @@
           "height" : 1
         },
         "capInsets" : {
-          "bottom" : 47,
-          "top" : 52,
-          "right" : 51,
-          "left" : 48
+          "bottom" : 68,
+          "top" : 68,
+          "right" : 320,
+          "left" : 319
         }
       },
       "idiom" : "universal",
-      "filename" : "back button.png",
+      "filename" : "Twitter navbar.png",
       "scale" : "1x"
     },
     {
@@ -28,14 +28,14 @@
           "height" : 1
         },
         "capInsets" : {
-          "bottom" : 100,
-          "top" : 99,
-          "right" : 99,
-          "left" : 100
+          "bottom" : 137,
+          "top" : 136,
+          "right" : 640,
+          "left" : 639
         }
       },
       "idiom" : "universal",
-      "filename" : "back button@2x.png",
+      "filename" : "Twitter navbar@2x.png",
       "scale" : "2x"
     }
   ],
