@@ -611,6 +611,7 @@
                                 </state>
                                 <connections>
                                     <action selector="connectTwitter:" destination="cm5-s6-Yax" eventType="touchUpInside" id="dl0-J5-dmp"/>
+                                    <segue destination="osf-Av-PJW" kind="modal" id="2Zk-bG-QQP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aMP-YV-EwI">
@@ -678,6 +679,56 @@
                                     <action selector="viewPhoneProfile:" destination="cm5-s6-Yax" eventType="touchUpInside" id="voF-Qf-65J"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8t1-xc-cLq">
+                                <rect key="frame" x="252" y="209" width="57" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="Edit">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="editInstagram:" destination="cm5-s6-Yax" eventType="touchUpInside" id="ZcA-C7-epe"/>
+                                    <segue destination="Gg6-lq-8xp" kind="modal" id="SXw-Jh-7Gv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XAK-Ml-W8I">
+                                <rect key="frame" x="252" y="297" width="57" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="Edit">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="editTwitter:" destination="cm5-s6-Yax" eventType="touchUpInside" id="aDP-QD-7sQ"/>
+                                    <segue destination="osf-Av-PJW" kind="modal" id="ngN-SM-eye"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D1K-4m-ss0">
+                                <rect key="frame" x="252" y="384" width="57" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="Edit">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="editSnapchat:" destination="cm5-s6-Yax" eventType="touchUpInside" id="0VS-rO-me2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4oK-po-SYD">
+                                <rect key="frame" x="252" y="473" width="57" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="Edit">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="editPhone:" destination="cm5-s6-Yax" eventType="touchUpInside" id="ogz-wY-2U0"/>
+                                </connections>
+                            </button>
                             <view alpha="0.84999999999999987" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2fR-vW-flO">
                                 <rect key="frame" x="6" y="88" width="308" height="196"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -709,6 +760,9 @@
                                         <state key="normal" title="Submit">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="Gg6-lq-8xp" kind="modal" id="xiJ-Cm-SHe"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CHT-Lq-lc2">
                                         <rect key="frame" x="21" y="105" width="84" height="21"/>
@@ -768,6 +822,10 @@
                         <outlet property="connectPhoneButton" destination="ZCA-08-XQd" id="2eV-tv-lMX"/>
                         <outlet property="connectSnapchatButton" destination="aMP-YV-EwI" id="40f-mf-H9H"/>
                         <outlet property="connectTwitterButton" destination="IOc-ik-mDJ" id="LGI-WD-fta"/>
+                        <outlet property="editInstagramButton" destination="8t1-xc-cLq" id="yIS-XV-f7J"/>
+                        <outlet property="editPhoneButton" destination="4oK-po-SYD" id="DUt-OV-RkV"/>
+                        <outlet property="editSnapchatButton" destination="D1K-4m-ss0" id="HIe-VQ-Qa0"/>
+                        <outlet property="editTwitterButton" destination="XAK-Ml-W8I" id="Qov-0h-nZf"/>
                         <outlet property="facebookConnected" destination="ngD-Fa-B6l" id="7ul-ZS-YXa"/>
                         <outlet property="facebookLabel" destination="sfs-hv-Q2Z" id="UyW-Ny-a8A"/>
                         <outlet property="instagramConnected" destination="3HZ-qv-FXC" id="Zgt-jo-UjN"/>
@@ -1037,5 +1095,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="DIe-0s-6eI"/>
+        <segue reference="ngN-SM-eye"/>
+        <segue reference="xiJ-Cm-SHe"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -42,12 +42,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *connectPhoneButton;
 
 
-/*Plus image Outlet*/
-@property (strong, nonatomic) IBOutlet UIImageView *addInstagram;
-@property (strong, nonatomic) IBOutlet UIImageView *addTwitter;
-@property (strong, nonatomic) IBOutlet UIImageView *addSnapchat;
-@property (strong, nonatomic) IBOutlet UIImageView *addPhone;
-
 
 /*Edit Buttons*/
 - (IBAction)editInstagram:(id)sender;
@@ -55,13 +49,10 @@
 - (IBAction)editSnapchat:(id)sender;
 - (IBAction)editPhone:(id)sender;
 
-@property (strong, nonatomic) IBOutlet UIImageView *editInstagramButton;
-@property (strong, nonatomic) IBOutlet UIImageView *editTwitterButton;
-@property (strong, nonatomic) IBOutlet UIImageView *editSnapchatButton;
-@property (strong, nonatomic) IBOutlet UIImageView *editPhoneButton;
-
-/*View Profile Buttons*/
-- (IBAction)viewFacebook:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *editInstagramButton;
+@property (strong, nonatomic) IBOutlet UIButton *editTwitterButton;
+@property (strong, nonatomic) IBOutlet UIButton *editSnapchatButton;
+@property (strong, nonatomic) IBOutlet UIButton *editPhoneButton;
 
 
 /*View Profile Button Outlets*/

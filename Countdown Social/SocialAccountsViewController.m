@@ -48,41 +48,37 @@
     if ([[user objectForKey: @"twitter_username"] isKindOfClass:[NSNull class]]){
         self.twitterDisconnected.hidden = FALSE;
         self.twitterConnected.hidden=TRUE;
-       // self.addTwitter.enabled=FALSE;
-        self.addTwitter.hidden=FALSE;
         self.editTwitterButton.hidden=TRUE;
-        //self.editTwitterButton.enabled = TRUE;
+        self.connectTwitterButton.hidden=FALSE;
+        self.connectTwitterButton.enabled=TRUE;
         NSLog(@"Twitter username blank");
     }
     else{
         self.twitterDisconnected.hidden = TRUE;
         self.twitterConnected.hidden = FALSE;
-        self.addTwitter.hidden = TRUE;
-       // self.addTwitter.enabled = TRUE;
         self.editTwitterButton.hidden= FALSE;
         self.twitterLabel.text = [user objectForKey:@"twitter_username"];
         self.twitterLabel.textAlignment = 0;
-       // self.editTwitterButton.enabled=FALSE;
+        self.connectTwitterButton.hidden=TRUE;
+        self.connectTwitterButton.enabled=FALSE;
     }
     
     //Check for Instagram Account
     if ([[user objectForKey: @"instagram_username"] isKindOfClass:[NSNull class]]){
         self.instagramDisconnected.hidden = FALSE;
         self.instagramConnected.hidden=TRUE;
-        //self.addInstagram.enabled=FALSE;
-        self.addInstagram.hidden=FALSE;
         self.editInstagramButton.hidden=TRUE;
-       // self.editInstagramButton.enabled = TRUE;
+        self.connectInstagramButton.hidden=FALSE;
+        self.connectInstagramButton.enabled=TRUE;
         NSLog(@"Instagram username blank");
 
     }
     else{
         self.instagramDisconnected.hidden = TRUE;
         self.instagramConnected.hidden = FALSE;
-        self.addInstagram.hidden = TRUE;
-        //self.addInstagram.enabled = TRUE;
         self.editInstagramButton.hidden= FALSE;
-       // self.editInstagramButton.enabled=FALSE;
+        self.connectInstagramButton.hidden=TRUE;
+        self.connectInstagramButton.enabled=FALSE;
         self.instagramLabel.text = [user objectForKey:@"instagram_username"];
         self.instagramLabel.textAlignment = 0;
     }
@@ -90,19 +86,17 @@
     if ([[user objectForKey: @"phone_number"]isKindOfClass:[NSNull class]]){
         self.phoneDisconnected.hidden = FALSE;
         self.phoneConnected.hidden=TRUE;
-       // self.addPhone.enabled=FALSE;
-        self.addPhone.hidden=FALSE;
         self.editPhoneButton.hidden=TRUE;
-        //self.editPhoneButton.enabled = TRUE;
+        self.connectPhoneButton.hidden=FALSE;
+        self.connectPhoneButton.enabled=TRUE;
         NSLog(@"Phone Number blank");
     }
     else{
         self.phoneDisconnected.hidden = TRUE;
         self.phoneConnected.hidden = FALSE;
-        self.addPhone.hidden = TRUE;
-      //  self.addPhone.enabled = TRUE;
         self.editPhoneButton.hidden= FALSE;
-       // self.editPhoneButton.enabled=FALSE;
+        self.connectPhoneButton.hidden=TRUE;
+        self.connectPhoneButton.enabled=FALSE;
     }
 
   
@@ -110,20 +104,19 @@
     if ([[user objectForKey: @"snapchat_username"]isKindOfClass:[NSNull class]]){
         self.snapchatDisconnected.hidden = FALSE;
         self.snapchatConnected.hidden=TRUE;
-        //self.addSnapchat.enabled=FALSE;
-        self.addSnapchat.hidden=FALSE;
         self.editSnapchatButton.hidden=TRUE;
-      //  self.editSnapchatButton.enabled = TRUE;
+        self.connectSnapchatButton.hidden=FALSE;
+        self.connectSnapchatButton.enabled=TRUE;
         NSLog(@"SnapChat username blank");
 
     }
     else{
         self.snapchatDisconnected.hidden = TRUE;
         self.snapchatConnected.hidden = FALSE;
-        self.addSnapchat.hidden = TRUE;
-        //self.addSnapchat.enabled = TRUE;
         self.editSnapchatButton.hidden= FALSE;
-        //self.editSnapchatButton.enabled=FALSE;
+        self.connectSnapchatButton.hidden=TRUE;
+        self.connectSnapchatButton.enabled=FALSE;
+
         self.snapchatLabel.text = [user objectForKey:@"snapchat_username"];
         self.snapchatLabel.textAlignment = 0;
 
@@ -152,6 +145,7 @@
 */
 
 - (IBAction)connectInstagram:(id)sender {
+    
 }
 - (IBAction)connectSnapchat:(id)sender {
 
