@@ -472,7 +472,7 @@
         <!--Social Accounts View Controller-->
         <scene sceneID="oLS-KO-Bmk">
             <objects>
-                <viewController id="cm5-s6-Yax" customClass="SocialAccountsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SocialAccountsViewController" id="cm5-s6-Yax" customClass="SocialAccountsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UoJ-Ht-4VQ"/>
                         <viewControllerLayoutGuide type="bottom" id="cM2-Yd-umb"/>

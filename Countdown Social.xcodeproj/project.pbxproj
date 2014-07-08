@@ -67,6 +67,8 @@
 		6EC0FC18192AD95A00B72C44 /* settingsButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0FC17192AD95A00B72C44 /* settingsButton.png */; };
 		6EC0FC1A192AD9AE00B72C44 /* matchesButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0FC19192AD9AE00B72C44 /* matchesButton.png */; };
 		6EC0FC2F192B145C00B72C44 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC0FC2E192B145C00B72C44 /* Accelerate.framework */; };
+		6EC7D4A6196C7F660083A581 /* SnapchatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC7D4A5196C7F660083A581 /* SnapchatView.m */; };
+		6EC7D4A9196C7F7B0083A581 /* PhoneNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC7D4A8196C7F7B0083A581 /* PhoneNumberView.m */; };
 		6EC9431A1958D04E0096F41F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC943191958D04E0096F41F /* User.m */; };
 		6EC94325195C8B6E0096F41F /* LeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC94324195C8B6E0096F41F /* LeftMenuViewController.m */; };
 		6ECB30F81952498200AB8854 /* InstagramViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECB30F71952498200AB8854 /* InstagramViewController.m */; };
@@ -172,6 +174,10 @@
 		6EC0FC17192AD95A00B72C44 /* settingsButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = settingsButton.png; path = ../settingsButton.png; sourceTree = "<group>"; };
 		6EC0FC19192AD9AE00B72C44 /* matchesButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = matchesButton.png; sourceTree = "<group>"; };
 		6EC0FC2E192B145C00B72C44 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		6EC7D4A4196C7F660083A581 /* SnapchatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SnapchatView.h; path = ../SnapchatView.h; sourceTree = "<group>"; };
+		6EC7D4A5196C7F660083A581 /* SnapchatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SnapchatView.m; path = ../SnapchatView.m; sourceTree = "<group>"; };
+		6EC7D4A7196C7F7B0083A581 /* PhoneNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhoneNumberView.h; path = ../PhoneNumberView.h; sourceTree = "<group>"; };
+		6EC7D4A8196C7F7B0083A581 /* PhoneNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhoneNumberView.m; path = ../PhoneNumberView.m; sourceTree = "<group>"; };
 		6EC943181958D04E0096F41F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		6EC943191958D04E0096F41F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		6EC94323195C8B6E0096F41F /* LeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenuViewController.h; sourceTree = "<group>"; };
@@ -319,11 +325,10 @@
 			children = (
 				6E967CBE190DA4960042AF93 /* AppDelegate.h */,
 				6E967CBF190DA4960042AF93 /* AppDelegate.m */,
+				6EC7D4AA196C7F890083A581 /* Social Accounts */,
 				6E967CC1190DA4960042AF93 /* Main.storyboard */,
 				6ED73BEE1965130F00539389 /* CountdownTimer.h */,
 				6ED73BEF1965130F00539389 /* CountdownTimer.m */,
-				6EA354F91965443500F51D70 /* SocialAccountsViewController.h */,
-				6EA354FA1965443500F51D70 /* SocialAccountsViewController.m */,
 				6EC94323195C8B6E0096F41F /* LeftMenuViewController.h */,
 				6EC94324195C8B6E0096F41F /* LeftMenuViewController.m */,
 				6E50A473192D86FB00930D02 /* MenuViewController.h */,
@@ -335,10 +340,6 @@
 				6EB9D6B5192415D10080E1C5 /* VideoPreviewViewController.m */,
 				6E046939191995B900482E79 /* LoginLoadViewController.h */,
 				6E04693A191995B900482E79 /* LoginLoadViewController.m */,
-				6ECB30F61952498200AB8854 /* InstagramViewController.h */,
-				6ECB30F71952498200AB8854 /* InstagramViewController.m */,
-				6ECE8110194A6F69007B3130 /* TwitterViewController.h */,
-				6ECE8111194A6F69007B3130 /* TwitterViewController.m */,
 				6E886A4C190E05AC009E5A92 /* SetLocationViewController.h */,
 				6E886A4D190E05AC009E5A92 /* SetLocationViewController.m */,
 				6E886A5A190FF4F8009E5A92 /* ChooseLocationViewController.h */,
@@ -430,6 +431,23 @@
 				6EC0FC19192AD9AE00B72C44 /* matchesButton.png */,
 			);
 			name = PotentialMatches;
+			sourceTree = "<group>";
+		};
+		6EC7D4AA196C7F890083A581 /* Social Accounts */ = {
+			isa = PBXGroup;
+			children = (
+				6EC7D4A7196C7F7B0083A581 /* PhoneNumberView.h */,
+				6EC7D4A8196C7F7B0083A581 /* PhoneNumberView.m */,
+				6EC7D4A4196C7F660083A581 /* SnapchatView.h */,
+				6EC7D4A5196C7F660083A581 /* SnapchatView.m */,
+				6EA354F91965443500F51D70 /* SocialAccountsViewController.h */,
+				6EA354FA1965443500F51D70 /* SocialAccountsViewController.m */,
+				6ECB30F61952498200AB8854 /* InstagramViewController.h */,
+				6ECB30F71952498200AB8854 /* InstagramViewController.m */,
+				6ECE8110194A6F69007B3130 /* TwitterViewController.h */,
+				6ECE8111194A6F69007B3130 /* TwitterViewController.m */,
+			);
+			name = "Social Accounts";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -554,8 +572,10 @@
 			files = (
 				6E04693B191995B900482E79 /* LoginLoadViewController.m in Sources */,
 				6E50A470192D84F700930D02 /* RECommonFunctions.m in Sources */,
+				6EC7D4A9196C7F7B0083A581 /* PhoneNumberView.m in Sources */,
 				6E50A472192D84F700930D02 /* UIViewController+RESideMenu.m in Sources */,
 				6E92E00019628E24009ECE27 /* PBJGLProgram.m in Sources */,
+				6EC7D4A6196C7F660083A581 /* SnapchatView.m in Sources */,
 				6E886A44190DB575009E5A92 /* LoginViewController.m in Sources */,
 				6ECE8112194A6F69007B3130 /* TwitterViewController.m in Sources */,
 				6EC9431A1958D04E0096F41F /* User.m in Sources */,

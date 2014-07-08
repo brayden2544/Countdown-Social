@@ -249,6 +249,19 @@
         exit(0);
     }
 }
+//Actionsheet listener for social media applications that havent yet been configured
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        NSLog(@"button index 0 selected");
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewController *socialAccountsViewController = [storyboard instantiateViewControllerWithIdentifier:@"SocialAccountsViewController"];
+        [self presentViewController:socialAccountsViewController animated:YES completion:nil];
+
+    } else if (buttonIndex == 1) {
+        NSLog(@"button index 1 selected");
+    }
+}
+    
 
 
 - (void)firstMatch{
@@ -256,11 +269,8 @@
     NSLog(@"@%@",obj.potentialMatches);
 
     if ([obj.potentialMatches count] == 0){
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"You're Out!" message: @"There are no more users near you."
-                                                       delegate:self
-                                              cancelButtonTitle:nil
-                                              otherButtonTitles:@"Try Again", nil];
-        [alert show];
+   //Show no users view controller
+        
         
     }
     else {
