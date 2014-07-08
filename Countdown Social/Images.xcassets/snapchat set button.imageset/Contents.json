@@ -9,8 +9,8 @@
           "height" : 1
         },
         "capInsets" : {
-          "bottom" : 9,
-          "top" : 9,
+          "bottom" : 46,
+          "top" : 39,
           "right" : 128,
           "left" : 127
         }
@@ -28,8 +28,8 @@
           "height" : 1
         },
         "capInsets" : {
-          "bottom" : 18,
-          "top" : 18,
+          "bottom" : 76,
+          "top" : 95,
           "right" : 236,
           "left" : 275
         }

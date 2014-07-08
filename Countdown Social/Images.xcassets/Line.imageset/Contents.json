@@ -9,14 +9,14 @@
           "height" : 1
         },
         "capInsets" : {
-          "bottom" : 41,
-          "top" : 42,
-          "right" : 141,
-          "left" : 112
+          "bottom" : 0,
+          "top" : 2,
+          "right" : 259,
+          "left" : 259
         }
       },
       "idiom" : "universal",
-      "filename" : "link account cancel.png",
+      "filename" : "Line.png",
       "scale" : "1x"
     },
     {
@@ -28,14 +28,14 @@
           "height" : 1
         },
         "capInsets" : {
-          "bottom" : 83,
-          "top" : 84,
-          "right" : 270,
-          "left" : 237
+          "bottom" : 0,
+          "top" : 5,
+          "right" : 516,
+          "left" : 521
         }
       },
       "idiom" : "universal",
-      "filename" : "link account cancel@2x.png",
+      "filename" : "Line@2x.png",
       "scale" : "2x"
     }
   ],
