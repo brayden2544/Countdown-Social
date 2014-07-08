@@ -9,6 +9,7 @@
 #import "SnapchatView.h"
 #import "User.h"
 #import "AppDelegate.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 @implementation SnapchatView
@@ -23,6 +24,11 @@
         // Initialization code
     }
     return self;
+}
+
+-(void)viewDidLoad{
+    self.layer.cornerRadius=21.0;
+
 }
 
 -(void)snapchatUsernameUpload
