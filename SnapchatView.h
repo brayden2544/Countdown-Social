@@ -12,5 +12,9 @@
 
 @property NSString *snapchatUsername;
 
+@property (strong, nonatomic)IBOutlet UITextField *snapchatUserText;
+
+- (IBAction)setSnapchatButton:(id)sender;
+
 
 @end

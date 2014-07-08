@@ -25,11 +25,14 @@
     }
     return self;
 }
-
--(void)viewDidLoad{
-    self.layer.cornerRadius=21.0;
-
+- (IBAction)setSnapchatButton:(id)sende{
+    snapchatUsername = self.snapchatUserText.text;
+    [self snapchatUsernameUpload];
+    self.hidden = TRUE;
+    [self endEditing:YES];
 }
+
+
 
 -(void)snapchatUsernameUpload
 {

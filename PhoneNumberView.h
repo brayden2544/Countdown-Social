@@ -12,4 +12,10 @@
 
 @property NSString *phoneNumber;
 
+@property (strong, nonatomic)IBOutlet UITextField *phoneNumberText;
+
+- (IBAction)setPhoneNumberButton:(id)sender;
+
+
+
 @end

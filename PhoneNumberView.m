@@ -23,8 +23,15 @@
     return self;
 }
 
--(void)snapchatUsernameUpload
-{
+- (IBAction)setPhoneNumberButton:(id)sender{
+    phoneNumber = self.phoneNumberText.text;
+    [self phoneNumberUpload];
+    self.hidden = TRUE;
+    [self endEditing:YES];
+}
+
+
+-(void)phoneNumberUpload{
     NSString *urlAsString =@"http://api-dev.countdownsocial.com/user";
     
     NSURL *url = [NSURL URLWithString:urlAsString];
