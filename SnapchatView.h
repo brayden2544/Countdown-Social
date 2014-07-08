@@ -15,6 +15,6 @@
 @property (strong, nonatomic)IBOutlet UITextField *snapchatUserText;
 
 - (IBAction)setSnapchatButton:(id)sender;
-
+- (IBAction)cancel:(id)sender;
 
 @end

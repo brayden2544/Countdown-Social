@@ -9,6 +9,8 @@
 #import "SocialAccountsViewController.h"
 
 #import "User.h"
+#import "PhoneNumberView.h"
+#import "SnapchatView.h"
 
 @interface SocialAccountsViewController ()
 
@@ -97,6 +99,9 @@
         self.editPhoneButton.hidden= FALSE;
         self.connectPhoneButton.hidden=TRUE;
         self.connectPhoneButton.enabled=FALSE;
+        
+        self.phoneLabel.text = [user objectForKey:@"phone_number"];
+        self.phoneLabel.textAlignment = 0;
     }
 
   
@@ -148,17 +153,16 @@
     
 }
 - (IBAction)connectSnapchat:(id)sender {
-
-    NSLog(@"Add snapchat button pushed");
+    self.snapChatView.hidden=FALSE;
+    [self.snapchatTextField becomeFirstResponder];
 }
 
 - (IBAction)connectTwitter:(id)sender {
 }
 
 - (IBAction)connectPhone:(id)sender {
-    
-    NSLog(@"Add phone button pushed");
-
+    self.phoneNumberView.hidden=FALSE;
+    [self.phoneTextField becomeFirstResponder];
     
 }
 - (IBAction)editInstagram:(id)sender {
@@ -169,10 +173,13 @@
 }
 
 - (IBAction)editSnapchat:(id)sender {
-    
+    self.snapChatView.hidden=FALSE;
+    [self.snapchatTextField becomeFirstResponder];
 }
 
 - (IBAction)editPhone:(id)sender {
+    self.phoneNumberView.hidden=FALSE;
+    [self.phoneTextField becomeFirstResponder];
     
 }
 - (IBAction)viewFacebook:(id)sender {
@@ -190,8 +197,16 @@
 }
 
 - (IBAction)viewSnapchatProfile:(id)sender {
+    
 }
 
 - (IBAction)viewPhoneProfile:(id)sender {
+}
+- (IBAction)setPhoneNumber:(id)sender {
+    self.phoneLabel.text = self.phoneTextField.text;
+}
+
+- (IBAction)setSnapchatUsername:(id)sender {
+    self.snapchatLabel.text = self.snapchatTextField.text;
 }
 @end

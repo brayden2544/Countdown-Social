@@ -15,6 +15,7 @@
 @property (strong, nonatomic)IBOutlet UITextField *phoneNumberText;
 
 - (IBAction)setPhoneNumberButton:(id)sender;
+- (IBAction)cancel:(id)sender;
 
 
 

@@ -67,6 +67,7 @@
 {
     PBJStrobeView *_strobeView;
     UIButton *_doneButton;
+    UIButton *_cancelButton;
     
     UIButton *_flipButton;
     UIButton *_focusButton;
@@ -122,7 +123,7 @@
 
     _assetLibrary = [[ALAssetsLibrary alloc] init];
     
-    //CGFloat viewWidth = CGRectGetWidth(self.view.frame);
+    CGFloat viewWidth = CGRectGetWidth(self.view.frame);
 
     // elapsed time and red dot
     _strobeView = [[PBJStrobeView alloc] initWithFrame:CGRectZero];
@@ -138,6 +139,15 @@
 //    [_doneButton setImage:buttonImage forState:UIControlStateNormal];
 //    [_doneButton addTarget:self action:@selector(_handleDoneButton:) forControlEvents:UIControlEventTouchUpInside];
 //    [self.view addSubview:_doneButton];
+    
+    // cancel button
+    _cancelButton = [ExtendedHitButton extendedHitButton];
+    _cancelButton.frame = CGRectMake(viewWidth - 20.0f - 20.0f, 20.0f, 20.0f, 20.0f);
+    //Change image to something new
+    UIImage *buttonImage = [UIImage imageNamed:@"capture_yep"];
+    [_cancelButton setImage:buttonImage forState:UIControlStateNormal];
+    [_cancelButton addTarget:self action:@selector(_handleCancelButton:) forControlEvents:UIControlEventTouchUpInside];
+     [self.view addSubview:_cancelButton];
 
     // preview and AV layer
     _previewView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -414,6 +424,19 @@
     
     [self _endCapture];
 }
+
+- (void)_handleCancelButton:(UIButton *)button
+     {
+        // resets long press
+        _longPressGestureRecognizer.enabled = NO;
+        _longPressGestureRecognizer.enabled = YES;
+        
+         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+         ViewController *menuViewController = [storyboard instantiateViewControllerWithIdentifier:@"rootViewController"];
+         [self presentViewController:menuViewController animated:YES completion:nil];
+
+    }
+
 
 #pragma mark - UIAlertViewDelegate
 

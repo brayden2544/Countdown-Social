@@ -25,9 +25,20 @@
     }
     return self;
 }
+- (id) initWithCoder:(NSCoder *)aDecoder{
+    self = [super initWithCoder:aDecoder];
+    if (self){
+[self.snapchatUserText becomeFirstResponder];
+}
+    return self;
+}
 - (IBAction)setSnapchatButton:(id)sende{
     snapchatUsername = self.snapchatUserText.text;
     [self snapchatUsernameUpload];
+    self.hidden = TRUE;
+    [self endEditing:YES];
+}
+- (IBAction)cancel:(id)sender{
     self.hidden = TRUE;
     [self endEditing:YES];
 }

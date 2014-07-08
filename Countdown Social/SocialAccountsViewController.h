@@ -13,6 +13,14 @@
 /*User Dictionary*/
 @property (strong, nonatomic) NSDictionary *user;
 
+/*View Outlets*/
+@property (strong, nonatomic) IBOutlet UIView *phoneNumberView;
+@property (strong, nonatomic) IBOutlet UIView *snapChatView;
+
+/*Text View Outlets*/
+@property (strong, nonatomic) IBOutlet UITextField *snapchatTextField;
+@property (strong, nonatomic) IBOutlet UITextField *phoneTextField;
+
 
 /*ConnectedImages*/
 @property (strong, nonatomic) IBOutlet UIImageView *facebookConnected;
@@ -68,6 +76,11 @@
 - (IBAction)viewTwitterProfile:(id)sender;
 - (IBAction)viewSnapchatProfile:(id)sender;
 - (IBAction)viewPhoneProfile:(id)sender;
+
+/*Set Snap/Phone Button Actions*/
+- (IBAction)setPhoneNumber:(id)sender;
+- (IBAction)setSnapchatUsername:(id)sender;
+ 
 
 /*Label Outlets*/
 @property (strong, nonatomic) IBOutlet UILabel *facebookLabel;

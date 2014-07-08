@@ -29,6 +29,11 @@
     self.hidden = TRUE;
     [self endEditing:YES];
 }
+- (IBAction)cancel:(id)sender{
+    self.hidden = TRUE;
+    [self endEditing:YES];
+}
+
 
 
 -(void)phoneNumberUpload{

@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 
-@interface VideoPreviewViewController : ViewController
+@interface VideoPreviewViewController : ViewController <UIAlertViewDelegate>
 
 @property(nonatomic) NSString *videoFile;
 

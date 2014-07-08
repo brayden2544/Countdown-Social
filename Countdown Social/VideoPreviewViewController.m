@@ -119,20 +119,20 @@
                          NSData *data,
                          NSError *error){
          if ([data length] >0 && error == nil){
-             NSString *html =
-             [[NSString alloc] initWithData:data
-                                   encoding:NSUTF8StringEncoding];
-             
-             NSLog(@" POST HTML = %@", html);
-             
-             
-             
+             dispatch_sync(dispatch_get_main_queue(), ^(void) {
+             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle: @"Success!" message: @"Your video was uploaded successfully."
+                                                                delegate:self
+                                                       cancelButtonTitle:nil
+                                                       otherButtonTitles:@"Okay", nil];
+             [alertView show];
+             });
              id UserJson = [NSJSONSerialization
                             JSONObjectWithData:data
                             options:NSJSONReadingAllowFragments
                             error:&error];
              NSDictionary *user = UserJson;
              NSLog(@"dictionary contains %@" , user);
+             
              
              
          }
@@ -144,7 +144,33 @@
              NSLog(@"Video Not Uploaded");
          }
      }];
+}
+- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex{
+    NSLog(@"login in again hoping for more matches. button index = %d",buttonIndex);
+    
+    if (buttonIndex == 0){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        ViewController *menuViewController = [storyboard instantiateViewControllerWithIdentifier:@"rootViewController"];
+        [self presentViewController:menuViewController animated:YES completion:nil];
+    }
 
+}
+
+-(void)startActivityView{
+    UIView *darkView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    [darkView setBackgroundColor:[UIColor blackColor]];
+    darkView.alpha = 0.8;
+    [self.view addSubview:darkView];
+     
+     
+    
+    UIActivityIndicatorView *activityView=[[UIActivityIndicatorView alloc]     initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    
+    activityView.center = CGPointMake(self.view.frame.size.width / 2.0, self.view.frame.size.height / 2.0);
+    activityView.frame = self.view.frame;
+    [activityView startAnimating];
+    
+    [self.view addSubview:activityView];
 }
 
 
@@ -162,7 +188,8 @@
 
 //Action when user approves video and wants to approve it.
 - (IBAction)approveVideo:(id)sender {
+    [self.moviePlayer stop];
+    [self startActivityView];
     [self uploadProfileVideo];
-    
 }
 @end
