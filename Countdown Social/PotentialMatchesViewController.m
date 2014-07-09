@@ -289,7 +289,9 @@
 }
 -(void)buttonCheck{
     //Check for Twitter Account
-    if ([[user objectForKey: @"twitter_username"] isKindOfClass:[NSNull class]]){
+    if ([[user objectForKey: @"twitter_username"] isKindOfClass:[NSNull class]]||
+        [[user objectForKey: @"twitter_username"]isEqualToString:@""] ||
+        [[user objectForKey: @"twitter_username"]isEqualToString:@"<null>"]){
         self.twitterDeselect.hidden = false;
         self.twitterSelect.enabled = false;
         self.twitterDeselect.enabled=TRUE;
@@ -304,7 +306,9 @@
     }
    
            //Check for Instagram Account
-    if ([[user objectForKey: @"instagram_username"]isKindOfClass:[NSNull class]]){
+    if ([[user objectForKey: @"instagram_username"]isKindOfClass:[NSNull class]]||
+        [[user objectForKey: @"instagram_username"]isEqualToString:@""] ||
+        [[user objectForKey: @"instagram_username"]isEqualToString:@"<null>"]){
         self.instagramDeselect.hidden = FALSE;
         self.instagramSelect.enabled = false;
         self.instagramDeselect.enabled=TRUE;
@@ -320,7 +324,9 @@
     }
 
             //Check for Phone Number
-    if ([[user objectForKey: @"phone_number"]isKindOfClass:[NSNull class]]){
+    if ([[user objectForKey: @"phone_number"]isKindOfClass:[NSNull class]]|
+        [[user objectForKey: @"phone_number"]isEqualToString:@""] ||
+        [[user objectForKey: @"phone_number"]isEqualToString:@"<null>"]){
         self.phoneDeselect.hidden = FALSE;
         self.phoneSelect.enabled = false;
         self.phoneDeselect.enabled=TRUE;
@@ -336,7 +342,9 @@
     }
 
            //Check for Snapchat Account
-    if ([[user objectForKey: @"snapchat_username"]isKindOfClass:[NSNull class]]){
+    if ([[user objectForKey: @"snapchat_username"]isKindOfClass:[NSNull class]]||
+        [[user objectForKey: @"snapchat_username"]isEqualToString:@""] ||
+        [[user objectForKey: @"snapchat_username"]isEqualToString:@"<null>"]){
         self.snapchatDeselect.hidden = FALSE;
         self.snapchatSelect.enabled = false;
         self.snapchatDeselect.enabled=TRUE;
@@ -422,7 +430,9 @@
 
 
 - (IBAction)enableInstagram:(id)sender {
-    if([[user objectForKeyedSubscript:@"instagram_username"] isKindOfClass:[NSNull class]]) {
+    if([[user objectForKey:@"instagram_username"] isKindOfClass:[NSNull class]]||
+       [[user objectForKey: @"instagram_username"]isEqualToString:@""] ||
+       [[user objectForKey: @"instagram_username"]isEqualToString:@"<null>"]) {
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"You can't match with others on Instagram until you have your Instagram account linked" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Social Account Settings", nil];
         
         [actionSheet showInView:self.view];
@@ -435,7 +445,9 @@
 }
 
 - (IBAction)enableTwitter:(id)sender {
-    if ([[user objectForKeyedSubscript:@"twitter_username"] isKindOfClass:[NSNull class]]) {
+    if ([[user objectForKey:@"twitter_username"] isKindOfClass:[NSNull class]]||
+        [[user objectForKey: @"twitter_username"]isEqualToString:@""] ||
+        [[user objectForKey: @"twitte_username"]isEqualToString:@"<null>"]) {
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"You can't match with others on Twitter until you have your Twitter account linked" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Social Account Settings", nil];
         [actionSheet showInView:self.view];
     }
@@ -447,7 +459,9 @@
 }
 
 - (IBAction)enableSnapChat:(id)sender {
-    if ([[user objectForKey:@"snapchat_username"] isKindOfClass:[NSNull class]]){
+    if ([[user objectForKey:@"snapchat_username"] isKindOfClass:[NSNull class]]||
+        [[user objectForKey: @"snapchat_username"]isEqualToString:@""] ||
+        [[user objectForKey: @"snapchat_username"]isEqualToString:@"<null>"]){
           UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"You can't match with others on Snapchat until you add your Snapchat username" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Social Account Settings", nil];
         
         [actionSheet showInView:self.view];
@@ -466,7 +480,9 @@
 }
 
 - (IBAction)enablePhone:(id)sender {
-    if ([[user objectForKey:@"phone_number"] isKindOfClass:[NSNull class]]){
+    if ([[user objectForKey:@"phone_number"] isKindOfClass:[NSNull class]]||
+        [[user objectForKey: @"phone_number"]isEqualToString:@""] ||
+        [[user objectForKey: @"phone_number"]isEqualToString:@"<null>"]){
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"To be able to use this feature you first need to have your phone number added" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Social Account Settings", nil];
         
         [actionSheet showInView:self.view];

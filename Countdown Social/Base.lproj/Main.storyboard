@@ -95,7 +95,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Z0u-QQ-q8R" kind="modal" id="tmQ-kF-hBs"/>
+                                    <action selector="back:" destination="7WH-jW-Q9H" eventType="touchUpInside" id="FHl-al-JoW"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1159,6 +1159,5 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="ngN-SM-eye"/>
-        <segue reference="DIe-0s-6eI"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -129,7 +129,7 @@
     
     //Progress View
     _progressView = [[UIProgressView alloc] init];
-    _progressView.frame = CGRectMake(0 ,538,320,60);
+    _progressView.frame = CGRectMake(0 ,self.view.frame.size.height - 30.0f,320,60);
     [_progressView setProgressTintColor:[UIColor colorWithRed:121/255.0 green:211/255.0 blue:175/255.0 alpha:1.0]];
     [_progressView setUserInteractionEnabled:NO];
     [_progressView setProgressViewStyle:UIProgressViewStyleDefault];
@@ -156,7 +156,7 @@
     
     // cancel button
     _cancelButton = [ExtendedHitButton extendedHitButton];
-    _cancelButton.frame = CGRectMake(viewWidth - 20.0f - 20.0f, 20.0f, 20.0f, 20.0f);
+    _cancelButton.frame = CGRectMake(viewWidth - 20.0f - 15.0f, 18.0f, 25.0f, 25.0f);
     //Change image to something new
     UIImage *buttonImage = [UIImage imageNamed:@"scratch vid"];
     [_cancelButton setImage:buttonImage forState:UIControlStateNormal];
@@ -702,7 +702,7 @@
 - (void)visionDidCaptureVideoSample:(PBJVision *)vision
 {
  NSLog(@"captured video (%f) seconds", vision.capturedVideoSeconds);
-    _progressView.progress=vision.capturedVideoSeconds/6;
+    _progressView.progress=vision.capturedVideoSeconds/6.0f;
  
 
 

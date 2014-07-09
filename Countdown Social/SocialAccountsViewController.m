@@ -33,13 +33,13 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    User *Userobj = [User getInstance];
-    user = Userobj.user;
-    [self buttonCheck];
+        [self buttonCheck];
 }
 
 -(void)buttonCheck{
     //Add Facebook Text
+    User *Userobj = [User getInstance];
+    user = Userobj.user;
     NSString *name = [user objectForKey:@"firstName"];
     name =[name stringByAppendingString:@" "];
     name = [name stringByAppendingString:[user objectForKey:@"lastName"]];
@@ -47,7 +47,9 @@
     self.facebookLabel.text = name;
     self.facebookLabel.textAlignment = 0;
     //Check for Twitter Account
-    if ([[user objectForKey: @"twitter_username"] isKindOfClass:[NSNull class]]){
+    if ([[user objectForKey: @"twitter_username"] isKindOfClass:[NSNull class]]||
+        [[user objectForKey: @"twitter_username"]isEqualToString:@""] ||
+        [[user objectForKey: @"twitter_username"]isEqualToString:@"<null>"]){
         self.twitterDisconnected.hidden = FALSE;
         self.twitterConnected.hidden=TRUE;
         self.editTwitterButton.hidden=TRUE;
@@ -66,7 +68,9 @@
     }
     
     //Check for Instagram Account
-    if ([[user objectForKey: @"instagram_username"] isKindOfClass:[NSNull class]]){
+    if ([[user objectForKey: @"instagram_username"] isKindOfClass:[NSNull class]]||
+        [[user objectForKey: @"instagram_username"]isEqualToString:@""] ||
+        [[user objectForKey: @"instagram_username"]isEqualToString:@"<null>"]){
         self.instagramDisconnected.hidden = FALSE;
         self.instagramConnected.hidden=TRUE;
         self.editInstagramButton.hidden=TRUE;
@@ -85,7 +89,10 @@
         self.instagramLabel.textAlignment = 0;
     }
          //Check for Phone Number
-    if ([[user objectForKey: @"phone_number"]isKindOfClass:[NSNull class]]){
+    if ([[user objectForKey: @"phone_number"]isKindOfClass:[NSNull class]] ||
+        [[user objectForKey: @"phone_number"]isEqualToString:@""] ||
+         [[user objectForKey: @"phone_number"]isEqualToString:@"<null>"])
+    {
         self.phoneDisconnected.hidden = FALSE;
         self.phoneConnected.hidden=TRUE;
         self.editPhoneButton.hidden=TRUE;
@@ -106,7 +113,9 @@
 
   
     //Check for Snapchat Account
-    if ([[user objectForKey: @"snapchat_username"]isKindOfClass:[NSNull class]]){
+    if ([[user objectForKey: @"snapchat_username"]isKindOfClass:[NSNull class]]||
+        [[user objectForKey: @"snapchat_username"]isEqualToString:@""] ||
+        [[user objectForKey: @"snapchat_username"]isEqualToString:@"<null>"]){
         self.snapchatDisconnected.hidden = FALSE;
         self.snapchatConnected.hidden=TRUE;
         self.editSnapchatButton.hidden=TRUE;
@@ -203,10 +212,20 @@
 - (IBAction)viewPhoneProfile:(id)sender {
 }
 - (IBAction)setPhoneNumber:(id)sender {
-    self.phoneLabel.text = self.phoneTextField.text;
+    int64_t delayInSeconds = 3.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [self buttonCheck];
+            });
+
 }
 
 - (IBAction)setSnapchatUsername:(id)sender {
-    self.snapchatLabel.text = self.snapchatTextField.text;
+    int64_t delayInSeconds = 3.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [self buttonCheck];
+    });
+
 }
 @end

@@ -53,7 +53,14 @@
     
     NSMutableURLRequest *urlRequest =
     [NSMutableURLRequest requestWithURL:url];
-    [urlRequest setHTTPBody:[[NSString stringWithFormat:@"snapchat_username=%@",snapchatUsername] dataUsingEncoding:NSUTF8StringEncoding]];
+    if (snapchatUsername.length >0) {
+        [urlRequest setHTTPBody:[[NSString stringWithFormat:@"snapchat_username=%@",snapchatUsername] dataUsingEncoding:NSUTF8StringEncoding]];
+    }
+    else {
+        snapchatUsername=[NSString stringWithFormat:@"%@", [NSNull null]];
+        [urlRequest setHTTPBody:[[NSString stringWithFormat:@"snapchat_username=%@",snapchatUsername] dataUsingEncoding:NSUTF8StringEncoding]];
+
+    }
     
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     

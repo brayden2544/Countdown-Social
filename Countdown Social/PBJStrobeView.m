@@ -64,11 +64,11 @@
     self = [super initWithFrame:frame];
     if (self) {
 
-        CGFloat padding = 0.0f;
+        CGFloat padding = 04.0f;
     
         self.backgroundColor = [UIColor blackColor];
         CGRect viewFrame = CGRectZero;
-        viewFrame.size = CGSizeMake(20.0f, 20.0f);
+        viewFrame.size = CGSizeMake(100.0f, 30.0f);
         //self.layer.cornerRadius = 9.0;
         self.frame = viewFrame;
                 

@@ -13,6 +13,7 @@
 @property(nonatomic) NSString *videoFile;
 
 - (IBAction)approveVideo:(id)sender;
+- (IBAction)back:(id)sender;
 
 @end
 
