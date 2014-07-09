@@ -324,7 +324,7 @@
     }
 
             //Check for Phone Number
-    if ([[user objectForKey: @"phone_number"]isKindOfClass:[NSNull class]]|
+    if ([[user objectForKey: @"phone_number"]isKindOfClass:[NSNull class]]||
         [[user objectForKey: @"phone_number"]isEqualToString:@""] ||
         [[user objectForKey: @"phone_number"]isEqualToString:@"<null>"]){
         self.phoneDeselect.hidden = FALSE;
