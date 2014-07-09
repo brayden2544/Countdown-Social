@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Login Load View Controller-->
@@ -74,13 +75,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Preview2" translatesAutoresizingMaskIntoConstraints="NO" id="Ml2-Z9-PYQ">
-                                <rect key="frame" x="89" y="35" width="142" height="27"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Preview2" translatesAutoresizingMaskIntoConstraints="NO" id="Ml2-Z9-PYQ">
+                                <rect key="frame" x="89" y="35" width="141" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="27" id="MZd-oj-0JR"/>
+                                </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qQm-EI-Jxm">
-                                <rect key="frame" x="202" y="433" width="86" height="86"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qQm-EI-Jxm">
+                                <rect key="frame" x="200" y="447" width="86" height="86"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="qQm-EI-Jxm" secondAttribute="height" multiplier="1:1" id="5PR-fN-GXE"/>
+                                </constraints>
                                 <state key="normal" backgroundImage="accept">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -88,9 +95,14 @@
                                     <action selector="approveVideo:" destination="7WH-jW-Q9H" eventType="touchUpInside" id="gWP-6T-md2"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WzW-bT-6UD">
-                                <rect key="frame" x="32" y="433" width="86" height="86"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WzW-bT-6UD">
+                                <rect key="frame" x="40" y="447" width="86" height="86"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="86" id="3rP-Rx-M6z"/>
+                                    <constraint firstAttribute="width" secondItem="WzW-bT-6UD" secondAttribute="height" multiplier="1:1" id="aCa-vO-ooF"/>
+                                    <constraint firstAttribute="width" constant="86" id="vwU-UY-U9r"/>
+                                </constraints>
                                 <state key="normal" backgroundImage="back button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -100,6 +112,22 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.17415602189781018" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qQm-EI-Jxm" firstAttribute="leading" secondItem="WzW-bT-6UD" secondAttribute="trailing" constant="74" id="CdP-RS-Cp4"/>
+                            <constraint firstItem="WzW-bT-6UD" firstAttribute="leading" secondItem="p86-c9-r9r" secondAttribute="leading" constant="40" id="EAJ-F2-MMg"/>
+                            <constraint firstItem="Ml2-Z9-PYQ" firstAttribute="leading" secondItem="p86-c9-r9r" secondAttribute="leading" constant="89" id="EWz-jt-BEt"/>
+                            <constraint firstItem="WzW-bT-6UD" firstAttribute="bottom" secondItem="qQm-EI-Jxm" secondAttribute="bottom" id="GbC-ue-wKf"/>
+                            <constraint firstItem="qQm-EI-Jxm" firstAttribute="width" secondItem="p86-c9-r9r" secondAttribute="height" multiplier="43:284" id="HLU-HP-m6V"/>
+                            <constraint firstItem="cE8-nV-4HF" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="WzW-bT-6UD" secondAttribute="bottom" constant="5" id="Puh-7m-juf"/>
+                            <constraint firstItem="WzW-bT-6UD" firstAttribute="width" secondItem="p86-c9-r9r" secondAttribute="height" multiplier="43:284" id="T2q-bl-Rps"/>
+                            <constraint firstItem="WzW-bT-6UD" firstAttribute="baseline" secondItem="qQm-EI-Jxm" secondAttribute="baseline" id="TXx-4n-zZr"/>
+                            <constraint firstItem="WzW-bT-6UD" firstAttribute="top" secondItem="qQm-EI-Jxm" secondAttribute="top" id="fbj-Kf-QVb"/>
+                            <constraint firstAttribute="trailing" secondItem="qQm-EI-Jxm" secondAttribute="trailing" constant="34" id="hoD-md-CeH"/>
+                            <constraint firstItem="cE8-nV-4HF" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="qQm-EI-Jxm" secondAttribute="bottom" constant="5" id="hwN-Sz-bUZ"/>
+                            <constraint firstItem="Ml2-Z9-PYQ" firstAttribute="top" secondItem="7IB-Y3-7M7" secondAttribute="bottom" constant="15" id="kA9-DU-PY3"/>
+                            <constraint firstItem="Ml2-Z9-PYQ" firstAttribute="centerX" secondItem="p86-c9-r9r" secondAttribute="centerX" id="otZ-ER-7L9"/>
+                            <constraint firstItem="cE8-nV-4HF" firstAttribute="top" secondItem="WzW-bT-6UD" secondAttribute="bottom" constant="35" id="xor-Dd-XN7"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wGH-qo-wK6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -931,45 +959,61 @@
                                 <rect key="frame" x="-5" y="-4" width="334" height="582"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
-                            <button opaque="NO" alpha="0.75" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o7i-aa-N4W">
+                            <button opaque="NO" alpha="0.75" contentMode="scaleAspectFit" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o7i-aa-N4W">
                                 <rect key="frame" x="46" y="230" width="130" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="o7i-aa-N4W" secondAttribute="height" multiplier="65:16" id="tJN-n9-WEq"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
                                 <state key="normal" image="nStats-1" backgroundImage="menue buttons">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 </state>
                             </button>
-                            <button opaque="NO" alpha="0.75" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rCO-4H-DxI">
+                            <button opaque="NO" alpha="0.75" contentMode="scaleAspectFit" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rCO-4H-DxI">
                                 <rect key="frame" x="46" y="276" width="130" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="4Ny-fx-VxW"/>
+                                    <constraint firstAttribute="width" secondItem="rCO-4H-DxI" secondAttribute="height" multiplier="65:16" id="nBe-3R-r5Q"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
                                 <state key="normal" image="nLocation-1" backgroundImage="menue buttons">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 </state>
                             </button>
-                            <button opaque="NO" alpha="0.75" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DIn-tK-8iF">
+                            <button opaque="NO" alpha="0.75" contentMode="scaleAspectFit" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DIn-tK-8iF">
                                 <rect key="frame" x="46" y="368" width="130" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="DIn-tK-8iF" secondAttribute="height" multiplier="65:16" id="fYY-Iz-48u"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
                                 <state key="normal" image="nFeedback-1" backgroundImage="menue buttons">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 </state>
                             </button>
-                            <button opaque="NO" alpha="0.75" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CwM-it-3cU">
+                            <button opaque="NO" alpha="0.75" contentMode="scaleAspectFit" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CwM-it-3cU">
                                 <rect key="frame" x="46" y="414" width="130" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="CwM-it-3cU" secondAttribute="height" multiplier="65:16" id="IVh-IH-PZj"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
                                 <state key="normal" image="nSettings-1" backgroundImage="menue buttons">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 </state>
                             </button>
-                            <button opaque="NO" alpha="0.75" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0uB-jN-Mdz">
+                            <button opaque="NO" alpha="0.75" contentMode="scaleAspectFit" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0uB-jN-Mdz">
                                 <rect key="frame" x="46" y="184" width="130" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="0uB-jN-Mdz" secondAttribute="height" multiplier="65:16" id="QLn-Op-e0Z"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
                                 <state key="normal" image="nSocial Accounts-1" backgroundImage="menue buttons">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -979,9 +1023,12 @@
                                     <segue destination="cm5-s6-Yax" kind="modal" id="jEc-YL-HDg"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" alpha="0.75" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y7L-7m-i4b">
+                            <button opaque="NO" alpha="0.75" contentMode="scaleAspectFit" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y7L-7m-i4b">
                                 <rect key="frame" x="46" y="138" width="130" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="y7L-7m-i4b" secondAttribute="height" multiplier="65:16" id="mtg-Ny-dfZ"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
                                 <state key="normal" image="nProfile-1" backgroundImage="menue buttons">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -991,9 +1038,12 @@
                                     <segue destination="N6j-aT-1cU" kind="modal" id="A4l-RU-mwV"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" alpha="0.75" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1x0-R2-xaw">
+                            <button opaque="NO" alpha="0.75" contentMode="scaleAspectFit" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1x0-R2-xaw">
                                 <rect key="frame" x="46" y="322" width="130" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="1x0-R2-xaw" secondAttribute="height" multiplier="65:16" id="nYc-Fu-cZs"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
                                 <state key="normal" image="nTell your friends-1" backgroundImage="menue buttons">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1005,9 +1055,12 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bottom left camera" translatesAutoresizingMaskIntoConstraints="NO" id="pE4-w1-RWG">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="bottom left camera" translatesAutoresizingMaskIntoConstraints="NO" id="pE4-w1-RWG">
                                 <rect key="frame" x="72" y="472" width="104" height="66"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="pE4-w1-RWG" secondAttribute="height" multiplier="52:33" id="j5l-fr-UEK"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                     </view>
@@ -1100,6 +1153,24 @@
             </objects>
             <point key="canvasLocation" x="2239" y="847"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="NVc-Mc-KGS">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="77D-xp-6mN" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZVC-qX-FCY"/>
+                        <viewControllerLayoutGuide type="bottom" id="47I-iR-md9"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="YmX-ld-jta">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H1j-nd-zuP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
     </scenes>
     <resources>
         <image name="Facebook account on" width="121" height="122"/>
@@ -1158,6 +1229,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ngN-SM-eye"/>
+        <segue reference="2Zk-bG-QQP"/>
     </inferredMetricsTieBreakers>
 </document>
