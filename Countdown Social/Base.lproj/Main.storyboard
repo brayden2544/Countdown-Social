@@ -528,7 +528,7 @@
                                 <rect key="frame" x="-26" y="112" width="127" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="phone account off" translatesAutoresizingMaskIntoConstraints="NO" id="n3K-4R-4hg">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ephonecolor" translatesAutoresizingMaskIntoConstraints="NO" id="n3K-4R-4hg">
                                 <rect key="frame" x="-27" y="466" width="127" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -536,7 +536,7 @@
                                 <rect key="frame" x="-27" y="466" width="127" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="snapchat account off" translatesAutoresizingMaskIntoConstraints="NO" id="aCr-c4-zcD">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="esnapcolor" translatesAutoresizingMaskIntoConstraints="NO" id="aCr-c4-zcD">
                                 <rect key="frame" x="-27" y="376" width="127" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -544,7 +544,7 @@
                                 <rect key="frame" x="-27" y="376" width="127" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="twitter account off" translatesAutoresizingMaskIntoConstraints="NO" id="3yM-7K-UJZ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="etwittercolor" translatesAutoresizingMaskIntoConstraints="NO" id="3yM-7K-UJZ">
                                 <rect key="frame" x="-27" y="288" width="127" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -552,7 +552,7 @@
                                 <rect key="frame" x="-27" y="288" width="127" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="instagram account off" translatesAutoresizingMaskIntoConstraints="NO" id="aph-OB-YR2">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="einstacolor" translatesAutoresizingMaskIntoConstraints="NO" id="aph-OB-YR2">
                                 <rect key="frame" x="-27" y="201" width="127" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -1118,10 +1118,13 @@
         <image name="back button" width="100" height="100"/>
         <image name="bottom left camera" width="206" height="131"/>
         <image name="decline" width="104" height="104"/>
+        <image name="einstacolor" width="124" height="123"/>
+        <image name="ephonecolor" width="123" height="123"/>
+        <image name="esnapcolor" width="123" height="123"/>
+        <image name="etwittercolor" width="121" height="121"/>
         <image name="facebook off" width="96" height="95"/>
         <image name="facebook on" width="94" height="93"/>
         <image name="fbLogin.png" width="1212" height="196"/>
-        <image name="instagram account off" width="122" height="121"/>
         <image name="instagram account on" width="122" height="121"/>
         <image name="link account cancel" width="254" height="84"/>
         <image name="loadingScreen.png" width="1280" height="2272"/>
@@ -1140,14 +1143,11 @@
         <image name="new insta on" width="88" height="88"/>
         <image name="phone  off" width="95" height="95"/>
         <image name="phone  on" width="93" height="93"/>
-        <image name="phone account off" width="123" height="123"/>
         <image name="phone account on" width="123" height="123"/>
-        <image name="snapchat account off" width="123" height="123"/>
         <image name="snapchat account on" width="123" height="123"/>
         <image name="snapchat off" width="96" height="96"/>
         <image name="snapchat on" width="94" height="94"/>
         <image name="snapchat set button" width="256" height="86"/>
-        <image name="twitter account off" width="121" height="122"/>
         <image name="twitter account on" width="121" height="122"/>
         <image name="twitter off" width="96" height="96"/>
         <image name="twitter on" width="94" height="94"/>
