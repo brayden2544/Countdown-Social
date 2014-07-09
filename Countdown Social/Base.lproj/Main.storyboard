@@ -211,6 +211,175 @@
             </objects>
             <point key="canvasLocation" x="1174" y="127"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="oal-nm-7Av">
+            <objects>
+                <viewController id="Qsq-uR-0b2" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jwO-Tj-2Kp"/>
+                        <viewControllerLayoutGuide type="bottom" id="MDF-9R-GgJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="IHL-95-WqJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rdg-ep-GXF">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="333"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D0c-sG-OC9">
+                                <rect key="frame" x="0.0" y="333" width="320" height="235"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="efacebookcolor" translatesAutoresizingMaskIntoConstraints="NO" id="qU3-3r-pet">
+                                        <rect key="frame" x="16" y="4" width="36" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="einstacolor" translatesAutoresizingMaskIntoConstraints="NO" id="0Zv-zM-8T6">
+                                        <rect key="frame" x="16" y="48" width="36" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="etwittercolor" translatesAutoresizingMaskIntoConstraints="NO" id="AF8-uY-hAn">
+                                        <rect key="frame" x="16" y="92" width="36" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="esnapcolor" translatesAutoresizingMaskIntoConstraints="NO" id="nso-9O-BOq">
+                                        <rect key="frame" x="16" y="136" width="36" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="ephonecolor" translatesAutoresizingMaskIntoConstraints="NO" id="aqV-lj-Z6c">
+                                        <rect key="frame" x="16" y="179" width="36" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="Facebook account on" translatesAutoresizingMaskIntoConstraints="NO" id="sWq-3R-HkJ">
+                                        <rect key="frame" x="16" y="4" width="36" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="instagram account on" translatesAutoresizingMaskIntoConstraints="NO" id="0pz-bw-i13">
+                                        <rect key="frame" x="16" y="48" width="36" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="twitter account on" translatesAutoresizingMaskIntoConstraints="NO" id="QZw-Fl-2PH">
+                                        <rect key="frame" x="16" y="92" width="36" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="snapchat account on" translatesAutoresizingMaskIntoConstraints="NO" id="u2e-Fe-S3K">
+                                        <rect key="frame" x="16" y="136" width="36" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="phone account on" translatesAutoresizingMaskIntoConstraints="NO" id="Hro-KD-ocP">
+                                        <rect key="frame" x="16" y="179" width="36" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xy6-gM-bmz">
+                                        <rect key="frame" x="67" y="8" width="106" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
+                                        <state key="normal" title="Add">
+                                            <color key="titleColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pah-pv-zoS">
+                                        <rect key="frame" x="186" y="8" width="119" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mJm-lY-TtQ">
+                                        <rect key="frame" x="67" y="49" width="106" height="33"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="77" maxY="0.0"/>
+                                        <state key="normal" title="Follow"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aIb-cR-eTW">
+                                        <rect key="frame" x="186" y="52" width="119" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q8H-Lq-tpa">
+                                        <rect key="frame" x="67" y="93" width="106" height="33"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Follow">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S03-2F-WpO">
+                                        <rect key="frame" x="186" y="96" width="119" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eLU-ka-ANF">
+                                        <rect key="frame" x="67" y="140" width="106" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Add">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="les-XO-oPh">
+                                        <rect key="frame" x="186" y="140" width="119" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7TH-Jb-FBY">
+                                        <rect key="frame" x="67" y="183" width="106" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Save #">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleAspectFit" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O3b-4o-TNI">
+                                        <rect key="frame" x="186" y="183" width="119" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Hro-KD-ocP" firstAttribute="leading" secondItem="u2e-Fe-S3K" secondAttribute="leading" id="0od-wi-gTd"/>
+                                    <constraint firstItem="Hro-KD-ocP" firstAttribute="leading" secondItem="nso-9O-BOq" secondAttribute="leading" id="3jE-Kc-bfa"/>
+                                    <constraint firstItem="Hro-KD-ocP" firstAttribute="trailing" secondItem="AF8-uY-hAn" secondAttribute="trailing" id="3uh-ZX-bDK"/>
+                                    <constraint firstItem="Hro-KD-ocP" firstAttribute="trailing" secondItem="0pz-bw-i13" secondAttribute="trailing" id="4g8-oW-GG6"/>
+                                    <constraint firstItem="Hro-KD-ocP" firstAttribute="leading" secondItem="aqV-lj-Z6c" secondAttribute="leading" id="Eb0-CP-YZG"/>
+                                    <constraint firstItem="Hro-KD-ocP" firstAttribute="trailing" secondItem="0Zv-zM-8T6" secondAttribute="trailing" id="Guq-0g-Jxw"/>
+                                    <constraint firstItem="Hro-KD-ocP" firstAttribute="trailing" secondItem="nso-9O-BOq" secondAttribute="trailing" id="HuA-cf-9VQ"/>
+                                    <constraint firstItem="Hro-KD-ocP" firstAttribute="centerY" secondItem="O3b-4o-TNI" secondAttribute="centerY" id="Kq1-vZ-ysJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="Hro-KD-ocP" secondAttribute="bottom" constant="20" symbolic="YES" id="OAL-cD-Uli"/>
+                                    <constraint firstItem="Hro-KD-ocP" firstAttribute="leading" secondItem="AF8-uY-hAn" secondAttribute="leading" id="PpK-Xa-AZv"/>
+                                    <constraint firstItem="Hro-KD-ocP" firstAttribute="trailing" secondItem="QZw-Fl-2PH" secondAttribute="trailing" id="Rn8-Xh-1kG"/>
+                                    <constraint firstItem="Hro-KD-ocP" firstAttribute="top" secondItem="aqV-lj-Z6c" secondAttribute="top" id="VU0-cc-bN6"/>
+                                    <constraint firstItem="Hro-KD-ocP" firstAttribute="leading" secondItem="0pz-bw-i13" secondAttribute="leading" id="XE7-W8-5Z5"/>
+                                    <constraint firstItem="Hro-KD-ocP" firstAttribute="trailing" secondItem="sWq-3R-HkJ" secondAttribute="trailing" id="aio-AM-QYM"/>
+                                    <constraint firstItem="Hro-KD-ocP" firstAttribute="trailing" secondItem="u2e-Fe-S3K" secondAttribute="trailing" id="igm-sF-CD8"/>
+                                    <constraint firstItem="Hro-KD-ocP" firstAttribute="bottom" secondItem="aqV-lj-Z6c" secondAttribute="bottom" id="mCc-9J-1SE"/>
+                                    <constraint firstItem="Hro-KD-ocP" firstAttribute="trailing" secondItem="qU3-3r-pet" secondAttribute="trailing" id="odq-eR-v72"/>
+                                    <constraint firstItem="Hro-KD-ocP" firstAttribute="leading" secondItem="QZw-Fl-2PH" secondAttribute="leading" id="qQb-a9-azY"/>
+                                    <constraint firstItem="Hro-KD-ocP" firstAttribute="leading" secondItem="0Zv-zM-8T6" secondAttribute="leading" id="r0q-VO-fTE"/>
+                                    <constraint firstItem="Hro-KD-ocP" firstAttribute="top" secondItem="u2e-Fe-S3K" secondAttribute="bottom" constant="7" id="tLN-rV-94s"/>
+                                    <constraint firstItem="Hro-KD-ocP" firstAttribute="trailing" secondItem="aqV-lj-Z6c" secondAttribute="trailing" id="wQs-z0-oDu"/>
+                                    <constraint firstItem="Hro-KD-ocP" firstAttribute="leading" secondItem="qU3-3r-pet" secondAttribute="leading" id="yKn-Iv-9Zj"/>
+                                    <constraint firstItem="Hro-KD-ocP" firstAttribute="leading" secondItem="D0c-sG-OC9" secondAttribute="leading" constant="16" id="zG3-cO-fPi"/>
+                                    <constraint firstItem="Hro-KD-ocP" firstAttribute="leading" secondItem="sWq-3R-HkJ" secondAttribute="leading" id="zmd-aW-6kV"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OI2-HU-7yi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1633" y="178"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="KQt-lU-Pf4">
             <objects>
@@ -1300,6 +1469,7 @@
         <image name="bottom left camera" width="206" height="131"/>
         <image name="countdownLogo" width="180" height="180"/>
         <image name="decline" width="104" height="104"/>
+        <image name="efacebookcolor" width="122" height="121"/>
         <image name="einstacolor" width="124" height="123"/>
         <image name="ephonecolor" width="123" height="123"/>
         <image name="esnapcolor" width="123" height="123"/>
