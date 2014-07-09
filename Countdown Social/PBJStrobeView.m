@@ -64,11 +64,12 @@
     self = [super initWithFrame:frame];
     if (self) {
 
-        CGFloat padding = 4.0f;
+        CGFloat padding = 0.0f;
     
         self.backgroundColor = [UIColor blackColor];
         CGRect viewFrame = CGRectZero;
-        viewFrame.size = CGSizeMake(100.0f, 30.0f);
+        viewFrame.size = CGSizeMake(20.0f, 20.0f);
+        //self.layer.cornerRadius = 9.0;
         self.frame = viewFrame;
                 
         _strobeView = [self _strobeView];
@@ -85,7 +86,7 @@
 
         _strobeViewRecordIdle = [self _strobeViewRecordIdle];
         _strobeViewRecordIdle.frame = strobeFrame;
-        _strobeViewRecordIdle.transform = CGAffineTransformMakeScale(0.7f, 0.7f);
+       _strobeViewRecordIdle.transform = CGAffineTransformMakeScale(0.7f, 0.7f);
         [self addSubview:_strobeViewRecordIdle];
 
     }
@@ -107,7 +108,7 @@
 
     _strobeViewRecord.alpha = 0;
     [UIView animateWithDuration:0.2f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        _strobeViewRecordIdle.transform = CGAffineTransformMakeScale(0.7f, 0.7f);
+       _strobeViewRecordIdle.transform = CGAffineTransformMakeScale(0.7f, 0.7f);
     } completion:^(BOOL finished) {
     }];
 }

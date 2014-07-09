@@ -69,6 +69,8 @@
     UIButton *_doneButton;
     UIButton *_cancelButton;
     
+    UIProgressView *_progressView;
+    
     UIButton *_flipButton;
     UIButton *_focusButton;
     UIButton *_frameRateButton;
@@ -124,6 +126,17 @@
     _assetLibrary = [[ALAssetsLibrary alloc] init];
     
     CGFloat viewWidth = CGRectGetWidth(self.view.frame);
+    
+    //Progress View
+    _progressView = [[UIProgressView alloc] init];
+    _progressView.frame = CGRectMake(0 ,538,320,60);
+    [_progressView setProgressTintColor:[UIColor colorWithRed:121/255.0 green:211/255.0 blue:175/255.0 alpha:1.0]];
+    [_progressView setUserInteractionEnabled:NO];
+    [_progressView setProgressViewStyle:UIProgressViewStyleDefault];
+    [_progressView setTrackTintColor:[UIColor clearColor]];
+    [_progressView setTransform:CGAffineTransformMakeScale(1.0, 27.5)];
+    
+    [self.view addSubview:_progressView];
 
     // elapsed time and red dot
     _strobeView = [[PBJStrobeView alloc] initWithFrame:CGRectZero];
@@ -131,6 +144,7 @@
     strobeFrame.origin = CGPointMake(15.0f, 15.0f);
     _strobeView.frame = strobeFrame;
     [self.view addSubview:_strobeView];
+    
 
 //    // done button
 //    _doneButton = [ExtendedHitButton extendedHitButton];
@@ -144,7 +158,7 @@
     _cancelButton = [ExtendedHitButton extendedHitButton];
     _cancelButton.frame = CGRectMake(viewWidth - 20.0f - 20.0f, 20.0f, 20.0f, 20.0f);
     //Change image to something new
-    UIImage *buttonImage = [UIImage imageNamed:@"capture_yep"];
+    UIImage *buttonImage = [UIImage imageNamed:@"scratch vid"];
     [_cancelButton setImage:buttonImage forState:UIControlStateNormal];
     [_cancelButton addTarget:self action:@selector(_handleCancelButton:) forControlEvents:UIControlEventTouchUpInside];
      [self.view addSubview:_cancelButton];
@@ -687,7 +701,11 @@
 
 - (void)visionDidCaptureVideoSample:(PBJVision *)vision
 {
-//    NSLog(@"captured video (%f) seconds", vision.capturedVideoSeconds);
+ NSLog(@"captured video (%f) seconds", vision.capturedVideoSeconds);
+    _progressView.progress=vision.capturedVideoSeconds/6;
+ 
+
+
 }
 
 @end
