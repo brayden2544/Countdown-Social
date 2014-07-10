@@ -20,7 +20,7 @@
         // Initialization code
         radius = 18;
         stroke = 2;
-        self.frame = CGRectMake(277,73,2*radius,2*radius);
+        self.frame = CGRectMake(10,100,2*radius,2*radius);
         
         self.backgroundColor = [UIColor clearColor];
         self.layer.cornerRadius = radius;

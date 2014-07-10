@@ -112,7 +112,7 @@
     self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:_videoUrl];
     self.moviePlayer.shouldAutoplay = NO;
     self.moviePlayer.controlStyle =MPMovieControlStyleNone;
-    [self.moviePlayer.view setFrame:CGRectMake (0, 115, 320, 320)];
+    [self.moviePlayer.view setFrame:CGRectMake (0, 90, 320, 320)];
     [self.view addSubview:self.moviePlayer.view];
     
     //self.moviePlayer.movieSourceType = MPMovieSourceTypeStreaming;
@@ -184,9 +184,9 @@
 
 - (void)setProfilePic{
     NSString *picURL = @"http://graph.facebook.com/";
-    //NSString *uid =[[currentPotentialMatch objectForKey:@"uid"] stringValue];
+    NSString *uid =[[currentPotentialMatch objectForKey:@"uid"] stringValue];
 #warning enable this top one once we are using real users.
-    NSString *uid = @"1159358848";
+    //NSString *uid = @"1159358848";
     picURL= [picURL stringByAppendingString:uid];
     picURL = [picURL stringByAppendingString:@"/picture?width=200&height=200"];
     NSURL *url = [NSURL URLWithString:picURL];
