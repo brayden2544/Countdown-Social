@@ -219,7 +219,7 @@
 - (void)nextMatch{
     PotentialMatches *obj =[PotentialMatches nextMatch];
     NSLog(@"@%@",obj.potentialMatches);
-    if ([obj.potentialMatches objectAtIndex:0] == [NSNull null]){
+    if ([obj.potentialMatches count]==0){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"You're Out!" message: @"There are no more users near you."
                                                                                      delegate:self
                                                                             cancelButtonTitle:@"Cancel"

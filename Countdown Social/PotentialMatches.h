@@ -14,6 +14,7 @@
 }
 
 @property (nonatomic, retain) NSMutableArray *potentialMatches;
+@property (nonatomic, retain) NSDictionary *user;
 
 +(PotentialMatches*)getInstance;
 +(PotentialMatches*)nextMatch;

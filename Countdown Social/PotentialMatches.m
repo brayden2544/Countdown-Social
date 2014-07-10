@@ -8,9 +8,11 @@
 
 #import "PotentialMatches.h"
 #import "AppDelegate.h"
+#import "User.h"
 
 @implementation PotentialMatches
 @synthesize potentialMatches;
+@synthesize user;
 
 +(PotentialMatches *)getInstance{
     static PotentialMatches *instance = nil;
@@ -19,6 +21,8 @@
    dispatch_once(&onceToken, ^{
             instance= [[self alloc]init];
        instance.potentialMatches = [[NSMutableArray alloc]init];
+       User *obj = [User getInstance];
+       NSDictionary *user = obj.user;
        //start filling Potential Matches Queue
        dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
        
@@ -26,8 +30,8 @@
        dispatch_async(concurrentQueue, ^{
            //Download potential matches here
            NSString *urlAsString =@"http://countdown-java-dev.elasticbeanstalk.com/user/";
-           // TODO:NSString *userID = [user objectForKey:@"uid"];
-           urlAsString = [urlAsString stringByAppendingString:@"690825080"];
+           NSString *userID = [[user objectForKey:@"uid"]stringValue];
+           urlAsString = [urlAsString stringByAppendingString:userID];
            urlAsString = [urlAsString stringByAppendingString:@"/nextPotentials"];
            NSLog(@"%@", urlAsString);
            
@@ -94,7 +98,9 @@
     }
     NSLog(@"@%d",[instance.potentialMatches count]);
 
-    if ([matches count] <= 2 ){
+    if ([matches count] <= 1 ){
+        User *obj = [User getInstance];
+        NSDictionary *user = obj.user;
         //start filling Potential Matches Queue
         dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         
@@ -102,8 +108,8 @@
         dispatch_async(concurrentQueue, ^{
             //Download potential matches here
             NSString *urlAsString =@"http://countdown-java-dev.elasticbeanstalk.com/user/";
-            // TODO:NSString *userID = [user objectForKey:@"uid"];
-            urlAsString = [urlAsString stringByAppendingString:@"690825080"];
+            NSString *userID = [[user objectForKey:@"uid"]stringValue];
+            urlAsString = [urlAsString stringByAppendingString:userID];
             urlAsString = [urlAsString stringByAppendingString:@"/nextPotentials"];
             NSLog(@"%@", urlAsString);
             
