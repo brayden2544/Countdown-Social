@@ -61,7 +61,7 @@
         self.blur.frame = self.moviePlayer.view.frame;
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.view addSubview:self.blur];
+        [self.view insertSubview:self.blur belowSubview:countdownTimer];
         self.createMatch.hidden = false;
         [self.view insertSubview:self.createMatch aboveSubview:self.blur];
         
@@ -112,8 +112,11 @@
     self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:_videoUrl];
     self.moviePlayer.shouldAutoplay = NO;
     self.moviePlayer.controlStyle =MPMovieControlStyleNone;
+    //self.moviePlayer.movieSourceType = MPMovieSourceTypeStreaming;
     [self.moviePlayer.view setFrame:CGRectMake (0, 90, 320, 320)];
     [self.view addSubview:self.moviePlayer.view];
+    [self.view insertSubview:countdownTimer aboveSubview:self.moviePlayer.view];
+
     
     //self.moviePlayer.movieSourceType = MPMovieSourceTypeStreaming;
     [self.moviePlayer setFullscreen:NO

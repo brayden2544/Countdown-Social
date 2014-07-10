@@ -634,7 +634,7 @@ typedef NS_ENUM(GLint, PBJVisionUniformLocationTypes)
         _captureSessionPreset = AVCaptureSessionPresetMedium;
 
         // default audio/video configuration
-        _audioBitRate = 64000;
+        _audioBitRate = 32000;
 
         // Average bytes per second based on video dimensions
         // lower the bitRate, higher the compression
@@ -644,7 +644,7 @@ typedef NS_ENUM(GLint, PBJVisionUniformLocationTypes)
         // 2975000, good for 1920 x 1080
         // 3750000, good for iFrame 960 x 540
         // 5000000, good for iFrame 1280 x 720
-        CGFloat bytesPerSecond = 437500;
+        CGFloat bytesPerSecond = 51500;
         _videoBitRate = bytesPerSecond * 8;
         
         // default flags
