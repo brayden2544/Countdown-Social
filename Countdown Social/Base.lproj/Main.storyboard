@@ -827,7 +827,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="UzK-hB-SOM" secondAttribute="height" multiplier="109:25" id="EXH-ZF-aFP"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="26"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="31"/>
                                         <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -839,8 +839,8 @@
                                             <constraint firstAttribute="width" constant="320" id="YQM-s1-1q3"/>
                                             <constraint firstAttribute="height" constant="158" id="ofC-Hy-Gsg"/>
                                         </constraints>
-                                        <inset key="contentEdgeInsets" minX="123" minY="23" maxX="102" maxY="77"/>
-                                        <state key="normal" image="ncameraIcon">
+                                        <inset key="contentEdgeInsets" minX="118" minY="19" maxX="97" maxY="74"/>
+                                        <state key="normal" image="cameraIcon">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -897,7 +897,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qzy-hH-Une" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1211" y="1576"/>
+            <point key="canvasLocation" x="1143" y="1824"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Yhb-m3-6X1">
@@ -1872,6 +1872,7 @@
         <image name="add account" width="57" height="56"/>
         <image name="add account button" width="57" height="56"/>
         <image name="back button" width="100" height="100"/>
+        <image name="cameraIcon" width="166" height="105"/>
         <image name="countdownLogo" width="180" height="180"/>
         <image name="decline" width="104" height="104"/>
         <image name="efacebookcolor" width="122" height="121"/>
@@ -1895,7 +1896,6 @@
         <image name="lpictureframe" width="264" height="264"/>
         <image name="matchesButton.png" width="76" height="110"/>
         <image name="menu Background" width="642" height="1138"/>
-        <image name="ncameraIcon" width="170" height="112"/>
         <image name="new insta off" width="90" height="90"/>
         <image name="new insta on" width="88" height="88"/>
         <image name="normnavbar" width="640" height="137"/>
