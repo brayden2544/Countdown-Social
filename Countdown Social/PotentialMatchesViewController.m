@@ -19,7 +19,8 @@
 @property (retain) UIView *blur;
 @property (retain) UIView *darken;
 @property (strong, nonatomic) IBOutlet UIView *createMatch;
-@property  BOOL *playButtonHeld;
+@property  BOOL playButtonHeld;
+@property  BOOL likeCurrentUser;
 @property (strong, nonatomic) UIImage *videoImage;
 @property NSTimeInterval timeRemaining;
 
@@ -30,44 +31,113 @@
 @synthesize currentPotentialMatch;
 @synthesize user;
 @synthesize moviePlayer;
+@synthesize playButton;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+
+
+- (void)viewDidLoad
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-        
-    }
-    return self;
-}
-- (IBAction)HoldPlay:(id)sender {
-    [self.blur removeFromSuperview];
-    self.createMatch.hidden = TRUE;
-    [self.moviePlayer play];
-    _playButtonHeld = true;
-}
+    //Notification observers for LoadStateChange and FinishPlaying on self.moviePlayer
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(MPMoviePlayerLoadStateDidChange:)
+                                                 name:MPMoviePlayerNowPlayingMovieDidChangeNotification
+                                               object:self.moviePlayer];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(videoHasFinishedPlaying:)
+                                                 name:MPMoviePlayerPlaybackDidFinishNotification
+                                               object:self.moviePlayer];
 
-
-
-
-
-
-/*Blurs and Presents Screenshot of Currenet Matching Video*/
--(void)BlurImage{
-
-        //Blur Video Screenshot and add it infront of video
-        self.blur=[[UIImageView alloc] initWithImage:_videoImage];
-        self.blur.userInteractionEnabled = YES;
-        self.blur.frame = self.moviePlayer.view.frame;
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.view insertSubview:self.blur belowSubview:countdownTimer];
-        self.createMatch.hidden = false;
-        [self.view insertSubview:self.createMatch aboveSubview:self.blur];
-        
-    });
-   
+    //Pull in user object and check buttons.
+    User *obj = [User getInstance];
+    user = obj.user;
+    [self buttonCheck];
+    
+    //change countdown timer to circle.
+    self.timer.layer.cornerRadius = 19;
+    countdownTimer = [[CountdownTimer alloc]init];
+    [countdownTimer changePercentage:100];
+    [self.view addSubview:countdownTimer];
+    
+    //make countdown timer transparent.
+    self.timer.alpha = .7;
+    
+    NSLog(@"ViewDidLoad");
+    
+    //get first match
+    [self firstMatch];
+
 }
+
+- (void)firstMatch{
+    NSLog(@"first Match");
+
+    //Get instance of potential matches
+    PotentialMatches *obj =[PotentialMatches getInstance];
+    
+    //Test to see if the array has potential matches
+    if ([obj.potentialMatches count] == 0){
+        //Show no users view controller
+    }
+    
+    //If there are users
+    else {
+        
+        //Get current potential match
+        currentPotentialMatch =[obj.potentialMatches objectAtIndex:0];
+        
+        //Set text for name label
+        _nameLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
+        
+        //Load initial instance of self.movieplayer with fileurl of current match
+        _videoUrl =[[NSURL alloc]initFileURLWithPath:[currentPotentialMatch objectForKey:@"fileURL"]];
+        self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:_videoUrl];
+        self.moviePlayer.shouldAutoplay = NO;
+        self.moviePlayer.controlStyle =MPMovieControlStyleNone;
+        [self.moviePlayer.view setFrame:CGRectMake (0, 90, 320, 320)];
+        [self.moviePlayer setFullscreen:NO
+                               animated:NO];
+        [self.view addSubview:self.moviePlayer.view];
+        
+        //Set Profile Pic for current potential match
+        [self setProfilePic];
+    }
+    
+}
+
+//Set profile picture for current potential match
+- (void)setProfilePic{
+    
+    //Creat URL for image and download image
+    NSString *picURL = @"http://graph.facebook.com/";
+    NSString *uid =[[currentPotentialMatch objectForKey:@"uid"] stringValue];
+    picURL= [picURL stringByAppendingString:uid];
+    picURL = [picURL stringByAppendingString:@"/picture?width=200&height=200"];
+    NSURL *url = [NSURL URLWithString:picURL];
+    NSData *imageData = [NSData dataWithContentsOfURL:url];
+    self.fbProfilePic.image = [UIImage imageWithData:imageData];
+
+    //set size limitations of current potential match
+    self.fbProfilePic.layer.cornerRadius = self.fbProfilePic.frame.size.height/2;
+    self.fbProfilePic.layer.masksToBounds = YES;
+    self.fbProfilePic.layer.borderColor = [UIColor colorWithRed:248 green:248 blue:248 alpha:0.4].CGColor;
+    self.fbProfilePic.layer.borderWidth = 2.0f;
+    
+}
+
+//When video is loaded this method is called
+- (void)MPMoviePlayerLoadStateDidChange:(NSNotification *)notification
+{
+//    if (self.moviePlayer.loadState == MPMovieLoadStatePlayable)
+//    {
+        //Play Video if Video is loaded and Playable and user is holding play button
+                [NSTimer scheduledTimerWithTimeInterval: .05
+                                                      target: self
+                                                    selector:@selector(VideoTimer:)
+                                                    userInfo: nil repeats:YES];
+    //}
+}
+
 /*Captures Screenshot of Current Matching Video*/
 - (void)CaptureSnapshot{
     UIImage *thumbnail = [self.moviePlayer thumbnailImageAtTime:self.moviePlayer.currentPlaybackTime
@@ -88,41 +158,83 @@
     _videoImage = [UIImage imageWithCGImage:cgImage];
     //create a UIImage for this function to "return" so that ARC can manage the memory of the blur... ARC can't manage CGImageRefs so we need to release it before this function "returns" and ends.
     CGImageRelease(cgImage);//release CGImageRef because ARC doesn't manage this on its own.
+    
+    //once image is captured Blur the image and present it.
     [self BlurImage];
 }
-- (void) playButtonReleased {
+
+
+/*Blurs and Presents Screenshot of Currenet Matching Video*/
+-(void)BlurImage{
+    
+    //Blur Video Screenshot and add it infront of video
+    self.blur=[[UIImageView alloc] initWithImage:_videoImage];
+    self.blur.userInteractionEnabled = YES;
+    self.blur.frame = self.moviePlayer.view.frame;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.view addSubview:self.blur];
+        self.createMatch.hidden = false;
+        [self.view insertSubview:self.createMatch aboveSubview:self.blur];
+        
+    });
+    
+}
+
+- (void) videoHasFinishedPlaying:(NSNotification *)paramNotification{
+    int reason = [[[paramNotification userInfo] valueForKey:MPMoviePlayerPlaybackDidFinishReasonUserInfoKey] intValue];
+    if (reason == MPMovieFinishReasonPlaybackEnded) {
+        //movie finished playing
+        if (_likeCurrentUser ==FALSE) {
+            [self userPass];
+        }
+        if (_likeCurrentUser ==TRUE) {
+            [self nextMatch];
+        }
+    }else if (reason == MPMovieFinishReasonUserExited) {
+        //user hit the done button
+    }else if (reason == MPMovieFinishReasonPlaybackError) {
+        //error
+    }
+}
+
+
+
+- (IBAction)HoldPlay:(id)sender {
+    
+    if(_likeCurrentUser ==FALSE) {
+        _playButtonHeld = TRUE;
+        self.blur.hidden = TRUE;
+        self.createMatch.hidden = TRUE;
+        [self.moviePlayer play];
+    }
+}
+
+- (IBAction)ReleasePlay:(id)sender {
+    
+    if(_likeCurrentUser ==FALSE){
+    _playButtonHeld = FALSE;
     [self.moviePlayer pause];
     [self CaptureSnapshot];
-    _playButtonHeld = false;
-}
-- (IBAction)ReleasePlay:(id)sender {
-    [self playButtonReleased];
-
+    }
 }
 
 
 -(void) playVideo{
-    static dispatch_once_t onceToken;
-    
-    dispatch_once(&onceToken, ^{
-        
-    
-    });
-    dispatch_async(dispatch_get_main_queue(), ^{
-
-    [self.view addSubview:self.moviePlayer.view];
-    [self.view insertSubview:countdownTimer aboveSubview:self.moviePlayer.view];
     [self.moviePlayer setContentURL:_videoUrl];
-    if(_playButtonHeld == TRUE){
-        [self.moviePlayer play];
-        NSLog(@"New movie played");
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.view addSubview:self.moviePlayer.view];
+        [self.view insertSubview:countdownTimer aboveSubview:self.moviePlayer.view];
+        
     });
-
-    
+        if(_playButtonHeld == TRUE){
+        [self.moviePlayer play];
+    }
 
 
 }
+
+
 
 -(void) userPass{
     NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/";
@@ -181,38 +293,74 @@
 
 }
 
-- (void)setProfilePic{
-    NSString *picURL = @"http://graph.facebook.com/";
-    NSString *uid =[[currentPotentialMatch objectForKey:@"uid"] stringValue];
-#warning enable this top one once we are using real users.
-    //NSString *uid = @"1159358848";
-    picURL= [picURL stringByAppendingString:uid];
-    picURL = [picURL stringByAppendingString:@"/picture?width=200&height=200"];
-    NSURL *url = [NSURL URLWithString:picURL];
-    NSLog(@"%@",picURL);
-    NSData *imageData = [NSData dataWithContentsOfURL:url];
-    self.fbProfilePic.layer.cornerRadius = self.fbProfilePic.frame.size.height/2;
-    self.fbProfilePic.layer.masksToBounds = YES;
-    self.fbProfilePic.layer.borderColor = [UIColor colorWithRed:248 green:248 blue:248 alpha:0.4].CGColor;
-    self.fbProfilePic.layer.borderWidth = 2.0f;
-    //self.fbProfilePic.alpha = 0.8;
-
-    self.fbProfilePic.image = [UIImage imageWithData:imageData];
+-(void) userLike{
+    _likeCurrentUser = TRUE;
+    
+    self.blur.hidden = TRUE;
+    self.createMatch.hidden = TRUE;
+    
+    
+    NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/";
+    urlAsString = [urlAsString stringByAppendingString:[[currentPotentialMatch objectForKey:@"uid"] stringValue]];
+    urlAsString =[urlAsString stringByAppendingString:@"/like"];
+    
+    NSURL *url = [NSURL URLWithString:urlAsString];
+    
+    NSMutableURLRequest *urlRequest =
+    [NSMutableURLRequest requestWithURL:url];
+    
+    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+    
+    
+    NSString *FbToken = [session accessTokenData].accessToken;
+    
+    
+    [urlRequest setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    
+    
+    [urlRequest setTimeoutInterval:30.0f];
+    [urlRequest setHTTPMethod:@"POST"];
+    
+    NSOperationQueue *queque = [[NSOperationQueue alloc] init];
+    dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+    dispatch_async(concurrentQueue, ^{
+        
+        
+        [NSURLConnection
+         sendAsynchronousRequest:urlRequest
+         queue:queque
+         completionHandler:^(NSURLResponse *response,
+                             NSData *data,
+                             NSError *error){
+             if ([data length] >0 && error == nil){
+                 NSString *html =
+                 [[NSString alloc] initWithData:data
+                                       encoding:NSUTF8StringEncoding];
+                 NSLog(@"%@",html);
+                 
+                 
+                 
+             }
+             else if ([data length] == 0 && error == nil){
+                 NSLog(@"Was not passed. Connection Error");
+             }
+             else if (error !=nil){
+                 NSLog(@"Error happened = %@", error);
+                 NSLog(@"Was not passed. Connection Error");
+             }
+         }];
+    });
+    
+    [self.moviePlayer play];
+    
 }
 
-- (void) videoHasFinishedPlaying:(NSNotification *)paramNotification{
-    int reason = [[[paramNotification userInfo] valueForKey:MPMoviePlayerPlaybackDidFinishReasonUserInfoKey] intValue];
-    if (reason == MPMovieFinishReasonPlaybackEnded) {
-        //movie finished playing
-            [self userPass];
-    }else if (reason == MPMovieFinishReasonUserExited) {
-        //user hit the done button
-    }else if (reason == MPMovieFinishReasonPlaybackError) {
-        //error
-    }
-    }
+
 
 - (void)nextMatch{
+    _likeCurrentUser = FALSE;
+    
     PotentialMatches *obj =[PotentialMatches nextMatch];
     NSLog(@"@%@",obj.potentialMatches);
     if ([obj.potentialMatches count]==0){
@@ -225,11 +373,12 @@
     }
     else {
         NSLog(@"Next Match");
-        currentPotentialMatch =[obj.potentialMatches objectAtIndex:0];
+        currentPotentialMatch =[obj.potentialMatches objectAtIndex:1];
         _videoUrl =[[NSURL alloc]initFileURLWithPath:[currentPotentialMatch objectForKey:@"fileURL"]];
-       
+
         //Change lables on main queue
         dispatch_async(dispatch_get_main_queue(), ^{
+            
                 _nameLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
                 _meetLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
         });
@@ -266,40 +415,6 @@
     
 
 
-- (void)firstMatch{
-    PotentialMatches *obj =[PotentialMatches getInstance];
-    NSLog(@"@%@",obj.potentialMatches);
-
-    if ([obj.potentialMatches count] == 0){
-   //Show no users view controller
-        
-        
-    }
-    else {
-        NSLog(@"first Match");
-    
-        currentPotentialMatch =[obj.potentialMatches objectAtIndex:0];
-    _videoUrl =[[NSURL alloc]initFileURLWithPath:[currentPotentialMatch objectForKey:@"fileURL"]];
-    _nameLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(videoHasFinishedPlaying:)
-                                                     name:MPMoviePlayerPlaybackDidFinishNotification
-                                                   object:self.moviePlayer];
-        self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:_videoUrl];
-        self.moviePlayer.shouldAutoplay = NO;
-        self.moviePlayer.controlStyle =MPMovieControlStyleNone;
-        [self.moviePlayer.view setFrame:CGRectMake (0, 90, 320, 320)];
-        
-        [self.moviePlayer setFullscreen:NO
-                               animated:NO];
-        [self.view addSubview:self.moviePlayer.view];
-        [self.view insertSubview:countdownTimer aboveSubview:self.moviePlayer.view];
-
-    [self setProfilePic];
-    }
-    
-}
 -(void)buttonCheck{
     //Check for Twitter Account
     if ([[user objectForKey: @"twitter_username"] isKindOfClass:[NSNull class]]||
@@ -381,33 +496,7 @@
     
 }
 
-- (void)viewDidLoad
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(MPMoviePlayerLoadStateDidChange:)
-                                                 name:MPMoviePlayerLoadStateDidChangeNotification
-                                               object:nil];
-    
-    
-    //Pull in user object and check buttons.
-    User *obj = [User getInstance];
-    user = obj.user;
-    [self buttonCheck];
-    //change countdown timer to circle.
-    self.timer.layer.cornerRadius = 19;
-    countdownTimer = [[CountdownTimer alloc]init];
-    [countdownTimer changePercentage:100];
-    [self.view addSubview:countdownTimer];
-    //make countdown timer transparent.
-    self.timer.alpha = .7;
-    //get Next Match
-    NSLog(@"ViewDidLoad");
-    [self firstMatch];
-    
-    
-    
 
-}
 -(void)viewDidDisappear:(BOOL)animated{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     NSLog(@"NSNotification Observer Disappeared");
@@ -418,21 +507,6 @@
      _timeRemaining =(1 -(self.moviePlayer.currentPlaybackTime / self.moviePlayer.duration))*100;
     [countdownTimer changePercentage:_timeRemaining];
 
-}
-- (void)MPMoviePlayerLoadStateDidChange:(NSNotification *)notification
-{
-    if ((self.moviePlayer.loadState & MPMovieLoadStatePlayable) == MPMovieLoadStatePlayable)
-    {
-        if(_playButtonHeld == TRUE){
-            [self.moviePlayer play];
-            NSLog(@"New movie played");
-        }
-        NSLog(@"content play length is %g seconds", self.moviePlayer.duration);
-        NSTimer *t = [NSTimer scheduledTimerWithTimeInterval: .05
-                                                      target: self
-                                                    selector:@selector(VideoTimer:)
-                                                    userInfo: nil repeats:YES];
-    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -544,7 +618,7 @@
 
 - (IBAction)Like:(id)sender {
     if ([currentPotentialMatch count] >0){
-        [self nextMatch];
+        [self userLike];
 
     }
     else{

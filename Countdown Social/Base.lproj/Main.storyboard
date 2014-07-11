@@ -821,6 +821,16 @@
                                 <rect key="frame" x="0.0" y="410" width="320" height="158"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hold  to  Play" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UzK-hB-SOM">
+                                        <rect key="frame" x="51" y="93" width="218" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="UzK-hB-SOM" secondAttribute="height" multiplier="109:25" id="EXH-ZF-aFP"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="26"/>
+                                        <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="top" contentHorizontalAlignment="left" contentVerticalAlignment="top" showsTouchWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cv1-ZZ-k4Q">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="158"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -841,16 +851,6 @@
                                             <action selector="ReleasePlay:" destination="QP0-wH-HVL" eventType="touchUpInside" id="mLh-2L-XjZ"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hold  to  Play" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UzK-hB-SOM">
-                                        <rect key="frame" x="51" y="93" width="218" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="UzK-hB-SOM" secondAttribute="height" multiplier="109:25" id="EXH-ZF-aFP"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="26"/>
-                                        <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="centerX" secondItem="UzK-hB-SOM" secondAttribute="centerX" id="AJc-lV-bY5"/>
@@ -888,6 +888,7 @@
                         <outlet property="nameLabel" destination="6qH-yV-hP8" id="fyG-oV-HUD"/>
                         <outlet property="phoneDeselect" destination="9gI-sM-az4" id="u89-D5-RaB"/>
                         <outlet property="phoneSelect" destination="gRr-tR-dQr" id="CvJ-u5-Eit"/>
+                        <outlet property="playButton" destination="Cv1-ZZ-k4Q" id="QIp-qf-Dxv"/>
                         <outlet property="snapchatDeselect" destination="YjA-4L-2uk" id="Mth-F7-rGF"/>
                         <outlet property="snapchatSelect" destination="m3C-cM-v9r" id="ssX-Wa-x6Y"/>
                         <outlet property="twitterDeselect" destination="SqP-EA-zDg" id="j4R-uT-1De"/>

@@ -46,6 +46,8 @@
     //Start Playing User's newly recorded video
     VideoPath *obj = [VideoPath getInstance];
     _videoPath = obj.videoPath;
+    [self startPlayingVideo:nil];
+
 
 }
 
@@ -78,34 +80,7 @@
         NSLog(@"Failed to instanciate video player");
     }
 }
--(void)addVideoFilter{
-    AVAsset *theAVAsset = [[AVURLAsset alloc] initWithURL:[NSURL fileURLWithPath:_videoPath] options:nil];
-    NSError *error = nil;
-    float width = theAVAsset.naturalSize.width;
-    float height = theAVAsset.naturalSize.height;
-    AVAssetReader *mAssetReader = [[AVAssetReader alloc] initWithAsset:theAVAsset error:&error];
-    
-    
-    
-    NSArray *videoTracks = [theAVAsset tracksWithMediaType:AVMediaTypeVideo];
-    AVAssetTrack *videoTrack = [videoTracks objectAtIndex:0];
-    //mPrefferdTransform = [videoTrack preferredTransform];
-    
-    
-    NSDictionary *options = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:kCVPixelFormatType_32BGRA] forKey:(id)kCVPixelBufferPixelFormatTypeKey];
-    AVAssetReaderTrackOutput* mAssetReaderOutput = [[AVAssetReaderTrackOutput alloc] initWithTrack:videoTrack outputSettings:options];
-    
-    [mAssetReader addOutput:mAssetReaderOutput];
-    
-    
-    CMSampleBufferRef buffer = NULL;
-    //CMSampleBufferRef buffer = NULL;
-    while ( [mAssetReader status]==AVAssetReaderStatusReading ){
-        buffer = [mAssetReaderOutput copyNextSampleBuffer];//read next image.
-    }
-    [self startPlayingVideo:nil];
-    
-}
+
 
 //Posts profile video to servers.
 -(void)uploadProfileVideo{
@@ -203,17 +178,6 @@
     [self.view addSubview:activityView];
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 
 //Action when user approves video and wants to approve it.

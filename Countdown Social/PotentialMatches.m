@@ -124,14 +124,15 @@
 +(PotentialMatches *)nextMatch{
     static PotentialMatches *instance = nil;
     instance = [self getInstance];
-    NSMutableArray *matches = instance.potentialMatches;
-    if ([matches count ] > 1){
-    [matches removeObjectAtIndex:0];
-     instance.potentialMatches = matches;
-    }
-    NSLog(@"@%d",[instance.potentialMatches count]);
+    [instance.potentialMatches removeObjectAtIndex:0];
+//    NSMutableArray *matches = instance.potentialMatches;
+//    if ([instance.potentialMatches count ] > 1){
+//    [matches removeObjectAtIndex:0];
+//     instance.potentialMatches = matches;
+//    }
+//    NSLog(@"@%d",[instance.potentialMatches count]);
 
-    if ([matches count] <= 2 ){
+    if ([instance.potentialMatches count] <= 2 ){
         User *obj = [User getInstance];
         NSDictionary *user = obj.user;
         //start filling Potential Matches Queue
@@ -174,18 +175,17 @@
                      NSMutableArray *potentialMatchesArray = potentialMatchesJson;
                      PotentialMatches *obj =[PotentialMatches getInstance];
                      //Iterate through array for duplicate potential Matches
-                     for (int i = 0; i <[obj.potentialMatches count] -1; i++) {
-                         NSString *uid = [[[obj.potentialMatches objectAtIndex:i] objectForKey:@"uid"] stringValue];
+                     for (int i = 0; i <[instance.potentialMatches count] -1; i++) {
+                         NSString *uid = [[[instance.potentialMatches objectAtIndex:i] objectForKey:@"uid"] stringValue];
                          for (int n = 0; n < [potentialMatchesArray count] -1; n++) {
                              if ([[[[potentialMatchesArray objectAtIndex:n] objectForKey:@"uid"]stringValue] isEqualToString:uid]){
                                  [potentialMatchesArray removeObjectAtIndex:n];
                              }
                          }
                      }
-
                      
                     //[instance.potentialMatches addObjectsFromArray:potentialMatchesArray];
-                     //NSLog(@"getting next matches%@",[obj.potentialMatches objectAtIndex:0]);
+                     NSLog(@"getting next matches%@",[obj.potentialMatches objectAtIndex:0]);
                      //Download Video for each new piece of array
                      //download the file in a seperate thread.
                      for (int i = 0; i < [potentialMatchesArray count] -1; i++) {
@@ -232,6 +232,7 @@
         });
 
     }
+
     return instance;
 }
 

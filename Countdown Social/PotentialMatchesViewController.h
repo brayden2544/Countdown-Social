@@ -17,7 +17,6 @@
 }
 
 @property (nonatomic,strong) MPMoviePlayerController *moviePlayer;
-@property (nonatomic,strong) UIButton *playButton;
 @property (nonatomic,strong) NSURL *videoUrl;
 @property (nonatomic,strong) NSString *name;
 @property (nonatomic, strong) NSDictionary *user;
@@ -26,6 +25,8 @@
 @property (strong, nonatomic) IBOutlet UIImageView *fbProfilePic;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *meetLabel;
+@property (nonatomic,strong) IBOutlet UIButton *playButton;
+
 
 @property (strong, nonatomic) IBOutlet UIButton *instagramDeselect;
 @property (strong, nonatomic) IBOutlet UIButton *twitterDeselect;
@@ -55,7 +56,6 @@
 - (IBAction)Pass:(id)sender;
 - (IBAction)Like:(id)sender;
 
-- (void) playButtonReleased;
 
 
 @end
