@@ -21,6 +21,7 @@
 @property (strong, nonatomic) IBOutlet UIView *createMatch;
 @property  BOOL *playButtonHeld;
 @property (strong, nonatomic) UIImage *videoImage;
+@property NSTimeInterval timeRemaining;
 
 @end
 
@@ -29,7 +30,6 @@
 @synthesize currentPotentialMatch;
 @synthesize user;
 @synthesize moviePlayer;
-@synthesize menuOpen;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -102,28 +102,25 @@
 
 
 -(void) playVideo{
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        
+    
+    });
+    dispatch_async(dispatch_get_main_queue(), ^{
 
-        if (menuOpen == false){
-            [[NSNotificationCenter defaultCenter] addObserver:self
-                                                     selector:@selector(videoHasFinishedPlaying:)
-                                                         name:MPMoviePlayerPlaybackDidFinishNotification
-                                                       object:self.moviePlayer];
-
-    self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:_videoUrl];
-    self.moviePlayer.shouldAutoplay = NO;
-    self.moviePlayer.controlStyle =MPMovieControlStyleNone;
-    //self.moviePlayer.movieSourceType = MPMovieSourceTypeStreaming;
-    [self.moviePlayer.view setFrame:CGRectMake (0, 90, 320, 320)];
     [self.view addSubview:self.moviePlayer.view];
     [self.view insertSubview:countdownTimer aboveSubview:self.moviePlayer.view];
+    [self.moviePlayer setContentURL:_videoUrl];
+    if(_playButtonHeld == TRUE){
+        [self.moviePlayer play];
+        NSLog(@"New movie played");
+    }
+    });
 
     
-    //self.moviePlayer.movieSourceType = MPMovieSourceTypeStreaming;
-    [self.moviePlayer setFullscreen:NO
-                           animated:NO];
-    NSLog(@"Video Loaded");
 
-    }
 
 }
 
@@ -171,12 +168,11 @@
     
              }
              else if ([data length] == 0 && error == nil){
-                 NSLog(@"POST Nothing was downloaded.");
+                 NSLog(@"Was not passed. Connection Error");
              }
              else if (error !=nil){
                  NSLog(@"Error happened = %@", error);
-                 NSLog(@"POST BROKEN");
-#warning TODO: Create alert and restart app in case of bad server connection.
+                 NSLog(@"Was not passed. Connection Error");
              }
          }];
     });
@@ -208,7 +204,7 @@
     int reason = [[[paramNotification userInfo] valueForKey:MPMoviePlayerPlaybackDidFinishReasonUserInfoKey] intValue];
     if (reason == MPMovieFinishReasonPlaybackEnded) {
         //movie finished playing
-        [self userPass];
+            [self userPass];
     }else if (reason == MPMovieFinishReasonUserExited) {
         //user hit the done button
     }else if (reason == MPMovieFinishReasonPlaybackError) {
@@ -230,12 +226,15 @@
     else {
         NSLog(@"Next Match");
         currentPotentialMatch =[obj.potentialMatches objectAtIndex:0];
-    _videoUrl =[NSURL URLWithString:[currentPotentialMatch objectForKey:@"videoUri"]];
-    //NSString *name =[currentPotentialMatch objectForKey:@"firstName"];
-    _nameLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
-    _meetLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
+        _videoUrl =[[NSURL alloc]initFileURLWithPath:[currentPotentialMatch objectForKey:@"fileURL"]];
+       
+        //Change lables on main queue
+        dispatch_async(dispatch_get_main_queue(), ^{
+                _nameLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
+                _meetLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
+        });
     
-    //play current Match Video
+        //play current Match Video
     [self playVideo];
     [self setProfilePic];
     }
@@ -277,15 +276,26 @@
         
     }
     else {
+        NSLog(@"first Match");
     
         currentPotentialMatch =[obj.potentialMatches objectAtIndex:0];
-    _videoUrl =[NSURL URLWithString:[currentPotentialMatch objectForKey:@"videoUri"]];
+    _videoUrl =[[NSURL alloc]initFileURLWithPath:[currentPotentialMatch objectForKey:@"fileURL"]];
     _nameLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
-    _meetLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
-    
-    //play current Match Video
-    [self playVideo];
-        NSLog(@"first Match");
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(videoHasFinishedPlaying:)
+                                                     name:MPMoviePlayerPlaybackDidFinishNotification
+                                                   object:self.moviePlayer];
+        self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:_videoUrl];
+        self.moviePlayer.shouldAutoplay = NO;
+        self.moviePlayer.controlStyle =MPMovieControlStyleNone;
+        [self.moviePlayer.view setFrame:CGRectMake (0, 90, 320, 320)];
+        
+        [self.moviePlayer setFullscreen:NO
+                               animated:NO];
+        [self.view addSubview:self.moviePlayer.view];
+        [self.view insertSubview:countdownTimer aboveSubview:self.moviePlayer.view];
+
     [self setProfilePic];
     }
     
@@ -377,8 +387,8 @@
                                              selector:@selector(MPMoviePlayerLoadStateDidChange:)
                                                  name:MPMoviePlayerLoadStateDidChangeNotification
                                                object:nil];
-    //Set menu open to false
-    menuOpen = false;
+    
+    
     //Pull in user object and check buttons.
     User *obj = [User getInstance];
     user = obj.user;
@@ -400,12 +410,13 @@
 }
 -(void)viewDidDisappear:(BOOL)animated{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    NSLog(@"NSNotification Observer Disappeared");
 }
 
 - (void)VideoTimer:(NSTimer *)timer{
     //Initialize CountdownTimer
-    NSTimeInterval timeRemaining =(1 -(self.moviePlayer.currentPlaybackTime / self.moviePlayer.duration))*100;
-    [countdownTimer changePercentage:timeRemaining];
+     _timeRemaining =(1 -(self.moviePlayer.currentPlaybackTime / self.moviePlayer.duration))*100;
+    [countdownTimer changePercentage:_timeRemaining];
 
 }
 - (void)MPMoviePlayerLoadStateDidChange:(NSNotification *)notification
