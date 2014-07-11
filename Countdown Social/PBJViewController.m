@@ -660,36 +660,17 @@
     _currentVideo = videoDict;
     
     NSString *videoPath = [_currentVideo  objectForKey:PBJVisionVideoPathKey];
-    //    [_assetLibrary writeVideoAtPathToSavedPhotosAlbum:[NSURL URLWithString:videoPath] completionBlock:^(NSURL *assetURL, NSError *error1) {
-    //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Saved!" message: @"Saved to the camera roll."
-    //                                                       delegate:self
-    //                                              cancelButtonTitle:nil
-    //                                              otherButtonTitles:@"OK", nil];
-    //        [alert show];
+
     VideoPath *obj = [VideoPath getInstance];
     obj.videoPath = videoPath;
-    [self saveMyVideo:[NSURL URLWithString:videoPath]];
+
     
-    
-    
-    // }];
-}
-- (void)saveMyVideo:(NSURL *)videoURL {
-    
-    NSLog(@"saving movie at: %@", videoURL);
-    
-    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-    if ([library videoAtPathIsCompatibleWithSavedPhotosAlbum:videoURL])
-    {
-        [library writeVideoAtPathToSavedPhotosAlbum:videoURL
-                                    completionBlock:^(NSURL *assetURL, NSError *error){}
-         ];
-    }
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     VideoPreviewViewController *chooseLocationViewController = [storyboard instantiateViewControllerWithIdentifier:@"VideoPreviewViewController"];
     [self presentViewController:chooseLocationViewController animated:YES completion:nil];
     
 }
+
 
 
 // progress
@@ -701,11 +682,9 @@
 
 - (void)visionDidCaptureVideoSample:(PBJVision *)vision
 {
- NSLog(@"captured video (%f) seconds", vision.capturedVideoSeconds);
+ //NSLog(@"captured video (%f) seconds", vision.capturedVideoSeconds);
     _progressView.progress=vision.capturedVideoSeconds/6.0f;
  
-
-
 }
 
 @end

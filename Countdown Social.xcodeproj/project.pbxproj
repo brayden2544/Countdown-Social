@@ -67,6 +67,8 @@
 		6EC0FC18192AD95A00B72C44 /* settingsButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0FC17192AD95A00B72C44 /* settingsButton.png */; };
 		6EC0FC1A192AD9AE00B72C44 /* matchesButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0FC19192AD9AE00B72C44 /* matchesButton.png */; };
 		6EC0FC2F192B145C00B72C44 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC0FC2E192B145C00B72C44 /* Accelerate.framework */; };
+		6EC635C8196F8B26009A6577 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC635C7196F8B26009A6577 /* AssetsLibrary.framework */; };
+		6EC635CA196F8BA4009A6577 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC635C9196F8BA4009A6577 /* AVFoundation.framework */; };
 		6EC7D4A6196C7F660083A581 /* SnapchatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC7D4A5196C7F660083A581 /* SnapchatView.m */; };
 		6EC7D4A9196C7F7B0083A581 /* PhoneNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC7D4A8196C7F7B0083A581 /* PhoneNumberView.m */; };
 		6EC9431A1958D04E0096F41F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC943191958D04E0096F41F /* User.m */; };
@@ -174,6 +176,8 @@
 		6EC0FC17192AD95A00B72C44 /* settingsButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = settingsButton.png; path = ../settingsButton.png; sourceTree = "<group>"; };
 		6EC0FC19192AD9AE00B72C44 /* matchesButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = matchesButton.png; sourceTree = "<group>"; };
 		6EC0FC2E192B145C00B72C44 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		6EC635C7196F8B26009A6577 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		6EC635C9196F8BA4009A6577 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6EC7D4A4196C7F660083A581 /* SnapchatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SnapchatView.h; path = ../SnapchatView.h; sourceTree = "<group>"; };
 		6EC7D4A5196C7F660083A581 /* SnapchatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SnapchatView.m; path = ../SnapchatView.m; sourceTree = "<group>"; };
 		6EC7D4A7196C7F7B0083A581 /* PhoneNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhoneNumberView.h; path = ../PhoneNumberView.h; sourceTree = "<group>"; };
@@ -197,6 +201,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EC635CA196F8BA4009A6577 /* AVFoundation.framework in Frameworks */,
+				6EC635C8196F8B26009A6577 /* AssetsLibrary.framework in Frameworks */,
 				6EF00270194FCA2000F32217 /* Accounts.framework in Frameworks */,
 				6EF0026E194FC9EF00F32217 /* Social.framework in Frameworks */,
 				6EC0FC2F192B145C00B72C44 /* Accelerate.framework in Frameworks */,
@@ -306,6 +312,8 @@
 		6E967CAE190DA4960042AF93 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6EC635C9196F8BA4009A6577 /* AVFoundation.framework */,
+				6EC635C7196F8B26009A6577 /* AssetsLibrary.framework */,
 				6E7691C9195387DA006CA5DB /* FacebookSDK.framework */,
 				6EF0026F194FCA2000F32217 /* Accounts.framework */,
 				6EF0026D194FC9EF00F32217 /* Social.framework */,

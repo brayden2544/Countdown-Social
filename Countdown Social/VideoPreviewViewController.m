@@ -12,6 +12,9 @@
 #import "User.h"
 #import "VideoPath.h"
 #import "AppDelegate.h"
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <AVFoundation/AVFoundation.h>
+
 
 
 @interface VideoPreviewViewController ()
@@ -41,7 +44,8 @@
 {
     [super viewDidLoad];
     //Start Playing User's newly recorded video
-    [self startPlayingVideo:nil];
+    VideoPath *obj = [VideoPath getInstance];
+    _videoPath = obj.videoPath;
 
 }
 
@@ -74,7 +78,34 @@
         NSLog(@"Failed to instanciate video player");
     }
 }
-
+-(void)addVideoFilter{
+    AVAsset *theAVAsset = [[AVURLAsset alloc] initWithURL:[NSURL fileURLWithPath:_videoPath] options:nil];
+    NSError *error = nil;
+    float width = theAVAsset.naturalSize.width;
+    float height = theAVAsset.naturalSize.height;
+    AVAssetReader *mAssetReader = [[AVAssetReader alloc] initWithAsset:theAVAsset error:&error];
+    
+    
+    
+    NSArray *videoTracks = [theAVAsset tracksWithMediaType:AVMediaTypeVideo];
+    AVAssetTrack *videoTrack = [videoTracks objectAtIndex:0];
+    //mPrefferdTransform = [videoTrack preferredTransform];
+    
+    
+    NSDictionary *options = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:kCVPixelFormatType_32BGRA] forKey:(id)kCVPixelBufferPixelFormatTypeKey];
+    AVAssetReaderTrackOutput* mAssetReaderOutput = [[AVAssetReaderTrackOutput alloc] initWithTrack:videoTrack outputSettings:options];
+    
+    [mAssetReader addOutput:mAssetReaderOutput];
+    
+    
+    CMSampleBufferRef buffer = NULL;
+    //CMSampleBufferRef buffer = NULL;
+    while ( [mAssetReader status]==AVAssetReaderStatusReading ){
+        buffer = [mAssetReaderOutput copyNextSampleBuffer];//read next image.
+    }
+    [self startPlayingVideo:nil];
+    
+}
 
 //Posts profile video to servers.
 -(void)uploadProfileVideo{
@@ -89,8 +120,7 @@
     NSMutableURLRequest *urlRequest =
     [NSMutableURLRequest requestWithURL:url];
     
-    VideoPath *obj = [VideoPath getInstance];
-    _videoPath = obj.videoPath;
+    
     NSData *videoData = [[NSFileManager defaultManager] contentsAtPath:_videoPath];
     
     

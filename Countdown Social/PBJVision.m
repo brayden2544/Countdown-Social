@@ -644,7 +644,7 @@ typedef NS_ENUM(GLint, PBJVisionUniformLocationTypes)
         // 2975000, good for 1920 x 1080
         // 3750000, good for iFrame 960 x 540
         // 5000000, good for iFrame 1280 x 720
-        CGFloat bytesPerSecond = 51500;
+        CGFloat bytesPerSecond = 51000;
         _videoBitRate = bytesPerSecond * 8;
         
         // default flags
@@ -767,7 +767,7 @@ typedef void (^PBJVisionBlock)();
     [_captureOutputVideo setSampleBufferDelegate:self queue:_captureVideoDispatchQueue];
 
     // capture device initial settings
-    _videoFrameRate = 30;
+    _videoFrameRate = 20;
 
     // add notification observers
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
