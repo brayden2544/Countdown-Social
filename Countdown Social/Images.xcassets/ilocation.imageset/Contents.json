@@ -1,0 +1,46 @@
+{
+  "images" : [
+    {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "fill",
+          "width" : 1,
+          "height" : 1
+        },
+        "capInsets" : {
+          "bottom" : 0,
+          "top" : 57,
+          "right" : 0,
+          "left" : 56
+        }
+      },
+      "idiom" : "universal",
+      "filename" : "ilocation.png",
+      "scale" : "1x"
+    },
+    {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "fill",
+          "width" : 1,
+          "height" : 1
+        },
+        "capInsets" : {
+          "bottom" : 0,
+          "top" : 115,
+          "right" : 0,
+          "left" : 113
+        }
+      },
+      "idiom" : "universal",
+      "filename" : "ilocation@2x.png",
+      "scale" : "2x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}
