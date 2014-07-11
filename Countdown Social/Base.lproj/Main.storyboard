@@ -1008,7 +1008,7 @@
                                 <rect key="frame" x="-72" y="-31" width="494" height="680"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="account navbar" translatesAutoresizingMaskIntoConstraints="NO" id="Bu8-DV-Z1P">
+                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="normnavbar" translatesAutoresizingMaskIntoConstraints="NO" id="Bu8-DV-Z1P">
                                 <rect key="frame" x="-4" y="0.0" width="328" height="69"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
@@ -1792,7 +1792,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Insta navbar" translatesAutoresizingMaskIntoConstraints="NO" id="aM9-Lb-rUC">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="normnavbar" translatesAutoresizingMaskIntoConstraints="NO" id="aM9-Lb-rUC">
                                 <rect key="frame" x="0.0" y="-1" width="320" height="73"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -1832,7 +1832,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Twitter navbar" translatesAutoresizingMaskIntoConstraints="NO" id="zaO-d6-Cec">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="normnavbar" translatesAutoresizingMaskIntoConstraints="NO" id="zaO-d6-Cec">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="73"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -1863,14 +1863,11 @@
         <image name="Facebook account on" width="121" height="122"/>
         <image name="Gear" width="52" height="51"/>
         <image name="Gear-1" width="52" height="51"/>
-        <image name="Insta navbar" width="640" height="137"/>
         <image name="Line" width="519" height="3"/>
         <image name="Line-1" width="373" height="5"/>
         <image name="Phone set button" width="254" height="84"/>
         <image name="Preview2" width="225" height="44"/>
-        <image name="Twitter navbar" width="640" height="137"/>
         <image name="accept" width="104" height="104"/>
-        <image name="account navbar" width="640" height="137"/>
         <image name="accounts opaque bar" width="532" height="122"/>
         <image name="add account" width="57" height="56"/>
         <image name="add account button" width="57" height="56"/>

@@ -1,0 +1,46 @@
+{
+  "images" : [
+    {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "fill",
+          "width" : 1,
+          "height" : 1
+        },
+        "capInsets" : {
+          "bottom" : 447,
+          "top" : 696,
+          "right" : 320,
+          "left" : 327
+        }
+      },
+      "idiom" : "universal",
+      "filename" : "Rainbow.png",
+      "scale" : "1x"
+    },
+    {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "fill",
+          "width" : 1,
+          "height" : 1
+        },
+        "capInsets" : {
+          "bottom" : 1416,
+          "top" : 871,
+          "right" : 739,
+          "left" : 556
+        }
+      },
+      "idiom" : "universal",
+      "filename" : "Rainbow@2x.png",
+      "scale" : "2x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}
