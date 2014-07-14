@@ -67,7 +67,7 @@
                     [instance.potentialMatches addObjectsFromArray:potentialMatchesArray];
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 
-                    for (int i = 0; i < [potentialMatchesArray count]; i ++) {
+                    for (int i = 0; i < [potentialMatchesArray count] ; i ++) {
                     //Download Video
                     //download the file in a seperate thread.
                         NSLog(@"Downloading Started");
@@ -88,7 +88,7 @@
                             //saving is done on main thread
                                 [urlData writeToFile:filePath atomically:YES];
                                 [currentPotentialMatch setValue:filePath forKey:@"fileURL"];
-                                [instance.potentialMatches replaceObjectAtIndex:0 withObject:currentPotentialMatch];
+                                [instance.potentialMatches replaceObjectAtIndex:i withObject:currentPotentialMatch];
                                 NSLog(@"File Saved !");
                                 [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSuccessful" object:nil];
                             

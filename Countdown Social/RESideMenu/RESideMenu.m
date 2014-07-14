@@ -78,7 +78,7 @@
     _scaleBackgroundImageView = YES;
     _scaleMenuView = YES;
     
-    _parallaxEnabled = YES;
+    _parallaxEnabled = NO;
     _parallaxMenuMinimumRelativeValue = -15;
     _parallaxMenuMaximumRelativeValue = 15;
     _parallaxContentMinimumRelativeValue = -25;
