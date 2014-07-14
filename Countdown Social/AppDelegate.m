@@ -21,6 +21,7 @@
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation
 {
+    
     // Note this handler block should be the exact same as the handler passed to any open calls.
     [FBSession.activeSession setStateChangeHandler:
      ^(FBSession *session, FBSessionState state, NSError *error) {
@@ -30,6 +31,10 @@
          // Call the app delegate's sessionStateChanged:state:error method to handle session state changes
          [appDelegate sessionStateChanged:session state:state error:error];
      }];
+    
+    NSNotification *notification = [NSNotification notificationWithName:kAFApplicationLaunchedWithURLNotification object:nil userInfo:[NSDictionary dictionaryWithObject:url forKey:kAFApplicationLaunchOptionsURLKey]];
+    [[NSNotificationCenter defaultCenter] postNotification:notification];
+    
     return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
 }
 
@@ -57,7 +62,6 @@
     }
     return YES;
 }
-
 
 // This method will handle ALL the session state changes in the app
 - (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error

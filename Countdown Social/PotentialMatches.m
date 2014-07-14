@@ -75,8 +75,6 @@
                         
                         //Get video Uri
                         NSURL *videoUrl =[NSURL URLWithString:[currentPotentialMatch objectForKey:@"videoUri"]];
-                        //NSString *urlToDownload = @"http://www.somewhere.com/thefile.mp4";
-                        //NSURL  *url = [NSURL URLWithString:urlToDownload];
                         NSData *urlData = [NSData dataWithContentsOfURL:videoUrl];
                         if ( urlData )
                         {
@@ -90,9 +88,6 @@
                                 [currentPotentialMatch setValue:filePath forKey:@"fileURL"];
                                 [instance.potentialMatches replaceObjectAtIndex:i withObject:currentPotentialMatch];
                                 NSLog(@"File Saved !");
-                                [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSuccessful" object:nil];
-                            
-
                         }
                         
 

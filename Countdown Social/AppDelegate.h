@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <FacebookSDK/FacebookSDK.h>
 #import <MapKit/MapKit.h>
+#import "AFNetworking/AFOAuth1Client.h"
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>{

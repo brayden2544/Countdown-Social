@@ -23,9 +23,12 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.CountdownSocial.Countdown</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>fb255561074614999</string>
+				<string>CountdownSocial</string>
 			</array>
 		</dict>
 	</array>

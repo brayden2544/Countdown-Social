@@ -45,73 +45,33 @@
         
         NSLog(@"Longitude %.8f", currentLocation.coordinate.longitude);
         NSLog(@"Latitude %.8f", currentLocation.coordinate.latitude);
-        
 
-        NSString *urlAsString =@"http://api-dev.countdownsocial.com/user";
-        
-        NSURL *url = [NSURL URLWithString:urlAsString];
-        
-        NSMutableURLRequest *urlRequest =
-        [NSMutableURLRequest requestWithURL:url];
-        
-        [urlRequest setHTTPBody:[[NSString stringWithFormat:@"lat=%g&long=%g", currentLocation.coordinate.latitude, currentLocation.coordinate.longitude] dataUsingEncoding:NSUTF8StringEncoding]];
 
         FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
         
         NSString *FbToken = [session accessTokenData].accessToken;
-        
-        [urlRequest setValue:FbToken forHTTPHeaderField:@"Access-Token"];
-        
-        
-        [urlRequest setTimeoutInterval:30.0f];
-        [urlRequest setHTTPMethod:@"POST"];
-        
-        NSOperationQueue *queque = [[NSOperationQueue alloc] init];
-        dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        
-        dispatch_async(concurrentQueue, ^{
-            
-            
-        [NSURLConnection
-         sendAsynchronousRequest:urlRequest
-         queue:queque
-         completionHandler:^(NSURLResponse *response,
-                             NSData *data,
-                             NSError *error){
-             if ([data length] >0 && error == nil){
-                 NSString *html =
-                 [[NSString alloc] initWithData:data
-                                       encoding:NSUTF8StringEncoding];
-                 NSLog(html);
-                 
-                 id UserJson = [NSJSONSerialization
-                                JSONObjectWithData:data
-                                options:NSJSONReadingAllowFragments
-                                error:&error];
-                 User *Userobj =  [User getInstance];
-                 Userobj.user= UserJson;
-                  user = UserJson;
-                 
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+        NSDictionary *params = @{@"lat=": [NSString stringWithFormat:@"%g",currentLocation.coordinate.latitude],
+                                 @"long=": [NSString stringWithFormat:@"%g",currentLocation.coordinate.longitude]};
+        [manager POST:@"http://api-dev.countdownsocial.com/user" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"JSON: %@", responseObject);
+            User *Userobj =  [User getInstance];
+            Userobj.user= responseObject;
+            user = responseObject;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateLocationCompleted" object:nil];
 
-                 NSLog(@"dictionary contains %@" , Userobj.user);
-                 [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateLocationCompleted" object:nil];
 
-                 
-             }
-             else if ([data length] == 0 && error == nil){
-                 NSLog(@"POST Nothing was downloaded.");
-                              }
-             else if (error !=nil){
-                 NSLog(@"Error happened = %@", error);
-                 NSLog(@"POST BROKEN");
-#warning TODO: Create alert and restart app in case of bad server connection.
-             }
+        }
+              failure:^(AFHTTPRequestOperation *operation, NSError *error)
+         {
+             NSLog(@"Error: %@", error);
          }];
-       });
+
+        
+ 
         
     }
-    
-    
     
 }
 

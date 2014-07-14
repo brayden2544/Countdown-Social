@@ -9,16 +9,21 @@
 #import "TwitterViewController.h"
 #import "LoginLoadViewController.h"
 #import "User.h"
-
+#import "AFNetworking/AFNetworking.h"
+#import "AFOAuth1Client.h"
 @interface TwitterViewController ()
 @property(nonatomic, strong) UIWebView *twitterWebView;
 @property(nonatomic, strong) NSString *twitter_username;
+@property(nonatomic, strong) NSString *twitter_id;
+@property(nonatomic, strong) NSString *oauth_consumer_key;
+@property(nonatomic, strong) NSString *oauth_consumer_secret;
+@property(nonatomic, strong) NSString *twitter_access_token;
+
 
 
 @end
 
 @implementation TwitterViewController
-@synthesize twitter_username;
 
 //Shows loading animation while Twitter Page is Loading
 -(void)webViewDidStartLoad:(UIWebView *)webView{
@@ -47,49 +52,16 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    //_block NSString *twitterUsername = nil;
-    //Request Twitter Information
     
-    ACAccountStore *store = [[ACAccountStore alloc] init]; // Long-lived
-    ACAccountType *twitterType = [store accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
-[store requestAccessToAccountsWithType:twitterType options:nil completion:^(BOOL granted, NSError *error) {
-    
-        if(granted ==YES) {
-            NSArray *arrayOfAccounts = [store
-                                        accountsWithAccountType:twitterType];
-                    NSLog(@"Granted");
-            
-         
-
-            // Access has been granted, now we can access the accounts
-            twitter_username = [[arrayOfAccounts valueForKey:@"username"] firstObject];
-
-            NSLog(@"%@",arrayOfAccounts);
-
-            if (twitter_username.length ==0){
-                NSLog(@"No account associated with this phone");
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"No Twitter Accounts Found" message: @"Please go to >Settings >Twitter and sign in with a valid Twitter Account"
-                                                               delegate:self
-                                                      cancelButtonTitle:nil
-                                                      otherButtonTitles:@"Okay", nil];
-                [alert show];
-
-            }else{
-            [self twitterUsernameUpload];
-            }
-
-            
-        }
-        // Handle any error state here as you wish
-    }];
     self.twitterWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0,65,325,506)];
     self.twitterWebView.scalesPageToFit = YES;
     [self.view addSubview:self.twitterWebView];
+    [self obtainRequestToken];
     
     NSString *stringURL = @"http://www.twitter.com/";
     NSURL *url = [NSURL URLWithString:stringURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
+    //NSLog(@"%@", accessToken);
     [self.twitterWebView loadRequest:request];
     
     //Post twitter handle if we don't already have it.
@@ -103,83 +75,52 @@
         NSLog(@"Twitter username blank");
     //}
 }
--(void)getTwitterToken{
+-(void)obtainRequestToken{
+  
+    
+    _oauth_consumer_key = @"heFPQutLw9Tppu3jFSeggTzhc";
+    _oauth_consumer_secret = @"RNeVuQbB9jZdJhgb2sirw3Zj2vtNVgxyWHhqGJpFPtJofFctMu";
+    
+    
+    // Your application will be sent to the background until the user authenticates, and then the app will be brought back using the callback URL
+//    [twitterClient authorizeUsingOAuthWithRequestTokenPath:@"/requesttoken" userAuthorizationPath:@"/authorize" callbackURL:[NSURL URLWithString:@"x-com-YOUR-APP-SCHEME://success"] accessTokenPath:@"/access_token" success:^(AFOAuth1Token *accessToken) {
+//        NSLog(@"Success: %@", accessToken);
+//    } failure:^(NSError *error) {
+//        NSLog(@"Error: %@", error);
+//    }];
+    AFOAuth1Client *twitterClient = [[AFOAuth1Client alloc]initWithBaseURL:[NSURL URLWithString:@"https://api.twitter.com/"] key:_oauth_consumer_key secret:_oauth_consumer_secret];
+    [twitterClient authorizeUsingOAuthWithRequestTokenPath:@"/oauth/request_token" userAuthorizationPath:@"oauth/authorize" callbackURL:[NSURL URLWithString:@"CountdownSocial://success"] accessTokenPath:@"/oauth/access_token" accessMethod:@"POST" scope:nil success:^(AFOAuth1Token *accessToken, id responseObject) {
+        NSLog(@"success %@", accessToken.userInfo);
+        _twitter_access_token = [NSString stringWithFormat:@"%@", accessToken.key];
+        _twitter_username = [accessToken.userInfo objectForKey:@"screen_name"];
+        _twitter_id = [accessToken.userInfo objectForKey:@"user_id"];
+        [self twitterUsernameUpload];
+
+    } failure:^(NSError *error) {
+        NSLog(@"fail %@",error);
+    }];
+    
     
 }
 
 -(void)twitterUsernameUpload
 {
-    NSString *urlAsString =@"http://api-dev.countdownsocial.com/user";
-    
-    NSURL *url = [NSURL URLWithString:urlAsString];
-    
-    NSMutableURLRequest *urlRequest =
-    [NSMutableURLRequest requestWithURL:url];
-    [urlRequest setHTTPBody:[[NSString stringWithFormat:@"twitter_username=%@",twitter_username] dataUsingEncoding:NSUTF8StringEncoding]];
-    
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
-    
-    //Get singleton from LoginLoadView Controller
-    
-    
     NSString *FbToken = [session accessTokenData].accessToken;
-    
-    // NSLog(@"Token is %@", FbToken);
-    
-    [urlRequest setValue:FbToken forHTTPHeaderField:@"Access-Token"];
-    
-    
-    [urlRequest setTimeoutInterval:30.0f];
-    [urlRequest setHTTPMethod:@"POST"];
-    
-    NSOperationQueue *queque = [[NSOperationQueue alloc] init];
-    dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    
-    dispatch_async(concurrentQueue, ^{
-        
-        
-        [NSURLConnection
-         sendAsynchronousRequest:urlRequest
-         queue:queque
-         completionHandler:^(NSURLResponse *response,
-                             NSData *data,
-                             NSError *error){
-             if ([data length] >0 && error == nil){
-                 NSString *html =
-                 [[NSString alloc] initWithData:data
-                                       encoding:NSUTF8StringEncoding];
-                 NSLog(html);
-                 
-                 id UserJson = [NSJSONSerialization
-                                JSONObjectWithData:data
-                                options:NSJSONReadingAllowFragments
-                                error:&error];
-               //  user = UserJson;
-                 User *Userobj =  [User getInstance];
-                 Userobj.user= UserJson;
-                 
-                 NSLog(@"Twitter Username and User Singleton Updated");
-                 
-                 
-             }
-             else if ([data length] == 0 && error == nil){
-                 NSLog(@"POST Nothing was downloaded.");
-             }
-             else if (error !=nil){
-                 NSLog(@"Error happened = %@", error);
-                 NSLog(@"POST BROKEN");
-#warning TODO: Create alert and restart app in case of bad server connection.
-             }
-         }];
-    });
-
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    NSDictionary *params = @{@"twitter_username": _twitter_username,
+                             @"twitter_token": _twitter_access_token,
+                             @"twitter_uid": _twitter_id};
+    [manager POST:@"http://api-dev.countdownsocial.com/user" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error)
+    {
+        NSLog(@"Error: %@", error);
+    }];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 - (IBAction)returnToPotentialMatches:(id)sender {
     NSLog(@"present matching view controller here");
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -187,15 +128,6 @@
     [self presentViewController:menuViewController animated:YES completion:nil];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

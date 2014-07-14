@@ -252,42 +252,16 @@
     NSString *FbToken = [session accessTokenData].accessToken;
     
     
-    [urlRequest setValue:FbToken forHTTPHeaderField:@"Access-Token"];
-    
-    
-    [urlRequest setTimeoutInterval:30.0f];
-    [urlRequest setHTTPMethod:@"POST"];
-    
-    NSOperationQueue *queque = [[NSOperationQueue alloc] init];
-    dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    
-    dispatch_async(concurrentQueue, ^{
-        
-        
-        [NSURLConnection
-         sendAsynchronousRequest:urlRequest
-         queue:queque
-         completionHandler:^(NSURLResponse *response,
-                             NSData *data,
-                             NSError *error){
-             if ([data length] >0 && error == nil){
-                 NSString *html =
-                 [[NSString alloc] initWithData:data
-                                       encoding:NSUTF8StringEncoding];
-                 NSLog(@"%@",html);
-                 
-           
-    
-             }
-             else if ([data length] == 0 && error == nil){
-                 NSLog(@"Was not passed. Connection Error");
-             }
-             else if (error !=nil){
-                 NSLog(@"Error happened = %@", error);
-                 NSLog(@"Was not passed. Connection Error");
-             }
-         }];
-    });
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    NSDictionary *params = @{};
+    [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"Error: %@", error);
+     }];
     
     [self nextMatch];
 
@@ -304,53 +278,20 @@
     urlAsString = [urlAsString stringByAppendingString:[[currentPotentialMatch objectForKey:@"uid"] stringValue]];
     urlAsString =[urlAsString stringByAppendingString:@"/like"];
     
-    NSURL *url = [NSURL URLWithString:urlAsString];
-    
-    NSMutableURLRequest *urlRequest =
-    [NSMutableURLRequest requestWithURL:url];
-    
-    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
-    
-    
+       FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     NSString *FbToken = [session accessTokenData].accessToken;
     
     
-    [urlRequest setValue:FbToken forHTTPHeaderField:@"Access-Token"];
-    
-    
-    [urlRequest setTimeoutInterval:30.0f];
-    [urlRequest setHTTPMethod:@"POST"];
-    
-    NSOperationQueue *queque = [[NSOperationQueue alloc] init];
-    dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    
-    dispatch_async(concurrentQueue, ^{
-        
-        
-        [NSURLConnection
-         sendAsynchronousRequest:urlRequest
-         queue:queque
-         completionHandler:^(NSURLResponse *response,
-                             NSData *data,
-                             NSError *error){
-             if ([data length] >0 && error == nil){
-                 NSString *html =
-                 [[NSString alloc] initWithData:data
-                                       encoding:NSUTF8StringEncoding];
-                 NSLog(@"%@",html);
-                 
-                 
-                 
-             }
-             else if ([data length] == 0 && error == nil){
-                 NSLog(@"Was not passed. Connection Error");
-             }
-             else if (error !=nil){
-                 NSLog(@"Error happened = %@", error);
-                 NSLog(@"Was not passed. Connection Error");
-             }
-         }];
-    });
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    NSDictionary *params = @{};
+    [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"Error: %@", error);
+     }];
     
     [self.moviePlayer play];
     

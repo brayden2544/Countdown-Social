@@ -74,6 +74,16 @@
 		6EC9431A1958D04E0096F41F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC943191958D04E0096F41F /* User.m */; };
 		6EC94325195C8B6E0096F41F /* LeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC94324195C8B6E0096F41F /* LeftMenuViewController.m */; };
 		6ECB30F81952498200AB8854 /* InstagramViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECB30F71952498200AB8854 /* InstagramViewController.m */; };
+		6ECDEA82197478B000B06130 /* AFOAuth1Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECDEA81197478B000B06130 /* AFOAuth1Client.m */; };
+		6ECDEA961974791800B06130 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECDEA841974791800B06130 /* AFHTTPRequestOperation.m */; };
+		6ECDEA971974791800B06130 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECDEA861974791800B06130 /* AFHTTPRequestOperationManager.m */; };
+		6ECDEA981974791800B06130 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECDEA881974791800B06130 /* AFHTTPSessionManager.m */; };
+		6ECDEA991974791800B06130 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECDEA8B1974791800B06130 /* AFNetworkReachabilityManager.m */; };
+		6ECDEA9A1974791800B06130 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECDEA8D1974791800B06130 /* AFSecurityPolicy.m */; };
+		6ECDEA9B1974791800B06130 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECDEA8F1974791800B06130 /* AFURLConnectionOperation.m */; };
+		6ECDEA9C1974791800B06130 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECDEA911974791800B06130 /* AFURLRequestSerialization.m */; };
+		6ECDEA9D1974791800B06130 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECDEA931974791800B06130 /* AFURLResponseSerialization.m */; };
+		6ECDEA9E1974791800B06130 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECDEA951974791800B06130 /* AFURLSessionManager.m */; };
 		6ECE8112194A6F69007B3130 /* TwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECE8111194A6F69007B3130 /* TwitterViewController.m */; };
 		6ED73BF01965130F00539389 /* CountdownTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED73BEF1965130F00539389 /* CountdownTimer.m */; };
 		6EF0026E194FC9EF00F32217 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF0026D194FC9EF00F32217 /* Social.framework */; };
@@ -188,6 +198,27 @@
 		6EC94324195C8B6E0096F41F /* LeftMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMenuViewController.m; sourceTree = "<group>"; };
 		6ECB30F61952498200AB8854 /* InstagramViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramViewController.h; sourceTree = "<group>"; };
 		6ECB30F71952498200AB8854 /* InstagramViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramViewController.m; sourceTree = "<group>"; };
+		6ECDEA80197478B000B06130 /* AFOAuth1Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFOAuth1Client.h; sourceTree = "<group>"; };
+		6ECDEA81197478B000B06130 /* AFOAuth1Client.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFOAuth1Client.m; sourceTree = "<group>"; };
+		6ECDEA831974791800B06130 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
+		6ECDEA841974791800B06130 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
+		6ECDEA851974791800B06130 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
+		6ECDEA861974791800B06130 /* AFHTTPRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperationManager.m; sourceTree = "<group>"; };
+		6ECDEA871974791800B06130 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
+		6ECDEA881974791800B06130 /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
+		6ECDEA891974791800B06130 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		6ECDEA8A1974791800B06130 /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
+		6ECDEA8B1974791800B06130 /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
+		6ECDEA8C1974791800B06130 /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
+		6ECDEA8D1974791800B06130 /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
+		6ECDEA8E1974791800B06130 /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
+		6ECDEA8F1974791800B06130 /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
+		6ECDEA901974791800B06130 /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLRequestSerialization.h; sourceTree = "<group>"; };
+		6ECDEA911974791800B06130 /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerialization.m; sourceTree = "<group>"; };
+		6ECDEA921974791800B06130 /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerialization.h; sourceTree = "<group>"; };
+		6ECDEA931974791800B06130 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
+		6ECDEA941974791800B06130 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
+		6ECDEA951974791800B06130 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		6ECE8110194A6F69007B3130 /* TwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterViewController.h; sourceTree = "<group>"; };
 		6ECE8111194A6F69007B3130 /* TwitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterViewController.m; sourceTree = "<group>"; };
 		6ED73BEE1965130F00539389 /* CountdownTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountdownTimer.h; sourceTree = "<group>"; };
@@ -356,6 +387,7 @@
 				6E886A4A190DD4F9009E5A92 /* ViewController.m */,
 				6E886A42190DB575009E5A92 /* LoginViewController.h */,
 				6E886A43190DB575009E5A92 /* LoginViewController.m */,
+				6EC635CB19746618009A6577 /* AFNetworking */,
 				6E92E02419628EA3009ECE27 /* PBJVision */,
 				6E50A469192D84F700930D02 /* RESideMenu */,
 				6E967CC7190DA4960042AF93 /* Images.xcassets */,
@@ -439,6 +471,34 @@
 				6EC0FC19192AD9AE00B72C44 /* matchesButton.png */,
 			);
 			name = PotentialMatches;
+			sourceTree = "<group>";
+		};
+		6EC635CB19746618009A6577 /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				6ECDEA80197478B000B06130 /* AFOAuth1Client.h */,
+				6ECDEA81197478B000B06130 /* AFOAuth1Client.m */,
+				6ECDEA831974791800B06130 /* AFHTTPRequestOperation.h */,
+				6ECDEA841974791800B06130 /* AFHTTPRequestOperation.m */,
+				6ECDEA851974791800B06130 /* AFHTTPRequestOperationManager.h */,
+				6ECDEA861974791800B06130 /* AFHTTPRequestOperationManager.m */,
+				6ECDEA871974791800B06130 /* AFHTTPSessionManager.h */,
+				6ECDEA881974791800B06130 /* AFHTTPSessionManager.m */,
+				6ECDEA891974791800B06130 /* AFNetworking.h */,
+				6ECDEA8A1974791800B06130 /* AFNetworkReachabilityManager.h */,
+				6ECDEA8B1974791800B06130 /* AFNetworkReachabilityManager.m */,
+				6ECDEA8C1974791800B06130 /* AFSecurityPolicy.h */,
+				6ECDEA8D1974791800B06130 /* AFSecurityPolicy.m */,
+				6ECDEA8E1974791800B06130 /* AFURLConnectionOperation.h */,
+				6ECDEA8F1974791800B06130 /* AFURLConnectionOperation.m */,
+				6ECDEA901974791800B06130 /* AFURLRequestSerialization.h */,
+				6ECDEA911974791800B06130 /* AFURLRequestSerialization.m */,
+				6ECDEA921974791800B06130 /* AFURLResponseSerialization.h */,
+				6ECDEA931974791800B06130 /* AFURLResponseSerialization.m */,
+				6ECDEA941974791800B06130 /* AFURLSessionManager.h */,
+				6ECDEA951974791800B06130 /* AFURLSessionManager.m */,
+			);
+			path = AFNetworking;
 			sourceTree = "<group>";
 		};
 		6EC7D4AA196C7F890083A581 /* Social Accounts */ = {
@@ -586,6 +646,7 @@
 				6EC7D4A9196C7F7B0083A581 /* PhoneNumberView.m in Sources */,
 				6E50A472192D84F700930D02 /* UIViewController+RESideMenu.m in Sources */,
 				6E92E00019628E24009ECE27 /* PBJGLProgram.m in Sources */,
+				6ECDEA971974791800B06130 /* AFHTTPRequestOperationManager.m in Sources */,
 				6EC7D4A6196C7F660083A581 /* SnapchatView.m in Sources */,
 				6E886A44190DB575009E5A92 /* LoginViewController.m in Sources */,
 				6ECE8112194A6F69007B3130 /* TwitterViewController.m in Sources */,
@@ -595,16 +656,25 @@
 				6E92E00119628E24009ECE27 /* PBJMediaWriter.m in Sources */,
 				6E7691CD195398ED006CA5DB /* PotentialMatches.m in Sources */,
 				6EB9D6B6192415D10080E1C5 /* VideoPreviewViewController.m in Sources */,
+				6ECDEA981974791800B06130 /* AFHTTPSessionManager.m in Sources */,
 				6E50A471192D84F700930D02 /* RESideMenu.m in Sources */,
+				6ECDEA991974791800B06130 /* AFNetworkReachabilityManager.m in Sources */,
 				6EC94325195C8B6E0096F41F /* LeftMenuViewController.m in Sources */,
+				6ECDEA9B1974791800B06130 /* AFURLConnectionOperation.m in Sources */,
 				6E886A4B190DD4F9009E5A92 /* ViewController.m in Sources */,
+				6ECDEA82197478B000B06130 /* AFOAuth1Client.m in Sources */,
 				6E92E00319628E24009ECE27 /* PBJVisionUtilities.m in Sources */,
 				6E967CBC190DA4960042AF93 /* main.m in Sources */,
+				6ECDEA961974791800B06130 /* AFHTTPRequestOperation.m in Sources */,
+				6ECDEA9E1974791800B06130 /* AFURLSessionManager.m in Sources */,
 				6ECB30F81952498200AB8854 /* InstagramViewController.m in Sources */,
 				6E92E01719628E94009ECE27 /* PBJFocusView.m in Sources */,
 				6E886A5C190FF4F8009E5A92 /* ChooseLocationViewController.m in Sources */,
 				6E92E01919628E94009ECE27 /* PBJViewController.m in Sources */,
+				6ECDEA9A1974791800B06130 /* AFSecurityPolicy.m in Sources */,
 				6E886A4E190E05AC009E5A92 /* SetLocationViewController.m in Sources */,
+				6ECDEA9D1974791800B06130 /* AFURLResponseSerialization.m in Sources */,
+				6ECDEA9C1974791800B06130 /* AFURLRequestSerialization.m in Sources */,
 				6EC0FC0D192AC61000B72C44 /* PotentialMatchesViewController.m in Sources */,
 				6E92DFF4196217AD009ECE27 /* VideoPath.m in Sources */,
 				6ED73BF01965130F00539389 /* CountdownTimer.m in Sources */,
