@@ -251,7 +251,10 @@
     
     NSString *FbToken = [session accessTokenData].accessToken;
     
+    dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     
+    
+    dispatch_async(concurrentQueue, ^{
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
     NSDictionary *params = @{};
@@ -262,6 +265,7 @@
      {
          NSLog(@"Error: %@", error);
      }];
+    });
     
     [self nextMatch];
 
@@ -281,7 +285,10 @@
        FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     NSString *FbToken = [session accessTokenData].accessToken;
     
+    dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     
+    
+    dispatch_async(concurrentQueue, ^{
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
     NSDictionary *params = @{};
@@ -292,6 +299,7 @@
      {
          NSLog(@"Error: %@", error);
      }];
+    });
     
     [self.moviePlayer play];
     
@@ -314,7 +322,8 @@
     }
     else {
         NSLog(@"Next Match");
-        currentPotentialMatch =[obj.potentialMatches objectAtIndex:1];
+        currentPotentialMatch =[obj.potentialMatches objectAtIndex:0];
+        if ([currentPotentialMatch objectForKey:@"fileURL"]){
         _videoUrl =[[NSURL alloc]initFileURLWithPath:[currentPotentialMatch objectForKey:@"fileURL"]];
 
         //Change lables on main queue
@@ -327,6 +336,9 @@
         //play current Match Video
     [self playVideo];
     [self setProfilePic];
+        } else{
+            NSLog(@"Loading video");
+        }
     }
 
 }

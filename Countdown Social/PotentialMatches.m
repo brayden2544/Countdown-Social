@@ -33,78 +33,123 @@
            NSString *userID = [[user objectForKey:@"uid"]stringValue];
            urlAsString = [urlAsString stringByAppendingString:userID];
            urlAsString = [urlAsString stringByAppendingString:@"/nextPotentials"];
-           NSLog(@"%@", urlAsString);
            
-           NSURL *PotentialMatchesUrl = [NSURL URLWithString:urlAsString];
+        //   NSURL *PotentialMatchesUrl = [NSURL URLWithString:urlAsString];
            
-           NSMutableURLRequest *potentialMatchesRequest = [NSMutableURLRequest requestWithURL:PotentialMatchesUrl];
+        //   NSMutableURLRequest *potentialMatchesRequest = [NSMutableURLRequest requestWithURL:PotentialMatchesUrl];
            
            
            FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
            
            NSString *FbToken = [session accessTokenData].accessToken;
-           [potentialMatchesRequest setValue:FbToken forHTTPHeaderField:@"Access-Token"];
            
-           [potentialMatchesRequest setTimeoutInterval:30.0f];
-           [potentialMatchesRequest setHTTPMethod:@"POST"];
-           NSLog(@"IN DISPATCH");
-           NSOperationQueue *potentialMatchesQueue = [[NSOperationQueue alloc] init];
-           
-           [NSURLConnection
-            sendAsynchronousRequest:potentialMatchesRequest
-            queue:potentialMatchesQueue
-            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                
-                if ([data length] >0 && error == nil){
-                    NSString *html =
-                    [[NSString alloc] initWithData:data
-                                          encoding:NSUTF8StringEncoding];
-                    id potentialMatchesJson = [NSJSONSerialization
-                                               JSONObjectWithData:data
-                                               options:NSJSONReadingMutableContainers
-                                               error:&error];
-                    NSMutableArray *potentialMatchesArray = potentialMatchesJson;
-                    [instance.potentialMatches addObjectsFromArray:potentialMatchesArray];
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+           AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+           [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+           NSDictionary *params = @{};
+           [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+               NSLog(@"JSON: %@", responseObject);
+               NSMutableArray *potentialMatchesArray = responseObject;
+               [instance.potentialMatches addObjectsFromArray:potentialMatchesArray];
+               
+               //For loop to iterate through array
+               for (int i = 0; i < [potentialMatchesArray count] ; i ++) {
+                   
+                   //Download Video for Each instance in array
+                   NSMutableDictionary *currentPotentialMatch = [[NSMutableDictionary alloc]initWithDictionary:[instance.potentialMatches objectAtIndex:i]];
+                   [instance.potentialMatches objectAtIndex:i];
+                   NSString *videoUrl =[currentPotentialMatch objectForKey:@"videoUri"];
+                   NSString *UID = [[currentPotentialMatch objectForKey:@"uid"]stringValue];
+                   
+                   NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                   NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp4",UID]];
+                   
+                   AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+                   AFHTTPRequestOperation *operation = [manager GET:videoUrl
+                                                  parameters:nil
+                                                     success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                                         NSLog(@"successful download to %@", path);
+                                                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                                         NSLog(@"Error: %@", error);
+                                                     }];
+                   operation.outputStream = [NSOutputStream outputStreamToFileAtPath:path append:YES];
+                   [currentPotentialMatch setValue:path forKeyPath:@"fileURL"];
+                   [instance.potentialMatches replaceObjectAtIndex:i withObject:currentPotentialMatch];
 
-                    for (int i = 0; i < [potentialMatchesArray count] ; i ++) {
-                    //Download Video
-                    //download the file in a seperate thread.
-                        NSLog(@"Downloading Started");
-                        NSDictionary *currentPotentialMatch = [instance.potentialMatches objectAtIndex:i];
-                        
-                        //Get video Uri
-                        NSURL *videoUrl =[NSURL URLWithString:[currentPotentialMatch objectForKey:@"videoUri"]];
-                        NSData *urlData = [NSData dataWithContentsOfURL:videoUrl];
-                        if ( urlData )
-                        {
-                            NSArray       *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-                            NSString  *documentsDirectory = [paths objectAtIndex:0];
-                            
-                            NSString  *filePath = [NSString stringWithFormat:@"%@/%@.mp4", documentsDirectory,[[currentPotentialMatch objectForKey:@"uid"]stringValue]];
-                            
-                            //saving is done on main thread
-                                [urlData writeToFile:filePath atomically:YES];
-                                [currentPotentialMatch setValue:filePath forKey:@"fileURL"];
-                                [instance.potentialMatches replaceObjectAtIndex:i withObject:currentPotentialMatch];
-                                NSLog(@"File Saved !");
-                        }
-                        
+                   [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSuccessful" object:nil];
 
-                    }
-                    });
+               }
 
-                    //NSlog(@"%@",potentialMatchesArray);
-                    
-                }
-                else if ([data length] == 0 && error == nil){
-                    NSLog(@"No Matches Downloaded");
-                }
-                else if (error !=nil){
-                    NSLog(@"Error happened with Potential Matches. = %@", error);
-                    
-                }
+               
+           }
+                 failure:^(AFHTTPRequestOperation *operation, NSError *error)
+            {
+                NSLog(@"Error: %@", error);
             }];
+
+           
+           
+//           [potentialMatchesRequest setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+//           
+//           [potentialMatchesRequest setTimeoutInterval:30.0f];
+//           [potentialMatchesRequest setHTTPMethod:@"POST"];
+//           NSLog(@"IN DISPATCH");
+//           NSOperationQueue *potentialMatchesQueue = [[NSOperationQueue alloc] init];
+//           
+//           [NSURLConnection
+//            sendAsynchronousRequest:potentialMatchesRequest
+//            queue:potentialMatchesQueue
+//            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+//                
+//                if ([data length] >0 && error == nil){
+//                    NSString *html =
+//                    [[NSString alloc] initWithData:data
+//                                          encoding:NSUTF8StringEncoding];
+//                    id potentialMatchesJson = [NSJSONSerialization
+//                                               JSONObjectWithData:data
+//                                               options:NSJSONReadingMutableContainers
+//                                               error:&error];
+//                    NSMutableArray *potentialMatchesArray = potentialMatchesJson;
+//                    [instance.potentialMatches addObjectsFromArray:potentialMatchesArray];
+//                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//
+//                    for (int i = 0; i < [potentialMatchesArray count] ; i ++) {
+//                    //Download Video
+//                    //download the file in a seperate thread.
+//                        NSLog(@"Downloading Started");
+//                        NSDictionary *currentPotentialMatch = [instance.potentialMatches objectAtIndex:i];
+//                        
+//                        //Get video Uri
+//                        NSURL *videoUrl =[NSURL URLWithString:[currentPotentialMatch objectForKey:@"videoUri"]];
+//                        NSData *urlData = [NSData dataWithContentsOfURL:videoUrl];
+//                        if ( urlData )
+//                        {
+//                            NSArray       *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//                            NSString  *documentsDirectory = [paths objectAtIndex:0];
+//                            
+//                            NSString  *filePath = [NSString stringWithFormat:@"%@/%@.mp4", documentsDirectory,[[currentPotentialMatch objectForKey:@"uid"]stringValue]];
+//                            
+//                            //saving is done on main thread
+//                                [urlData writeToFile:filePath atomically:YES];
+//                                [currentPotentialMatch setValue:filePath forKey:@"fileURL"];
+//                                [instance.potentialMatches replaceObjectAtIndex:i withObject:currentPotentialMatch];
+//                                NSLog(@"File Saved !");
+//                        }
+//                        
+//
+//                    }
+//                    });
+//
+//                    //NSlog(@"%@",potentialMatchesArray);
+//                    
+//                }
+//                else if ([data length] == 0 && error == nil){
+//                    NSLog(@"No Matches Downloaded");
+//                }
+//                else if (error !=nil){
+//                    NSLog(@"Error happened with Potential Matches. = %@", error);
+//                    
+//                }
+          //  }];
            
            
            
@@ -112,29 +157,24 @@
        
 
 
-       
-   }); return instance;
+ 
+   });
+
+    return instance;
     }
 
 +(PotentialMatches *)nextMatch{
+    
     static PotentialMatches *instance = nil;
     instance = [self getInstance];
+    NSDictionary *passedUser = [instance.potentialMatches objectAtIndex:0];
     [instance.potentialMatches removeObjectAtIndex:0];
-//    NSMutableArray *matches = instance.potentialMatches;
-//    if ([instance.potentialMatches count ] > 1){
-//    [matches removeObjectAtIndex:0];
-//     instance.potentialMatches = matches;
-//    }
-//    NSLog(@"@%d",[instance.potentialMatches count]);
-
     if ([instance.potentialMatches count] <= 2 ){
         User *obj = [User getInstance];
         NSDictionary *user = obj.user;
         //start filling Potential Matches Queue
-        dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         
         
-        dispatch_async(concurrentQueue, ^{
             //Download potential matches here
             NSString *urlAsString =@"http://countdown-java-dev.elasticbeanstalk.com/user/";
             NSString *userID = [[user objectForKey:@"uid"]stringValue];
@@ -142,92 +182,65 @@
             urlAsString = [urlAsString stringByAppendingString:@"/nextPotentials"];
             NSLog(@"%@", urlAsString);
             
-            NSURL *PotentialMatchesUrl = [NSURL URLWithString:urlAsString];
-            
-            NSMutableURLRequest *potentialMatchesRequest = [NSMutableURLRequest requestWithURL:PotentialMatchesUrl];
-            
-            
             FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
             
             NSString *FbToken = [session accessTokenData].accessToken;
-            [potentialMatchesRequest setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+        
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+        NSDictionary *params = @{};
+        [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"JSON: %@", responseObject);
+            NSMutableArray *potentialMatchesArray = responseObject;
+            for (int i = 0; i <[potentialMatchesArray count]; i++) {
+                if ([[potentialMatchesArray objectAtIndex:i] objectForKey:@"uid"] ==[passedUser objectForKey:@"uid"]) {
+                    [potentialMatchesArray removeObjectAtIndex:i];
+                }
+            }
+            [instance.potentialMatches addObjectsFromArray:potentialMatchesArray];
             
-            [potentialMatchesRequest setTimeoutInterval:30.0f];
-            [potentialMatchesRequest setHTTPMethod:@"POST"];
-            NSLog(@"IN DISPATCH");
-            NSOperationQueue *potentialMatchesQueue = [[NSOperationQueue alloc] init];
             
-            [NSURLConnection
-             sendAsynchronousRequest:potentialMatchesRequest
-             queue:potentialMatchesQueue
-             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                 
-                 if ([data length] >0 && error == nil){
-                                         id potentialMatchesJson = [NSJSONSerialization
-                                                JSONObjectWithData:data
-                                                options:NSJSONReadingMutableContainers
-                                                error:&error];
-                     NSMutableArray *potentialMatchesArray = potentialMatchesJson;
-                     PotentialMatches *obj =[PotentialMatches getInstance];
-                     //Iterate through array for duplicate potential Matches
-                     for (int i = 0; i <[instance.potentialMatches count] -1; i++) {
-                         NSString *uid = [[[instance.potentialMatches objectAtIndex:i] objectForKey:@"uid"] stringValue];
-                         for (int n = 0; n < [potentialMatchesArray count] -1; n++) {
-                             if ([[[[potentialMatchesArray objectAtIndex:n] objectForKey:@"uid"]stringValue] isEqualToString:uid]){
-                                 [potentialMatchesArray removeObjectAtIndex:n];
-                             }
-                         }
-                     }
-                     
-                    //[instance.potentialMatches addObjectsFromArray:potentialMatchesArray];
-                     NSLog(@"getting next matches%@",[obj.potentialMatches objectAtIndex:0]);
-                     //Download Video for each new piece of array
-                     //download the file in a seperate thread.
-                     for (int i = 0; i < [potentialMatchesArray count] -1; i++) {
-                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                         NSLog(@"Downloading Started");
-                         NSDictionary *currentPotentialMatch = [potentialMatchesArray objectAtIndex:i];
-                         
-                         //Get video Uri
-                         NSURL *videoUrl =[NSURL URLWithString:[currentPotentialMatch objectForKey:@"videoUri"]];
-                         
-                         NSData *urlData = [NSData dataWithContentsOfURL:videoUrl];
-                         if ( urlData )
-                         {
-                             NSArray       *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-                             NSString  *documentsDirectory = [paths objectAtIndex:0];
-                             
-                             NSString  *filePath = [NSString stringWithFormat:@"%@/%@.mp4", documentsDirectory,[[currentPotentialMatch objectForKey:@"uid"]stringValue]];
-                             
-                             //saving is done on main thread
-                                 [urlData writeToFile:filePath atomically:YES];
-                                 [currentPotentialMatch setValue:filePath forKey:@"fileURL"];
-                                 //[potentialMatchesArray replaceObjectAtIndex:0 withObject:currentPotentialMatch];
-                                 [instance.potentialMatches addObject:currentPotentialMatch];
-                                 NSLog(@"File Saved !");
-                                 
-                         }
-                         
-                     });
+            //Download Video for each new piece of array
+            //download the file in a seperate thread.
+            dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+            
+            
+            dispatch_async(concurrentQueue, ^{
+            for (int i = 0; i < [potentialMatchesArray count] ; i ++) {
+                
+                //Download Video for Each instance in array
+                NSMutableDictionary *currentPotentialMatch = [[NSMutableDictionary alloc]initWithDictionary:[instance.potentialMatches objectAtIndex:i]];
+                [instance.potentialMatches objectAtIndex:i];
+                NSString *videoUrl =[currentPotentialMatch objectForKey:@"videoUri"];
+                NSString *UID = [[currentPotentialMatch objectForKey:@"uid"]stringValue];
+                
+                NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp4",UID]];
+                
+                AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+                AFHTTPRequestOperation *operation = [manager GET:videoUrl
+                                                      parameters:nil
+                                                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                                             dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+                                                             
+                                                             
+                                                             dispatch_async(concurrentQueue, ^{
+                                                             operation.outputStream = [NSOutputStream outputStreamToFileAtPath:path append:YES];
+                                                             [currentPotentialMatch setValue:path forKeyPath:@"fileURL"];
+                                                             [instance.potentialMatches replaceObjectAtIndex:i withObject:currentPotentialMatch];
+                                                             NSLog(@"successful download to %@", path);
+                                                             });
+                                                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                                             NSLog(@"Error: %@", error);
+                                                         }];
+                
+            }
+            });
 
-                     }
-                     
-                 }
-                 else if ([data length] == 0 && error == nil){
-                     NSLog(@"No Matches Downloaded");
-                 }
-                 else if (error !=nil){
-                     NSLog(@"Error happened with Potential Matches. = %@", error);
-                     
-                 }
-             }];
-            
-            
-            
-        });
-
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"failed");
+        }];
     }
-
     return instance;
 }
 
