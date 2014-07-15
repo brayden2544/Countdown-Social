@@ -9,14 +9,14 @@
           "height" : 1
         },
         "capInsets" : {
-          "bottom" : 51,
-          "top" : 53,
-          "right" : 86,
-          "left" : 79
+          "bottom" : 92,
+          "top" : 120,
+          "right" : 179,
+          "left" : 104
         }
       },
       "idiom" : "universal",
-      "filename" : "cameraIcon.png",
+      "filename" : "cameraicon.png",
       "scale" : "1x"
     },
     {
@@ -28,14 +28,14 @@
           "height" : 1
         },
         "capInsets" : {
-          "bottom" : 105,
-          "top" : 104,
-          "right" : 171,
-          "left" : 160
+          "bottom" : 176,
+          "top" : 249,
+          "right" : 365,
+          "left" : 202
         }
       },
       "idiom" : "universal",
-      "filename" : "cameraIcon@2x.png",
+      "filename" : "cameraicon@2x.png",
       "scale" : "2x"
     }
   ],

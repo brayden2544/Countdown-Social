@@ -9,33 +9,33 @@
           "height" : 1
         },
         "capInsets" : {
-          "bottom" : 57,
-          "top" : 56,
-          "right" : 239,
-          "left" : 177
+          "bottom" : 0,
+          "top" : 130,
+          "right" : 0,
+          "left" : 198
         }
       },
       "idiom" : "universal",
-      "filename" : "size test.png",
+      "filename" : "camera1.png",
       "scale" : "1x"
     },
     {
       "resizing" : {
         "mode" : "9-part",
         "center" : {
-          "mode" : "fill",
+          "mode" : "stretch",
           "width" : 1,
           "height" : 1
         },
         "capInsets" : {
-          "bottom" : 114,
-          "top" : 113,
-          "right" : 481,
-          "left" : 352
+          "bottom" : 0,
+          "top" : 261,
+          "right" : 0,
+          "left" : 397
         }
       },
       "idiom" : "universal",
-      "filename" : "size test@2x.png",
+      "filename" : "camera1@2x.png",
       "scale" : "2x"
     }
   ],

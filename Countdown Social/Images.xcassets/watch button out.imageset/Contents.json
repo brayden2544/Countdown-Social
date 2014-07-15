@@ -1,0 +1,46 @@
+{
+  "images" : [
+    {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "fill",
+          "width" : 1,
+          "height" : 1
+        },
+        "capInsets" : {
+          "bottom" : 0,
+          "top" : 24,
+          "right" : 0,
+          "left" : 26
+        }
+      },
+      "idiom" : "universal",
+      "filename" : "watch button out.png",
+      "scale" : "1x"
+    },
+    {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "fill",
+          "width" : 1,
+          "height" : 1
+        },
+        "capInsets" : {
+          "bottom" : 0,
+          "top" : 49,
+          "right" : 0,
+          "left" : 53
+        }
+      },
+      "idiom" : "universal",
+      "filename" : "watch button out@2x.png",
+      "scale" : "2x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}
