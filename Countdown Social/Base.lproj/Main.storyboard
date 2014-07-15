@@ -1703,6 +1703,9 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="cm5-s6-Yax" kind="modal" id="q7g-30-brv"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="PpH-bv-xR2">
                                         <rect key="frame" x="15" y="146" width="209" height="47"/>
@@ -1960,7 +1963,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="TrW-H0-fmR"/>
+        <segue reference="q7g-30-brv"/>
         <segue reference="ngN-SM-eye"/>
+        <segue reference="TrW-H0-fmR"/>
     </inferredMetricsTieBreakers>
 </document>
