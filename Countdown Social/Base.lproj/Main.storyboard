@@ -231,6 +231,7 @@
                                 <connections>
                                     <action selector="returnToPotentialMatches:" destination="osf-Av-PJW" eventType="touchUpInside" id="BXj-fR-6Jf"/>
                                     <action selector="returnToPotentialMatches:" destination="Gg6-lq-8xp" eventType="touchUpInside" id="Fl7-rV-5Ip"/>
+                                    <segue destination="Z0u-QQ-q8R" kind="modal" id="iI3-UG-zG8"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jju-ri-ars">
@@ -1743,6 +1744,9 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="hCc-dh-QDL" kind="modal" id="SDM-2C-0Ld"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rCO-4H-DxI">
                                         <rect key="frame" x="15" y="54" width="209" height="42"/>
@@ -1752,6 +1756,9 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="yu2-j0-dCL" kind="modal" id="pPG-Tl-v7Y"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DIn-tK-8iF">
                                         <rect key="frame" x="15" y="195" width="209" height="42"/>
@@ -1770,6 +1777,9 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="ZbB-1Z-dZv" kind="modal" id="ynx-xO-vij"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0uB-jN-Mdz">
                                         <rect key="frame" x="15" y="99" width="209" height="42"/>
@@ -2030,6 +2040,7 @@
                                 <connections>
                                     <action selector="returnToPotentialMatches:" destination="osf-Av-PJW" eventType="touchUpInside" id="L3w-CE-cML"/>
                                     <action selector="returnToPotentialMatches:" destination="Gg6-lq-8xp" eventType="touchUpInside" id="RSB-gN-hDN"/>
+                                    <segue destination="Z0u-QQ-q8R" kind="modal" id="ILZ-Ml-aNB"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Hg-1J-yz8">
@@ -2137,6 +2148,7 @@
                                 <connections>
                                     <action selector="returnToPotentialMatches:" destination="osf-Av-PJW" eventType="touchUpInside" id="1if-dy-IDR"/>
                                     <action selector="returnToPotentialMatches:" destination="Gg6-lq-8xp" eventType="touchUpInside" id="ii8-bR-NVa"/>
+                                    <segue destination="Z0u-QQ-q8R" kind="modal" id="3Ni-uB-tC9"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s1g-yj-dnQ">
@@ -2289,7 +2301,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="TrW-H0-fmR"/>
+        <segue reference="3Ni-uB-tC9"/>
         <segue reference="ngN-SM-eye"/>
+        <segue reference="TrW-H0-fmR"/>
     </inferredMetricsTieBreakers>
 </document>

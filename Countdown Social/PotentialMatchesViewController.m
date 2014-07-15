@@ -90,16 +90,23 @@
         [self.view addSubview:self.potentialMatchesLoadingView];
         countdownTimer.hidden = TRUE;
         _loading = TRUE;
+        [NSTimer    scheduledTimerWithTimeInterval:8.0    target:self    selector:@selector(nextMatch)    userInfo:nil repeats:NO];
 
     }
     
     //If there are users
     else {
+        [self checkForVideo];
+            }
+    
+}
+
+-(void)checkForVideo{
+    //Get current potential match
+    PotentialMatches *obj =[PotentialMatches getInstance];
+    currentPotentialMatch =[obj.potentialMatches objectAtIndex:0];
+    if ([currentPotentialMatch objectForKeyedSubscript:@"fileURL"]) {
         
-        //Get current potential match
-        currentPotentialMatch =[obj.potentialMatches objectAtIndex:0];
-        if ([currentPotentialMatch objectForKeyedSubscript:@"fileURL"]) {
-       
         //Set text for name label
         _nameLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
         countdownTimer.hidden = FALSE;
@@ -115,13 +122,12 @@
         [self.view addSubview:self.moviePlayer.view];
         
         //Set Profile Pic for current potential match
-     [self setProfilePic];
-        }
-        else{
-            [NSTimer    scheduledTimerWithTimeInterval:5.0    target:self    selector:@selector(nextMatch)    userInfo:nil repeats:NO];
-        }
+        [self setProfilePic];
     }
-    
+    else{
+        [NSTimer    scheduledTimerWithTimeInterval:5.0    target:self    selector:@selector(nextMatch)    userInfo:nil repeats:NO];
+    }
+
 }
 
 //Set profile picture for current potential match
