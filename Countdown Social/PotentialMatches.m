@@ -50,7 +50,8 @@
                NSLog(@"JSON: %@", responseObject);
                NSMutableArray *potentialMatchesArray = responseObject;
                [instance.potentialMatches addObjectsFromArray:potentialMatchesArray];
-               
+               [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSuccessful" object:nil];
+
                //For loop to iterate through array
                for (int i = 0; i < [potentialMatchesArray count] ; i ++) {
                    
@@ -75,7 +76,6 @@
                    [currentPotentialMatch setValue:path forKeyPath:@"fileURL"];
                    [instance.potentialMatches replaceObjectAtIndex:i withObject:currentPotentialMatch];
 
-                   [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSuccessful" object:nil];
 
                }
 

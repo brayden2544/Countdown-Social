@@ -52,8 +52,8 @@
         NSString *FbToken = [session accessTokenData].accessToken;
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
-        NSDictionary *params = @{@"lat=": [NSString stringWithFormat:@"%g",currentLocation.coordinate.latitude],
-                                 @"long=": [NSString stringWithFormat:@"%g",currentLocation.coordinate.longitude]};
+        NSDictionary *params = @{@"lat": [NSString stringWithFormat:@"%g",currentLocation.coordinate.latitude],
+                                 @"long": [NSString stringWithFormat:@"%g",currentLocation.coordinate.longitude]};
         [manager POST:@"http://api-dev.countdownsocial.com/user" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"JSON: %@", responseObject);
             User *Userobj =  [User getInstance];

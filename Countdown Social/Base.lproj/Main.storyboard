@@ -1355,6 +1355,7 @@
                                         </state>
                                         <connections>
                                             <action selector="connectInstagram:" destination="cm5-s6-Yax" eventType="touchUpInside" id="6RM-ea-eCk"/>
+                                            <segue destination="Gg6-lq-8xp" kind="modal" id="TrW-H0-fmR"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8t1-xc-cLq">
@@ -1966,6 +1967,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="TrW-H0-fmR"/>
         <segue reference="ngN-SM-eye"/>
     </inferredMetricsTieBreakers>
 </document>

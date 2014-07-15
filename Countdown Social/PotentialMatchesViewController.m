@@ -78,6 +78,13 @@
     //Test to see if the array has potential matches
     if ([obj.potentialMatches count] == 0){
         //Show no users view controller
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"You're Out!" message: @"There are no more users near you."
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"Try Again", @"Leave App", nil];
+        [alert show];
+        
+
     }
     
     //If there are users
