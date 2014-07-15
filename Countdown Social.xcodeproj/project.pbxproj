@@ -483,10 +483,10 @@
 				6ED73BEF1965130F00539389 /* CountdownTimer.m */,
 				6EC5854B1975BED8008DDFFA /* WaitingAnimation.h */,
 				6EC5854C1975BED8008DDFFA /* WaitingAnimation.m */,
-				6EC0FC0B192AC61000B72C44 /* PotentialMatchesViewController.h */,
-				6EC0FC0C192AC61000B72C44 /* PotentialMatchesViewController.m */,
 				6EC585471975BE21008DDFFA /* PotentialMatchesLoadingView.h */,
 				6EC585481975BE21008DDFFA /* PotentialMatchesLoadingView.m */,
+				6EC0FC0B192AC61000B72C44 /* PotentialMatchesViewController.h */,
+				6EC0FC0C192AC61000B72C44 /* PotentialMatchesViewController.m */,
 			);
 			name = "Potential Matches";
 			sourceTree = "<group>";

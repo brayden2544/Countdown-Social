@@ -23,6 +23,7 @@
 @property (strong, nonatomic) IBOutlet UIView *createMatch;
 @property  BOOL playButtonHeld;
 @property  BOOL likeCurrentUser;
+@property  BOOL loading;
 @property (strong, nonatomic) UIImage *videoImage;
 @property NSTimeInterval timeRemaining;
 
@@ -88,6 +89,7 @@
         self.potentialMatchesLoadingView = [[PotentialMatchesLoadingView alloc]initWithFrame:CGRectMake(0, 90, 320, 320)];
         [self.view addSubview:self.potentialMatchesLoadingView];
         countdownTimer.hidden = TRUE;
+        _loading = TRUE;
 
     }
     
@@ -99,6 +101,7 @@
         
         //Set text for name label
         _nameLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
+        countdownTimer.hidden = FALSE;
         
         //Load initial instance of self.movieplayer with fileurl of current match
         _videoUrl =[[NSURL alloc]initFileURLWithPath:[currentPotentialMatch objectForKey:@"fileURL"]];
@@ -213,7 +216,7 @@
 
 - (IBAction)HoldPlay:(id)sender {
     
-    if(_likeCurrentUser ==FALSE) {
+    if(_likeCurrentUser ==FALSE & _loading ==FALSE) {
         _playButtonHeld = TRUE;
         self.blur.hidden = TRUE;
         self.createMatch.hidden = TRUE;
@@ -223,7 +226,7 @@
 
 - (IBAction)ReleasePlay:(id)sender {
     
-    if(_likeCurrentUser ==FALSE){
+    if(_likeCurrentUser ==FALSE & _loading ==FALSE){
     _playButtonHeld = FALSE;
     [self.moviePlayer pause];
     [self CaptureSnapshot];
@@ -324,17 +327,25 @@
     PotentialMatches *obj =[PotentialMatches nextMatch];
     NSLog(@"@%@",obj.potentialMatches);
     if ([obj.potentialMatches count]==0){
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"You're Out!" message: @"There are no more users near you."
-                                                                                     delegate:self
-                                                                            cancelButtonTitle:@"Cancel"
-                                                                            otherButtonTitles:@"Try Again", @"Leave App", nil];
-        [alert show];
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"You're Out!" message: @"There are no more users near you."
+//                                                                                     delegate:self
+//                                                                            cancelButtonTitle:@"Cancel"
+//                                                                            otherButtonTitles:@"Try Again", @"Leave App", nil];
+//        [alert show];
+
+        self.potentialMatchesLoadingView = [[PotentialMatchesLoadingView alloc]initWithFrame:CGRectMake(0, 90, 320, 320)];
+        [self.view addSubview:self.potentialMatchesLoadingView];
+        countdownTimer.hidden = TRUE;
+        _loading = TRUE;
 
     }
     else {
         NSLog(@"Next Match");
         currentPotentialMatch =[obj.potentialMatches objectAtIndex:0];
         if ([currentPotentialMatch objectForKey:@"fileURL"]){
+            _loading = FALSE;
+            [self.potentialMatchesLoadingView removeFromSuperview];
+            countdownTimer.hidden = FALSE;
         _videoUrl =[[NSURL alloc]initFileURLWithPath:[currentPotentialMatch objectForKey:@"fileURL"]];
 
         //Change lables on main queue
@@ -349,6 +360,11 @@
     [self setProfilePic];
         } else{
             NSLog(@"Loading video");
+            self.potentialMatchesLoadingView = [[PotentialMatchesLoadingView alloc]initWithFrame:CGRectMake(0, 90, 320, 320)];
+            [self.view addSubview:self.potentialMatchesLoadingView];
+            countdownTimer.hidden = TRUE;
+            _loading = TRUE;
+
         }
     }
 
