@@ -12,12 +12,14 @@
 #import <AVFoundation/AVFoundation.h>
 #import "AppDelegate.h"
 #import "InstagramViewController.h"
+#import "PotentialMatchesLoadingView.h"
 
 @interface PotentialMatchesViewController ()
 
 @property (strong, nonatomic) IBOutlet UILabel *timer;
 @property (retain) UIView *blur;
 @property (retain) UIView *darken;
+@property (retain) UIView *potentialMatchesLoadingView;
 @property (strong, nonatomic) IBOutlet UIView *createMatch;
 @property  BOOL playButtonHeld;
 @property  BOOL likeCurrentUser;
@@ -78,12 +80,14 @@
     //Test to see if the array has potential matches
     if ([obj.potentialMatches count] == 0){
         //Show no users view controller
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"You're Out!" message: @"There are no more users near you."
-                                                       delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Try Again", @"Leave App", nil];
-        [alert show];
-        
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"You're Out!" message: @"There are no more users near you."
+//                                                       delegate:self
+//                                              cancelButtonTitle:@"Cancel"
+//                                              otherButtonTitles:@"Try Again", @"Leave App", nil];
+//        [alert show];
+        self.potentialMatchesLoadingView = [[PotentialMatchesLoadingView alloc]initWithFrame:CGRectMake(0, 90, 320, 320)];
+        [self.view addSubview:self.potentialMatchesLoadingView];
+        countdownTimer.hidden = TRUE;
 
     }
     
