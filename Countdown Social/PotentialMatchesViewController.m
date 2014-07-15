@@ -98,7 +98,8 @@
         
         //Get current potential match
         currentPotentialMatch =[obj.potentialMatches objectAtIndex:0];
-        
+        if ([currentPotentialMatch objectForKeyedSubscript:@"fileURL"]) {
+       
         //Set text for name label
         _nameLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
         countdownTimer.hidden = FALSE;
@@ -114,7 +115,11 @@
         [self.view addSubview:self.moviePlayer.view];
         
         //Set Profile Pic for current potential match
-        [self setProfilePic];
+     [self setProfilePic];
+        }
+        else{
+            [NSTimer    scheduledTimerWithTimeInterval:5.0    target:self    selector:@selector(nextMatch)    userInfo:nil repeats:NO];
+        }
     }
     
 }
