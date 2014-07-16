@@ -111,6 +111,9 @@
         //Set text for name label
         _nameLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
         countdownTimer.hidden = FALSE;
+        [self.potentialMatchesLoadingView removeFromSuperview];
+        countdownTimer.hidden = FALSE;
+
         
         //Load initial instance of self.movieplayer with fileurl of current match
         _videoUrl =[currentPotentialMatch objectForKey:@"fileURL"];
@@ -352,6 +355,7 @@
         [self.view addSubview:self.potentialMatchesLoadingView];
         countdownTimer.hidden = TRUE;
         _loading = TRUE;
+        [NSTimer    scheduledTimerWithTimeInterval:6.0    target:self    selector:@selector(nextMatch)    userInfo:nil repeats:NO];
 
 
     }
@@ -363,7 +367,7 @@
             _loading = FALSE;
             [self.potentialMatchesLoadingView removeFromSuperview];
             countdownTimer.hidden = FALSE;
-        _videoUrl =[currentPotentialMatch objectForKey:@"fileURL"];
+            _videoUrl =[currentPotentialMatch objectForKey:@"fileURL"];
 
         //Change lables on main queue
         dispatch_async(dispatch_get_main_queue(), ^{
