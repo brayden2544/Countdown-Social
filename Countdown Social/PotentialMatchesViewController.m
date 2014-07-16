@@ -17,7 +17,7 @@
 @interface PotentialMatchesViewController ()
 
 @property (strong, nonatomic) IBOutlet UILabel *timer;
-@property (retain) UIView *blur;
+@property (retain) UIImageView *blur;
 @property (retain) UIView *darken;
 @property (retain) UIView *potentialMatchesLoadingView;
 @property (strong, nonatomic) IBOutlet UIView *createMatch;
@@ -26,6 +26,7 @@
 @property  BOOL loading;
 @property (strong, nonatomic) UIImage *videoImage;
 @property NSTimeInterval timeRemaining;
+@property int checkVideoCount;
 
 @end
 
@@ -62,6 +63,12 @@
     [countdownTimer changePercentage:100];
     [self.view addSubview:countdownTimer];
     
+    self.potentialMatchesLoadingView = [[PotentialMatchesLoadingView alloc]initWithFrame:CGRectMake(0, 57, 320, 353)];
+    
+    self.blur=[[UIImageView alloc] initWithFrame:CGRectMake (0, 90, 320, 320)];
+
+
+    
     //make countdown timer transparent.
     self.timer.alpha = .7;
     
@@ -86,7 +93,7 @@
 //                                              cancelButtonTitle:@"Cancel"
 //                                              otherButtonTitles:@"Try Again", @"Leave App", nil];
 //        [alert show];
-        self.potentialMatchesLoadingView = [[PotentialMatchesLoadingView alloc]initWithFrame:CGRectMake(0, 90, 320, 320)];
+        //self.potentialMatchesLoadingView = [[PotentialMatchesLoadingView alloc]initWithFrame:CGRectMake(0, 57, 360, 320)];
         [self.view addSubview:self.potentialMatchesLoadingView];
         countdownTimer.hidden = TRUE;
         _loading = TRUE;
@@ -96,12 +103,14 @@
     
     //If there are users
     else {
+        _checkVideoCount = 0;
         [self checkForVideo];
             }
     
 }
 
 -(void)checkForVideo{
+    NSLog(@"check for video");
     //Get current potential match
     PotentialMatches *obj =[PotentialMatches getInstance];
     currentPotentialMatch =[obj.potentialMatches objectAtIndex:0];
@@ -129,7 +138,6 @@
         [self setProfilePic];
     }
     else{
-        self.potentialMatchesLoadingView = [[PotentialMatchesLoadingView alloc]initWithFrame:CGRectMake(0, 90, 320, 320)];
         [self.view addSubview:self.potentialMatchesLoadingView];
         countdownTimer.hidden = TRUE;
         _loading = TRUE;
@@ -201,12 +209,14 @@
 -(void)BlurImage{
     
     //Blur Video Screenshot and add it infront of video
-    self.blur=[[UIImageView alloc] initWithImage:_videoImage];
+   // self.blur=[[UIImageView alloc] init];
+    [self.blur setImage:_videoImage];
     self.blur.userInteractionEnabled = YES;
     self.blur.frame = self.moviePlayer.view.frame;
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.view addSubview:self.blur];
+        self.blur.hidden = false;
         self.createMatch.hidden = false;
         [self.view insertSubview:self.createMatch aboveSubview:self.blur];
         
@@ -239,6 +249,7 @@
         _playButtonHeld = TRUE;
         self.blur.hidden = TRUE;
         self.createMatch.hidden = TRUE;
+        [self.view bringSubviewToFront:self.moviePlayer.view];
         [self.moviePlayer play];
     }
 }
@@ -256,7 +267,7 @@
 -(void) playVideo{
     [self.moviePlayer setContentURL:_videoUrl];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.view addSubview:self.moviePlayer.view];
+        [self.view bringSubviewToFront:self.moviePlayer.view];
         [self.view insertSubview:countdownTimer aboveSubview:self.moviePlayer.view];
         
     });
@@ -343,7 +354,7 @@
     _likeCurrentUser = FALSE;
     
     PotentialMatches *obj =[PotentialMatches nextMatch];
-    NSLog(@"@%@",obj.potentialMatches);
+    //NSLog(@"@%@",obj.potentialMatches);
     if ([obj.potentialMatches count]==0){
 //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"You're Out!" message: @"There are no more users near you."
 //                                                                                     delegate:self
@@ -351,7 +362,8 @@
 //                                                                            otherButtonTitles:@"Try Again", @"Leave App", nil];
 //        [alert show];
 
-        self.potentialMatchesLoadingView = [[PotentialMatchesLoadingView alloc]initWithFrame:CGRectMake(0, 90, 320, 320)];
+        //self.potentialMatchesLoadingView = [[PotentialMatchesLoadingView alloc]initWithFrame:CGRectMake(0, 90, 320, 320)];
+        NSLog(@"Potential Matches Empty, wait 6 seconds");
         [self.view addSubview:self.potentialMatchesLoadingView];
         countdownTimer.hidden = TRUE;
         _loading = TRUE;
@@ -381,10 +393,11 @@
     [self setProfilePic];
         }else{
             NSLog(@"Loading video");
-            self.potentialMatchesLoadingView = [[PotentialMatchesLoadingView alloc]initWithFrame:CGRectMake(0, 90, 320, 320)];
+            //self.potentialMatchesLoadingView = [[PotentialMatchesLoadingView alloc]initWithFrame:CGRectMake(0, 90, 320, 320)];
             [self.view addSubview:self.potentialMatchesLoadingView];
             countdownTimer.hidden = TRUE;
             _loading = TRUE;
+            _checkVideoCount = 0;
             [NSTimer    scheduledTimerWithTimeInterval:2.0    target:self    selector:@selector(checkForVideo)    userInfo:nil repeats:NO];
 
         }
