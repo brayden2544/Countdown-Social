@@ -95,7 +95,6 @@
 //        [alert show];
         //self.potentialMatchesLoadingView = [[PotentialMatchesLoadingView alloc]initWithFrame:CGRectMake(0, 57, 360, 320)];
         [self.view addSubview:self.potentialMatchesLoadingView];
-        countdownTimer.hidden = TRUE;
         _loading = TRUE;
         [NSTimer    scheduledTimerWithTimeInterval:2.0    target:self    selector:@selector(nextMatch)    userInfo:nil repeats:NO];
 
@@ -119,9 +118,7 @@
 
         //Set text for name label
         _nameLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
-        countdownTimer.hidden = FALSE;
         [self.potentialMatchesLoadingView removeFromSuperview];
-        countdownTimer.hidden = FALSE;
 
         
         //Load initial instance of self.movieplayer with fileurl of current match
@@ -139,7 +136,6 @@
     }
     else{
         [self.view addSubview:self.potentialMatchesLoadingView];
-        countdownTimer.hidden = TRUE;
         _loading = TRUE;
         [NSTimer    scheduledTimerWithTimeInterval:2.0    target:self    selector:@selector(checkForVideo)    userInfo:nil repeats:NO];
     }
@@ -274,6 +270,9 @@
         if(_playButtonHeld == TRUE){
         [self.moviePlayer play];
     }
+        else if(playButton.isTouchInside){
+            [self.moviePlayer play];
+        }
 
 
 }
@@ -365,7 +364,6 @@
         //self.potentialMatchesLoadingView = [[PotentialMatchesLoadingView alloc]initWithFrame:CGRectMake(0, 90, 320, 320)];
         NSLog(@"Potential Matches Empty, wait 6 seconds");
         [self.view addSubview:self.potentialMatchesLoadingView];
-        countdownTimer.hidden = TRUE;
         _loading = TRUE;
         [NSTimer    scheduledTimerWithTimeInterval:6.0    target:self    selector:@selector(nextMatch)    userInfo:nil repeats:NO];
 
@@ -378,7 +376,6 @@
         if ([currentPotentialMatch objectForKey:@"fileURL"]){
             _loading = FALSE;
             [self.potentialMatchesLoadingView removeFromSuperview];
-            countdownTimer.hidden = FALSE;
             _videoUrl =[currentPotentialMatch objectForKey:@"fileURL"];
 
         //Change lables on main queue
@@ -395,7 +392,6 @@
             NSLog(@"Loading video");
             //self.potentialMatchesLoadingView = [[PotentialMatchesLoadingView alloc]initWithFrame:CGRectMake(0, 90, 320, 320)];
             [self.view addSubview:self.potentialMatchesLoadingView];
-            countdownTimer.hidden = TRUE;
             _loading = TRUE;
             _checkVideoCount = 0;
             [NSTimer    scheduledTimerWithTimeInterval:2.0    target:self    selector:@selector(checkForVideo)    userInfo:nil repeats:NO];
