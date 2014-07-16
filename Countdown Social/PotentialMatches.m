@@ -64,19 +64,23 @@
                    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
                    NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp4",UID]];
                    
-                   AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
-                   [[sessionManager dataTaskWithRequest:videoRequest completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-                       
-                   }] resume];
-                   
-                   NSURLSessionDownloadTask *videoDownload = [sessionManager downloadTaskWithRequest:videoRequest progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
-                       NSURL *documentsDirectoryPath = [NSURL fileURLWithPath:[NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES) firstObject]];
-                       return [documentsDirectoryPath URLByAppendingPathComponent:[targetPath lastPathComponent]];
+                   AFURLSessionManager *sessionManager = [[AFURLSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+                   NSURLSessionDownloadTask *videoDownload =[sessionManager downloadTaskWithRequest:videoRequest progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+                       NSLog(@"do shit here %@", targetPath);
+                       NSURL *documentsDirectoryPath = [NSURL fileURLWithPath:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]];
+                       return [documentsDirectoryPath URLByAppendingPathComponent:[response suggestedFilename]];
                    } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
-                       NSLog(@"File downloaded to: %@", filePath);
-                       [currentPotentialMatch setValue:filePath forKeyPath:@"fileURL"];
+                       NSLog(@"do other shit %@",filePath);
+                       [currentPotentialMatch setValue:filePath forKey:@"fileURL"];
+                       [instance.potentialMatches replaceObjectAtIndex:i withObject:currentPotentialMatch];
+                       
                    }];
                    [videoDownload resume];
+//                   [[sessionManager dataTaskWithRequest:videoRequest completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+//                       
+//                   }] resume];
+                   
+ 
 
                }
 
@@ -141,30 +145,28 @@
             dispatch_async(concurrentQueue, ^{
             for (int i = 0; i < [potentialMatchesArray count] ; i ++) {
                 
-                //Download Video for Each instance in array
+                ///Download Video for Each instance in array
                 NSMutableDictionary *currentPotentialMatch = [[NSMutableDictionary alloc]initWithDictionary:[instance.potentialMatches objectAtIndex:i]];
                 [instance.potentialMatches objectAtIndex:i];
-                NSString *videoUrl =[currentPotentialMatch objectForKey:@"videoUri"];
+                NSString *videoUrlString =[currentPotentialMatch objectForKey:@"videoUri"];
                 NSString *UID = [[currentPotentialMatch objectForKey:@"uid"]stringValue];
-                
+                NSURL *videoURl = [NSURL URLWithString:videoUrlString];
+                NSURLRequest *videoRequest = [NSURLRequest requestWithURL:videoURl];
                 NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
                 NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp4",UID]];
                 
-                AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-                [manager GET:videoUrl
-                                                      parameters:nil
-                                                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                                             dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-                                                             
-                                                             
-                                                             operation.outputStream = [NSOutputStream outputStreamToFileAtPath:path append:YES];
-                                                             [currentPotentialMatch setValue:path forKeyPath:@"fileURL"];
-                                                             [instance.potentialMatches replaceObjectAtIndex:i withObject:currentPotentialMatch];
-                                                             NSLog(@"successful download to %@", path);
-                                                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                                             NSLog(@"Error: %@", error);
-                                                         }];
-                
+                AFURLSessionManager *sessionManager = [[AFURLSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+                NSURLSessionDownloadTask *videoDownload =[sessionManager downloadTaskWithRequest:videoRequest progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+                    NSLog(@"do shit here %@", targetPath);
+                    NSURL *documentsDirectoryPath = [NSURL fileURLWithPath:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]];
+                    return [documentsDirectoryPath URLByAppendingPathComponent:[response suggestedFilename]];
+                } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+                    NSLog(@"do other shit %@",filePath);
+                    [currentPotentialMatch setValue:filePath forKey:@"fileURL"];
+                    [instance.potentialMatches replaceObjectAtIndex:i withObject:currentPotentialMatch];
+                    
+                }];
+                [videoDownload resume];
             }
             });
 

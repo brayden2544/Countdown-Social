@@ -90,7 +90,7 @@
         [self.view addSubview:self.potentialMatchesLoadingView];
         countdownTimer.hidden = TRUE;
         _loading = TRUE;
-        [NSTimer    scheduledTimerWithTimeInterval:8.0    target:self    selector:@selector(nextMatch)    userInfo:nil repeats:NO];
+        [NSTimer    scheduledTimerWithTimeInterval:2.0    target:self    selector:@selector(nextMatch)    userInfo:nil repeats:NO];
 
     }
     
@@ -105,14 +105,15 @@
     //Get current potential match
     PotentialMatches *obj =[PotentialMatches getInstance];
     currentPotentialMatch =[obj.potentialMatches objectAtIndex:0];
-    if ([currentPotentialMatch objectForKeyedSubscript:@"fileURL"]) {
-        
+    if ([currentPotentialMatch objectForKey:@"fileURL"]) {
+        _loading = FALSE;
+
         //Set text for name label
         _nameLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
         countdownTimer.hidden = FALSE;
         
         //Load initial instance of self.movieplayer with fileurl of current match
-        _videoUrl =[[NSURL alloc]initFileURLWithPath:[currentPotentialMatch objectForKey:@"fileURL"]];
+        _videoUrl =[currentPotentialMatch objectForKey:@"fileURL"];
         self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:_videoUrl];
         self.moviePlayer.shouldAutoplay = NO;
         self.moviePlayer.controlStyle =MPMovieControlStyleNone;
@@ -125,7 +126,11 @@
         [self setProfilePic];
     }
     else{
-        [NSTimer    scheduledTimerWithTimeInterval:5.0    target:self    selector:@selector(nextMatch)    userInfo:nil repeats:NO];
+        self.potentialMatchesLoadingView = [[PotentialMatchesLoadingView alloc]initWithFrame:CGRectMake(0, 90, 320, 320)];
+        [self.view addSubview:self.potentialMatchesLoadingView];
+        countdownTimer.hidden = TRUE;
+        _loading = TRUE;
+        [NSTimer    scheduledTimerWithTimeInterval:2.0    target:self    selector:@selector(checkForVideo)    userInfo:nil repeats:NO];
     }
 
 }
@@ -268,7 +273,6 @@
     
     NSURL *url = [NSURL URLWithString:urlAsString];
     
-    NSMutableURLRequest *urlRequest =
     [NSMutableURLRequest requestWithURL:url];
     
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
@@ -349,15 +353,17 @@
         countdownTimer.hidden = TRUE;
         _loading = TRUE;
 
+
     }
     else {
         NSLog(@"Next Match");
         currentPotentialMatch =[obj.potentialMatches objectAtIndex:0];
+        NSLog(@"crash ehre?");
         if ([currentPotentialMatch objectForKey:@"fileURL"]){
             _loading = FALSE;
             [self.potentialMatchesLoadingView removeFromSuperview];
             countdownTimer.hidden = FALSE;
-        _videoUrl =[[NSURL alloc]initFileURLWithPath:[currentPotentialMatch objectForKey:@"fileURL"]];
+        _videoUrl =[currentPotentialMatch objectForKey:@"fileURL"];
 
         //Change lables on main queue
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -369,14 +375,16 @@
         //play current Match Video
     [self playVideo];
     [self setProfilePic];
-        } else{
+        }else{
             NSLog(@"Loading video");
             self.potentialMatchesLoadingView = [[PotentialMatchesLoadingView alloc]initWithFrame:CGRectMake(0, 90, 320, 320)];
             [self.view addSubview:self.potentialMatchesLoadingView];
             countdownTimer.hidden = TRUE;
             _loading = TRUE;
+            [NSTimer    scheduledTimerWithTimeInterval:2.0    target:self    selector:@selector(checkForVideo)    userInfo:nil repeats:NO];
 
         }
+
     }
 
 }
