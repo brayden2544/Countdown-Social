@@ -285,9 +285,13 @@
 
 -(void) userPass{
     NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/";
+    PotentialMatches *obj =[PotentialMatches getInstance];
+    [obj.passedUsers addObject:currentPotentialMatch];
     urlAsString = [urlAsString stringByAppendingString:[[currentPotentialMatch objectForKey:@"uid"] stringValue]];
     urlAsString =[urlAsString stringByAppendingString:@"/pass"];
     
+
+
     NSURL *url = [NSURL URLWithString:urlAsString];
     
     [NSMutableURLRequest requestWithURL:url];
@@ -372,7 +376,7 @@
         NSLog(@"Potential Matches Empty, wait 6 seconds");
         [self.view addSubview:self.potentialMatchesLoadingView];
         _loading = TRUE;
-        [NSTimer    scheduledTimerWithTimeInterval:6.0    target:self    selector:@selector(nextMatch)    userInfo:nil repeats:NO];
+        [NSTimer    scheduledTimerWithTimeInterval:15.0    target:self    selector:@selector(nextMatch)    userInfo:nil repeats:NO];
 
 
     }
