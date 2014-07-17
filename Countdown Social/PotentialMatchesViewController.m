@@ -273,7 +273,6 @@
 
 -(void) playVideo{
     [self.moviePlayer setContentURL:_videoUrl];
-    _loading = FALSE;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.view bringSubviewToFront:self.moviePlayer.view];
         [self.view insertSubview:countdownTimer aboveSubview:self.moviePlayer.view];
@@ -285,6 +284,8 @@
         else if(playButton.isTouchInside){
             [self.moviePlayer play];
         }
+
+
 }
 
 
