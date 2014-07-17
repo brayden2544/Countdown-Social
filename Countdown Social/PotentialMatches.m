@@ -132,6 +132,7 @@
             for (int i = 0; i <[potentialMatchesArray count]; i++) {
                 if ([[potentialMatchesArray objectAtIndex:i] objectForKey:@"uid"] ==[passedUser objectForKey:@"uid"]) {
                     [potentialMatchesArray removeObjectAtIndex:i];
+                    i -=1;
                 }
             }
             [instance.potentialMatches addObjectsFromArray:potentialMatchesArray];
@@ -142,9 +143,12 @@
             dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
             
             
-            dispatch_async(concurrentQueue, ^{
-            for (int i = 0; i < [potentialMatchesArray count] ; i ++) {
-                
+            //dispatch_async(concurrentQueue, ^{
+            for (int i = 0; i < [instance.potentialMatches count] ; i ++) {
+                if ([[instance.potentialMatches objectAtIndex:i]objectForKey:@"fileURL"]) {
+                    NSLog(@"Video Already Downloaded");
+                }
+                else{
                 ///Download Video for Each instance in array
                 NSMutableDictionary *currentPotentialMatch = [[NSMutableDictionary alloc]initWithDictionary:[instance.potentialMatches objectAtIndex:i]];
                 [instance.potentialMatches objectAtIndex:i];
@@ -167,11 +171,13 @@
                 }];
                 [videoDownload resume];
             }
-            });
+            }
+           // });
 
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"failed");
         }];
+        
     }
     return instance;
 }

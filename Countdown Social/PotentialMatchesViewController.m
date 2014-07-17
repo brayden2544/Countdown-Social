@@ -95,19 +95,12 @@
     
     //Test to see if the array has potential matches
     if ([obj.potentialMatches count] == 0){
-        //Show no users view controller
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"You're Out!" message: @"There are no more users near you."
-//                                                       delegate:self
-//                                              cancelButtonTitle:@"Cancel"
-//                                              otherButtonTitles:@"Try Again", @"Leave App", nil];
-//        [alert show];
-        //self.potentialMatchesLoadingView = [[PotentialMatchesLoadingView alloc]initWithFrame:CGRectMake(0, 57, 360, 320)];
         [self.view addSubview:self.potentialMatchesLoadingView];
         _loading = TRUE;
         [NSTimer    scheduledTimerWithTimeInterval:2.0    target:self    selector:@selector(nextMatch)    userInfo:nil repeats:NO];
 
     }
-    
+
     //If there are users
     else {
         _checkVideoCount = 0;
