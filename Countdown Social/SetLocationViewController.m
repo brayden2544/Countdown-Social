@@ -50,7 +50,7 @@
     
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(handleLongPress:)];
-    lpgr.minimumPressDuration = 1.0; //user needs to press for 2 seconds
+    lpgr.minimumPressDuration = 0.3; //user needs to press for 2 seconds
     [self.setLocationMapView addGestureRecognizer:lpgr];
     
     travelModeAnnotation = [[MKPointAnnotation alloc] init];
@@ -62,8 +62,8 @@
     [self.setLocationMapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
     MKCoordinateRegion mapRegion;
     mapRegion.center = self.setLocationMapView.userLocation.coordinate;
-    mapRegion.span.latitudeDelta = 0.2;
-    mapRegion.span.longitudeDelta = 0.2;
+    mapRegion.span.latitudeDelta = 0.01;
+    mapRegion.span.longitudeDelta = 0.01;
     
     [self.setLocationMapView setRegion:mapRegion animated: YES];
     
@@ -154,7 +154,7 @@ didAddAnnotationViews:(NSArray *)annotationViews
         [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
         NSDictionary *params = @{@"lat": [NSString stringWithFormat:@"%g",travelModeAnnotation.coordinate.latitude],
                                  @"long": [NSString stringWithFormat:@"%g",travelModeAnnotation.coordinate.longitude],
-                                 @"travel_mode":@"TRUE"};
+                                 @"travel_mode":@true};
         [manager POST:@"http://api-dev.countdownsocial.com/user" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"JSON: %@", responseObject);
             User *Userobj =  [User getInstance];
@@ -171,8 +171,34 @@ didAddAnnotationViews:(NSArray *)annotationViews
          {
              NSLog(@"Error: %@", error);
          }];
+    }else{
+        FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+        NSString *FbToken = [session accessTokenData].accessToken;
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+        NSDictionary *params = @{@"lat": [NSString stringWithFormat:@"%g",self.setLocationMapView.userLocation.coordinate.latitude],
+                                 @"long": [NSString stringWithFormat:@"%g",self.setLocationMapView.userLocation.coordinate.longitude],
+                                 @"travel_mode":@false};
+        [manager POST:@"http://api-dev.countdownsocial.com/user" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"JSON: %@", responseObject);
+            User *Userobj =  [User getInstance];
+            Userobj.user= responseObject;
+            //[[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateLocationCompleted" object:nil];
+            NSLog(@"present matching view controller here");
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            ViewController *menuViewController = [storyboard instantiateViewControllerWithIdentifier:@"rootViewController"];
+            [self presentViewController:menuViewController animated:YES completion:nil];
+            
+            
+        }
+              failure:^(AFHTTPRequestOperation *operation, NSError *error)
+         {
+             NSLog(@"Error: %@", error);
+         }];
 
+        
     }
+    
     
 }
 

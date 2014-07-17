@@ -106,7 +106,7 @@
         [instance.potentialMatches removeObjectAtIndex:0];
     }
     
-    if ([instance.potentialMatches count] <= 2 ){
+    if ([instance.potentialMatches count] <= 1 ){
         User *obj = [User getInstance];
         NSDictionary *user = obj.user;
         //start filling Potential Matches Queue
@@ -127,7 +127,7 @@
         [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
         NSDictionary *params = @{};
         [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSLog(@"JSON: %@", responseObject);
+            //NSLog(@"JSON: %@", responseObject);
             NSMutableArray *potentialMatchesArray = responseObject;
             for (int i = 0; i <[potentialMatchesArray count]; i++) {
                 if ([[potentialMatchesArray objectAtIndex:i] objectForKey:@"uid"] ==[passedUser objectForKey:@"uid"]) {
@@ -157,11 +157,10 @@
                 
                 AFURLSessionManager *sessionManager = [[AFURLSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
                 NSURLSessionDownloadTask *videoDownload =[sessionManager downloadTaskWithRequest:videoRequest progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
-                    NSLog(@"do shit here %@", targetPath);
                     NSURL *documentsDirectoryPath = [NSURL fileURLWithPath:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]];
                     return [documentsDirectoryPath URLByAppendingPathComponent:[response suggestedFilename]];
                 } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
-                    NSLog(@"do other shit %@",filePath);
+                    NSLog(@"Video Saved at %@",filePath);
                     [currentPotentialMatch setValue:filePath forKey:@"fileURL"];
                     [instance.potentialMatches replaceObjectAtIndex:i withObject:currentPotentialMatch];
                     

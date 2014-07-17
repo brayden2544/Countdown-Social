@@ -32,6 +32,36 @@
     return self;
 }
 
+-(void)getUserObject{
+    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+    
+    NSString *FbToken = [session accessTokenData].accessToken;
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    NSDictionary *params = @{};
+    [manager POST:@"http://api-dev.countdownsocial.com/user" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+        User *Userobj =  [User getInstance];
+        Userobj.user= responseObject;
+        user = responseObject;
+        //[[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateLocationCompleted" object:nil];
+        if ([[user objectForKey:@"travel_mode"] isEqualToString:@"FALSE"]) {
+            [self checkLocationServices];
+        }
+        else{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateLocationCompleted" object:nil];
+ 
+        }
+        
+    }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"Error: %@", error);
+     }];
+
+    
+}
+
 //gets current location and uploads it to API.
 -(void) locationManager:(CLLocationManager *)manager
            didUpdateToLocation:(CLLocation *)newLocation
@@ -55,11 +85,11 @@
         NSDictionary *params = @{@"lat": [NSString stringWithFormat:@"%g",currentLocation.coordinate.latitude],
                                  @"long": [NSString stringWithFormat:@"%g",currentLocation.coordinate.longitude]};
         [manager POST:@"http://api-dev.countdownsocial.com/user" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSLog(@"JSON: %@", responseObject);
-            User *Userobj =  [User getInstance];
-            Userobj.user= responseObject;
-            user = responseObject;
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateLocationCompleted" object:nil];
+                NSLog(@"JSON: %@", responseObject);
+                User *Userobj =  [User getInstance];
+                Userobj.user= responseObject;
+                user = responseObject;
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateLocationCompleted" object:nil];
 
 
         }
@@ -67,10 +97,6 @@
          {
              NSLog(@"Error: %@", error);
          }];
-
-        
- 
-        
     }
     
 }
@@ -94,7 +120,8 @@
                                                  name:@"UpdateLocationCompleted"
                                                object:nil];
     //Gets current Location of User
-    [self checkLocationServices];
+    [self getUserObject];
+    //[self checkLocationServices];
     
 }
 
@@ -112,8 +139,8 @@
         //TODO: Create code for manual selection of location.
         NSLog(@"Location services disabled");
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        ChooseLocationViewController *chooseLocationViewController = [storyboard instantiateViewControllerWithIdentifier:@"ChooseLocationViewController"];
-        [self presentViewController:chooseLocationViewController animated:YES completion:nil];
+        UIViewController *setLocationViewController = [storyboard instantiateViewControllerWithIdentifier:@"SetLocationViewController"];
+        [self presentViewController:setLocationViewController animated:YES completion:nil];
     }
 
 }
@@ -136,14 +163,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
         // Update the UI
         NSLog(@"Successful Notification Alert");
-        //Check to see if user has video uploaded, if not, video upload screen is shown.
-        //if ((NSNull *)[user objectForKey: @"videoUri"] == [NSNull null]){
-//            PBJViewController *pbjViewController = [[PBJViewController alloc] init];
-//            [self presentViewController:pbjViewController animated:YES completion:nil];
-            
-       // }
-        //If user has video, matching screen is uploaded.
-       // else {
+
             NSLog(@"present matching view controller here");
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             ViewController *menuViewController = [storyboard instantiateViewControllerWithIdentifier:@"rootViewController"];
@@ -157,15 +177,6 @@
 
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

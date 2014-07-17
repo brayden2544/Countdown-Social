@@ -63,6 +63,14 @@
     [countdownTimer changePercentage:100];
     [self.view addSubview:countdownTimer];
     
+    self.moviePlayer = [[MPMoviePlayerController alloc]init];
+    self.moviePlayer.shouldAutoplay = NO;
+    self.moviePlayer.controlStyle =MPMovieControlStyleNone;
+    [self.moviePlayer.view setFrame:CGRectMake (0, 90, 320, 320)];
+    [self.moviePlayer setFullscreen:NO
+                           animated:NO];
+    [self.view addSubview:self.moviePlayer.view];
+    
     self.potentialMatchesLoadingView = [[PotentialMatchesLoadingView alloc]initWithFrame:CGRectMake(0, 57, 320, 353)];
     
     self.blur=[[UIImageView alloc] initWithFrame:CGRectMake (0, 90, 320, 320)];
@@ -109,6 +117,10 @@
 }
 
 -(void)checkForVideo{
+    _checkVideoCount +=1;
+    if (_checkVideoCount<5) {
+        
+    
     NSLog(@"check for video");
     //Get current potential match
     PotentialMatches *obj =[PotentialMatches getInstance];
@@ -123,13 +135,8 @@
         
         //Load initial instance of self.movieplayer with fileurl of current match
         _videoUrl =[currentPotentialMatch objectForKey:@"fileURL"];
-        self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:_videoUrl];
-        self.moviePlayer.shouldAutoplay = NO;
-        self.moviePlayer.controlStyle =MPMovieControlStyleNone;
-        [self.moviePlayer.view setFrame:CGRectMake (0, 90, 320, 320)];
-        [self.moviePlayer setFullscreen:NO
-                               animated:NO];
-        [self.view addSubview:self.moviePlayer.view];
+        [self.moviePlayer setContentURL:_videoUrl];
+        
         
         //Set Profile Pic for current potential match
         [self setProfilePic];
@@ -138,6 +145,10 @@
         [self.view addSubview:self.potentialMatchesLoadingView];
         _loading = TRUE;
         [NSTimer    scheduledTimerWithTimeInterval:2.0    target:self    selector:@selector(checkForVideo)    userInfo:nil repeats:NO];
+    }
+    }
+    else{
+        [self nextMatch];
     }
 
 }
@@ -300,7 +311,10 @@
     [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
     NSDictionary *params = @{};
     [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        dispatch_async(concurrentQueue, ^{
+
         NSLog(@"JSON: %@", responseObject);
+        });
     }
           failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
@@ -381,7 +395,6 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             
                 _nameLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
-                _meetLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
         });
     
         //play current Match Video
@@ -509,7 +522,7 @@
 
 
 -(void)viewDidDisappear:(BOOL)animated{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    //[[NSNotificationCenter defaultCenter] removeObserver:self];
     NSLog(@"NSNotification Observer Disappeared");
 }
 

@@ -106,7 +106,7 @@
     
     NSString *postLength = [NSString stringWithFormat:@"%d", [videoData length]];
     
-    [urlRequest setValue:@"video/quicktime" forHTTPHeaderField:@"Content-Type"];
+    [urlRequest setValue:@"video/mp4" forHTTPHeaderField:@"Content-Type"];
     [urlRequest setValue:FbToken forHTTPHeaderField:@"Access-Token"];
     [urlRequest setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [urlRequest setHTTPBody:videoData];

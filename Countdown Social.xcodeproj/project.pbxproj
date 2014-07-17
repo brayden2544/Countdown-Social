@@ -69,6 +69,7 @@
 		6EC0FC2F192B145C00B72C44 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC0FC2E192B145C00B72C44 /* Accelerate.framework */; };
 		6EC585491975BE21008DDFFA /* PotentialMatchesLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC585481975BE21008DDFFA /* PotentialMatchesLoadingView.m */; };
 		6EC5854D1975BED8008DDFFA /* WaitingAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC5854C1975BED8008DDFFA /* WaitingAnimation.m */; };
+		6EC5855019772269008DDFFA /* UserScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC5854F19772269008DDFFA /* UserScoreViewController.m */; };
 		6EC635C8196F8B26009A6577 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC635C7196F8B26009A6577 /* AssetsLibrary.framework */; };
 		6EC635CA196F8BA4009A6577 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC635C9196F8BA4009A6577 /* AVFoundation.framework */; };
 		6EC7D4A6196C7F660083A581 /* SnapchatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC7D4A5196C7F660083A581 /* SnapchatView.m */; };
@@ -192,6 +193,8 @@
 		6EC585481975BE21008DDFFA /* PotentialMatchesLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PotentialMatchesLoadingView.m; sourceTree = "<group>"; };
 		6EC5854B1975BED8008DDFFA /* WaitingAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitingAnimation.h; sourceTree = "<group>"; };
 		6EC5854C1975BED8008DDFFA /* WaitingAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitingAnimation.m; sourceTree = "<group>"; };
+		6EC5854E19772269008DDFFA /* UserScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserScoreViewController.h; sourceTree = "<group>"; };
+		6EC5854F19772269008DDFFA /* UserScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserScoreViewController.m; sourceTree = "<group>"; };
 		6EC635C7196F8B26009A6577 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		6EC635C9196F8BA4009A6577 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6EC7D4A4196C7F660083A581 /* SnapchatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SnapchatView.h; path = ../SnapchatView.h; sourceTree = "<group>"; };
@@ -384,6 +387,8 @@
 				6E04693A191995B900482E79 /* LoginLoadViewController.m */,
 				6E886A4C190E05AC009E5A92 /* SetLocationViewController.h */,
 				6E886A4D190E05AC009E5A92 /* SetLocationViewController.m */,
+				6EC5854E19772269008DDFFA /* UserScoreViewController.h */,
+				6EC5854F19772269008DDFFA /* UserScoreViewController.m */,
 				6E886A5A190FF4F8009E5A92 /* ChooseLocationViewController.h */,
 				6E886A5B190FF4F8009E5A92 /* ChooseLocationViewController.m */,
 				6E886A49190DD4F9009E5A92 /* ViewController.h */,
@@ -674,6 +679,7 @@
 				6E92E01819628E94009ECE27 /* PBJStrobeView.m in Sources */,
 				6E92E00119628E24009ECE27 /* PBJMediaWriter.m in Sources */,
 				6E7691CD195398ED006CA5DB /* PotentialMatches.m in Sources */,
+				6EC5855019772269008DDFFA /* UserScoreViewController.m in Sources */,
 				6EB9D6B6192415D10080E1C5 /* VideoPreviewViewController.m in Sources */,
 				6ECDEA981974791800B06130 /* AFHTTPSessionManager.m in Sources */,
 				6E50A471192D84F700930D02 /* RESideMenu.m in Sources */,

@@ -71,17 +71,17 @@
     //Initialize CountdownTimer
     if (watchTimer >= 100) {
         watchTimer = 0;
-
     }
-    watchTimer += .5;
-    [waitingAnimation changePercentage:watchTimer];
     if (watchTimer ==0){
         watchButton.hidden = TRUE;
     }
     if (watchTimer ==10){
         watchButton.hidden = FALSE;
     }
-}
+
+    watchTimer += .5;
+    [waitingAnimation changePercentage:watchTimer];
+   }
 
 
 @end
