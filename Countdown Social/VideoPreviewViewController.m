@@ -67,7 +67,7 @@
     self.moviePlayer.shouldAutoplay = TRUE;
     [self.moviePlayer setRepeatMode:MPMovieRepeatModeOne];
     if (self.moviePlayer != nil){
-        NSLog(@"Video Player Successfully Instanciated");
+        NSLog(@"Video Player Successfully Instanciated with %@", url);
         
         //Scale Player to fit Aspect Ratio
         [self.moviePlayer.view setFrame:CGRectMake (0, 80, 320, 320)];

@@ -45,7 +45,7 @@
         Userobj.user= responseObject;
         user = responseObject;
         //[[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateLocationCompleted" object:nil];
-        if ([[user objectForKey:@"travel_mode"] isEqualToString:@"FALSE"]) {
+        if ([[user objectForKey:@"vacation_mode"]  isEqual:@false] ) {
             [self checkLocationServices];
         }
         else{
@@ -57,6 +57,7 @@
           failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
          NSLog(@"Error: %@", error);
+         [self getUserObject];
      }];
 
     

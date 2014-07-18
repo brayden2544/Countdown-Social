@@ -10,8 +10,10 @@
 
 @implementation WaitingAnimation
 
+
 @synthesize radius;
 @synthesize stroke;
+@synthesize color;
 - (id)init
 {
     self = [super init];
@@ -26,7 +28,7 @@
         self.layer.masksToBounds = true;
         
         pieColor = [UIColor colorWithRed:255.0/255 green:255.0/255 blue:255.0/255 alpha:1];
-        
+        color = true;
                 
     }
     return self;
@@ -50,6 +52,10 @@
 
 - (void)changePercentage:(CGFloat)percentage
 {
+    if (color == true){
+        self.backgroundColor = [UIColor clearColor];
+        pieColor = [UIColor colorWithRed:255.0/255 green:255.0/255 blue:255.0/255 alpha:1];
+
     //bring percentage in range 0 to 100
     if(percentage < 0)
     {
@@ -63,9 +69,32 @@
         
     }
     
-    if(percentage > 100)
+    if(percentage >= 100)
     {
         percentage = 100;
+        color = false;
+    }
+    }else{
+        self.backgroundColor = [UIColor whiteColor];
+        pieColor = [UIColor colorWithRed:74.0/255 green:74.0/255 blue:74.0/255 alpha:1];
+        if(percentage < 0)
+        {
+            percentage = 0.0;
+        }
+        if(percentage <25){
+            //pieColor = [UIColor colorWithRed:180.0/255 green:60.0/255 blue:75.0/255 alpha:1];
+        }
+        else{
+            //pieColor = [UIColor colorWithRed:74.0/255 green:74.0/255 blue:74.0/255 alpha:1];
+            
+        }
+        
+        if(percentage >= 100)
+        {
+            percentage = 100;
+            color = true;
+        }
+        
     }
     
     
@@ -88,7 +117,7 @@
     
     CAShapeLayer *slice = [CAShapeLayer layer];
     slice.fillColor = pieColor.CGColor;
-    slice.strokeColor = [UIColor clearColor].CGColor;
+    slice.strokeColor = [UIColor colorWithRed:74.0/255 green:74.0/255 blue:74.0/255 alpha:1].CGColor;
     slice.lineWidth = 1.0;
     
     CGFloat startAngle = -M_PI_2;

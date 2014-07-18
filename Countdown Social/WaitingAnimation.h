@@ -16,6 +16,7 @@
 }
 @property CGFloat radius;
 @property CGFloat stroke;
+@property bool color;
 
 - (void)changePercentage:(CGFloat)percentage;
 
