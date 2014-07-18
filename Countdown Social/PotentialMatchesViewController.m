@@ -59,6 +59,7 @@
                                                object:self.moviePlayer];
     
     
+    self.navigationController.navigationBarHidden = YES;
     //Pull in user object and check buttons.
     User *obj = [User getInstance];
     user = obj.user;

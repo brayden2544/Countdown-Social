@@ -11,6 +11,7 @@
 #import "User.h"
 #import "PhoneNumberView.h"
 #import "SnapchatView.h"
+#import "RESideMenu/RESideMenu.h"
 
 @interface SocialAccountsViewController ()
 
@@ -33,6 +34,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationController.navigationBarHidden =YES;
         [self buttonCheck];
 }
 
@@ -226,6 +228,10 @@
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [self buttonCheck];
     });
+
+}
+- (IBAction)presentMenu:(id)sender {
+    [self.sideMenuViewController presentLeftMenuViewController];
 
 }
 @end

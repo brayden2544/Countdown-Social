@@ -20,7 +20,6 @@
 		6E886A4B190DD4F9009E5A92 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E886A4A190DD4F9009E5A92 /* ViewController.m */; };
 		6E886A4E190E05AC009E5A92 /* SetLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E886A4D190E05AC009E5A92 /* SetLocationViewController.m */; };
 		6E886A50190E1CC1009E5A92 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E886A4F190E1CC1009E5A92 /* MapKit.framework */; };
-		6E886A5C190FF4F8009E5A92 /* ChooseLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E886A5B190FF4F8009E5A92 /* ChooseLocationViewController.m */; };
 		6E92DFF4196217AD009ECE27 /* VideoPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E92DFF3196217AD009ECE27 /* VideoPath.m */; };
 		6E92E00019628E24009ECE27 /* PBJGLProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E92DFF619628E24009ECE27 /* PBJGLProgram.m */; };
 		6E92E00119628E24009ECE27 /* PBJMediaWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E92DFF819628E24009ECE27 /* PBJMediaWriter.m */; };
@@ -126,8 +125,6 @@
 		6E886A4C190E05AC009E5A92 /* SetLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetLocationViewController.h; sourceTree = "<group>"; };
 		6E886A4D190E05AC009E5A92 /* SetLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetLocationViewController.m; sourceTree = "<group>"; };
 		6E886A4F190E1CC1009E5A92 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		6E886A5A190FF4F8009E5A92 /* ChooseLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseLocationViewController.h; sourceTree = "<group>"; };
-		6E886A5B190FF4F8009E5A92 /* ChooseLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseLocationViewController.m; sourceTree = "<group>"; };
 		6E92DFF2196217AD009ECE27 /* VideoPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPath.h; sourceTree = "<group>"; };
 		6E92DFF3196217AD009ECE27 /* VideoPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPath.m; sourceTree = "<group>"; };
 		6E92DFF519628E24009ECE27 /* PBJGLProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJGLProgram.h; sourceTree = "<group>"; };
@@ -389,8 +386,6 @@
 				6E886A4D190E05AC009E5A92 /* SetLocationViewController.m */,
 				6EC5854E19772269008DDFFA /* UserScoreViewController.h */,
 				6EC5854F19772269008DDFFA /* UserScoreViewController.m */,
-				6E886A5A190FF4F8009E5A92 /* ChooseLocationViewController.h */,
-				6E886A5B190FF4F8009E5A92 /* ChooseLocationViewController.m */,
 				6E886A49190DD4F9009E5A92 /* ViewController.h */,
 				6E886A4A190DD4F9009E5A92 /* ViewController.m */,
 				6E886A42190DB575009E5A92 /* LoginViewController.h */,
@@ -694,7 +689,6 @@
 				6ECDEA9E1974791800B06130 /* AFURLSessionManager.m in Sources */,
 				6ECB30F81952498200AB8854 /* InstagramViewController.m in Sources */,
 				6E92E01719628E94009ECE27 /* PBJFocusView.m in Sources */,
-				6E886A5C190FF4F8009E5A92 /* ChooseLocationViewController.m in Sources */,
 				6E92E01919628E94009ECE27 /* PBJViewController.m in Sources */,
 				6ECDEA9A1974791800B06130 /* AFSecurityPolicy.m in Sources */,
 				6E886A4E190E05AC009E5A92 /* SetLocationViewController.m in Sources */,

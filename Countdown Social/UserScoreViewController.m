@@ -9,6 +9,7 @@
 #import "UserScoreViewController.h"
 
 #import <StoreKit/StoreKit.h>
+#import "RESideMenu.h"
 
 
 @interface UserScoreViewController ()
@@ -29,6 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationController.navigationBarHidden = YES;
     // Do any additional setup after loading the view.
 }
 
@@ -49,4 +51,8 @@
 }
 */
 
+- (IBAction)presentMenu:(id)sender {
+    [self.sideMenuViewController presentLeftMenuViewController];
+
+}
 @end

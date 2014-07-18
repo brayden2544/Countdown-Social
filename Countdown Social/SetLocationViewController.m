@@ -9,7 +9,7 @@
 #import "SetLocationViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "AppDelegate.h"
-
+#import "RESideMenu/RESideMenu.h"
 @interface SetLocationViewController ()
 
 @end
@@ -20,7 +20,6 @@
 @synthesize setLocationMapView;
 @synthesize travelModeAnnotation;
 @synthesize fbProfilePic;
-@synthesize setLocationButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,6 +35,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationController.navigationBarHidden = YES;
+    self.setLocationMapView.delegate=self;
     self.user = [User getInstance];
     
     //Creat URL for image and download image
@@ -46,26 +47,43 @@
     NSURL *url = [NSURL URLWithString:picURL];
     NSData *imageData = [NSData dataWithContentsOfURL:url];
     self.fbProfilePic = [UIImage imageWithData:imageData];
-
+    
     
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(handleLongPress:)];
-    lpgr.minimumPressDuration = 0.3; //user needs to press for 2 seconds
+    lpgr.minimumPressDuration = 0.3; //user needs to press for .3 seconds
     [self.setLocationMapView addGestureRecognizer:lpgr];
     
     travelModeAnnotation = [[MKPointAnnotation alloc] init];
-
-    
-    
-    self.setLocationMapView.showsUserLocation=YES;
-    self.setLocationMapView.delegate=self;
-    [self.setLocationMapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
     MKCoordinateRegion mapRegion;
-    mapRegion.center = self.setLocationMapView.userLocation.coordinate;
-    mapRegion.span.latitudeDelta = 0.01;
-    mapRegion.span.longitudeDelta = 0.01;
     
-    [self.setLocationMapView setRegion:mapRegion animated: YES];
+    
+    
+    if ([[self.user.user objectForKey:@"vacation_mode"]isEqual:@true]) {
+        [self.setLocationMapView removeAnnotation:travelModeAnnotation];
+        [travelModeSwitch setOn:YES animated:YES];
+        MKCoordinateRegion mapRegion;
+        CLLocationCoordinate2D vacation_location = CLLocationCoordinate2DMake([[self.user.user objectForKey:@"lat"]doubleValue], [[self.user.user objectForKey:@"long"]doubleValue]);
+        mapRegion.center = vacation_location;
+        mapRegion.span.latitudeDelta = 10;
+        mapRegion.span.longitudeDelta = 10;
+        
+        [self.setLocationMapView setRegion:mapRegion animated: YES];
+        
+        travelModeAnnotation.title = @"CustomPinAnnotationView";
+        travelModeAnnotation.coordinate = vacation_location;
+        [self.setLocationMapView addAnnotation:travelModeAnnotation];
+    }else{
+        
+        self.setLocationMapView.showsUserLocation=YES;
+        [self.setLocationMapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
+        mapRegion.center = self.setLocationMapView.userLocation.coordinate;
+        mapRegion.span.latitudeDelta = 10;
+        mapRegion.span.longitudeDelta = 10;
+        
+        [self.setLocationMapView setRegion:mapRegion animated: YES];
+        
+    }
     
 }
 
@@ -80,14 +98,14 @@
 {
     if (gestureRecognizer.state != UIGestureRecognizerStateBegan)
         return;
-
+    
     [travelModeSwitch setOn:YES animated:YES];
     [self.setLocationMapView removeAnnotation:travelModeAnnotation];
     CGPoint touchPoint = [gestureRecognizer locationInView:self.setLocationMapView];
     CLLocationCoordinate2D touchMapCoordinate =
     [self.setLocationMapView convertPoint:touchPoint toCoordinateFromView:self.setLocationMapView];
     
-    travelModeAnnotation.title = @"Travel Mode Location";
+    travelModeAnnotation.title = @"CustomPinAnnotationView";
     travelModeAnnotation.coordinate = touchMapCoordinate;
     [self.setLocationMapView addAnnotation:travelModeAnnotation];
     [self updateVacationLocation];
@@ -155,7 +173,7 @@ didAddAnnotationViews:(NSArray *)annotationViews
      {
          NSLog(@"Error: %@", error);
      }];
-
+    
 }
 
 
@@ -169,10 +187,10 @@ didAddAnnotationViews:(NSArray *)annotationViews
         [self.setLocationMapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
         MKCoordinateRegion mapRegion;
         mapRegion.center = self.setLocationMapView.userLocation.coordinate;
-        mapRegion.span.latitudeDelta = 0.2;
-        mapRegion.span.longitudeDelta = 0.2;
-    
-    [self.setLocationMapView setRegion:mapRegion animated: YES];
+        mapRegion.span.latitudeDelta = 10;
+        mapRegion.span.longitudeDelta = 10;
+        
+        [self.setLocationMapView setRegion:mapRegion animated: YES];
         
         FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
         NSString *FbToken = [session accessTokenData].accessToken;
@@ -192,7 +210,11 @@ didAddAnnotationViews:(NSArray *)annotationViews
          {
              NSLog(@"Error: %@", error);
          }];
-
+        
     }
+}
+
+- (IBAction)presentMenu:(id)sender {
+    [self.sideMenuViewController presentLeftMenuViewController];
 }
 @end

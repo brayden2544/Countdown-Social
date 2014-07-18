@@ -89,6 +89,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *snapchatLabel;
 @property (strong, nonatomic) IBOutlet UILabel *phoneLabel;
 
+- (IBAction)presentMenu:(id)sender;
 
 
 
