@@ -8,7 +8,6 @@
 
 #import "LoginViewController.h"
 #import "AppDelegate.h"
-#import "ChooseLocationViewController.h"
 
 @interface LoginViewController ()
 

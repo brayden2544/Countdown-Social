@@ -9,7 +9,6 @@
 #import "LoginLoadViewController.h"
 #import "AppDelegate.h"
 #import "PBJViewController.h"
-#import "ChooseLocationViewController.h"
 #import "PotentialMatchesViewController.h"
 #import "MenuViewController.h"
 #import "PotentialMatches.h"

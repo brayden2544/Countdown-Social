@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
-#import "ChooseLocationViewController.h"
 
 
 

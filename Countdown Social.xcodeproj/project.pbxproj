@@ -66,6 +66,7 @@
 		6EC0FC18192AD95A00B72C44 /* settingsButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0FC17192AD95A00B72C44 /* settingsButton.png */; };
 		6EC0FC1A192AD9AE00B72C44 /* matchesButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0FC19192AD9AE00B72C44 /* matchesButton.png */; };
 		6EC0FC2F192B145C00B72C44 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC0FC2E192B145C00B72C44 /* Accelerate.framework */; };
+		6EC4BFA219799A0C00E66339 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC4BFA119799A0C00E66339 /* SettingsViewController.m */; };
 		6EC585491975BE21008DDFFA /* PotentialMatchesLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC585481975BE21008DDFFA /* PotentialMatchesLoadingView.m */; };
 		6EC5854D1975BED8008DDFFA /* WaitingAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC5854C1975BED8008DDFFA /* WaitingAnimation.m */; };
 		6EC5855019772269008DDFFA /* UserScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC5854F19772269008DDFFA /* UserScoreViewController.m */; };
@@ -186,6 +187,8 @@
 		6EC0FC17192AD95A00B72C44 /* settingsButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = settingsButton.png; path = ../settingsButton.png; sourceTree = "<group>"; };
 		6EC0FC19192AD9AE00B72C44 /* matchesButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = matchesButton.png; sourceTree = "<group>"; };
 		6EC0FC2E192B145C00B72C44 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		6EC4BFA019799A0C00E66339 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		6EC4BFA119799A0C00E66339 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		6EC585471975BE21008DDFFA /* PotentialMatchesLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PotentialMatchesLoadingView.h; sourceTree = "<group>"; };
 		6EC585481975BE21008DDFFA /* PotentialMatchesLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PotentialMatchesLoadingView.m; sourceTree = "<group>"; };
 		6EC5854B1975BED8008DDFFA /* WaitingAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitingAnimation.h; sourceTree = "<group>"; };
@@ -385,6 +388,8 @@
 				6E886A4C190E05AC009E5A92 /* SetLocationViewController.h */,
 				6E886A4D190E05AC009E5A92 /* SetLocationViewController.m */,
 				6EC5854E19772269008DDFFA /* UserScoreViewController.h */,
+				6EC4BFA019799A0C00E66339 /* SettingsViewController.h */,
+				6EC4BFA119799A0C00E66339 /* SettingsViewController.m */,
 				6EC5854F19772269008DDFFA /* UserScoreViewController.m */,
 				6E886A49190DD4F9009E5A92 /* ViewController.h */,
 				6E886A4A190DD4F9009E5A92 /* ViewController.m */,
@@ -695,6 +700,7 @@
 				6ECDEA9D1974791800B06130 /* AFURLResponseSerialization.m in Sources */,
 				6EC585491975BE21008DDFFA /* PotentialMatchesLoadingView.m in Sources */,
 				6ECDEA9C1974791800B06130 /* AFURLRequestSerialization.m in Sources */,
+				6EC4BFA219799A0C00E66339 /* SettingsViewController.m in Sources */,
 				6EC0FC0D192AC61000B72C44 /* PotentialMatchesViewController.m in Sources */,
 				6E92DFF4196217AD009ECE27 /* VideoPath.m in Sources */,
 				6ED73BF01965130F00539389 /* CountdownTimer.m in Sources */,

@@ -2020,10 +2020,10 @@
             </objects>
             <point key="canvasLocation" x="2239" y="847"/>
         </scene>
-        <!--View Controller - settings-->
+        <!--Settings View Controller - settings-->
         <scene sceneID="Tyi-ff-wkF">
             <objects>
-                <viewController title="settings" id="ZbB-1Z-dZv" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsViewController" title="settings" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZbB-1Z-dZv" customClass="SettingsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9DQ-wQ-MWR"/>
                         <viewControllerLayoutGuide type="bottom" id="GcJ-hA-DbU"/>
@@ -2218,7 +2218,7 @@
         <!--User Score View Controller - score-->
         <scene sceneID="amp-Ao-Dje">
             <objects>
-                <viewController title="score" id="hCc-dh-QDL" customClass="UserScoreViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserScoreViewController" title="score" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hCc-dh-QDL" customClass="UserScoreViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Eur-qs-Vrx"/>
                         <viewControllerLayoutGuide type="bottom" id="0XT-ng-fdZ"/>
