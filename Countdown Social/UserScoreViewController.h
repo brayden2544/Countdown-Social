@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface UserScoreViewController : UIViewController
+- (IBAction)presentMenu:(id)sender;
 
 @end

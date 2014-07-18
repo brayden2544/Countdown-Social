@@ -204,7 +204,7 @@
         <!--Set Location View Controller - location-->
         <scene sceneID="aag-ya-Rp8">
             <objects>
-                <viewController title="location" modalTransitionStyle="crossDissolve" id="yu2-j0-dCL" customClass="SetLocationViewController" sceneMemberID="viewController">
+                <viewController restorationIdentifier="SetLocationViewController" storyboardIdentifier="SetLocationViewController" title="location" modalTransitionStyle="crossDissolve" id="yu2-j0-dCL" customClass="SetLocationViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1JN-a9-hRz"/>
                         <viewControllerLayoutGuide type="bottom" id="oRe-Aq-ffg"/>
@@ -240,9 +240,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="returnToPotentialMatches:" destination="osf-Av-PJW" eventType="touchUpInside" id="BXj-fR-6Jf"/>
-                                            <action selector="returnToPotentialMatches:" destination="Gg6-lq-8xp" eventType="touchUpInside" id="Fl7-rV-5Ip"/>
-                                            <segue destination="Z0u-QQ-q8R" kind="modal" id="iI3-UG-zG8"/>
+                                            <action selector="presentMenu:" destination="yu2-j0-dCL" eventType="touchUpInside" id="9Xz-Ru-1jA"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1229,7 +1227,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Z0u-QQ-q8R" kind="modal" id="DIe-0s-6eI"/>
+                                    <action selector="presentMenu:" destination="cm5-s6-Yax" eventType="touchUpInside" id="ciz-oR-agd"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wBC-d8-p2V">
@@ -1833,7 +1831,7 @@
                                             <color key="titleShadowColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                         </state>
                                         <connections>
-                                            <segue destination="hCc-dh-QDL" kind="modal" id="SDM-2C-0Ld"/>
+                                            <action selector="presentScore:" destination="pb2-5n-e4w" eventType="touchUpInside" id="aJO-bC-OyO"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rCO-4H-DxI">
@@ -1845,7 +1843,7 @@
                                             <color key="titleShadowColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                         </state>
                                         <connections>
-                                            <segue destination="yu2-j0-dCL" kind="modal" id="pPG-Tl-v7Y"/>
+                                            <action selector="presentLocation:" destination="pb2-5n-e4w" eventType="touchUpInside" id="ibV-kg-tje"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DIn-tK-8iF">
@@ -1857,7 +1855,7 @@
                                             <color key="titleShadowColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                         </state>
                                         <connections>
-                                            <segue destination="QpI-MP-B4G" kind="modal" id="FTu-KY-Hqn"/>
+                                            <action selector="presentTellFriends:" destination="pb2-5n-e4w" eventType="touchUpInside" id="uid-Wt-W8k"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CwM-it-3cU">
@@ -1869,7 +1867,7 @@
                                             <color key="titleShadowColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                         </state>
                                         <connections>
-                                            <segue destination="ZbB-1Z-dZv" kind="modal" id="ynx-xO-vij"/>
+                                            <action selector="presentSettings:" destination="pb2-5n-e4w" eventType="touchUpInside" id="R2W-EE-zsW"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0uB-jN-Mdz">
@@ -1881,7 +1879,7 @@
                                             <color key="titleShadowColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                         </state>
                                         <connections>
-                                            <segue destination="cm5-s6-Yax" kind="modal" id="jEc-YL-HDg"/>
+                                            <action selector="presentSocial:" destination="pb2-5n-e4w" eventType="touchUpInside" id="0Z8-El-CsB"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="y7L-7m-i4b">
@@ -1893,7 +1891,7 @@
                                             <color key="titleShadowColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                         </state>
                                         <connections>
-                                            <segue destination="N6j-aT-1cU" kind="modal" id="A4l-RU-mwV"/>
+                                            <action selector="presentProfile:" destination="pb2-5n-e4w" eventType="touchUpInside" id="p82-vv-Q9n"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1x0-R2-xaw">
@@ -1905,7 +1903,7 @@
                                             <color key="titleShadowColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         </state>
                                         <connections>
-                                            <segue destination="tx3-Qy-2Eg" kind="modal" id="69K-DX-Yno"/>
+                                            <action selector="presentFeedback:" destination="pb2-5n-e4w" eventType="touchUpInside" id="sD9-t9-RbZ"/>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Line-1" translatesAutoresizingMaskIntoConstraints="NO" id="qBZ-Oa-VvZ">
@@ -2200,10 +2198,10 @@
             </objects>
             <point key="canvasLocation" x="133" y="1674"/>
         </scene>
-        <!--View Controller - score-->
+        <!--User Score View Controller - score-->
         <scene sceneID="amp-Ao-Dje">
             <objects>
-                <viewController title="score" id="hCc-dh-QDL" sceneMemberID="viewController">
+                <viewController title="score" id="hCc-dh-QDL" customClass="UserScoreViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Eur-qs-Vrx"/>
                         <viewControllerLayoutGuide type="bottom" id="0XT-ng-fdZ"/>
@@ -2228,9 +2226,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="returnToPotentialMatches:" destination="osf-Av-PJW" eventType="touchUpInside" id="1if-dy-IDR"/>
-                                    <action selector="returnToPotentialMatches:" destination="Gg6-lq-8xp" eventType="touchUpInside" id="ii8-bR-NVa"/>
-                                    <segue destination="Z0u-QQ-q8R" kind="modal" id="3Ni-uB-tC9"/>
+                                    <action selector="presentMenu:" destination="hCc-dh-QDL" eventType="touchUpInside" id="V55-qD-pHC"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s1g-yj-dnQ">
@@ -2657,8 +2653,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ngN-SM-eye"/>
         <segue reference="TrW-H0-fmR"/>
-        <segue reference="iI3-UG-zG8"/>
+        <segue reference="ngN-SM-eye"/>
+        <segue reference="gsL-gH-S4I"/>
     </inferredMetricsTieBreakers>
 </document>

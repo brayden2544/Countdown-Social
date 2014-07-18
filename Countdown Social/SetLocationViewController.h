@@ -18,10 +18,9 @@
 @property (strong, nonatomic) MKPointAnnotation *travelModeAnnotation;
 @property (strong, nonatomic) User *user;
 @property (strong ,nonatomic) UIImage* fbProfilePic;
-@property (strong, nonatomic) IBOutlet UISwitch *setLocationButton;
 
-- (IBAction)setLocationButton:(id)sender;
 - (IBAction)travelModeSwitch:(id)sender;
 
+- (IBAction)presentMenu:(id)sender;
 
 @end
