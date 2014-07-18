@@ -663,6 +663,7 @@
 
     VideoPath *obj = [VideoPath getInstance];
     obj.videoPath = videoPath;
+    NSLog(@"video stored temporarily @ %@",videoPath);
 
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

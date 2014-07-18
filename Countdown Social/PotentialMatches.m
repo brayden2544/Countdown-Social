@@ -67,7 +67,7 @@
                 AFURLSessionManager *sessionManager = [[AFURLSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
                 NSURLSessionDownloadTask *videoDownload =[sessionManager downloadTaskWithRequest:videoRequest progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
                     
-                    NSURL *documentsDirectoryPath = [NSURL fileURLWithPath:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]];
+                    NSURL *documentsDirectoryPath = [NSURL fileURLWithPath:NSTemporaryDirectory() isDirectory:YES];
                     return [documentsDirectoryPath URLByAppendingPathComponent:[response suggestedFilename]];
                 }
                                                                                completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
@@ -170,7 +170,7 @@
                     AFURLSessionManager *sessionManager = [[AFURLSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
                     NSURLSessionDownloadTask *videoDownload =[sessionManager downloadTaskWithRequest:videoRequest progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
                         
-                        NSURL *documentsDirectoryPath = [NSURL fileURLWithPath:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]];
+                        NSURL *documentsDirectoryPath = [NSURL fileURLWithPath:NSTemporaryDirectory() isDirectory:YES];
                         return [documentsDirectoryPath URLByAppendingPathComponent:[response suggestedFilename]];
                     }
                                                                                    completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {

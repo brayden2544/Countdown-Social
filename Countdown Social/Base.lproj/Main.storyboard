@@ -413,7 +413,7 @@
         <!--View Controller - Record Video-->
         <scene sceneID="jSl-TF-kyz">
             <objects>
-                <viewController storyboardIdentifier="VideoRecorderViewController" title="Record Video" id="N6j-aT-1cU" customClass="PBJViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PBJViewController" title="Record Video" useStoryboardIdentifierAsRestorationIdentifier="YES" id="N6j-aT-1cU" customClass="PBJViewController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="Zkj-tx-IAt"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q7z-8F-UQ0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2670,8 +2670,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="ILZ-Ml-aNB"/>
         <segue reference="TrW-H0-fmR"/>
         <segue reference="ngN-SM-eye"/>
-        <segue reference="gsL-gH-S4I"/>
     </inferredMetricsTieBreakers>
 </document>
