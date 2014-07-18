@@ -82,7 +82,7 @@
 }
 
 - (IBAction)presentTellFriends:(id)sender {
-    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"TellFriendsViewController"]]animated:YES];
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"TellYourFriendsViewController"]]animated:YES];
     [self.sideMenuViewController hideMenuViewController];
     
 }

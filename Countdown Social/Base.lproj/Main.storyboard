@@ -2305,10 +2305,10 @@
             </objects>
             <point key="canvasLocation" x="-1255" y="1987"/>
         </scene>
-        <!--View Controller - share-->
+        <!--Tell Your Friends View Controller - share-->
         <scene sceneID="2bJ-C5-Zi2">
             <objects>
-                <viewController title="share" id="QpI-MP-B4G" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TellYourFriendsViewController" title="share" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QpI-MP-B4G" customClass="TellYourFriendsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1pg-3F-WD0"/>
                         <viewControllerLayoutGuide type="bottom" id="EgK-SW-oyu"/>
@@ -2336,9 +2336,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="returnToPotentialMatches:" destination="osf-Av-PJW" eventType="touchUpInside" id="2iN-m2-phm"/>
-                                    <action selector="returnToPotentialMatches:" destination="Gg6-lq-8xp" eventType="touchUpInside" id="DSm-Oy-U8F"/>
-                                    <segue destination="Z0u-QQ-q8R" kind="modal" id="gsL-gH-S4I"/>
+                                    <action selector="presentMenu:" destination="QpI-MP-B4G" eventType="touchUpInside" id="F12-QV-Kxx"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C6b-CR-AGv">
@@ -2459,10 +2457,10 @@
             </objects>
             <point key="canvasLocation" x="-752" y="2337"/>
         </scene>
-        <!--View Controller - feedback-->
+        <!--Feedback View Controller - feedback-->
         <scene sceneID="nzV-BQ-CkD">
             <objects>
-                <viewController title="feedback" modalTransitionStyle="crossDissolve" id="tx3-Qy-2Eg" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FeedbackViewController" title="feedback" modalTransitionStyle="crossDissolve" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tx3-Qy-2Eg" customClass="FeedbackViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FbX-C1-QNE"/>
                         <viewControllerLayoutGuide type="bottom" id="Rkv-nE-FLf"/>
@@ -2501,9 +2499,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="returnToPotentialMatches:" destination="osf-Av-PJW" eventType="touchUpInside" id="L9i-hM-g8T"/>
-                                    <action selector="returnToPotentialMatches:" destination="Gg6-lq-8xp" eventType="touchUpInside" id="NYf-Vy-eS5"/>
-                                    <segue destination="Z0u-QQ-q8R" kind="modal" id="Hoi-nI-L2m"/>
+                                    <action selector="presentMenu:" destination="tx3-Qy-2Eg" eventType="touchUpInside" id="fY1-2u-NkN"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" verticalCompressionResistancePriority="400" text="We'd Love to hear what you think." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="269" translatesAutoresizingMaskIntoConstraints="NO" id="X8M-a6-ToD">
@@ -2670,8 +2666,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ILZ-Ml-aNB"/>
-        <segue reference="TrW-H0-fmR"/>
         <segue reference="ngN-SM-eye"/>
+        <segue reference="TrW-H0-fmR"/>
     </inferredMetricsTieBreakers>
 </document>

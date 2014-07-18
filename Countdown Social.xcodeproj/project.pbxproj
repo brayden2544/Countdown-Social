@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		6E04693B191995B900482E79 /* LoginLoadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E04693A191995B900482E79 /* LoginLoadViewController.m */; };
 		6E04693D191A877E00482E79 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E04693C191A877E00482E79 /* CoreLocation.framework */; };
+		6E4C5A501979E9B400CCD5A8 /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4C5A4F1979E9B400CCD5A8 /* FeedbackViewController.m */; };
+		6E4C5A531979E9C900CCD5A8 /* TellYourFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4C5A521979E9C900CCD5A8 /* TellYourFriendsViewController.m */; };
 		6E50A470192D84F700930D02 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E50A46B192D84F700930D02 /* RECommonFunctions.m */; };
 		6E50A471192D84F700930D02 /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E50A46D192D84F700930D02 /* RESideMenu.m */; };
 		6E50A472192D84F700930D02 /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E50A46F192D84F700930D02 /* UIViewController+RESideMenu.m */; };
@@ -107,6 +109,10 @@
 		6E046939191995B900482E79 /* LoginLoadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginLoadViewController.h; sourceTree = "<group>"; };
 		6E04693A191995B900482E79 /* LoginLoadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginLoadViewController.m; sourceTree = "<group>"; };
 		6E04693C191A877E00482E79 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		6E4C5A4E1979E9B400CCD5A8 /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedbackViewController.h; path = ../../FeedbackViewController.h; sourceTree = "<group>"; };
+		6E4C5A4F1979E9B400CCD5A8 /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedbackViewController.m; path = ../../FeedbackViewController.m; sourceTree = "<group>"; };
+		6E4C5A511979E9C900CCD5A8 /* TellYourFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TellYourFriendsViewController.h; sourceTree = "<group>"; };
+		6E4C5A521979E9C900CCD5A8 /* TellYourFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TellYourFriendsViewController.m; sourceTree = "<group>"; };
 		6E50A46A192D84F700930D02 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
 		6E50A46B192D84F700930D02 /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
 		6E50A46C192D84F700930D02 /* RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESideMenu.h; sourceTree = "<group>"; };
@@ -268,6 +274,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6E4C5A4D1979E97F00CCD5A8 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				6EC94323195C8B6E0096F41F /* LeftMenuViewController.h */,
+				6EC94324195C8B6E0096F41F /* LeftMenuViewController.m */,
+				6E50A473192D86FB00930D02 /* MenuViewController.h */,
+				6E50A474192D86FB00930D02 /* MenuViewController.m */,
+			);
+			name = Menu;
+			sourceTree = "<group>";
+		};
 		6E50A469192D84F700930D02 /* RESideMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -375,10 +392,7 @@
 				6E967CBF190DA4960042AF93 /* AppDelegate.m */,
 				6EC7D4AA196C7F890083A581 /* Social Accounts */,
 				6E967CC1190DA4960042AF93 /* Main.storyboard */,
-				6EC94323195C8B6E0096F41F /* LeftMenuViewController.h */,
-				6EC94324195C8B6E0096F41F /* LeftMenuViewController.m */,
-				6E50A473192D86FB00930D02 /* MenuViewController.h */,
-				6E50A474192D86FB00930D02 /* MenuViewController.m */,
+				6E4C5A4D1979E97F00CCD5A8 /* Menu */,
 				6EC5854A1975BE39008DDFFA /* Potential Matches */,
 				6EA354FC1965444700F51D70 /* Singletons */,
 				6EB9D6B4192415D10080E1C5 /* VideoPreviewViewController.h */,
@@ -389,6 +403,10 @@
 				6E886A4D190E05AC009E5A92 /* SetLocationViewController.m */,
 				6EC4BFA019799A0C00E66339 /* SettingsViewController.h */,
 				6EC4BFA119799A0C00E66339 /* SettingsViewController.m */,
+				6E4C5A4E1979E9B400CCD5A8 /* FeedbackViewController.h */,
+				6E4C5A4F1979E9B400CCD5A8 /* FeedbackViewController.m */,
+				6E4C5A511979E9C900CCD5A8 /* TellYourFriendsViewController.h */,
+				6E4C5A521979E9C900CCD5A8 /* TellYourFriendsViewController.m */,
 				6EC5854E19772269008DDFFA /* UserScoreViewController.h */,
 				6EC5854F19772269008DDFFA /* UserScoreViewController.m */,
 				6E886A49190DD4F9009E5A92 /* ViewController.h */,
@@ -689,8 +707,10 @@
 				6E886A4B190DD4F9009E5A92 /* ViewController.m in Sources */,
 				6ECDEA82197478B000B06130 /* AFOAuth1Client.m in Sources */,
 				6E92E00319628E24009ECE27 /* PBJVisionUtilities.m in Sources */,
+				6E4C5A531979E9C900CCD5A8 /* TellYourFriendsViewController.m in Sources */,
 				6E967CBC190DA4960042AF93 /* main.m in Sources */,
 				6ECDEA961974791800B06130 /* AFHTTPRequestOperation.m in Sources */,
+				6E4C5A501979E9B400CCD5A8 /* FeedbackViewController.m in Sources */,
 				6ECDEA9E1974791800B06130 /* AFURLSessionManager.m in Sources */,
 				6ECB30F81952498200AB8854 /* InstagramViewController.m in Sources */,
 				6E92E01719628E94009ECE27 /* PBJFocusView.m in Sources */,
