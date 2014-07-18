@@ -2020,10 +2020,10 @@
             </objects>
             <point key="canvasLocation" x="2239" y="847"/>
         </scene>
-        <!--View Controller - settings-->
+        <!--Settings View Controller - settings-->
         <scene sceneID="Tyi-ff-wkF">
             <objects>
-                <viewController title="settings" id="ZbB-1Z-dZv" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsViewController" title="settings" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZbB-1Z-dZv" customClass="SettingsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9DQ-wQ-MWR"/>
                         <viewControllerLayoutGuide type="bottom" id="GcJ-hA-DbU"/>
@@ -2124,9 +2124,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="returnToPotentialMatches:" destination="osf-Av-PJW" eventType="touchUpInside" id="L3w-CE-cML"/>
-                                    <action selector="returnToPotentialMatches:" destination="Gg6-lq-8xp" eventType="touchUpInside" id="RSB-gN-hDN"/>
-                                    <segue destination="Z0u-QQ-q8R" kind="modal" id="ILZ-Ml-aNB"/>
+                                    <action selector="presentMenu:" destination="ZbB-1Z-dZv" eventType="touchUpInside" id="y6R-s7-x7D"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Hg-1J-yz8">
@@ -2201,7 +2199,7 @@
         <!--User Score View Controller - score-->
         <scene sceneID="amp-Ao-Dje">
             <objects>
-                <viewController title="score" id="hCc-dh-QDL" customClass="UserScoreViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserScoreViewController" title="score" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hCc-dh-QDL" customClass="UserScoreViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Eur-qs-Vrx"/>
                         <viewControllerLayoutGuide type="bottom" id="0XT-ng-fdZ"/>
