@@ -35,4 +35,18 @@
 - (IBAction)presentMenu:(id)sender {
     [self.sideMenuViewController presentLeftMenuViewController];
 }
+
+- (IBAction)share:(id)sender {
+    NSString *string = @" ";
+    NSURL *URL =[NSURL URLWithString: @" "];
+    
+    UIActivityViewController *activityViewController =
+    [[UIActivityViewController alloc] initWithActivityItems:@[string, URL]
+                                      applicationActivities:nil];
+    [self.navigationController presentViewController:activityViewController
+                                       animated:YES
+                                     completion:^{
+                                         // ...
+                                     }];
+}
 @end

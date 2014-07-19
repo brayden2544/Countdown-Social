@@ -10,5 +10,6 @@
 
 @interface TellYourFriendsViewController : UIViewController
 - (IBAction)presentMenu:(id)sender;
+- (IBAction)share:(id)sender;
 
 @end

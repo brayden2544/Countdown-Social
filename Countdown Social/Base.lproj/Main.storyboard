@@ -2423,6 +2423,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="share:" destination="QpI-MP-B4G" eventType="touchUpInside" id="0Uh-eJ-Wjg"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -2528,6 +2531,9 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="submitFeedback:" destination="tx3-Qy-2Eg" eventType="touchUpInside" id="HAO-VI-5B9"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -2576,6 +2582,9 @@
                             <constraint firstItem="uof-Ts-yYV" firstAttribute="top" secondItem="mqS-ZB-7zt" secondAttribute="bottom" priority="250" constant="71" id="zt7-db-0gw"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="feedbackTextView" destination="mqS-ZB-7zt" id="OCe-gX-72d"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EgI-vq-VwT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
