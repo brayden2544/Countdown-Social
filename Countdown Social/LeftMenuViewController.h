@@ -22,5 +22,14 @@
 - (IBAction)presentFeedback:(id)sender;
 - (IBAction)presentSettings:(id)sender;
 
+//Shade over button outletes
+@property (strong, nonatomic) IBOutlet UIImageView *feedbackImage;
+@property (strong, nonatomic) IBOutlet UIImageView *tellFriendsImage;
+@property (strong, nonatomic) IBOutlet UIImageView *scoreImage;
+@property (strong, nonatomic) IBOutlet UIImageView *socialImage;
+@property (strong, nonatomic) IBOutlet UIImageView *locationImage;
+@property (strong, nonatomic) IBOutlet UIImageView *profileImage;
+@property (strong, nonatomic) IBOutlet UIImageView *settingsImage;
+@property (strong, nonatomic) IBOutlet UIImageView *homeImage;
 
 @end

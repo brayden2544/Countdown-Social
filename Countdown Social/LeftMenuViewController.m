@@ -59,6 +59,13 @@
 - (IBAction)presentProfile:(id)sender {
     [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"PBJViewController"]]animated:YES];
     [self.sideMenuViewController hideMenuViewController];
+    _profileImage.hidden = false;
+    _locationImage.hidden = true;
+    _socialImage.hidden = true;
+    _scoreImage.hidden = true;
+    _tellFriendsImage.hidden = true;
+    _feedbackImage.hidden= true;
+    _settingsImage.hidden = true;
     
     
 }
@@ -67,35 +74,77 @@
     [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"SetLocationViewController"]]animated:YES];
     [self.sideMenuViewController hideMenuViewController];
     
+    _profileImage.hidden = true;
+    _locationImage.hidden = false;
+    _socialImage.hidden = true;
+    _scoreImage.hidden = true;
+    _tellFriendsImage.hidden = true;
+    _feedbackImage.hidden= true;
+    _settingsImage.hidden = true;
+    
 }
 
 - (IBAction)presentSocial:(id)sender {
     [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"SocialAccountsViewController"]]animated:YES];
     [self.sideMenuViewController hideMenuViewController];
+    _profileImage.hidden = true;
+    _locationImage.hidden = true;
+    _socialImage.hidden = false;
+    _scoreImage.hidden = true;
+    _tellFriendsImage.hidden = true;
+    _feedbackImage.hidden= true;
+    _settingsImage.hidden = true;
     
 }
 
 - (IBAction)presentScore:(id)sender {
     [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"UserScoreViewController"]]animated:YES];
     [self.sideMenuViewController hideMenuViewController];
+    _profileImage.hidden = true;
+    _locationImage.hidden = true;
+    _socialImage.hidden = true;
+    _scoreImage.hidden = false;
+    _tellFriendsImage.hidden = true;
+    _feedbackImage.hidden= true;
+    _settingsImage.hidden = true;
     
 }
 
 - (IBAction)presentTellFriends:(id)sender {
     [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"TellYourFriendsViewController"]]animated:YES];
     [self.sideMenuViewController hideMenuViewController];
+    _profileImage.hidden = true;
+    _locationImage.hidden = true;
+    _socialImage.hidden = true;
+    _scoreImage.hidden = true;
+    _tellFriendsImage.hidden = false;
+    _feedbackImage.hidden= true;
+    _settingsImage.hidden = true;
     
 }
 
 - (IBAction)presentFeedback:(id)sender {
     [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"FeedbackViewController"]]animated:YES];
     [self.sideMenuViewController hideMenuViewController];
-    
+    _profileImage.hidden = true;
+    _locationImage.hidden = true;
+    _socialImage.hidden = true;
+    _scoreImage.hidden = true;
+    _tellFriendsImage.hidden = true;
+    _feedbackImage.hidden= false;
+    _settingsImage.hidden = true;
 }
 
 - (IBAction)presentSettings:(id)sender {
     [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"]]animated:YES];
     [self.sideMenuViewController hideMenuViewController];
+    _profileImage.hidden = true;
+    _locationImage.hidden = true;
+    _socialImage.hidden = true;
+    _scoreImage.hidden = true;
+    _tellFriendsImage.hidden = true;
+    _feedbackImage.hidden= true;
+    _settingsImage.hidden = false;
     
 }
 @end

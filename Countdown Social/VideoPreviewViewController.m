@@ -189,7 +189,6 @@
 
 - (IBAction)back:(id)sender {
     [self.moviePlayer stop];
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     PBJViewController *pbjViewController = [[PBJViewController alloc] init];
     [self presentViewController:pbjViewController animated:YES completion:nil];
 
