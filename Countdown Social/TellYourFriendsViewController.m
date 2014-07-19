@@ -37,8 +37,8 @@
 }
 
 - (IBAction)share:(id)sender {
-    NSString *string = @" ";
-    NSURL *URL =[NSURL URLWithString: @" "];
+    NSString *string = @" Check this out";
+    NSURL *URL =[NSURL URLWithString: @"www.facebook.com"];
     
     UIActivityViewController *activityViewController =
     [[UIActivityViewController alloc] initWithActivityItems:@[string, URL]
