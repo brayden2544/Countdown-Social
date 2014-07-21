@@ -119,7 +119,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    
+self.navigationController.navigationBarHidden = YES;
     self.view.backgroundColor = [UIColor blackColor];
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 
