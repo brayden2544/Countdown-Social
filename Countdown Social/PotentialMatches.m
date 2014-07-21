@@ -95,6 +95,9 @@
     instance = [self getInstance];
     if ([instance.potentialMatches count] >0) {
         //instance.passedUsers = [instance.potentialMatches objectAtIndex:0];
+//        NSFileManager *fileManager = [NSFileManager defaultManager];
+//        [fileManager removeItemAtURL:[[instance.potentialMatches objectAtIndex:0] objectForKey:@"fileURL"] error:NULL];
+//        NSLog(@"Item deleted");
         [instance.potentialMatches removeObjectAtIndex:0];
     }
     

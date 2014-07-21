@@ -2375,6 +2375,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="ButtonPressed:" destination="hCc-dh-QDL" eventType="touchUpInside" id="Vhf-GW-CMf"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KUM-Kk-o5M">
                                 <rect key="frame" x="0.0" y="74" width="320" height="100"/>

@@ -240,6 +240,7 @@
         //movie finished playing
         if (_likeCurrentUser ==FALSE) {
             [self userPass];
+            NSLog(@"user considered as passed");
         }
         if (_likeCurrentUser ==TRUE) {
             [self nextMatch];
@@ -276,6 +277,7 @@
 
 -(void) playVideo{
     [self.moviePlayer setContentURL:_videoUrl];
+    self.moviePlayer.initialPlaybackTime = -.01;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.view bringSubviewToFront:self.moviePlayer.view];
         [self.view insertSubview:countdownTimer aboveSubview:self.moviePlayer.view];
@@ -297,9 +299,9 @@
     NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/";
     PotentialMatches *obj =[PotentialMatches getInstance];
     [obj.passedUsers addObject:currentPotentialMatch];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    [fileManager removeItemAtURL:[currentPotentialMatch objectForKey:@"fileURL"] error:NULL];
-    NSLog(@"Item deleted");
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+//    [fileManager removeItemAtURL:[currentPotentialMatch objectForKey:@"fileURL"] error:NULL];
+//    NSLog(@"Item deleted");
 
     urlAsString = [urlAsString stringByAppendingString:[[currentPotentialMatch objectForKey:@"uid"] stringValue]];
     urlAsString =[urlAsString stringByAppendingString:@"/pass"];
@@ -383,9 +385,9 @@
     
     PotentialMatches *obj =[PotentialMatches getInstance];
     [obj.passedUsers addObject:currentPotentialMatch];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    [fileManager removeItemAtURL:[currentPotentialMatch objectForKey:@"fileURL"] error:NULL];
-    NSLog(@"Item deleted");
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+//    [fileManager removeItemAtURL:[currentPotentialMatch objectForKey:@"fileURL"] error:NULL];
+//    NSLog(@"Item deleted");
 
     
     

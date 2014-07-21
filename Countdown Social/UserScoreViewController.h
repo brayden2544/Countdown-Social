@@ -7,8 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <StoreKit/StoreKit.h>
 
-@interface UserScoreViewController : UIViewController
+@interface UserScoreViewController : UIViewController <SKProductsRequestDelegate, SKPaymentTransactionObserver>
+{
+    
+}
 - (IBAction)presentMenu:(id)sender;
+-(IBAction)ButtonPressed:(id)sender;
+
+
+- (void) completeTransaction: (SKPaymentTransaction *)transaction;
+- (void) restoreTransaction: (SKPaymentTransaction *)transaction;
+- (void) failedTransaction: (SKPaymentTransaction *)transaction;
 
 @end
