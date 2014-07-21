@@ -11,6 +11,7 @@
 		6E04693D191A877E00482E79 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E04693C191A877E00482E79 /* CoreLocation.framework */; };
 		6E4C5A531979E9C900CCD5A8 /* TellYourFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4C5A521979E9C900CCD5A8 /* TellYourFriendsViewController.m */; };
 		6E4C5A561979F8FC00CCD5A8 /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4C5A551979F8FC00CCD5A8 /* FeedbackViewController.m */; };
+		6E4C5A58197D981400CCD5A8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E4C5A57197D981400CCD5A8 /* StoreKit.framework */; };
 		6E50A470192D84F700930D02 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E50A46B192D84F700930D02 /* RECommonFunctions.m */; };
 		6E50A471192D84F700930D02 /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E50A46D192D84F700930D02 /* RESideMenu.m */; };
 		6E50A472192D84F700930D02 /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E50A46F192D84F700930D02 /* UIViewController+RESideMenu.m */; };
@@ -113,6 +114,7 @@
 		6E4C5A521979E9C900CCD5A8 /* TellYourFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TellYourFriendsViewController.m; sourceTree = "<group>"; };
 		6E4C5A541979F8FC00CCD5A8 /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedbackViewController.h; path = ../FeedbackViewController.h; sourceTree = "<group>"; };
 		6E4C5A551979F8FC00CCD5A8 /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedbackViewController.m; path = ../FeedbackViewController.m; sourceTree = "<group>"; };
+		6E4C5A57197D981400CCD5A8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		6E50A46A192D84F700930D02 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
 		6E50A46B192D84F700930D02 /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
 		6E50A46C192D84F700930D02 /* RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESideMenu.h; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E4C5A58197D981400CCD5A8 /* StoreKit.framework in Frameworks */,
 				6EC635CA196F8BA4009A6577 /* AVFoundation.framework in Frameworks */,
 				6EC635C8196F8B26009A6577 /* AssetsLibrary.framework in Frameworks */,
 				6EF00270194FCA2000F32217 /* Accounts.framework in Frameworks */,
@@ -369,6 +372,7 @@
 		6E967CAE190DA4960042AF93 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6E4C5A57197D981400CCD5A8 /* StoreKit.framework */,
 				6EC635C9196F8BA4009A6577 /* AVFoundation.framework */,
 				6EC635C7196F8B26009A6577 /* AssetsLibrary.framework */,
 				6E7691C9195387DA006CA5DB /* FacebookSDK.framework */,
