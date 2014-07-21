@@ -297,9 +297,9 @@
     NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/";
     PotentialMatches *obj =[PotentialMatches getInstance];
     [obj.passedUsers addObject:currentPotentialMatch];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    [fileManager removeItemAtURL:[currentPotentialMatch objectForKey:@"fileURL"] error:NULL];
-    NSLog(@"Item deleted");
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+//    [fileManager removeItemAtURL:[currentPotentialMatch objectForKey:@"fileURL"] error:NULL];
+//    NSLog(@"Item deleted");
 
     urlAsString = [urlAsString stringByAppendingString:[[currentPotentialMatch objectForKey:@"uid"] stringValue]];
     urlAsString =[urlAsString stringByAppendingString:@"/pass"];
@@ -383,9 +383,9 @@
     
     PotentialMatches *obj =[PotentialMatches getInstance];
     [obj.passedUsers addObject:currentPotentialMatch];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    [fileManager removeItemAtURL:[currentPotentialMatch objectForKey:@"fileURL"] error:NULL];
-    NSLog(@"Item deleted");
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+//    [fileManager removeItemAtURL:[currentPotentialMatch objectForKey:@"fileURL"] error:NULL];
+//    NSLog(@"Item deleted");
 
     
     
