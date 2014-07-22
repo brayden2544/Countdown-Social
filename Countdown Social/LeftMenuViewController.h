@@ -21,6 +21,7 @@
 - (IBAction)presentTellFriends:(id)sender;
 - (IBAction)presentFeedback:(id)sender;
 - (IBAction)presentSettings:(id)sender;
+- (IBAction)presentHome:(id)sender;
 
 //Shade over button outletes
 @property (strong, nonatomic) IBOutlet UIImageView *feedbackImage;

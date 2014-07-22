@@ -66,6 +66,8 @@
     _tellFriendsImage.hidden = true;
     _feedbackImage.hidden= true;
     _settingsImage.hidden = true;
+    _homeImage.hidden = true;
+
     
     
 }
@@ -81,6 +83,8 @@
     _tellFriendsImage.hidden = true;
     _feedbackImage.hidden= true;
     _settingsImage.hidden = true;
+    _homeImage.hidden = true;
+
     
 }
 
@@ -94,6 +98,8 @@
     _tellFriendsImage.hidden = true;
     _feedbackImage.hidden= true;
     _settingsImage.hidden = true;
+    _homeImage.hidden = true;
+
     
 }
 
@@ -107,6 +113,8 @@
     _tellFriendsImage.hidden = true;
     _feedbackImage.hidden= true;
     _settingsImage.hidden = true;
+    _homeImage.hidden = true;
+
     
 }
 
@@ -120,6 +128,8 @@
     _tellFriendsImage.hidden = false;
     _feedbackImage.hidden= true;
     _settingsImage.hidden = true;
+    _homeImage.hidden = true;
+
     
 }
 
@@ -133,6 +143,8 @@
     _tellFriendsImage.hidden = true;
     _feedbackImage.hidden= false;
     _settingsImage.hidden = true;
+    _homeImage.hidden = true;
+
 }
 
 - (IBAction)presentSettings:(id)sender {
@@ -145,6 +157,22 @@
     _tellFriendsImage.hidden = true;
     _feedbackImage.hidden= true;
     _settingsImage.hidden = false;
+    _homeImage.hidden = true;
+
     
+}
+
+- (IBAction)presentHome:(id)sender {
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"PotentialMatchesViewController"]]animated:YES];
+    [self.sideMenuViewController hideMenuViewController];
+    _profileImage.hidden = true;
+    _locationImage.hidden = true;
+    _socialImage.hidden = true;
+    _scoreImage.hidden = true;
+    _tellFriendsImage.hidden = true;
+    _feedbackImage.hidden= true;
+    _settingsImage.hidden = true;
+    _homeImage.hidden = false;
+
 }
 @end
