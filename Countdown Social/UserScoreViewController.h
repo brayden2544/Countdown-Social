@@ -16,6 +16,8 @@
 - (IBAction)presentMenu:(id)sender;
 -(IBAction)ButtonPressed:(id)sender;
 
+@property (nonatomic,strong) NSDictionary *user;
+
 
 - (void) completeTransaction: (SKPaymentTransaction *)transaction;
 - (void) restoreTransaction: (SKPaymentTransaction *)transaction;

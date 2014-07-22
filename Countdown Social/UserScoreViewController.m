@@ -10,6 +10,9 @@
 
 #import <StoreKit/StoreKit.h>
 #import "RESideMenu.h"
+#import "User.h"
+#import "AppDelegate.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 
 @interface UserScoreViewController ()
@@ -24,6 +27,9 @@
     [super viewDidLoad];
     self.navigationController.navigationBarHidden = YES;
     // Do any additional setup after loading the view.
+    User *obj = [User getInstance];
+    _user = obj.user;
+    
 }
 
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
@@ -65,6 +71,35 @@
     NSLog(@"Transaction Completed");
     // You can create a method to record the transaction.
     // [self recordTransaction: transaction];
+    NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/";
+    //urlAsString = [urlAsString stringByAppendingString:[[_user objectForKey:@"uid"] stringValue]];
+    
+    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+    NSString *FbToken = [session accessTokenData].accessToken;
+    
+    
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    NSOperationQueue *backgroundQueue = [[NSOperationQueue alloc]init];
+    manager.operationQueue = backgroundQueue;
+    NSDictionary *params = @{@"in_app_purchase":@"true"};
+    [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+        NSLog(@"show stats view");
+    }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"Error: %@", error);
+         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Restore Unsuccessful!!"
+                                                         message:@"Please try again!"
+                                                        delegate:self
+                                               cancelButtonTitle:@"Okay"
+                                               otherButtonTitles:nil];
+         [alert show];
+         
+     }];
+
     
     // You should make the update to your app based on what was purchased and inform user.
     // [self provideContent: transaction.payment.productIdentifier];
@@ -77,13 +112,41 @@
 {
     NSLog(@"Transaction Restored");
     // You can create a method to record the transaction.
-    // [self recordTransaction: transaction];
+    NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/";
+    urlAsString = [urlAsString stringByAppendingString:[[_user objectForKey:@"uid"] stringValue]];
+    
+    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+    NSString *FbToken = [session accessTokenData].accessToken;
+    
+    
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    NSOperationQueue *backgroundQueue = [[NSOperationQueue alloc]init];
+    manager.operationQueue = backgroundQueue;
+    NSDictionary *params = @{@"in_app_purchase":@"true"};
+    [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+        NSLog(@"show stats view");
+    }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"Error: %@", error);
+         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Restore Unsuccessful!!"
+                                                         message:@"Please try again!"
+                                                        delegate:self
+                                               cancelButtonTitle:@"Okay"
+                                               otherButtonTitles:nil];
+         [alert show];
+         
+     }];
     
     // You should make the update to your app based on what was purchased and inform user.
     // [self provideContent: transaction.payment.productIdentifier];
     
     // Finally, remove the transaction from the payment queue.
     [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+    
 }
 
 - (void) failedTransaction: (SKPaymentTransaction *)transaction
