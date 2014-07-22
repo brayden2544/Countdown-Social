@@ -76,7 +76,7 @@
     self.moviePlayer = [[MPMoviePlayerController alloc]init];
     self.moviePlayer.shouldAutoplay = NO;
     self.moviePlayer.controlStyle =MPMovieControlStyleNone;
-    [self.moviePlayer.view setFrame:CGRectMake (0, 90, 320, 320)];
+    [self.moviePlayer.view setFrame:CGRectMake (0, 100, 320, 320)];
     [self.moviePlayer setFullscreen:NO
                            animated:NO];
     [self.view addSubview:self.moviePlayer.view];
@@ -570,7 +570,7 @@
 
 
 -(void)viewDidDisappear:(BOOL)animated{
-    //[[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     NSLog(@"NSNotification Observer Disappeared");
 }
 

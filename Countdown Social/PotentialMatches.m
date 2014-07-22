@@ -16,9 +16,9 @@
 @synthesize passedUsers;
 
 +(PotentialMatches *)getInstance{
-    static PotentialMatches *instance = nil;
-    static dispatch_once_t onceToken;
-    
+        static dispatch_once_t onceToken;
+        static PotentialMatches *instance = nil;
+
     dispatch_once(&onceToken, ^{
         instance= [[self alloc]init];
         instance.potentialMatches = [[NSMutableArray alloc]init];
