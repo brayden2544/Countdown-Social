@@ -59,6 +59,8 @@
                                           [self sessionStateChanged:session state:state error:error];
                                                                                 }];
     }
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+     (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     return YES;
 }
 

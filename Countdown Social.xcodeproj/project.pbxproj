@@ -10,7 +10,6 @@
 		6E04693B191995B900482E79 /* LoginLoadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E04693A191995B900482E79 /* LoginLoadViewController.m */; };
 		6E04693D191A877E00482E79 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E04693C191A877E00482E79 /* CoreLocation.framework */; };
 		6E4C5A531979E9C900CCD5A8 /* TellYourFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4C5A521979E9C900CCD5A8 /* TellYourFriendsViewController.m */; };
-		6E4C5A561979F8FC00CCD5A8 /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4C5A551979F8FC00CCD5A8 /* FeedbackViewController.m */; };
 		6E4C5A58197D981400CCD5A8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E4C5A57197D981400CCD5A8 /* StoreKit.framework */; };
 		6E50A470192D84F700930D02 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E50A46B192D84F700930D02 /* RECommonFunctions.m */; };
 		6E50A471192D84F700930D02 /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E50A46D192D84F700930D02 /* RESideMenu.m */; };
@@ -23,6 +22,9 @@
 		6E886A4B190DD4F9009E5A92 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E886A4A190DD4F9009E5A92 /* ViewController.m */; };
 		6E886A4E190E05AC009E5A92 /* SetLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E886A4D190E05AC009E5A92 /* SetLocationViewController.m */; };
 		6E886A50190E1CC1009E5A92 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E886A4F190E1CC1009E5A92 /* MapKit.framework */; };
+		6E9192EC197DE82700F8DCDE /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9192E7197DE82700F8DCDE /* FeedbackViewController.m */; };
+		6E9192ED197DE82700F8DCDE /* PhoneNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9192E9197DE82700F8DCDE /* PhoneNumberView.m */; };
+		6E9192EE197DE82700F8DCDE /* SnapchatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9192EB197DE82700F8DCDE /* SnapchatView.m */; };
 		6E92DFF4196217AD009ECE27 /* VideoPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E92DFF3196217AD009ECE27 /* VideoPath.m */; };
 		6E92E00019628E24009ECE27 /* PBJGLProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E92DFF619628E24009ECE27 /* PBJGLProgram.m */; };
 		6E92E00119628E24009ECE27 /* PBJMediaWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E92DFF819628E24009ECE27 /* PBJMediaWriter.m */; };
@@ -75,8 +77,6 @@
 		6EC5855019772269008DDFFA /* UserScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC5854F19772269008DDFFA /* UserScoreViewController.m */; };
 		6EC635C8196F8B26009A6577 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC635C7196F8B26009A6577 /* AssetsLibrary.framework */; };
 		6EC635CA196F8BA4009A6577 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC635C9196F8BA4009A6577 /* AVFoundation.framework */; };
-		6EC7D4A6196C7F660083A581 /* SnapchatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC7D4A5196C7F660083A581 /* SnapchatView.m */; };
-		6EC7D4A9196C7F7B0083A581 /* PhoneNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC7D4A8196C7F7B0083A581 /* PhoneNumberView.m */; };
 		6EC9431A1958D04E0096F41F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC943191958D04E0096F41F /* User.m */; };
 		6EC94325195C8B6E0096F41F /* LeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC94324195C8B6E0096F41F /* LeftMenuViewController.m */; };
 		6ECB30F81952498200AB8854 /* InstagramViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECB30F71952498200AB8854 /* InstagramViewController.m */; };
@@ -112,8 +112,6 @@
 		6E04693C191A877E00482E79 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		6E4C5A511979E9C900CCD5A8 /* TellYourFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TellYourFriendsViewController.h; sourceTree = "<group>"; };
 		6E4C5A521979E9C900CCD5A8 /* TellYourFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TellYourFriendsViewController.m; sourceTree = "<group>"; };
-		6E4C5A541979F8FC00CCD5A8 /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedbackViewController.h; path = ../FeedbackViewController.h; sourceTree = "<group>"; };
-		6E4C5A551979F8FC00CCD5A8 /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedbackViewController.m; path = ../FeedbackViewController.m; sourceTree = "<group>"; };
 		6E4C5A57197D981400CCD5A8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		6E50A46A192D84F700930D02 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
 		6E50A46B192D84F700930D02 /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
@@ -134,6 +132,12 @@
 		6E886A4C190E05AC009E5A92 /* SetLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetLocationViewController.h; sourceTree = "<group>"; };
 		6E886A4D190E05AC009E5A92 /* SetLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetLocationViewController.m; sourceTree = "<group>"; };
 		6E886A4F190E1CC1009E5A92 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		6E9192E6197DE82700F8DCDE /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
+		6E9192E7197DE82700F8DCDE /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackViewController.m; sourceTree = "<group>"; };
+		6E9192E8197DE82700F8DCDE /* PhoneNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneNumberView.h; sourceTree = "<group>"; };
+		6E9192E9197DE82700F8DCDE /* PhoneNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneNumberView.m; sourceTree = "<group>"; };
+		6E9192EA197DE82700F8DCDE /* SnapchatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnapchatView.h; sourceTree = "<group>"; };
+		6E9192EB197DE82700F8DCDE /* SnapchatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnapchatView.m; sourceTree = "<group>"; };
 		6E92DFF2196217AD009ECE27 /* VideoPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPath.h; sourceTree = "<group>"; };
 		6E92DFF3196217AD009ECE27 /* VideoPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPath.m; sourceTree = "<group>"; };
 		6E92DFF519628E24009ECE27 /* PBJGLProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJGLProgram.h; sourceTree = "<group>"; };
@@ -205,10 +209,6 @@
 		6EC5854F19772269008DDFFA /* UserScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserScoreViewController.m; sourceTree = "<group>"; };
 		6EC635C7196F8B26009A6577 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		6EC635C9196F8BA4009A6577 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		6EC7D4A4196C7F660083A581 /* SnapchatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SnapchatView.h; path = ../SnapchatView.h; sourceTree = "<group>"; };
-		6EC7D4A5196C7F660083A581 /* SnapchatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SnapchatView.m; path = ../SnapchatView.m; sourceTree = "<group>"; };
-		6EC7D4A7196C7F7B0083A581 /* PhoneNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhoneNumberView.h; path = ../PhoneNumberView.h; sourceTree = "<group>"; };
-		6EC7D4A8196C7F7B0083A581 /* PhoneNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhoneNumberView.m; path = ../PhoneNumberView.m; sourceTree = "<group>"; };
 		6EC943181958D04E0096F41F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		6EC943191958D04E0096F41F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		6EC94323195C8B6E0096F41F /* LeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenuViewController.h; sourceTree = "<group>"; };
@@ -401,8 +401,8 @@
 				6EA354FC1965444700F51D70 /* Singletons */,
 				6EB9D6B4192415D10080E1C5 /* VideoPreviewViewController.h */,
 				6EB9D6B5192415D10080E1C5 /* VideoPreviewViewController.m */,
-				6E4C5A541979F8FC00CCD5A8 /* FeedbackViewController.h */,
-				6E4C5A551979F8FC00CCD5A8 /* FeedbackViewController.m */,
+				6E9192E6197DE82700F8DCDE /* FeedbackViewController.h */,
+				6E9192E7197DE82700F8DCDE /* FeedbackViewController.m */,
 				6E046939191995B900482E79 /* LoginLoadViewController.h */,
 				6E04693A191995B900482E79 /* LoginLoadViewController.m */,
 				6E886A4C190E05AC009E5A92 /* SetLocationViewController.h */,
@@ -549,10 +549,10 @@
 		6EC7D4AA196C7F890083A581 /* Social Accounts */ = {
 			isa = PBXGroup;
 			children = (
-				6EC7D4A7196C7F7B0083A581 /* PhoneNumberView.h */,
-				6EC7D4A8196C7F7B0083A581 /* PhoneNumberView.m */,
-				6EC7D4A4196C7F660083A581 /* SnapchatView.h */,
-				6EC7D4A5196C7F660083A581 /* SnapchatView.m */,
+				6E9192E8197DE82700F8DCDE /* PhoneNumberView.h */,
+				6E9192E9197DE82700F8DCDE /* PhoneNumberView.m */,
+				6E9192EA197DE82700F8DCDE /* SnapchatView.h */,
+				6E9192EB197DE82700F8DCDE /* SnapchatView.m */,
 				6EA354F91965443500F51D70 /* SocialAccountsViewController.h */,
 				6EA354FA1965443500F51D70 /* SocialAccountsViewController.m */,
 				6ECB30F61952498200AB8854 /* InstagramViewController.h */,
@@ -688,12 +688,10 @@
 			files = (
 				6E04693B191995B900482E79 /* LoginLoadViewController.m in Sources */,
 				6E50A470192D84F700930D02 /* RECommonFunctions.m in Sources */,
-				6EC7D4A9196C7F7B0083A581 /* PhoneNumberView.m in Sources */,
 				6E50A472192D84F700930D02 /* UIViewController+RESideMenu.m in Sources */,
 				6E92E00019628E24009ECE27 /* PBJGLProgram.m in Sources */,
 				6ECDEA971974791800B06130 /* AFHTTPRequestOperationManager.m in Sources */,
 				6EC5854D1975BED8008DDFFA /* WaitingAnimation.m in Sources */,
-				6EC7D4A6196C7F660083A581 /* SnapchatView.m in Sources */,
 				6E886A44190DB575009E5A92 /* LoginViewController.m in Sources */,
 				6ECE8112194A6F69007B3130 /* TwitterViewController.m in Sources */,
 				6EC9431A1958D04E0096F41F /* User.m in Sources */,
@@ -703,7 +701,7 @@
 				6E7691CD195398ED006CA5DB /* PotentialMatches.m in Sources */,
 				6EC5855019772269008DDFFA /* UserScoreViewController.m in Sources */,
 				6EB9D6B6192415D10080E1C5 /* VideoPreviewViewController.m in Sources */,
-				6E4C5A561979F8FC00CCD5A8 /* FeedbackViewController.m in Sources */,
+				6E9192EE197DE82700F8DCDE /* SnapchatView.m in Sources */,
 				6ECDEA981974791800B06130 /* AFHTTPSessionManager.m in Sources */,
 				6E50A471192D84F700930D02 /* RESideMenu.m in Sources */,
 				6ECDEA991974791800B06130 /* AFNetworkReachabilityManager.m in Sources */,
@@ -715,10 +713,12 @@
 				6E4C5A531979E9C900CCD5A8 /* TellYourFriendsViewController.m in Sources */,
 				6E967CBC190DA4960042AF93 /* main.m in Sources */,
 				6ECDEA961974791800B06130 /* AFHTTPRequestOperation.m in Sources */,
+				6E9192EC197DE82700F8DCDE /* FeedbackViewController.m in Sources */,
 				6ECDEA9E1974791800B06130 /* AFURLSessionManager.m in Sources */,
 				6ECB30F81952498200AB8854 /* InstagramViewController.m in Sources */,
 				6E92E01719628E94009ECE27 /* PBJFocusView.m in Sources */,
 				6E92E01919628E94009ECE27 /* PBJViewController.m in Sources */,
+				6E9192ED197DE82700F8DCDE /* PhoneNumberView.m in Sources */,
 				6ECDEA9A1974791800B06130 /* AFSecurityPolicy.m in Sources */,
 				6E886A4E190E05AC009E5A92 /* SetLocationViewController.m in Sources */,
 				6ECDEA9D1974791800B06130 /* AFURLResponseSerialization.m in Sources */,
