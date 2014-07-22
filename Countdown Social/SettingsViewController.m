@@ -10,12 +10,14 @@
 #import "RESideMenu.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "AppDelegate.h"
+#import "User.h"
 
 @interface SettingsViewController ()
 
 @end
 
 @implementation SettingsViewController
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -57,7 +59,66 @@
     }
 }
 
+-(void)uploadSettings{
+    
+    NSString *isStraight;
+    NSString *isActive;
+    
+    
+    if (sexualOrientation.isOn) {
+        isStraight = @"true";
+    }
+    else{
+        isStraight = @"false";
+    }
+    
+    if (hideProfile.isOn) {
+        isActive = @"true";
+    }
+    else{
+        isActive = @"false";
+    }
+    User *obj = [User getInstance];
+    NSDictionary *user = obj.user;
+    
+    NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/";
+        urlAsString = [urlAsString stringByAppendingString:[[user objectForKey:@"uid"] stringValue]];
+        //urlAsString =[urlAsString stringByAppendingString:@"/feedback"];
+    
+    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+    NSString *FbToken = [session accessTokenData].accessToken;
+    
+    
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    NSOperationQueue *backgroundQueue = [[NSOperationQueue alloc]init];
+    manager.operationQueue = backgroundQueue;
+    NSDictionary *params = @{@"straight":isStraight,
+                             @"active":isActive};
+    [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Feedback Uploaded!!"
+                                                        message:@"Thanks for helping us make Countdown better!"
+                                                       delegate:self
+                                              cancelButtonTitle:nil
+                                              otherButtonTitles:@"Okay", nil];
+        [alert show];
+        
+    }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"Error: %@", error);
+         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Feedback Not Uploaded!!"
+                                                         message:@"Please try again!"
+                                                        delegate:self
+                                               cancelButtonTitle:@"Okay"
+                                               otherButtonTitles:nil];
+         [alert show];
+         
+     }];
 
+}
 
 
 

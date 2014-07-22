@@ -35,11 +35,10 @@
 }
 
 - (void)postFeedback{
-    User *obj = [User getInstance];
-    NSDictionary *user = obj.user;
-    NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/";
-    urlAsString = [urlAsString stringByAppendingString:[[user objectForKey:@"uid"] stringValue]];
-    urlAsString =[urlAsString stringByAppendingString:@"/note"];
+
+    NSString *urlAsString =@"http://api-dev.countdownsocial.com/feedback/";
+//    urlAsString = [urlAsString stringByAppendingString:[[user objectForKey:@"uid"] stringValue]];
+//    urlAsString =[urlAsString stringByAppendingString:@"/feedback"];
     
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     NSString *FbToken = [session accessTokenData].accessToken;
@@ -50,14 +49,14 @@
     [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
     NSOperationQueue *backgroundQueue = [[NSOperationQueue alloc]init];
     manager.operationQueue = backgroundQueue;
-    NSDictionary *params = @{@"note":_feedback};
+    NSDictionary *params = @{@"content":_feedback};
     [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Feedback Uploaded!!"
                                                         message:@"Thanks for helping us make Countdown better!"
                                                        delegate:self
                                               cancelButtonTitle:nil
-                                              otherButtonTitles:@"You're Welcome", nil];
+                                              otherButtonTitles:@"Okay", nil];
         [alert show];
         
     }
@@ -67,7 +66,7 @@
          UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Feedback Not Uploaded!!"
                                                          message:@"Please try again!"
                                                         delegate:self
-                                               cancelButtonTitle:@"OK"
+                                               cancelButtonTitle:@"Okay"
                                                otherButtonTitles:nil];
          [alert show];
          

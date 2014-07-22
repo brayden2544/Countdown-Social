@@ -2366,6 +2366,10 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <size key="freeformSize" width="320" height="800"/>
+                    <connections>
+                        <outlet property="hideProfile" destination="66p-di-e7I" id="yHY-5q-mBX"/>
+                        <outlet property="sexualOrientation" destination="U7J-Aq-dMf" id="OZf-07-OhF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5dI-Gb-h6t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

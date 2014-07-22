@@ -9,6 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface SettingsViewController : UIViewController
+{
+    IBOutlet UISwitch *hideProfile;
+    IBOutlet UISwitch *sexualOrientation;
+    
+}
+
+
 - (IBAction)presentMenu:(id)sender;
 
 @end
