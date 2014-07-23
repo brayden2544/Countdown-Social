@@ -14,7 +14,6 @@
 @interface LeftMenuViewController : UIViewController
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *userProfileImage;
 
-- (IBAction)presentProfile:(id)sender;
 - (IBAction)presentLocation:(id)sender;
 - (IBAction)presentSocial:(id)sender;
 - (IBAction)presentScore:(id)sender;
@@ -22,6 +21,7 @@
 - (IBAction)presentFeedback:(id)sender;
 - (IBAction)presentSettings:(id)sender;
 - (IBAction)presentHome:(id)sender;
+- (IBAction)presentProfile:(id)sender;
 
 //Shade over button outletes
 @property (strong, nonatomic) IBOutlet UIImageView *feedbackImage;

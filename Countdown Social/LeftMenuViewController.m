@@ -56,21 +56,7 @@
 }
 
 
-- (IBAction)presentProfile:(id)sender {
-    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"PBJViewController"]]animated:YES];
-    [self.sideMenuViewController hideMenuViewController];
-    _profileImage.hidden = false;
-    _locationImage.hidden = true;
-    _socialImage.hidden = true;
-    _scoreImage.hidden = true;
-    _tellFriendsImage.hidden = true;
-    _feedbackImage.hidden= true;
-    _settingsImage.hidden = true;
-    _homeImage.hidden = true;
 
-    
-    
-}
 
 - (IBAction)presentLocation:(id)sender {
     [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"SetLocationViewController"]]animated:YES];
@@ -174,5 +160,19 @@
     _settingsImage.hidden = true;
     _homeImage.hidden = false;
 
+}
+
+- (IBAction)presentProfile:(id)sender {
+    
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ProfileViewController"]]animated:YES];
+    [self.sideMenuViewController hideMenuViewController];
+    _profileImage.hidden = false;
+    _locationImage.hidden = true;
+    _socialImage.hidden = true;
+    _scoreImage.hidden = true;
+    _tellFriendsImage.hidden = true;
+    _feedbackImage.hidden= true;
+    _settingsImage.hidden = true;
+    _homeImage.hidden = true;
 }
 @end
