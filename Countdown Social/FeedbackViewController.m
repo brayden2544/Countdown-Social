@@ -37,8 +37,7 @@
 - (void)postFeedback{
 
     NSString *urlAsString =@"http://api-dev.countdownsocial.com/feedback/";
-//    urlAsString = [urlAsString stringByAppendingString:[[user objectForKey:@"uid"] stringValue]];
-//    urlAsString =[urlAsString stringByAppendingString:@"/feedback"];
+
     
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     NSString *FbToken = [session accessTokenData].accessToken;

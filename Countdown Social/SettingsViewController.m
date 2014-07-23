@@ -82,9 +82,6 @@
     NSDictionary *user = obj.user;
     
     NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/";
-        urlAsString = [urlAsString stringByAppendingString:[[user objectForKey:@"uid"] stringValue]];
-        //urlAsString =[urlAsString stringByAppendingString:@"/feedback"];
-    
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     NSString *FbToken = [session accessTokenData].accessToken;
     
@@ -98,6 +95,7 @@
                              @"active":isActive};
     [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
+        obj.user = responseObject;
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Feedback Uploaded!!"
                                                         message:@"Thanks for helping us make Countdown better!"
                                                        delegate:self
