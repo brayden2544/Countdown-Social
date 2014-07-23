@@ -81,9 +81,9 @@
                            animated:NO];
     [self.view addSubview:self.moviePlayer.view];
     
-    self.potentialMatchesLoadingView = [[PotentialMatchesLoadingView alloc]initWithFrame:CGRectMake(0, 57, 320, 353)];
+    self.potentialMatchesLoadingView = [[PotentialMatchesLoadingView alloc]initWithFrame:CGRectMake(0, 57, 320, 363)];
     
-    self.blur=[[UIImageView alloc] initWithFrame:CGRectMake (0, 90, 320, 320)];
+    self.blur=[[UIImageView alloc] initWithFrame:CGRectMake (0, 100, 320, 320)];
     
     
     
@@ -158,12 +158,14 @@
 
 //Set profile picture for current potential match
 - (void)setProfilePic{
+    NSLog(@"setProfilePic");
     
     //Creat URL for image and download image
-    NSString *picURL = @"http://graph.facebook.com/";
-    NSString *uid =[[currentPotentialMatch objectForKey:@"uid"] stringValue];
-    picURL= [picURL stringByAppendingString:uid];
-    picURL = [picURL stringByAppendingString:@"/picture?width=200&height=200"];
+    NSString *picURL = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?width=200&height=200", [currentPotentialMatch objectForKey:@"facebook_uid"]];
+//    NSString *uid =[[currentPotentialMatch objectForKey:@"facebook_uid"]stringValue];
+//    picURL= [picURL stringByAppendingString:uid];
+//    picURL = [picURL stringByAppendingString:@"/picture?width=200&height=200"];
+    NSLog(@"setProfilePicURL:%@",picURL);
     NSURL *url = [NSURL URLWithString:picURL];
     NSData *imageData = [NSData dataWithContentsOfURL:url];
     self.fbProfilePic.image = [UIImage imageWithData:imageData];
@@ -303,7 +305,7 @@
 //    [fileManager removeItemAtURL:[currentPotentialMatch objectForKey:@"fileURL"] error:NULL];
 //    NSLog(@"Item deleted");
 
-    urlAsString = [urlAsString stringByAppendingString:[[currentPotentialMatch objectForKey:@"uid"] stringValue]];
+    urlAsString = [urlAsString stringByAppendingString:[currentPotentialMatch objectForKey:@"uid"]];
     urlAsString =[urlAsString stringByAppendingString:@"/pass"];
     
     
@@ -392,7 +394,7 @@
     
     
     NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/";
-    urlAsString = [urlAsString stringByAppendingString:[[currentPotentialMatch objectForKey:@"uid"] stringValue]];
+    urlAsString = [urlAsString stringByAppendingString:[currentPotentialMatch objectForKey:@"uid"]];
     urlAsString =[urlAsString stringByAppendingString:@"/like"];
     
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];

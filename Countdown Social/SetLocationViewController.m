@@ -41,7 +41,7 @@
     
     //Creat URL for image and download image
     NSString *picURL = @"http://graph.facebook.com/";
-    NSString *uid =[[self.user.user objectForKey:@"uid"] stringValue];
+    NSString *uid =[[self.user.user objectForKey:@"facebook_uid"] stringValue];
     picURL= [picURL stringByAppendingString:uid];
     picURL = [picURL stringByAppendingString:@"/picture?width=200&height=200"];
     NSURL *url = [NSURL URLWithString:picURL];

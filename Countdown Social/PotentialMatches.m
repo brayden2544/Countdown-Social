@@ -17,7 +17,7 @@
 
 +(PotentialMatches *)getInstance{
         static dispatch_once_t onceToken;
-        static PotentialMatches *instance = nil;
+        static PotentialMatches *instance;
 
     dispatch_once(&onceToken, ^{
         instance= [[self alloc]init];
@@ -30,7 +30,7 @@
         
         //Download potential matches here
         NSString *urlAsString =@"http://countdown-java-dev.elasticbeanstalk.com/user/";
-        NSString *userID = [[user objectForKey:@"uid"]stringValue];
+        NSString *userID = [user objectForKey:@"uid"];
         urlAsString = [urlAsString stringByAppendingString:userID];
         urlAsString = [urlAsString stringByAppendingString:@"/nextPotentials"];
         
@@ -47,7 +47,7 @@
         [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
         NSDictionary *params = @{};
         [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            //NSLog(@"JSON: %@", responseObject);
+            NSLog(@"JSON: %@", responseObject);
             NSMutableArray *potentialMatchesArray = responseObject;
             [instance.potentialMatches addObjectsFromArray:potentialMatchesArray];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSuccessful" object:nil];
@@ -109,7 +109,7 @@
         
         //Download potential matches here
         NSString *urlAsString =@"http://countdown-java-dev.elasticbeanstalk.com/user/";
-        NSString *userID = [[user objectForKey:@"uid"]stringValue];
+        NSString *userID = [user objectForKey:@"uid"];
         urlAsString = [urlAsString stringByAppendingString:userID];
         urlAsString = [urlAsString stringByAppendingString:@"/nextPotentials"];
         NSLog(@"%@", urlAsString);
