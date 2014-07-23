@@ -27,6 +27,8 @@
 #import "PBJStrobeView.h"
 #import "PBJFocusView.h"
 
+#import "RESideMenu.h"
+
 #import "PBJVision.h"
 #import "PBJVisionUtilities.h"
 
@@ -447,11 +449,12 @@ self.navigationController.navigationBarHidden = YES;
         _longPressGestureRecognizer.enabled = NO;
         _longPressGestureRecognizer.enabled = YES;
         
-         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-         ViewController *menuViewController = [storyboard instantiateViewControllerWithIdentifier:@"rootViewController"];
-         [self presentViewController:menuViewController animated:YES completion:nil];
+         [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ProfileViewController"]]animated:YES];
+         [self.sideMenuViewController hideMenuViewController];
 
-    }
+
+             }
+
 
 
 #pragma mark - UIAlertViewDelegate
@@ -667,10 +670,10 @@ self.navigationController.navigationBarHidden = YES;
     obj.videoPath = videoPath;
     NSLog(@"video stored temporarily @ %@",videoPath);
 
-    
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    VideoPreviewViewController *chooseLocationViewController = [storyboard instantiateViewControllerWithIdentifier:@"VideoPreviewViewController"];
-    [self presentViewController:chooseLocationViewController animated:YES completion:nil];
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"VideoPreviewViewController"]]animated:YES];
+    [self.sideMenuViewController hideMenuViewController];
+
+
     
 }
 

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ProfileViewController : UIViewController
+- (IBAction)recordVideo:(id)sender;
 
 @end

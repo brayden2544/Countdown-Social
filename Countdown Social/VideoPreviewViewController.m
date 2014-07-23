@@ -14,6 +14,7 @@
 #import "AppDelegate.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <AVFoundation/AVFoundation.h>
+#import "RESideMenu/RESideMenu.h"
 
 
 
@@ -151,12 +152,12 @@
      }];
 }
 - (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex{
-    NSLog(@"login in again hoping for more matches. button index = %d",buttonIndex);
+    NSLog(@"video Uploaded successfully",buttonIndex);
     
     if (buttonIndex == 0){
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        ViewController *menuViewController = [storyboard instantiateViewControllerWithIdentifier:@"rootViewController"];
-        [self presentViewController:menuViewController animated:YES completion:nil];
+        [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ProfileViewController"]]animated:YES];
+        [self.sideMenuViewController hideMenuViewController];
+
     }
 
 }
@@ -188,9 +189,9 @@
 }
 
 - (IBAction)back:(id)sender {
-    [self.moviePlayer stop];
-    PBJViewController *pbjViewController = [[PBJViewController alloc] init];
-    [self presentViewController:pbjViewController animated:YES completion:nil];
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"PBJViewController"]]animated:YES];
+    [self.sideMenuViewController hideMenuViewController];
+
 
 }
 @end

@@ -40,4 +40,8 @@
 
 
 
+- (IBAction)recordVideo:(id)sender {
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"PBJViewController"]]animated:YES];
+    [self.sideMenuViewController hideMenuViewController];
+}
 @end
