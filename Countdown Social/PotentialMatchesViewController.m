@@ -13,6 +13,7 @@
 #import "AppDelegate.h"
 #import "InstagramViewController.h"
 #import "PotentialMatchesLoadingView.h"
+#import "RESideMenu/RESideMenu.h"
 
 @interface PotentialMatchesViewController ()
 
@@ -73,6 +74,7 @@
     [countdownTimer changePercentage:100];
     [self.view addSubview:countdownTimer];
     
+
     self.moviePlayer = [[MPMoviePlayerController alloc]init];
     self.moviePlayer.shouldAutoplay = NO;
     self.moviePlayer.controlStyle =MPMovieControlStyleNone;
@@ -256,7 +258,7 @@
 
 - (IBAction)HoldPlay:(id)sender {
     
-    if(_likeCurrentUser ==FALSE & _loading ==FALSE) {
+    if( _loading ==FALSE) {
         _playButtonHeld = TRUE;
         self.blur.hidden = TRUE;
         self.createMatch.hidden = TRUE;
@@ -340,12 +342,13 @@
 }
 
 -(void) userLike{
+    
     _likeCurrentUser = TRUE;
     NSMutableDictionary *params = [[NSMutableDictionary alloc]init];
     self.blur.hidden = TRUE;
     self.createMatch.hidden = TRUE;
     
-    if (self.instagramSelect.enabled == false) {
+    if (self.instagramDeselect.enabled == false) {
         [params setValue:@"true" forKey:@"instagram"];
     }else{
         [params setValue:@"false" forKey:@"instagram"];
@@ -357,7 +360,7 @@
         [params setValue:@"false" forKey:@"twitter"];
     }
     
-    if (self.snapchatSelect.enabled == false) {
+    if (self.snapchatDeselect.enabled == false) {
         [params setValue:@"true" forKey:@"snapchat"];
     }
     else{
@@ -405,6 +408,9 @@
         manager.operationQueue = _backgroundQueue;
            [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"JSON: %@", responseObject);
+               if ([responseObject objectForKey:@"liked_user"] != [NSNull null]) {
+                   NSLog(@"MATCH");
+               }
         }
               failure:^(AFHTTPRequestOperation *operation, NSError *error)
          {
@@ -466,10 +472,10 @@
     NSLog(@"login in again hoping for more matches. button index = %d",buttonIndex);
     
     if (buttonIndex == 1){
-        [self nextMatch];
+        
     }
     if (buttonIndex ==2){
-        exit(0);
+       
     }
 }
 //Actionsheet listener for social media applications that havent yet been configured
@@ -690,16 +696,34 @@
 
 - (IBAction)Like:(id)sender {
     if ([currentPotentialMatch count] >0){
-        [self userLike];
+        if ([user objectForKey:@"videoUri"] != [NSNull null]) {
+            [self userLike];
+
+        }
+        else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You don't have a Video!!"
+                                                            message:@"You can't connect until you have uploaded a video!"
+                                                           delegate:self
+                                                  cancelButtonTitle:nil
+                                                  otherButtonTitles:@"Okay", nil];
+            [alert show];
+        }
         
     }
     else{
     }
 }
 
+- (IBAction)presentLeftMenu:(id)sender {
+    [self.moviePlayer pause];
+    [self.sideMenuViewController presentLeftMenuViewController];
+    
+}
+
 - (IBAction)Pass:(id)sender {
     if ([currentPotentialMatch count] >0){
         [self userPass];
+        _likeCurrentUser = false;
         
     }
     else{

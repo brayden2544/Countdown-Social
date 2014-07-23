@@ -56,6 +56,7 @@
 - (IBAction)Pass:(id)sender;
 - (IBAction)Like:(id)sender;
 
+- (IBAction)presentLeftMenu:(id)sender;
 
 
 @end

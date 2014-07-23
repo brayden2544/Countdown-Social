@@ -34,11 +34,6 @@
         urlAsString = [urlAsString stringByAppendingString:userID];
         urlAsString = [urlAsString stringByAppendingString:@"/nextPotentials"];
         
-        //   NSURL *PotentialMatchesUrl = [NSURL URLWithString:urlAsString];
-        
-        //   NSMutableURLRequest *potentialMatchesRequest = [NSMutableURLRequest requestWithURL:PotentialMatchesUrl];
-        
-        
         FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
         
         NSString *FbToken = [session accessTokenData].accessToken;
@@ -101,7 +96,7 @@
         [instance.potentialMatches removeObjectAtIndex:0];
     }
     
-    if ([instance.potentialMatches count] <= 2 ){
+    if ([instance.potentialMatches count] <= 3 ){
         User *obj = [User getInstance];
         NSDictionary *user = obj.user;
         //start filling Potential Matches Queue
@@ -122,7 +117,7 @@
         [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
         NSDictionary *params = @{};
         [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            //NSLog(@"JSON: %@", responseObject);
+            NSLog(@"Next Match Object: %@", responseObject);
             
             NSMutableArray *temppotentialMatchArray1 = [[NSMutableArray alloc]initWithArray:responseObject];
             NSMutableArray *potentialMatchArray = [[NSMutableArray alloc]initWithArray:responseObject];

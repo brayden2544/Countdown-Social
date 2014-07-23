@@ -64,12 +64,8 @@
     //NSLog(@"%@", accessToken);
     [self.twitterWebView loadRequest:request];
     
-    //Post twitter handle if we don't already have it.
-    NSDictionary *user = nil;
+    //Post twitter handle if we don't already have it.    
     
-    User *Userobj =  [User getInstance];
-    user = Userobj.user;
-
 #warning TODO: Make this if/then statement work correctly.
     //if ([[user objectForKey: @"twitter_username"]isKindOfClass:[NSNull class]]){
         NSLog(@"Twitter username blank");
@@ -114,6 +110,10 @@
                              @"twitter_uid": _twitter_id};
     [manager POST:@"http://api-dev.countdownsocial.com/user" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
+        User *Userobj =  [User getInstance];
+        Userobj.user = responseObject;
+
+        
     }
           failure:^(AFHTTPRequestOperation *operation, NSError *error)
     {

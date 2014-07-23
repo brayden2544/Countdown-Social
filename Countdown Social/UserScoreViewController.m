@@ -72,7 +72,6 @@
     // You can create a method to record the transaction.
     // [self recordTransaction: transaction];
     NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/";
-    //urlAsString = [urlAsString stringByAppendingString:[[_user objectForKey:@"uid"] stringValue]];
     
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     NSString *FbToken = [session accessTokenData].accessToken;
