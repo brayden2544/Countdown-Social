@@ -16,6 +16,7 @@
 @interface FeedbackViewController ()
 @property (strong, nonatomic) IBOutlet UITextView *feedbackTextView;
 @property (strong, nonatomic) NSString *feedback;
+@property (strong, nonatomic) IBOutlet UILabel *instructions;
 
 @end
 
@@ -29,6 +30,7 @@
     // Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden = YES;
     self.feedbackTextView.delegate = self;
+    [self.feedbackTextView becomeFirstResponder];
     
     
     
@@ -78,15 +80,17 @@
         NSLog(@"Clicked button index 0");
     }
 }
+
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     
-    if([text isEqualToString:@"\n"]) {
-        [textView resignFirstResponder];
-        return NO;
+    if([text length] >0) {
+        self.instructions.hidden = YES;
+        return YES;
     }
     
     return YES;
 }
+
 
 - (IBAction)presentMenu:(id)sender {
     [self.sideMenuViewController presentLeftMenuViewController];
