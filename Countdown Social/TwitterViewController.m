@@ -11,6 +11,8 @@
 #import "User.h"
 #import "AFNetworking/AFNetworking.h"
 #import "AFOAuth1Client.h"
+#import "RESideMenu/RESideMenu.h"
+
 @interface TwitterViewController ()
 @property(nonatomic, strong) UIWebView *twitterWebView;
 @property(nonatomic, strong) NSString *twitter_username;
@@ -53,6 +55,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.navigationController.navigationBarHidden =YES;
     self.twitterWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0,65,325,506)];
     self.twitterWebView.scalesPageToFit = YES;
     [self.view addSubview:self.twitterWebView];
@@ -122,10 +125,9 @@
 }
 
 - (IBAction)returnToPotentialMatches:(id)sender {
-    NSLog(@"present matching view controller here");
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *menuViewController = [storyboard instantiateViewControllerWithIdentifier:@"rootViewController"];
-    [self presentViewController:menuViewController animated:YES completion:nil];
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"SocialAccountsViewController"]]animated:YES];
+    [self.sideMenuViewController hideMenuViewController];
+
 }
 
 

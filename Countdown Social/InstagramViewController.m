@@ -9,6 +9,7 @@
 #import "InstagramViewController.h"
 #import "User.h"
 #import "AppDelegate.h"
+#import "RESideMenu/RESideMenu.h"
 
 @interface InstagramViewController ()
 @property(nonatomic, strong) UIWebView *instagramWebView;
@@ -88,6 +89,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationController.navigationBarHidden = YES;
     User *obj = [User getInstance];
     NSDictionary *user = obj.user;
     
@@ -246,4 +248,9 @@
 }
 
 
+- (IBAction)returnToSocial:(id)sender {
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"SocialAccountsViewController"]]animated:YES];
+    [self.sideMenuViewController hideMenuViewController];
+
+}
 @end

@@ -162,10 +162,16 @@
     
 }
 - (IBAction)editInstagram:(id)sender {
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"InstagramViewController"]]animated:YES];
+    [self.sideMenuViewController hideMenuViewController];
+
     
 }
 
 - (IBAction)editTwitter:(id)sender {
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"TwitterViewController"]]animated:YES];
+    [self.sideMenuViewController hideMenuViewController];
+
 }
 
 - (IBAction)editSnapchat:(id)sender {

@@ -1327,7 +1327,7 @@
                                         </state>
                                         <connections>
                                             <action selector="connectTwitter:" destination="cm5-s6-Yax" eventType="touchUpInside" id="dl0-J5-dmp"/>
-                                            <segue destination="osf-Av-PJW" kind="modal" id="2Zk-bG-QQP"/>
+                                            <action selector="editTwitter:" destination="cm5-s6-Yax" eventType="touchUpInside" id="4j9-vh-5Hj"/>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="accounts opaque bar" translatesAutoresizingMaskIntoConstraints="NO" id="e5b-oD-bzh">
@@ -1379,7 +1379,6 @@
                                         </state>
                                         <connections>
                                             <action selector="editTwitter:" destination="cm5-s6-Yax" eventType="touchUpInside" id="aDP-QD-7sQ"/>
-                                            <segue destination="osf-Av-PJW" kind="modal" id="ngN-SM-eye"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1625,8 +1624,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="connectInstagram:" destination="cm5-s6-Yax" eventType="touchUpInside" id="6RM-ea-eCk"/>
-                                            <segue destination="Gg6-lq-8xp" kind="modal" id="TrW-H0-fmR"/>
+                                            <action selector="editInstagram:" destination="cm5-s6-Yax" eventType="touchUpInside" id="Rny-68-E1q"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8t1-xc-cLq">
@@ -1643,7 +1641,6 @@
                                         </state>
                                         <connections>
                                             <action selector="editInstagram:" destination="cm5-s6-Yax" eventType="touchUpInside" id="ZcA-C7-epe"/>
-                                            <segue destination="Gg6-lq-8xp" kind="modal" id="SXw-Jh-7Gv"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -2121,8 +2118,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="returnToPotentialMatches:" destination="Gg6-lq-8xp" eventType="touchUpInside" id="ATC-Up-370"/>
-                                    <action selector="returnToPotentialMatches:" destination="osf-Av-PJW" eventType="touchUpInside" id="Ib0-Kq-Yzm"/>
+                                    <action selector="returnToSocial:" destination="Gg6-lq-8xp" eventType="touchUpInside" id="WhQ-VX-unA"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Instagram" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A8b-c8-Lfl">
@@ -2136,9 +2132,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="MGB-Ev-adR"/>
-                    <connections>
-                        <outlet property="returnToPotentialMatches" destination="ijd-pT-0du" id="h61-39-H7g"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wDV-Wm-j75" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3061,8 +3054,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="ngN-SM-eye"/>
-        <segue reference="TrW-H0-fmR"/>
-    </inferredMetricsTieBreakers>
 </document>

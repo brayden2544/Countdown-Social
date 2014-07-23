@@ -44,6 +44,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationController.navigationBarHidden = YES;
     //Start Playing User's newly recorded video
     VideoPath *obj = [VideoPath getInstance];
     _videoPath = obj.videoPath;
