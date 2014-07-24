@@ -146,14 +146,17 @@
             
             //Load initial instance of self.movieplayer with fileurl of current match
             _videoUrl =[currentPotentialMatch objectForKey:@"fileURL"];
+
             [self.moviePlayer setContentURL:_videoUrl];
+            
+            
             if ([currentPotentialMatch objectForKey:@"time_remaining"]) {
                 [self.moviePlayer setInitialPlaybackTime:[[currentPotentialMatch objectForKey:@"time_remaining"]doubleValue]];
                 NSLog(@"video already started %f",[[currentPotentialMatch objectForKey:@"time_remaining"]doubleValue]);
+  
                 
             }
-            
-            
+
             //Set Profile Pic for current potential match
             [self setProfilePic];
         }
