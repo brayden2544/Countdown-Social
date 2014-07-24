@@ -2186,7 +2186,7 @@
         <!--Settings View Controller - settings-->
         <scene sceneID="Tyi-ff-wkF">
             <objects>
-                <viewController storyboardIdentifier="SettingsViewController" title="settings" modalTransitionStyle="crossDissolve" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZbB-1Z-dZv" customClass="SettingsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsViewController" title="settings" automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="crossDissolve" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZbB-1Z-dZv" customClass="SettingsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9DQ-wQ-MWR"/>
                         <viewControllerLayoutGuide type="bottom" id="GcJ-hA-DbU"/>
@@ -2199,12 +2199,12 @@
                                 <rect key="frame" x="0.0" y="56" width="320" height="513"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsJ-6r-4wd">
+                            <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsJ-6r-4wd">
                                 <rect key="frame" x="0.0" y="79" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="zMg-0x-bcq" userLabel="tall">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="840"/>
+                                        <rect key="frame" x="0.0" y="-20" width="320" height="840"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f57-W0-7JY" userLabel="matching">
@@ -2467,7 +2467,7 @@
                                     <constraint firstAttribute="width" constant="320" id="Qba-36-8mO"/>
                                     <constraint firstAttribute="trailing" secondItem="zMg-0x-bcq" secondAttribute="trailing" id="qwC-aR-zE5"/>
                                     <constraint firstAttribute="bottom" secondItem="zMg-0x-bcq" secondAttribute="bottom" id="r7u-5N-TMc"/>
-                                    <constraint firstItem="zMg-0x-bcq" firstAttribute="top" secondItem="vsJ-6r-4wd" secondAttribute="top" id="ufN-Rs-SGN"/>
+                                    <constraint firstItem="zMg-0x-bcq" firstAttribute="top" secondItem="vsJ-6r-4wd" secondAttribute="top" priority="100" constant="-20" id="ufN-Rs-SGN"/>
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6S8-Tq-Yxy" userLabel="navbar">
@@ -2509,7 +2509,7 @@
                             <constraint firstItem="vsJ-6r-4wd" firstAttribute="leading" secondItem="8sR-QD-nlx" secondAttribute="leading" id="3vx-0u-4lq"/>
                             <constraint firstItem="6S8-Tq-Yxy" firstAttribute="top" secondItem="8sR-QD-nlx" secondAttribute="top" id="6fa-Ae-K9V"/>
                             <constraint firstAttribute="trailing" secondItem="vsJ-6r-4wd" secondAttribute="trailing" id="eFc-jO-VQv"/>
-                            <constraint firstItem="vsJ-6r-4wd" firstAttribute="top" secondItem="6S8-Tq-Yxy" secondAttribute="bottom" constant="22" id="fgB-hf-jsB"/>
+                            <constraint firstItem="vsJ-6r-4wd" firstAttribute="top" secondItem="6S8-Tq-Yxy" secondAttribute="bottom" priority="10" constant="-20" id="fgB-hf-jsB"/>
                             <constraint firstItem="6S8-Tq-Yxy" firstAttribute="leading" secondItem="8sR-QD-nlx" secondAttribute="leading" id="ice-jZ-1ep"/>
                             <constraint firstAttribute="trailing" secondItem="6S8-Tq-Yxy" secondAttribute="trailing" id="pMG-PE-sMj"/>
                             <constraint firstAttribute="bottom" secondItem="vsJ-6r-4wd" secondAttribute="bottom" constant="-79" id="w9H-J3-hea"/>

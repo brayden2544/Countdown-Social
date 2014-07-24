@@ -13,6 +13,7 @@
 #import "MenuViewController.h"
 #import "PotentialMatches.h"
 #import "User.h"
+#import "APNsToken.h"
 
 @interface LoginLoadViewController ()
 
@@ -33,11 +34,13 @@
 
 -(void)getUserObject{
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+    APNsToken *obj = [APNsToken getInstance];
+
     
     NSString *FbToken = [session accessTokenData].accessToken;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
-    NSDictionary *params = @{};
+    NSDictionary *params = @{@"apns_token":obj.APNsToken};
     [manager POST:@"http://api-dev.countdownsocial.com/user" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
         User *Userobj =  [User getInstance];
@@ -78,6 +81,7 @@
 
 
         FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+        
         
         NSString *FbToken = [session accessTokenData].accessToken;
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

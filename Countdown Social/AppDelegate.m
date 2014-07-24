@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "APNsToken.h"
 
 
 
@@ -31,8 +32,13 @@
          [appDelegate sessionStateChanged:session state:state error:error];
      }];
     
+    //Let twitter open again after oauth
     NSNotification *notification = [NSNotification notificationWithName:kAFApplicationLaunchedWithURLNotification object:nil userInfo:[NSDictionary dictionaryWithObject:url forKey:kAFApplicationLaunchOptionsURLKey]];
     [[NSNotificationCenter defaultCenter] postNotification:notification];
+    
+    // Let the device know we want to receive push notifications
+	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+     (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     
     return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
 }
@@ -130,6 +136,19 @@
         // Clear this token
         [FBSession.activeSession closeAndClearTokenInformation];
     }
+}
+- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
+{
+	NSLog(@"My token is: %@", deviceToken);
+    APNsToken *token = [APNsToken getInstance];
+    token.APNsToken = deviceToken;
+
+
+}
+
+- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
+{
+	NSLog(@"Failed to get token, error: %@", error);
 }
 - (void)applicationWillResignActive:(UIApplication *)application
 {
