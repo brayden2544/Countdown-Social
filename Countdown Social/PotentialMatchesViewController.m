@@ -83,6 +83,11 @@
     [self.moviePlayer setFullscreen:NO
                            animated:NO];
     [self.view addSubview:self.moviePlayer.view];
+    [NSTimer scheduledTimerWithTimeInterval: .05
+                                     target: self
+                                   selector:@selector(VideoTimer:)
+                                   userInfo: nil repeats:YES];
+
     
     self.potentialMatchesLoadingView = [[PotentialMatchesLoadingView alloc]initWithFrame:CGRectMake(0, 57, 320, 363)];
     
@@ -142,6 +147,11 @@
             //Load initial instance of self.movieplayer with fileurl of current match
             _videoUrl =[currentPotentialMatch objectForKey:@"fileURL"];
             [self.moviePlayer setContentURL:_videoUrl];
+            if ([currentPotentialMatch objectForKey:@"time_remaining"]) {
+                [self.moviePlayer setInitialPlaybackTime:[[currentPotentialMatch objectForKey:@"time_remaining"]doubleValue]];
+                NSLog(@"video already started %f",[[currentPotentialMatch objectForKey:@"time_remaining"]doubleValue]);
+                
+            }
             
             
             //Set Profile Pic for current potential match
@@ -185,10 +195,10 @@
     //    if (self.moviePlayer.loadState == MPMovieLoadStatePlayable)
     //    {
     //Play Video if Video is loaded and Playable and user is holding play button
-    [NSTimer scheduledTimerWithTimeInterval: .05
-                                     target: self
-                                   selector:@selector(VideoTimer:)
-                                   userInfo: nil repeats:YES];
+//    [NSTimer scheduledTimerWithTimeInterval: .05
+//                                     target: self
+//                                   selector:@selector(VideoTimer:)
+//                                   userInfo: nil repeats:YES];
     //}
 }
 
@@ -241,15 +251,24 @@
     int reason = [[[paramNotification userInfo] valueForKey:MPMoviePlayerPlaybackDidFinishReasonUserInfoKey] intValue];
     if (reason == MPMovieFinishReasonPlaybackEnded) {
         //movie finished playing
-        if (_likeCurrentUser ==FALSE & _timeRemaining <=10 ) {
-            [self userPass];
-            NSLog(@"user considered as passed");
+        if(_likeCurrentUser == FALSE){
+            if([currentPotentialMatch objectForKey:@"time_remaining"]){
+            [self firstMatch];
+            NSLog(@"user left view controller");
+            NSLog(@"%f",_timeRemaining);
+            [currentPotentialMatch removeObjectForKey:@"time_remaining"];
+            PotentialMatches *obj = [PotentialMatches getInstance];
+                if ([obj.potentialMatches count] >0) {
+                    [obj.potentialMatches replaceObjectAtIndex:0 withObject:currentPotentialMatch];
+                }
+            }else {
+                NSLog(@"%f",_timeRemaining);
+                [self userPass];
+                NSLog(@"user considered as passed");
+            }
+
         }
-        else{
-            [self nextMatch];
-            NSLog(@"use left screen");
-        }
-        if (_likeCurrentUser ==TRUE) {
+               if (_likeCurrentUser ==TRUE) {
             [self nextMatch];
         }
     }else if (reason == MPMovieFinishReasonUserExited) {
@@ -462,6 +481,7 @@
             NSLog(@"Loading video");
             //self.potentialMatchesLoadingView = [[PotentialMatchesLoadingView alloc]initWithFrame:CGRectMake(0, 90, 320, 320)];
             [self.view addSubview:self.potentialMatchesLoadingView];
+            _playButtonHeld = FALSE;
             _loading = TRUE;
             _checkVideoCount = 0;
             [NSTimer    scheduledTimerWithTimeInterval:2.0    target:self    selector:@selector(checkForVideo)    userInfo:nil repeats:NO];
@@ -583,6 +603,15 @@
 
 
 -(void)viewDidDisappear:(BOOL)animated{
+    PotentialMatches *obj = [PotentialMatches getInstance];
+    NSNumber *timeStopped = [NSNumber numberWithDouble:self.moviePlayer.currentPlaybackTime];
+    if (_likeCurrentUser ==FALSE) {
+    
+        if ([obj.potentialMatches count] >0) {
+            [[obj.potentialMatches objectAtIndex:0] setValue:timeStopped forKey:@"time_remaining"];
+
+        }
+    }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     NSLog(@"NSNotification Observer Disappeared");
 }
