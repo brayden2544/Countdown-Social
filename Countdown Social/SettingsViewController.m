@@ -171,4 +171,16 @@
 - (IBAction)presentMenu:(id)sender {
     [self.sideMenuViewController presentLeftMenuViewController];
 }
+
+- (IBAction)presentPrivacy:(id)sender {
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"PrivacyViewController"]]animated:YES];
+    [self.sideMenuViewController hideMenuViewController];
+
+}
+
+- (IBAction)presentTerms:(id)sender {
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"TermsViewController"]]animated:YES];
+    [self.sideMenuViewController hideMenuViewController];
+
+}
 @end

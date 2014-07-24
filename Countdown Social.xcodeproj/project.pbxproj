@@ -96,6 +96,8 @@
 		6ED73BF01965130F00539389 /* CountdownTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED73BEF1965130F00539389 /* CountdownTimer.m */; };
 		6EF0026E194FC9EF00F32217 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF0026D194FC9EF00F32217 /* Social.framework */; };
 		6EF00270194FCA2000F32217 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF0026F194FCA2000F32217 /* Accounts.framework */; };
+		6EFC0DFC1981863800ED7CB2 /* TermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC0DFB1981863800ED7CB2 /* TermsViewController.m */; };
+		6EFC0DFF1981864600ED7CB2 /* PrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC0DFE1981864600ED7CB2 /* PrivacyViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -248,6 +250,10 @@
 		6ED73BEF1965130F00539389 /* CountdownTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountdownTimer.m; sourceTree = "<group>"; };
 		6EF0026D194FC9EF00F32217 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		6EF0026F194FCA2000F32217 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		6EFC0DFA1981863800ED7CB2 /* TermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsViewController.h; sourceTree = "<group>"; };
+		6EFC0DFB1981863800ED7CB2 /* TermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsViewController.m; sourceTree = "<group>"; };
+		6EFC0DFD1981864600ED7CB2 /* PrivacyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivacyViewController.h; sourceTree = "<group>"; };
+		6EFC0DFE1981864600ED7CB2 /* PrivacyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivacyViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -415,8 +421,7 @@
 				6E04693A191995B900482E79 /* LoginLoadViewController.m */,
 				6E886A4C190E05AC009E5A92 /* SetLocationViewController.h */,
 				6E886A4D190E05AC009E5A92 /* SetLocationViewController.m */,
-				6EC4BFA019799A0C00E66339 /* SettingsViewController.h */,
-				6EC4BFA119799A0C00E66339 /* SettingsViewController.m */,
+				6EFC0E001981865400ED7CB2 /* Settings */,
 				6E4C5A511979E9C900CCD5A8 /* TellYourFriendsViewController.h */,
 				6E4C5A521979E9C900CCD5A8 /* TellYourFriendsViewController.m */,
 				6EC5854E19772269008DDFFA /* UserScoreViewController.h */,
@@ -571,6 +576,19 @@
 				6ECE8111194A6F69007B3130 /* TwitterViewController.m */,
 			);
 			name = "Social Accounts";
+			sourceTree = "<group>";
+		};
+		6EFC0E001981865400ED7CB2 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				6EC4BFA019799A0C00E66339 /* SettingsViewController.h */,
+				6EC4BFA119799A0C00E66339 /* SettingsViewController.m */,
+				6EFC0DFA1981863800ED7CB2 /* TermsViewController.h */,
+				6EFC0DFB1981863800ED7CB2 /* TermsViewController.m */,
+				6EFC0DFD1981864600ED7CB2 /* PrivacyViewController.h */,
+				6EFC0DFE1981864600ED7CB2 /* PrivacyViewController.m */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -729,6 +747,7 @@
 				6EB629F5198083AB00D495EB /* APNsToken.m in Sources */,
 				6EB629F219804DC100D495EB /* ProfileViewController.m in Sources */,
 				6E92E01719628E94009ECE27 /* PBJFocusView.m in Sources */,
+				6EFC0DFF1981864600ED7CB2 /* PrivacyViewController.m in Sources */,
 				6E92E01919628E94009ECE27 /* PBJViewController.m in Sources */,
 				6E9192ED197DE82700F8DCDE /* PhoneNumberView.m in Sources */,
 				6ECDEA9A1974791800B06130 /* AFSecurityPolicy.m in Sources */,
@@ -738,6 +757,7 @@
 				6ECDEA9C1974791800B06130 /* AFURLRequestSerialization.m in Sources */,
 				6EC4BFA219799A0C00E66339 /* SettingsViewController.m in Sources */,
 				6EC0FC0D192AC61000B72C44 /* PotentialMatchesViewController.m in Sources */,
+				6EFC0DFC1981863800ED7CB2 /* TermsViewController.m in Sources */,
 				6E92DFF4196217AD009ECE27 /* VideoPath.m in Sources */,
 				6ED73BF01965130F00539389 /* CountdownTimer.m in Sources */,
 				6E92E00219628E24009ECE27 /* PBJVision.m in Sources */,

@@ -19,5 +19,7 @@
 - (IBAction)profileVisibilityChange:(id)sender;
 
 - (IBAction)presentMenu:(id)sender;
+- (IBAction)presentPrivacy:(id)sender;
+- (IBAction)presentTerms:(id)sender;
 
 @end
