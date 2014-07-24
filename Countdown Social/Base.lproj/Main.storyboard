@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -138,21 +138,26 @@
                                     <constraint firstItem="2Sa-W0-OS3" firstAttribute="leading" secondItem="s2Z-XU-kcf" secondAttribute="leading" id="w9B-4Q-BkT"/>
                                 </constraints>
                             </view>
+                            <view alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FaB-6P-mH0">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GTa-he-IxC">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="584"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome to Countdown" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="320" translatesAutoresizingMaskIntoConstraints="NO" id="TBd-zJ-H2H">
-                                        <rect key="frame" x="0.0" y="20" width="320" height="116"/>
+                                        <rect key="frame" x="0.0" y="20" width="320" height="118"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="38"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="43"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Setup is easy, let's get you started." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="320" translatesAutoresizingMaskIntoConstraints="NO" id="AR0-dk-Ktt">
                                         <rect key="frame" x="0.0" y="135" width="320" height="113"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="28"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="28"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -271,7 +276,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" image="locationbg" translatesAutoresizingMaskIntoConstraints="NO" id="XeI-jQ-2XK">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" image="gbg" translatesAutoresizingMaskIntoConstraints="NO" id="XeI-jQ-2XK">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="1136"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
@@ -447,7 +452,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NmA-op-1FX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-290" y="1667"/>
+            <point key="canvasLocation" x="-1014" y="1667"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="jf7-ns-qhC">
@@ -2582,7 +2587,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="locationbg" translatesAutoresizingMaskIntoConstraints="NO" id="9UJ-y9-Jtv">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gbg" translatesAutoresizingMaskIntoConstraints="NO" id="9UJ-y9-Jtv">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
@@ -2661,7 +2666,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4ho-cb-Vf6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1255" y="1987"/>
+            <point key="canvasLocation" x="-959" y="920"/>
         </scene>
         <!--Tell Your Friends View Controller - share-->
         <scene sceneID="2bJ-C5-Zi2">
@@ -2816,7 +2821,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ohp-O4-KCB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-752" y="2337"/>
+            <point key="canvasLocation" x="-1552" y="1153"/>
         </scene>
         <!--Feedback View Controller - feedback-->
         <scene sceneID="nzV-BQ-CkD">
@@ -2830,7 +2835,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="locationbg" translatesAutoresizingMaskIntoConstraints="NO" id="yXX-SN-zkF">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gbg" translatesAutoresizingMaskIntoConstraints="NO" id="yXX-SN-zkF">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
@@ -2947,7 +2952,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EgI-vq-VwT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-152" y="2353"/>
+            <point key="canvasLocation" x="-1641" y="2069"/>
         </scene>
         <!--Profile View Controller - Home-->
         <scene sceneID="uwz-f2-wcP">
@@ -3073,23 +3078,130 @@
             </objects>
             <point key="canvasLocation" x="1045" y="2316"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="m8m-f6-VGR">
+        <!--View Controller - settings-->
+        <scene sceneID="VQI-ov-ZLe">
             <objects>
-                <viewController id="coD-HU-ef5" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="termsViewController" title="settings" automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="crossDissolve" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ea2-rj-GJg" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="KZ5-Sc-D4U"/>
-                        <viewControllerLayoutGuide type="bottom" id="Kug-UO-vV4"/>
+                        <viewControllerLayoutGuide type="top" id="W2R-GX-d8Q"/>
+                        <viewControllerLayoutGuide type="bottom" id="W24-MI-EFi"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="jOg-h6-cqh">
+                    <view key="view" contentMode="scaleToFill" id="sxb-hx-rVM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gbg" translatesAutoresizingMaskIntoConstraints="NO" id="UEB-ks-G7F">
+                                <rect key="frame" x="0.0" y="56" width="320" height="2000"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ErY-jA-Rvi">
+                                <rect key="frame" x="0.0" y="79" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="5d7-M3-kvo" userLabel="tall">
+                                        <rect key="frame" x="0.0" y="-20" width="320" height="2000"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="445-6t-N3W" userLabel="current video">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="2000"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="location switchbg" translatesAutoresizingMaskIntoConstraints="NO" id="I5J-DM-jkn">
+                                                        <rect key="frame" x="0.0" y="51" width="320" height="1951"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    </imageView>
+                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Terms and Conditions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czs-z1-RHP">
+                                                        <rect key="frame" x="7" y="12" width="270" height="37"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="27"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="286" translatesAutoresizingMaskIntoConstraints="NO" id="y1b-1r-SM8">
+                                                        <rect key="frame" x="13" y="60" width="286" height="1776"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <mutableString key="text">1. TermsBy accessing this web site, you are agreeing to be bound by these web site Terms and Conditions of Use, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws. If you do not agree with any of these terms, you are prohibited from using or accessing this site. The materials contained in this web site are protected by applicable copyright and trade mark law.2. Use Licensea.	Permission is granted to temporarily download one copy of the materials (information or software) on Countdown Social LLC's web site for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:i.	modify or copy the materials;ii.	use the materials for any commercial purpose, or for any public display (commercial or non-commercial);iii.	attempt to decompile or reverse engineer any software contained on Countdown Social LLC's web site;iv.	remove any copyright or other proprietary notations from the materials; orv.	transfer the materials to another person or "mirror" the materials on any other server.b.	This license shall automatically terminate if you violate any of these restrictions and may be terminated by Countdown Social LLC at any time. Upon terminating your viewing of these materials or upon the termination of this license, you must destroy any downloaded materials in your possession whether in electronic or printed format.3. Disclaimera.	The materials on Countdown Social LLC's web site are provided "as is". Countdown Social LLC makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties, including without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights. Further, Countdown Social LLC does not warrant or make any representations concerning the accuracy, likely results, or reliability of the use of the materials on its Internet web site or otherwise relating to such materials or on any sites linked to this site.4. LimitationsIn no event shall Countdown Social LLC or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption,) arising out of the use or inability to use the materials on Countdown Social LLC's Internet site, even if Countdown Social LLC or a Countdown Social LLC authorized representative has been notified orally or in writing of the possibility of such damage. Because some jurisdictions do not allow limitations on implied warranties, or limitations of liability for consequential or incidental damages, these limitations may not apply to you.5. Revisions and ErrataThe materials appearing on Countdown Social LLC's web site could include technical, typographical, or photographic errors. Countdown Social LLC does not warrant that any of the materials on its web site are accurate, complete, or current. Countdown Social LLC may make changes to the materials contained on its web site at any time without notice. Countdown Social LLC does not, however, make any commitment to update the materials.6. LinksCountdown Social LLC has not reviewed all of the sites linked to its Internet web site and is not responsible for the contents of any such linked site. The inclusion of any link does not imply endorsement by Countdown Social LLC of the site. Use of any such linked web site is at the user's own risk.7. Site Terms of Use ModificationsCountdown Social LLC may revise these terms of use for its web site at any time without notice. By using this web site you are agreeing to be bound by the then current version of these Terms and Conditions of Use.8. Governing LawAny claim relating to Countdown Social LLC's web site shall be governed by the laws of the State of Utah without regard to its conflict of law provisions.General Terms and Conditions applicable to Use of a Web Site.</mutableString>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="13"/>
+                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="320" id="5Zo-L3-7bF"/>
+                                                    <constraint firstAttribute="height" constant="183" id="JPk-7P-Erl"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="iCZ-bn-6T4"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="175" id="j3b-SM-6bi"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2000" id="7C9-jj-JCi"/>
+                                            <constraint firstAttribute="width" constant="320" id="BuM-8I-UFY"/>
+                                            <constraint firstAttribute="trailing" secondItem="445-6t-N3W" secondAttribute="trailing" id="YId-4Z-lad"/>
+                                            <constraint firstItem="445-6t-N3W" firstAttribute="top" secondItem="5d7-M3-kvo" secondAttribute="top" id="a81-tH-MyA"/>
+                                            <constraint firstItem="445-6t-N3W" firstAttribute="leading" secondItem="5d7-M3-kvo" secondAttribute="leading" id="jov-6T-07N"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="3vl-GM-2Ik"/>
+                                    <constraint firstAttribute="trailing" secondItem="5d7-M3-kvo" secondAttribute="trailing" id="CEL-iT-Ipj"/>
+                                    <constraint firstItem="5d7-M3-kvo" firstAttribute="leading" secondItem="ErY-jA-Rvi" secondAttribute="leading" id="MzJ-25-mzd"/>
+                                    <constraint firstAttribute="bottom" secondItem="5d7-M3-kvo" secondAttribute="bottom" constant="-1412" id="cHK-LB-dwB"/>
+                                    <constraint firstAttribute="height" constant="568" id="ohP-Ie-2zB"/>
+                                    <constraint firstItem="5d7-M3-kvo" firstAttribute="top" secondItem="ErY-jA-Rvi" secondAttribute="top" priority="100" constant="-20" id="yK4-UC-4ub"/>
+                                </constraints>
+                            </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nEV-DN-ojw" userLabel="navbar">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="location navbar" translatesAutoresizingMaskIntoConstraints="NO" id="32w-Cl-l8S">
+                                        <rect key="frame" x="0.0" y="0.0" width="324" height="57"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j2D-MH-k7K">
+                                        <rect key="frame" x="1" y="15" width="45" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" image="back button">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Terms" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FgM-BN-2DM">
+                                        <rect key="frame" x="111" y="20" width="102" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="57" id="49X-6J-eBr"/>
+                                    <constraint firstAttribute="width" constant="320" id="yVo-bj-h5z"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nEV-DN-ojw" firstAttribute="leading" secondItem="sxb-hx-rVM" secondAttribute="leading" id="1ar-5c-MUt"/>
+                            <constraint firstItem="ErY-jA-Rvi" firstAttribute="top" secondItem="nEV-DN-ojw" secondAttribute="bottom" priority="10" constant="-20" id="A8o-he-i4e"/>
+                            <constraint firstAttribute="trailing" secondItem="nEV-DN-ojw" secondAttribute="trailing" id="GpU-Ew-Zyz"/>
+                            <constraint firstAttribute="bottom" secondItem="ErY-jA-Rvi" secondAttribute="bottom" constant="-79" id="OFV-jS-zXP"/>
+                            <constraint firstItem="ErY-jA-Rvi" firstAttribute="leading" secondItem="sxb-hx-rVM" secondAttribute="leading" id="TcR-CB-CuH"/>
+                            <constraint firstItem="nEV-DN-ojw" firstAttribute="top" secondItem="sxb-hx-rVM" secondAttribute="top" id="fVh-vN-NQw"/>
+                            <constraint firstAttribute="trailing" secondItem="ErY-jA-Rvi" secondAttribute="trailing" id="iu1-Ed-pPm"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ErY-jA-Rvi" secondAttribute="bottom" constant="-79" id="kNQ-KO-yRt"/>
+                        </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <size key="freeformSize" width="320" height="800"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wam-ra-UmP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5o5-kh-uIC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1543" y="2374"/>
+            <point key="canvasLocation" x="-384" y="2278"/>
         </scene>
     </scenes>
     <resources>
@@ -3134,7 +3246,6 @@
         <image name="location navbar" width="640" height="111"/>
         <image name="location set" width="608" height="110"/>
         <image name="location switchbg" width="644" height="79"/>
-        <image name="locationbg" width="640" height="1136"/>
         <image name="map border" width="512" height="512"/>
         <image name="matches-2" width="38" height="55"/>
         <image name="menu Background" width="642" height="1138"/>
