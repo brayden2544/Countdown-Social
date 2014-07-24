@@ -12,14 +12,22 @@
 #import "PhoneNumberView.h"
 #import "SnapchatView.h"
 #import "RESideMenu/RESideMenu.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface SocialAccountsViewController ()
+
+@property (retain) UIImageView *blur;
+@property (retain) UIImageView *overlay;
+
+
 
 @end
 
 @implementation SocialAccountsViewController
 
 @synthesize user;
+@synthesize blur;
+@synthesize overlay;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,6 +45,12 @@
     self.navigationController.navigationBarHidden =YES;
         [self buttonCheck];
 }
+
+
+
+
+/*Blurs and Presents Screenshot of Currenet Matching Video*/
+
 
 -(void)buttonCheck{
     //Add Facebook Text
