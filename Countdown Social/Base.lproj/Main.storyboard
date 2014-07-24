@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -2207,25 +2207,12 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="840"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vnG-pz-e0n">
-                                                <rect key="frame" x="8" y="680" width="304" height="44"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="44" id="nkX-sb-Dvd"/>
-                                                    <constraint firstAttribute="width" constant="304" id="tVi-jI-h06"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="26"/>
-                                                <state key="normal" title="Delete Account" backgroundImage="location set">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                            </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f57-W0-7JY" userLabel="matching">
-                                                <rect key="frame" x="0.0" y="218" width="320" height="181"/>
+                                                <rect key="frame" x="0.0" y="218" width="320" height="98"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" alpha="0.79999999999999982" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="location switchbg" translatesAutoresizingMaskIntoConstraints="NO" id="sfY-QG-Sql">
-                                                        <rect key="frame" x="0.0" y="42" width="320" height="50"/>
+                                                        <rect key="frame" x="0.0" y="42" width="320" height="53"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     </imageView>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Matching Preferences" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bba-42-yME">
@@ -2265,7 +2252,7 @@
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="320" id="DYj-Ju-B6i"/>
-                                                    <constraint firstAttribute="height" constant="181" id="WJx-d1-4Yd"/>
+                                                    <constraint firstAttribute="height" constant="98" id="WJx-d1-4Yd"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1TT-sX-wVj" userLabel="current video">
@@ -2330,15 +2317,143 @@
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="yef-Ic-7ra"/>
                                                 </constraints>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X87-Ht-Vs8">
+                                                <rect key="frame" x="0.0" y="373" width="320" height="150"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="location switchbg" translatesAutoresizingMaskIntoConstraints="NO" id="RCw-lz-hEz">
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    </imageView>
+                                                    <imageView userInteractionEnabled="NO" alpha="0.75" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="white camera" translatesAutoresizingMaskIntoConstraints="NO" id="RuQ-99-F3f">
+                                                        <rect key="frame" x="80" y="15" width="184" height="121"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="8Kk-gx-Saf"/>
+                                                    <constraint firstAttribute="width" constant="320" id="kFZ-Fz-vtV"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fzT-Os-ezq">
+                                                <rect key="frame" x="0.0" y="510" width="320" height="254"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g3Z-Kz-K5m">
+                                                        <rect key="frame" x="10" y="48" width="300" height="44"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="300" id="Piq-TD-HdM"/>
+                                                            <constraint firstAttribute="height" constant="44" id="aC1-Yr-0Ct"/>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="cvK-rV-ct3"/>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="go2-Ea-Eg5"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="25"/>
+                                                        <state key="normal" title="Terms of use">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="teB-dM-6sB">
+                                                        <rect key="frame" x="10" y="94" width="300" height="44"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="300" id="2g4-kh-T8x"/>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="AGB-iM-JcO"/>
+                                                            <constraint firstAttribute="height" constant="44" id="MtN-9Y-buA"/>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="rJD-Yy-Ls8"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="25"/>
+                                                        <state key="normal" title="Privacy Policy">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gF3-QQ-cU2">
+                                                        <rect key="frame" x="10" y="140" width="300" height="44"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="ffK-1A-aGR"/>
+                                                            <constraint firstAttribute="width" constant="300" id="o8I-PK-kgv"/>
+                                                            <constraint firstAttribute="height" constant="44" id="pk7-Xu-qGD"/>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="zyT-cX-bkY"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="25"/>
+                                                        <state key="normal" title="Logout">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vnG-pz-e0n">
+                                                        <rect key="frame" x="10" y="190" width="300" height="44"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="44" id="nkX-sb-Dvd"/>
+                                                            <constraint firstAttribute="width" constant="300" id="tVi-jI-h06"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="25"/>
+                                                        <state key="normal" title="Delete Account">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                    </button>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Line-1" translatesAutoresizingMaskIntoConstraints="NO" id="uh9-O5-VaQ">
+                                                        <rect key="frame" x="35" y="186" width="250" height="1"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="250" id="gdm-nf-aas"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Line-1" translatesAutoresizingMaskIntoConstraints="NO" id="3Vu-pd-hZ8">
+                                                        <rect key="frame" x="35" y="139" width="250" height="1"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="250" id="lXg-vJ-Qew"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Line-1" translatesAutoresizingMaskIntoConstraints="NO" id="cG8-Nn-Hsi">
+                                                        <rect key="frame" x="35" y="92" width="250" height="1"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="250" id="QDy-AF-Zxe"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="g3Z-Kz-K5m" firstAttribute="centerX" secondItem="uh9-O5-VaQ" secondAttribute="centerX" id="1P9-ft-iaL"/>
+                                                    <constraint firstItem="g3Z-Kz-K5m" firstAttribute="leading" secondItem="teB-dM-6sB" secondAttribute="leading" id="2Sy-ng-zYH"/>
+                                                    <constraint firstItem="g3Z-Kz-K5m" firstAttribute="top" secondItem="fzT-Os-ezq" secondAttribute="top" constant="48" id="CZC-yg-GLm"/>
+                                                    <constraint firstItem="cG8-Nn-Hsi" firstAttribute="top" secondItem="g3Z-Kz-K5m" secondAttribute="bottom" id="DlA-z4-1co"/>
+                                                    <constraint firstAttribute="bottom" secondItem="gF3-QQ-cU2" secondAttribute="bottom" constant="70" id="NMp-Q4-Yab"/>
+                                                    <constraint firstAttribute="bottom" secondItem="vnG-pz-e0n" secondAttribute="bottom" constant="20" symbolic="YES" id="OvG-kI-1ee"/>
+                                                    <constraint firstItem="3Vu-pd-hZ8" firstAttribute="top" secondItem="teB-dM-6sB" secondAttribute="bottom" constant="1" id="PQ9-ZX-cKn"/>
+                                                    <constraint firstItem="g3Z-Kz-K5m" firstAttribute="centerX" secondItem="cG8-Nn-Hsi" secondAttribute="centerX" id="Q17-sk-vIw"/>
+                                                    <constraint firstItem="g3Z-Kz-K5m" firstAttribute="leading" secondItem="vnG-pz-e0n" secondAttribute="leading" id="Qpl-E2-tJ2"/>
+                                                    <constraint firstItem="uh9-O5-VaQ" firstAttribute="top" secondItem="gF3-QQ-cU2" secondAttribute="bottom" constant="2" id="QuV-dY-rWI"/>
+                                                    <constraint firstItem="gF3-QQ-cU2" firstAttribute="top" secondItem="fzT-Os-ezq" secondAttribute="top" constant="140" id="X2x-UV-lMv"/>
+                                                    <constraint firstItem="g3Z-Kz-K5m" firstAttribute="centerX" secondItem="3Vu-pd-hZ8" secondAttribute="centerX" id="YYZ-jJ-Zma"/>
+                                                    <constraint firstItem="teB-dM-6sB" firstAttribute="top" secondItem="fzT-Os-ezq" secondAttribute="top" constant="94" id="aSK-WL-ko6"/>
+                                                    <constraint firstAttribute="width" constant="320" id="aU1-47-dUx"/>
+                                                    <constraint firstItem="gF3-QQ-cU2" firstAttribute="top" secondItem="3Vu-pd-hZ8" secondAttribute="bottom" id="amA-YT-dfO"/>
+                                                    <constraint firstItem="g3Z-Kz-K5m" firstAttribute="leading" secondItem="fzT-Os-ezq" secondAttribute="leading" constant="10" id="glR-uf-F39"/>
+                                                    <constraint firstItem="vnG-pz-e0n" firstAttribute="top" secondItem="uh9-O5-VaQ" secondAttribute="bottom" constant="3" id="hIB-KK-AbB"/>
+                                                    <constraint firstAttribute="trailing" secondItem="g3Z-Kz-K5m" secondAttribute="trailing" constant="10" id="jaS-2N-5BH"/>
+                                                    <constraint firstItem="g3Z-Kz-K5m" firstAttribute="leading" secondItem="gF3-QQ-cU2" secondAttribute="leading" id="k1f-NK-MRa"/>
+                                                    <constraint firstItem="teB-dM-6sB" firstAttribute="top" secondItem="cG8-Nn-Hsi" secondAttribute="bottom" constant="1" id="kwy-Zk-OqM"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="f57-W0-7JY" secondAttribute="trailing" id="6pc-7b-Za6"/>
+                                            <constraint firstItem="X87-Ht-Vs8" firstAttribute="leading" secondItem="zMg-0x-bcq" secondAttribute="leading" id="ArJ-LT-N8A"/>
+                                            <constraint firstItem="X87-Ht-Vs8" firstAttribute="top" secondItem="f57-W0-7JY" secondAttribute="bottom" constant="57" id="B9r-Ld-kLZ"/>
+                                            <constraint firstAttribute="trailing" secondItem="X87-Ht-Vs8" secondAttribute="trailing" id="HqG-gZ-K4l"/>
                                             <constraint firstAttribute="height" constant="840" id="MnX-51-8B8"/>
                                             <constraint firstItem="1TT-sX-wVj" firstAttribute="leading" secondItem="zMg-0x-bcq" secondAttribute="leading" id="USu-vC-DR6"/>
                                             <constraint firstItem="1TT-sX-wVj" firstAttribute="top" secondItem="zMg-0x-bcq" secondAttribute="top" id="WK3-yP-GoG"/>
-                                            <constraint firstItem="vnG-pz-e0n" firstAttribute="leading" secondItem="zMg-0x-bcq" secondAttribute="leading" constant="8" id="e8U-NA-t5J"/>
-                                            <constraint firstAttribute="trailing" secondItem="vnG-pz-e0n" secondAttribute="trailing" constant="8" id="fwS-Pm-EIj"/>
-                                            <constraint firstItem="vnG-pz-e0n" firstAttribute="top" secondItem="f57-W0-7JY" secondAttribute="bottom" constant="281" id="rnB-Db-I2Y"/>
+                                            <constraint firstItem="fzT-Os-ezq" firstAttribute="leading" secondItem="zMg-0x-bcq" secondAttribute="leading" id="eyb-s9-vYW"/>
+                                            <constraint firstAttribute="trailing" secondItem="fzT-Os-ezq" secondAttribute="trailing" id="hoG-Vr-n7S"/>
+                                            <constraint firstItem="fzT-Os-ezq" firstAttribute="top" secondItem="X87-Ht-Vs8" secondAttribute="bottom" constant="-13" id="jDZ-oE-Fl5"/>
                                             <constraint firstAttribute="trailing" secondItem="1TT-sX-wVj" secondAttribute="trailing" id="uPX-h2-6oB"/>
                                             <constraint firstItem="f57-W0-7JY" firstAttribute="top" secondItem="1TT-sX-wVj" secondAttribute="bottom" constant="35" id="up1-Ki-5cJ"/>
                                             <constraint firstItem="f57-W0-7JY" firstAttribute="leading" secondItem="zMg-0x-bcq" secondAttribute="leading" id="xDx-YF-vAX"/>
@@ -3015,6 +3130,7 @@
         <image name="twitter off" width="96" height="96"/>
         <image name="twitter on" width="94" height="94"/>
         <image name="unlockbtn" width="172" height="56"/>
+        <image name="white camera" width="200" height="132"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
