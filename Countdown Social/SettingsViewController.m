@@ -58,20 +58,9 @@
          }];
     }
 }
-
--(void)uploadSettings{
-    
-    NSString *isStraight;
+-(void)uploadActivity{
     NSString *isActive;
-    
-    
-    if (sexualOrientation.isOn) {
-        isStraight = @"true";
-    }
-    else{
-        isStraight = @"false";
-    }
-    
+
     if (hideProfile.isOn) {
         isActive = @"true";
     }
@@ -79,7 +68,6 @@
         isActive = @"false";
     }
     User *obj = [User getInstance];
-    NSDictionary *user = obj.user;
     
     NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/";
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
@@ -91,13 +79,12 @@
     [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
     NSOperationQueue *backgroundQueue = [[NSOperationQueue alloc]init];
     manager.operationQueue = backgroundQueue;
-    NSDictionary *params = @{@"straight":isStraight,
-                             @"active":isActive};
+    NSDictionary *params = @{@"active":isActive};
     [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
         obj.user = responseObject;
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Feedback Uploaded!!"
-                                                        message:@"Thanks for helping us make Countdown better!"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Settings Changed!!"
+                                                        message:@"Your activity status has been updated!"
                                                        delegate:self
                                               cancelButtonTitle:nil
                                               otherButtonTitles:@"Okay", nil];
@@ -116,12 +103,70 @@
          
      }];
 
+
+}
+-(void)uploadOrientation{
+    
+    NSString *isStraight;
+    
+    
+    if (sexualOrientation.isOn) {
+        isStraight = @"true";
+    }
+    else{
+        isStraight = @"false";
+    }
+    
+        User *obj = [User getInstance];
+    
+    NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/";
+    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+    NSString *FbToken = [session accessTokenData].accessToken;
+    
+    
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    NSOperationQueue *backgroundQueue = [[NSOperationQueue alloc]init];
+    manager.operationQueue = backgroundQueue;
+    NSDictionary *params = @{@"straight":isStraight};
+    [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+        obj.user = responseObject;
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Settings Changed!!"
+                                                        message:@"Your sexual orientation settings have been updated!"
+                                                       delegate:self
+                                              cancelButtonTitle:nil
+                                              otherButtonTitles:@"Okay", nil];
+        [alert show];
+        
+    }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"Error: %@", error);
+         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!!"
+                                                         message:@"Please try again!"
+                                                        delegate:self
+                                               cancelButtonTitle:@"Okay"
+                                               otherButtonTitles:nil];
+         [alert show];
+         
+     }];
+
 }
 
 
 
 
 
+
+- (IBAction)sexualOrientationChange:(id)sender {
+    [self uploadOrientation];
+}
+
+- (IBAction)profileVisibilityChange:(id)sender {
+    [self uploadActivity];
+}
 
 - (IBAction)presentMenu:(id)sender {
     [self.sideMenuViewController presentLeftMenuViewController];

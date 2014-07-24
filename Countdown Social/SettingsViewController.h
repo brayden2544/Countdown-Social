@@ -15,6 +15,8 @@
     
 }
 
+- (IBAction)sexualOrientationChange:(id)sender;
+- (IBAction)profileVisibilityChange:(id)sender;
 
 - (IBAction)presentMenu:(id)sender;
 

@@ -14,6 +14,7 @@
 #import "InstagramViewController.h"
 #import "PotentialMatchesLoadingView.h"
 #import "RESideMenu/RESideMenu.h"
+#import "LeftMenuViewController.h"
 
 @interface PotentialMatchesViewController ()
 
@@ -240,9 +241,13 @@
     int reason = [[[paramNotification userInfo] valueForKey:MPMoviePlayerPlaybackDidFinishReasonUserInfoKey] intValue];
     if (reason == MPMovieFinishReasonPlaybackEnded) {
         //movie finished playing
-        if (_likeCurrentUser ==FALSE) {
+        if (_likeCurrentUser ==FALSE & _playButtonHeld ==TRUE) {
             [self userPass];
             NSLog(@"user considered as passed");
+        }
+        else{
+            [self nextMatch];
+            NSLog(@"use left screen");
         }
         if (_likeCurrentUser ==TRUE) {
             [self nextMatch];
@@ -402,7 +407,6 @@
     NSString *FbToken = [session accessTokenData].accessToken;
     
     
-    
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
         manager.operationQueue = _backgroundQueue;
@@ -482,9 +486,12 @@
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
         NSLog(@"button index 0 selected");
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        UIViewController *socialAccountsViewController = [storyboard instantiateViewControllerWithIdentifier:@"SocialAccountsViewController"];
-        [self presentViewController:socialAccountsViewController animated:YES completion:nil];
+        LeftMenuViewController *leftMenuViewController = [[LeftMenuViewController alloc]init];
+        leftMenuViewController.socialImage.hidden = false;
+        leftMenuViewController.homeImage.hidden = true;
+        [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"SocialAccountsViewController"]]animated:YES];
+        [self.sideMenuViewController hideMenuViewController];
+        
         
     } else if (buttonIndex == 1) {
         NSLog(@"button index 1 selected");

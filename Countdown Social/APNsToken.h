@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface APNsToken : NSObject{
-    NSData *APNsToken;
+    NSString *APNsToken;
 }
-@property (nonatomic,strong) NSData *APNsToken;
+@property (nonatomic,strong) NSString *APNsToken;
 
 +(APNsToken*)getInstance;
 

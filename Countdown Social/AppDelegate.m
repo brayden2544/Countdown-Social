@@ -141,7 +141,11 @@
 {
 	NSLog(@"My token is: %@", deviceToken);
     APNsToken *token = [APNsToken getInstance];
-    token.APNsToken = deviceToken;
+    NSString *tokenstring = [[deviceToken description] stringByTrimmingCharactersInSet: [NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    tokenstring = [tokenstring stringByReplacingOccurrencesOfString:@" " withString:@""];
+
+    token.APNsToken =tokenstring;
+    NSLog(@"token:%@",tokenstring);
 
 
 }
@@ -149,6 +153,8 @@
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
 {
 	NSLog(@"Failed to get token, error: %@", error);
+    APNsToken *token = [APNsToken getInstance];
+    token.APNsToken = @"null";
 }
 - (void)applicationWillResignActive:(UIApplication *)application
 {

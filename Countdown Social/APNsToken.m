@@ -14,11 +14,11 @@
 
 +(APNsToken*)getInstance{
     static APNsToken *instance = nil;
-    static dispatch_once_t onceToken;
+    static dispatch_once_t onceTokenAPNS;
     
-    dispatch_once(&onceToken, ^{
+    dispatch_once(&onceTokenAPNS, ^{
         instance = [[self alloc]init];
-        instance.APNsToken = [[NSData alloc]init];
+        instance.APNsToken = [[NSString alloc]init];
         
     }); return instance;
 }

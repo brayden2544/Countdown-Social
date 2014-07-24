@@ -137,9 +137,10 @@
                             JSONObjectWithData:data
                             options:NSJSONReadingAllowFragments
                             error:&error];
-             NSDictionary *user = UserJson;
+             user = UserJson;
              NSLog(@"dictionary contains %@" , user);
-             
+             User *obj = [User getInstance];
+             obj.user = user;
              
              
          }
@@ -153,7 +154,7 @@
      }];
 }
 - (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex{
-    NSLog(@"video Uploaded successfully",buttonIndex);
+    NSLog(@"video Uploaded successfully: %d",buttonIndex);
     
     if (buttonIndex == 0){
         [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ProfileViewController"]]animated:YES];
