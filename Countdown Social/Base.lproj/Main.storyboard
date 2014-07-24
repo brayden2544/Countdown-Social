@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -3096,35 +3096,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gbg" translatesAutoresizingMaskIntoConstraints="NO" id="UEB-ks-G7F">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gbg" translatesAutoresizingMaskIntoConstraints="NO" id="UEB-ks-G7F">
                                 <rect key="frame" x="0.0" y="56" width="320" height="2000"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2000" id="OAh-ZP-vrr"/>
+                                </constraints>
                             </imageView>
-                            <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ErY-jA-Rvi">
-                                <rect key="frame" x="0.0" y="79" width="320" height="568"/>
+                            <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ErY-jA-Rvi">
+                                <rect key="frame" x="0.0" y="79" width="320" height="500"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="5d7-M3-kvo" userLabel="tall">
                                         <rect key="frame" x="0.0" y="-20" width="320" height="2000"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="445-6t-N3W" userLabel="current video">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="2000"/>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B2r-QN-Gba">
+                                                <rect key="frame" x="0.0" y="-8" width="320" height="2030"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="location switchbg" translatesAutoresizingMaskIntoConstraints="NO" id="I5J-DM-jkn">
-                                                        <rect key="frame" x="0.0" y="51" width="320" height="1951"/>
+                                                        <rect key="frame" x="0.0" y="59" width="320" height="1951"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     </imageView>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Terms and Conditions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czs-z1-RHP">
-                                                        <rect key="frame" x="7" y="12" width="270" height="37"/>
+                                                        <rect key="frame" x="7" y="20" width="270" height="37"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="27"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="286" translatesAutoresizingMaskIntoConstraints="NO" id="y1b-1r-SM8">
-                                                        <rect key="frame" x="13" y="60" width="286" height="1776"/>
+                                                        <rect key="frame" x="15" y="68" width="286" height="1776"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <string key="text">1. Terms
 By accessing this web site, you are agreeing to be bound by these web site Terms and Conditions of Use, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws. If you do not agree with any of these terms, you are prohibited from using or accessing this site. The materials contained in this web site are protected by applicable copyright and trade mark law.
@@ -3155,30 +3158,20 @@ General Terms and Conditions applicable to Use of a Web Site.
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="320" id="5Zo-L3-7bF"/>
-                                                    <constraint firstAttribute="height" constant="183" id="JPk-7P-Erl"/>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="iCZ-bn-6T4"/>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="175" id="j3b-SM-6bi"/>
-                                                </constraints>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                             </view>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="2000" id="7C9-jj-JCi"/>
-                                            <constraint firstAttribute="width" constant="320" id="BuM-8I-UFY"/>
-                                            <constraint firstAttribute="trailing" secondItem="445-6t-N3W" secondAttribute="trailing" id="YId-4Z-lad"/>
-                                            <constraint firstItem="445-6t-N3W" firstAttribute="top" secondItem="5d7-M3-kvo" secondAttribute="top" id="a81-tH-MyA"/>
-                                            <constraint firstItem="445-6t-N3W" firstAttribute="leading" secondItem="5d7-M3-kvo" secondAttribute="leading" id="jov-6T-07N"/>
+                                            <constraint firstAttribute="width" constant="320" id="HsJ-UH-IZ3"/>
+                                            <constraint firstAttribute="height" constant="2000" id="POj-de-sii"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="3vl-GM-2Ik"/>
-                                    <constraint firstAttribute="trailing" secondItem="5d7-M3-kvo" secondAttribute="trailing" id="CEL-iT-Ipj"/>
-                                    <constraint firstItem="5d7-M3-kvo" firstAttribute="leading" secondItem="ErY-jA-Rvi" secondAttribute="leading" id="MzJ-25-mzd"/>
-                                    <constraint firstAttribute="bottom" secondItem="5d7-M3-kvo" secondAttribute="bottom" constant="-1412" id="cHK-LB-dwB"/>
-                                    <constraint firstAttribute="height" constant="568" id="ohP-Ie-2zB"/>
-                                    <constraint firstItem="5d7-M3-kvo" firstAttribute="top" secondItem="ErY-jA-Rvi" secondAttribute="top" priority="100" constant="-20" id="yK4-UC-4ub"/>
+                                    <constraint firstAttribute="bottom" secondItem="5d7-M3-kvo" secondAttribute="bottom" constant="-1480" id="1bq-Zx-yc9"/>
+                                    <constraint firstItem="5d7-M3-kvo" firstAttribute="top" secondItem="ErY-jA-Rvi" secondAttribute="top" constant="-20" id="Gxh-Y0-lmQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="5d7-M3-kvo" secondAttribute="trailing" id="bfU-Wg-rR8"/>
+                                    <constraint firstItem="5d7-M3-kvo" firstAttribute="leading" secondItem="ErY-jA-Rvi" secondAttribute="leading" id="cR3-Kw-hgV"/>
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nEV-DN-ojw" userLabel="navbar">
@@ -3209,21 +3202,23 @@ General Terms and Conditions applicable to Use of a Web Site.
                                     </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="57" id="49X-6J-eBr"/>
-                                    <constraint firstAttribute="width" constant="320" id="yVo-bj-h5z"/>
+                                    <constraint firstAttribute="width" constant="320" id="5mA-Sw-RiG"/>
+                                    <constraint firstAttribute="height" constant="57" id="DIK-0y-RZK"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="nEV-DN-ojw" firstAttribute="leading" secondItem="sxb-hx-rVM" secondAttribute="leading" id="1ar-5c-MUt"/>
-                            <constraint firstItem="ErY-jA-Rvi" firstAttribute="top" secondItem="nEV-DN-ojw" secondAttribute="bottom" priority="10" constant="-20" id="A8o-he-i4e"/>
-                            <constraint firstAttribute="trailing" secondItem="nEV-DN-ojw" secondAttribute="trailing" id="GpU-Ew-Zyz"/>
-                            <constraint firstAttribute="bottom" secondItem="ErY-jA-Rvi" secondAttribute="bottom" constant="-79" id="OFV-jS-zXP"/>
-                            <constraint firstItem="ErY-jA-Rvi" firstAttribute="leading" secondItem="sxb-hx-rVM" secondAttribute="leading" id="TcR-CB-CuH"/>
-                            <constraint firstItem="nEV-DN-ojw" firstAttribute="top" secondItem="sxb-hx-rVM" secondAttribute="top" id="fVh-vN-NQw"/>
-                            <constraint firstAttribute="trailing" secondItem="ErY-jA-Rvi" secondAttribute="trailing" id="iu1-Ed-pPm"/>
-                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ErY-jA-Rvi" secondAttribute="bottom" constant="-79" id="kNQ-KO-yRt"/>
+                            <constraint firstItem="ErY-jA-Rvi" firstAttribute="leading" secondItem="UEB-ks-G7F" secondAttribute="leading" id="5n5-y2-0qb"/>
+                            <constraint firstItem="ErY-jA-Rvi" firstAttribute="trailing" secondItem="nEV-DN-ojw" secondAttribute="trailing" id="BZy-8t-hus"/>
+                            <constraint firstItem="ErY-jA-Rvi" firstAttribute="leading" secondItem="nEV-DN-ojw" secondAttribute="leading" id="LIu-pn-yRb"/>
+                            <constraint firstItem="ErY-jA-Rvi" firstAttribute="top" secondItem="nEV-DN-ojw" secondAttribute="bottom" constant="22" id="Rkg-B1-N9g"/>
+                            <constraint firstItem="ErY-jA-Rvi" firstAttribute="trailing" secondItem="UEB-ks-G7F" secondAttribute="trailing" id="bZ9-Kn-Q2L"/>
+                            <constraint firstItem="UEB-ks-G7F" firstAttribute="top" secondItem="sxb-hx-rVM" secondAttribute="top" constant="56" id="cP0-aO-UuG"/>
+                            <constraint firstItem="nEV-DN-ojw" firstAttribute="leading" secondItem="sxb-hx-rVM" secondAttribute="leading" id="dMZ-V3-uOl"/>
+                            <constraint firstAttribute="trailing" secondItem="nEV-DN-ojw" secondAttribute="trailing" id="dz2-fS-z1F"/>
+                            <constraint firstItem="nEV-DN-ojw" firstAttribute="top" secondItem="sxb-hx-rVM" secondAttribute="top" id="hOY-OF-opd"/>
+                            <constraint firstAttribute="bottom" secondItem="ErY-jA-Rvi" secondAttribute="bottom" constant="-11" id="jrc-wY-dTr"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
