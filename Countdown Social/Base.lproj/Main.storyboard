@@ -1149,6 +1149,7 @@
                         <outlet property="instagramDeselect" destination="eLI-Z2-zUE" id="RC1-J7-b5D"/>
                         <outlet property="instagramSelect" destination="yav-5r-KU9" id="NeQ-Wp-qmG"/>
                         <outlet property="meetLabel" destination="R3l-Qk-y7h" id="rGN-C6-cwg"/>
+                        <outlet property="miniWatchButton" destination="4XV-AY-4qX" id="tIC-WJ-jWn"/>
                         <outlet property="nameLabel" destination="6qH-yV-hP8" id="fyG-oV-HUD"/>
                         <outlet property="phoneDeselect" destination="9gI-sM-az4" id="u89-D5-RaB"/>
                         <outlet property="phoneSelect" destination="gRr-tR-dQr" id="CvJ-u5-Eit"/>

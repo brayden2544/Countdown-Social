@@ -40,6 +40,8 @@
 @property (strong, nonatomic) IBOutlet UIButton *twitterSelect;
 @property (strong, nonatomic) IBOutlet UIButton *instagramSelect;
 
+@property (strong, nonatomic) IBOutlet UIImageView *miniWatchButton;
+
 - (IBAction)enableInstagram:(id)sender;
 - (IBAction)enableTwitter:(id)sender;
 - (IBAction)enableSnapChat:(id)sender;

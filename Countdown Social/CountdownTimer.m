@@ -18,9 +18,9 @@
     self = [super init];
     if (self) {
         // Initialization code
-        radius = 13;
+        radius = 13.85;
         stroke = 2;
-        self.frame = CGRectMake(290,60,2*radius,2*radius);
+        self.frame = CGRectMake(276.7,66.7,2*radius,2*radius);
         
         self.backgroundColor = [UIColor clearColor];
         self.layer.cornerRadius = radius;

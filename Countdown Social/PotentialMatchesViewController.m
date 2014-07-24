@@ -241,7 +241,7 @@
     int reason = [[[paramNotification userInfo] valueForKey:MPMoviePlayerPlaybackDidFinishReasonUserInfoKey] intValue];
     if (reason == MPMovieFinishReasonPlaybackEnded) {
         //movie finished playing
-        if (_likeCurrentUser ==FALSE & _playButtonHeld ==TRUE) {
+        if (_likeCurrentUser ==FALSE & _timeRemaining <=10 ) {
             [self userPass];
             NSLog(@"user considered as passed");
         }
@@ -591,6 +591,12 @@
     //Initialize CountdownTimer
     _timeRemaining =(1 -(self.moviePlayer.currentPlaybackTime / self.moviePlayer.duration))*100;
     [countdownTimer changePercentage:_timeRemaining];
+    if (_timeRemaining ==100) {
+        _miniWatchButton.hidden = TRUE;
+    }
+    else if (_timeRemaining >=15){
+        _miniWatchButton.hidden = FALSE;
+    }
     
 }
 
