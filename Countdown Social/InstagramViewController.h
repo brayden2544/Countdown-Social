@@ -14,6 +14,5 @@
 @property (strong, nonatomic) NSString *instagram_username;
 @property (strong, nonatomic) NSString *instagram_code;
 
-- (IBAction)returnToSocial:(id)sender;
 
 @end

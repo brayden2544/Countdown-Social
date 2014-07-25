@@ -76,6 +76,7 @@
             // use delegate if you want
             //[self.delegate instagramLoginSucceededWithToken: token];
             
+            
         }
         else {
             // Handle the access rejected case here.
@@ -116,134 +117,75 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (IBAction)returnToPotentialMatches:(id)sender {
-    NSLog(@"present matching view controller here");
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *menuViewController = [storyboard instantiateViewControllerWithIdentifier:@"rootViewController"];
-    [self presentViewController:menuViewController animated:YES completion:nil];
-}
 
 -(void)instagramUsernameUpload
 {
-    NSString *urlAsString =@"http://api-dev.countdownsocial.com/user";
-    
-    NSURL *url = [NSURL URLWithString:urlAsString];
-    
-    NSMutableURLRequest *urlRequest =
-    [NSMutableURLRequest requestWithURL:url];
-    [urlRequest setHTTPBody:[[NSString stringWithFormat:@"instagram_username=%@&instagram_token=%@",instagram_username, instagram_token] dataUsingEncoding:NSUTF8StringEncoding]];
-    
+   
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
-    
-    
     NSString *FbToken = [session accessTokenData].accessToken;
-    
-    // NSLog(@"Token is %@", FbToken);
-    
-    [urlRequest setValue:FbToken forHTTPHeaderField:@"Access-Token"];
-    
-    
-    [urlRequest setTimeoutInterval:30.0f];
-    [urlRequest setHTTPMethod:@"POST"];
-    
-    NSOperationQueue *queque = [[NSOperationQueue alloc] init];
-    dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    
-    dispatch_async(concurrentQueue, ^{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    NSDictionary *params=@{@"instagram_username":instagram_username,
+                           @"instagram_token": instagram_token};    [manager POST:@"http://api-dev.countdownsocial.com/user" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+        User *Userobj =  [User getInstance];
+        Userobj.user = responseObject;
+                               
+                               UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Instagram Linked!!"
+                                                                               message:@"Your profile is linked with Instagram!"
+                                                                              delegate:self
+                                                                     cancelButtonTitle:nil
+                                                                     otherButtonTitles:@"Okay", nil];
+                               [alert show];
+                               
+
         
         
-        [NSURLConnection
-         sendAsynchronousRequest:urlRequest
-         queue:queque
-         completionHandler:^(NSURLResponse *response,
-                             NSData *data,
-                             NSError *error){
-             if ([data length] >0 && error == nil){
-                 NSString *html =
-                 [[NSString alloc] initWithData:data
-                                       encoding:NSUTF8StringEncoding];
-                 NSLog(html);
-                 
-                 id UserJson = [NSJSONSerialization
-                                JSONObjectWithData:data
-                                options:NSJSONReadingAllowFragments
-                                error:&error];
-                 //  user = UserJson;
-                 User *Userobj =  [User getInstance];
-                 Userobj.user= UserJson;
-                 
-                 NSLog(@"Instagram Username, Token and User Singleton Updated");
-                 
-                 
-             }
-             else if ([data length] == 0 && error == nil){
-                 NSLog(@"POST Nothing was downloaded.");
-             }
-             else if (error !=nil){
-                 NSLog(@"Error happened = %@", error);
-                 NSLog(@"POST BROKEN");
-#warning TODO: Create alert and restart app in case of bad server connection.
-             }
-         }];
-    });
+    }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"Error: %@", error);
+     }];
+
+    
     
 }
 
 -(void)RequestInstagramInfo
 {
-    NSString *urlAsString =@"https://api.instagram.com/oauth/access_token";
+    NSString *client_id = @"932befca29884b378bfa33415fe71da6";
+    NSString *client_secret = @"04b3374e51ca416e89d108c177de4e5c";
+    NSString *grant_type = @"authorization_code";
+    NSString *redirect_uri  =@"http://localhost:8888/MAMP/";
     
-    NSURL *url = [NSURL URLWithString:urlAsString];
     
-    NSMutableURLRequest *urlRequest =
-    [NSMutableURLRequest requestWithURL:url];
-    [urlRequest setHTTPBody:[[NSString stringWithFormat:@"client_id=932befca29884b378bfa33415fe71da6&client_secret=04b3374e51ca416e89d108c177de4e5c&grant_type=authorization_code&redirect_uri=http://localhost:8888/MAMP/&code=%@", instagram_code] dataUsingEncoding:NSUTF8StringEncoding]];
+    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+    
+    NSString *FbToken = [session accessTokenData].accessToken;
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    NSDictionary *params=@{@"client_id":client_id,
+                           @"client_secret": client_secret,
+                           @"grant_type": grant_type,
+                           @"redirect_uri": redirect_uri,
+                           @"code":instagram_code};
+    [manager POST:@"https://api.instagram.com/oauth/access_token" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                               NSLog(@"JSON: %@", responseObject);
+  
+        
+        instagram_token = [responseObject objectForKey:@"access_token"];
+        instagram_username = [[responseObject objectForKey:@"user"] objectForKey:@"username"];
+        
+        //Upload new token and username to instagram.
+        [self instagramUsernameUpload];
 
-    
-    [urlRequest setTimeoutInterval:30.0f];
-    [urlRequest setHTTPMethod:@"POST"];
-    
-    NSOperationQueue *queque = [[NSOperationQueue alloc] init];
-    dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    
-    dispatch_async(concurrentQueue, ^{
         
         
-        [NSURLConnection
-         sendAsynchronousRequest:urlRequest
-         queue:queque
-         completionHandler:^(NSURLResponse *response,
-                             NSData *data,
-                             NSError *error){
-             if ([data length] >0 && error == nil){
-        
-                 id UserJson = [NSJSONSerialization
-                                JSONObjectWithData:data
-                                options:NSJSONReadingAllowFragments
-                                error:&error];
-                 NSDictionary *instagram = [UserJson objectForKey:@"user"];
-              
-                 
-                 NSLog(@"instagram info retrieved %@",instagram);
-                 
-                 //Set values for token and username based on info received from Instagram
-                 instagram_token = [UserJson objectForKey:@"access_token"];
-                 instagram_username = [instagram objectForKey:@"username"];
-                 
-                 //Upload new token and username to instagram.
-                 [self instagramUsernameUpload];
-                 
-             }
-             else if ([data length] == 0 && error == nil){
-                 NSLog(@"POST Nothing was downloaded.");
-             }
-             else if (error !=nil){
-                 NSLog(@"Error happened = %@", error);
-                 NSLog(@"POST BROKEN");
-#warning TODO: Create alert and restart app in case of bad server connection.
-             }
-         }];
-    });
+                           }
+                                                                          failure:^(AFHTTPRequestOperation *operation, NSError *error)
+                                                                     {
+                                                                         NSLog(@"Error: %@", error);
+                                                                     }];
     
 }
 
