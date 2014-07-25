@@ -75,7 +75,7 @@
     [countdownTimer changePercentage:100];
     [self.view addSubview:countdownTimer];
     
-
+    
     self.moviePlayer = [[MPMoviePlayerController alloc]init];
     self.moviePlayer.shouldAutoplay = NO;
     self.moviePlayer.controlStyle =MPMovieControlStyleNone;
@@ -87,7 +87,7 @@
                                      target: self
                                    selector:@selector(VideoTimer:)
                                    userInfo: nil repeats:YES];
-
+    
     
     self.potentialMatchesLoadingView = [[PotentialMatchesLoadingView alloc]initWithFrame:CGRectMake(0, 57, 320, 363)];
     
@@ -146,17 +146,17 @@
             
             //Load initial instance of self.movieplayer with fileurl of current match
             _videoUrl =[currentPotentialMatch objectForKey:@"fileURL"];
-
+            
             [self.moviePlayer setContentURL:_videoUrl];
             
             
             if ([currentPotentialMatch objectForKey:@"time_remaining"]) {
                 [self.moviePlayer setInitialPlaybackTime:[[currentPotentialMatch objectForKey:@"time_remaining"]doubleValue]];
                 NSLog(@"video already started %f",[[currentPotentialMatch objectForKey:@"time_remaining"]doubleValue]);
-  
+                
                 
             }
-
+            
             //Set Profile Pic for current potential match
             [self setProfilePic];
         }
@@ -178,7 +178,7 @@
     
     //Creat URL for image and download image
     NSString *picURL = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?width=200&height=200", [currentPotentialMatch objectForKey:@"facebook_uid"]];
-
+    
     NSLog(@"setProfilePicURL:%@",picURL);
     NSURL *url = [NSURL URLWithString:picURL];
     NSData *imageData = [NSData dataWithContentsOfURL:url];
@@ -198,10 +198,10 @@
     //    if (self.moviePlayer.loadState == MPMovieLoadStatePlayable)
     //    {
     //Play Video if Video is loaded and Playable and user is holding play button
-//    [NSTimer scheduledTimerWithTimeInterval: .05
-//                                     target: self
-//                                   selector:@selector(VideoTimer:)
-//                                   userInfo: nil repeats:YES];
+    //    [NSTimer scheduledTimerWithTimeInterval: .05
+    //                                     target: self
+    //                                   selector:@selector(VideoTimer:)
+    //                                   userInfo: nil repeats:YES];
     //}
 }
 
@@ -256,11 +256,11 @@
         //movie finished playing
         if(_likeCurrentUser == FALSE){
             if([currentPotentialMatch objectForKey:@"time_remaining"]){
-            [self firstMatch];
-            NSLog(@"user left view controller");
-            NSLog(@"%f",_timeRemaining);
-            [currentPotentialMatch removeObjectForKey:@"time_remaining"];
-            PotentialMatches *obj = [PotentialMatches getInstance];
+                [self firstMatch];
+                NSLog(@"user left view controller");
+                NSLog(@"%f",_timeRemaining);
+                [currentPotentialMatch removeObjectForKey:@"time_remaining"];
+                PotentialMatches *obj = [PotentialMatches getInstance];
                 if ([obj.potentialMatches count] >0) {
                     [obj.potentialMatches replaceObjectAtIndex:0 withObject:currentPotentialMatch];
                 }
@@ -269,9 +269,9 @@
                 [self userPass];
                 NSLog(@"user considered as passed");
             }
-
+            
         }
-               if (_likeCurrentUser ==TRUE) {
+        if (_likeCurrentUser ==TRUE) {
             [self nextMatch];
         }
     }else if (reason == MPMovieFinishReasonUserExited) {
@@ -328,10 +328,10 @@
     NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/";
     PotentialMatches *obj =[PotentialMatches getInstance];
     [obj.passedUsers addObject:currentPotentialMatch];
-//    NSFileManager *fileManager = [NSFileManager defaultManager];
-//    [fileManager removeItemAtURL:[currentPotentialMatch objectForKey:@"fileURL"] error:NULL];
-//    NSLog(@"Item deleted");
-
+    //    NSFileManager *fileManager = [NSFileManager defaultManager];
+    //    [fileManager removeItemAtURL:[currentPotentialMatch objectForKey:@"fileURL"] error:NULL];
+    //    NSLog(@"Item deleted");
+    
     urlAsString = [urlAsString stringByAppendingString:[currentPotentialMatch objectForKey:@"uid"]];
     urlAsString =[urlAsString stringByAppendingString:@"/pass"];
     
@@ -349,25 +349,67 @@
     dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     
     
-        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
-        manager.operationQueue = _backgroundQueue;
-        NSDictionary *params = @{};
-        [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            dispatch_async(concurrentQueue, ^{
-                
-                NSLog(@"JSON: %@", responseObject);
-            });
-        }
-              failure:^(AFHTTPRequestOperation *operation, NSError *error)
-         {
-             NSLog(@"Error: %@", error);
-         }];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    manager.operationQueue = _backgroundQueue;
+    NSDictionary *params = @{};
+    [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        dispatch_async(concurrentQueue, ^{
+            
+            NSLog(@"JSON: %@", responseObject);
+        });
+    }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"Error: %@", error);
+     }];
     
     [self nextMatch];
     
 }
 
+-(void) reportUser{
+    NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/";
+    PotentialMatches *obj =[PotentialMatches getInstance];
+    [obj.passedUsers addObject:currentPotentialMatch];
+    //    NSFileManager *fileManager = [NSFileManager defaultManager];
+    //    [fileManager removeItemAtURL:[currentPotentialMatch objectForKey:@"fileURL"] error:NULL];
+    //    NSLog(@"Item deleted");
+    
+    urlAsString = [urlAsString stringByAppendingString:[currentPotentialMatch objectForKey:@"uid"]];
+    urlAsString =[urlAsString stringByAppendingString:@"/report"];
+    
+    
+    
+    NSURL *url = [NSURL URLWithString:urlAsString];
+    
+    [NSMutableURLRequest requestWithURL:url];
+    
+    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+    
+    
+    NSString *FbToken = [session accessTokenData].accessToken;
+    
+    dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    manager.operationQueue = _backgroundQueue;
+    NSDictionary *params = @{};
+    [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        dispatch_async(concurrentQueue, ^{
+            
+            NSLog(@"JSON: %@", responseObject);
+        });
+    }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"Error: %@", error);
+     }];
+    
+    
+}
 -(void) userLike{
     
     _likeCurrentUser = TRUE;
@@ -407,18 +449,18 @@
     else{
         [params setValue:@"false" forKey:@"facebook"];
     }
-
-
-
-
+    
+    
+    
+    
     
     
     PotentialMatches *obj =[PotentialMatches getInstance];
     [obj.passedUsers addObject:currentPotentialMatch];
-//    NSFileManager *fileManager = [NSFileManager defaultManager];
-//    [fileManager removeItemAtURL:[currentPotentialMatch objectForKey:@"fileURL"] error:NULL];
-//    NSLog(@"Item deleted");
-
+    //    NSFileManager *fileManager = [NSFileManager defaultManager];
+    //    [fileManager removeItemAtURL:[currentPotentialMatch objectForKey:@"fileURL"] error:NULL];
+    //    NSLog(@"Item deleted");
+    
     
     
     NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/";
@@ -429,19 +471,19 @@
     NSString *FbToken = [session accessTokenData].accessToken;
     
     
-        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
-        manager.operationQueue = _backgroundQueue;
-           [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSLog(@"JSON: %@", responseObject);
-               if ([responseObject objectForKey:@"liked_user"] != [NSNull null]) {
-                   NSLog(@"MATCH");
-               }
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    manager.operationQueue = _backgroundQueue;
+    [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+        if ([responseObject objectForKey:@"liked_user"] != [NSNull null]) {
+            NSLog(@"MATCH");
         }
-              failure:^(AFHTTPRequestOperation *operation, NSError *error)
-         {
-             NSLog(@"Error: %@", error);
-         }];
+    }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"Error: %@", error);
+     }];
     
     [self.moviePlayer play];
     
@@ -502,22 +544,34 @@
         
     }
     if (buttonIndex ==2){
-       
+        
     }
 }
 //Actionsheet listener for social media applications that havent yet been configured
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 0) {
-        NSLog(@"button index 0 selected");
-        LeftMenuViewController *leftMenuViewController = [[LeftMenuViewController alloc]init];
-        leftMenuViewController.socialImage.hidden = false;
-        leftMenuViewController.homeImage.hidden = true;
-        [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"SocialAccountsViewController"]]animated:YES];
-        [self.sideMenuViewController hideMenuViewController];
+    if (actionSheet.tag==0) {
         
-        
-    } else if (buttonIndex == 1) {
-        NSLog(@"button index 1 selected");
+        if (buttonIndex == 0) {
+            NSLog(@"button index 0 selected");
+            LeftMenuViewController *leftMenuViewController = [[LeftMenuViewController alloc]init];
+            leftMenuViewController.socialImage.hidden = false;
+            leftMenuViewController.homeImage.hidden = true;
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"SocialAccountsViewController"]]animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
+            
+            
+        } else if (buttonIndex == 1) {
+            NSLog(@"button index 1 selected");
+        }
+    }
+    if (actionSheet.tag ==1) {
+        if (buttonIndex ==0) {
+            NSLog(@"report User");
+            [self reportUser];
+            
+            [self userPass];
+            _likeCurrentUser = false;
+        }
     }
 }
 
@@ -609,10 +663,10 @@
     PotentialMatches *obj = [PotentialMatches getInstance];
     NSNumber *timeStopped = [NSNumber numberWithDouble:self.moviePlayer.currentPlaybackTime];
     if (_likeCurrentUser ==FALSE) {
-    
+        
         if ([obj.potentialMatches count] >0) {
             [[obj.potentialMatches objectAtIndex:0] setValue:timeStopped forKey:@"time_remaining"];
-
+            
         }
     }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -645,7 +699,7 @@
        [[user objectForKey: @"instagram_username"]isEqualToString:@""] ||
        [[user objectForKey: @"instagram_username"]isEqualToString:@"<null>"]) {
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"You can't match with others on Instagram until you have your Instagram account linked" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Social Account Settings", nil];
-        
+        actionSheet.tag = 0;
         [actionSheet showInView:self.view];
     }
     else {
@@ -660,6 +714,7 @@
         [[user objectForKey: @"twitter_username"]isEqualToString:@""] ||
         [[user objectForKey: @"twitte_username"]isEqualToString:@"<null>"]) {
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"You can't match with others on Twitter until you have your Twitter account linked" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Social Account Settings", nil];
+        actionSheet.tag = 0;
         [actionSheet showInView:self.view];
     }
     else {
@@ -674,6 +729,8 @@
         [[user objectForKey: @"snapchat_username"]isEqualToString:@""] ||
         [[user objectForKey: @"snapchat_username"]isEqualToString:@"<null>"]){
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"You can't match with others on Snapchat until you add your Snapchat username" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Social Account Settings", nil];
+        actionSheet.tag = 0;
+        
         
         [actionSheet showInView:self.view];
     }
@@ -695,6 +752,8 @@
         [[user objectForKey: @"phone_number"]isEqualToString:@""] ||
         [[user objectForKey: @"phone_number"]isEqualToString:@"<null>"]){
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"To be able to use this feature you first need to have your phone number added" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Social Account Settings", nil];
+        actionSheet.tag = 0;
+        
         
         [actionSheet showInView:self.view];
     }
@@ -743,7 +802,7 @@
     if ([currentPotentialMatch count] >0){
         if ([user objectForKey:@"videoUri"] != [NSNull null]) {
             [self userLike];
-
+            
         }
         else{
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You don't have a Video!!"
@@ -763,6 +822,12 @@
     [self.moviePlayer pause];
     [self.sideMenuViewController presentLeftMenuViewController];
     
+}
+
+- (IBAction)reportUser:(id)sender {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Do you want to report this user for inappropriate video content?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Report User" otherButtonTitles:nil, nil];
+    actionSheet.tag = 1;
+    [actionSheet showInView:self.view];
 }
 
 - (IBAction)Pass:(id)sender {

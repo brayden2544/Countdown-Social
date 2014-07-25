@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
-#import "APNsToken.h"
 
 
 
@@ -139,13 +138,22 @@
 }
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
 {
-	NSLog(@"My token is: %@", deviceToken);
-    APNsToken *token = [APNsToken getInstance];
     NSString *tokenstring = [[deviceToken description] stringByTrimmingCharactersInSet: [NSCharacterSet characterSetWithCharactersInString:@"<>"]];
     tokenstring = [tokenstring stringByReplacingOccurrencesOfString:@" " withString:@""];
 
-    token.APNsToken =tokenstring;
-    NSLog(@"token:%@",tokenstring);
+    
+    NSString *FbToken = [FBsession accessTokenData].accessToken;
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    NSDictionary *params = @{@"apns_token":tokenstring};
+    [manager POST:@"http://api-dev.countdownsocial.com/user" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Token uploaded:%@",tokenstring);
+    }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"Error: %@", error);
+     }];
+
 
 
 }
@@ -153,8 +161,19 @@
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
 {
 	NSLog(@"Failed to get token, error: %@", error);
-    APNsToken *token = [APNsToken getInstance];
-    token.APNsToken = @"null";
+    NSString *FbToken = [FBsession accessTokenData].accessToken;
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    NSDictionary *params = @{@"apns_token":@""};
+    [manager POST:@"http://api-dev.countdownsocial.com/user" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Token not uploaded");
+    }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"Error: %@", error);
+     }];
+
+    
 }
 - (void)applicationWillResignActive:(UIApplication *)application
 {

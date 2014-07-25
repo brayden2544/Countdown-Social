@@ -60,5 +60,6 @@
 
 - (IBAction)presentLeftMenu:(id)sender;
 
+- (IBAction)reportUser:(id)sender;
 
 @end

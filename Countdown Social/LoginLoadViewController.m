@@ -13,7 +13,6 @@
 #import "MenuViewController.h"
 #import "PotentialMatches.h"
 #import "User.h"
-#import "APNsToken.h"
 #import "RESideMenu/RESideMenu.h"
 
 @interface LoginLoadViewController ()
@@ -29,13 +28,12 @@
 -(void)getUserObject{
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
 
-    APNsToken *obj = [APNsToken getInstance];
 
     NSString *FbToken = [session accessTokenData].accessToken;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
-    NSDictionary *params = @{@"apns_token":obj.APNsToken};
-    [manager POST:@"http://api-dev.countdownsocial.com/user" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSDictionary *params = @{};
+    [manager POST:@"http://api-dev.countdownsocial.com/user" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
         User *Userobj =  [User getInstance];
         Userobj.user= responseObject;
@@ -71,7 +69,6 @@
         
         NSLog(@"Longitude %.8f", currentLocation.coordinate.longitude);
         NSLog(@"Latitude %.8f", currentLocation.coordinate.latitude);
-        APNsToken *obj = [APNsToken getInstance];
 
 
         FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
@@ -81,8 +78,7 @@
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
         NSDictionary *params = @{@"lat": [NSString stringWithFormat:@"%g",currentLocation.coordinate.latitude],
-                                 @"long": [NSString stringWithFormat:@"%g",currentLocation.coordinate.longitude],
-                                 @"apns_token":obj.APNsToken};
+                                 @"long": [NSString stringWithFormat:@"%g",currentLocation.coordinate.longitude]};
         [manager POST:@"http://api-dev.countdownsocial.com/user" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 NSLog(@"JSON: %@", responseObject);
                 User *Userobj =  [User getInstance];
@@ -185,7 +181,6 @@
             ViewController *menuViewController = [storyboard instantiateViewControllerWithIdentifier:@"rootViewController"];
             [self presentViewController:menuViewController animated:YES completion:nil];
             
-       // }
 
     });
    

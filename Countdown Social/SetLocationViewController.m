@@ -44,13 +44,14 @@
     self.user = [User getInstance];
     self.setLocationMapView.showsUserLocation=YES;
 
-    
+
     //Creat URL for image and download image
     NSString *picURL = @"http://graph.facebook.com/";
     NSString *uid =[[self.user.user objectForKey:@"facebook_uid"] stringValue];
     picURL= [picURL stringByAppendingString:uid];
     picURL = [picURL stringByAppendingString:@"/picture?width=200&height=200"];
     NSURL *url = [NSURL URLWithString:picURL];
+    
     NSData *imageData = [NSData dataWithContentsOfURL:url];
     self.fbProfilePic = [UIImage imageWithData:imageData];
     
@@ -59,10 +60,11 @@
                                           initWithTarget:self action:@selector(handleLongPress:)];
     lpgr.minimumPressDuration = 0.3; //user needs to press for .3 seconds
     [self.setLocationMapView addGestureRecognizer:lpgr];
+    setLocationMapView.layer.cornerRadius = setLocationMapView.frame.size.height/2;
     
     travelModeAnnotation = [[MKPointAnnotation alloc] init];
-    mapRegion.span.latitudeDelta = 1;
-    mapRegion.span.longitudeDelta = 1;
+    mapRegion.span.latitudeDelta = 4;
+    mapRegion.span.longitudeDelta = 4;
 
     
     

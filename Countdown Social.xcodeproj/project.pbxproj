@@ -60,7 +60,6 @@
 		6E967CDB190DA4960042AF93 /* Countdown_SocialTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E967CDA190DA4960042AF93 /* Countdown_SocialTests.m */; };
 		6EA354FB1965443500F51D70 /* SocialAccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA354FA1965443500F51D70 /* SocialAccountsViewController.m */; };
 		6EB629F219804DC100D495EB /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB629F119804DC100D495EB /* ProfileViewController.m */; };
-		6EB629F5198083AB00D495EB /* APNsToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB629F4198083AB00D495EB /* APNsToken.m */; };
 		6EB9D6AD1921B8450080E1C5 /* loadingScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB9D6AC1921B8450080E1C5 /* loadingScreen.png */; };
 		6EB9D6AF1921B89D0080E1C5 /* fbLogin.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB9D6AE1921B89D0080E1C5 /* fbLogin.png */; };
 		6EB9D6B11921B8EC0080E1C5 /* loginBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB9D6B01921B8EC0080E1C5 /* loginBackground.png */; };
@@ -243,8 +242,6 @@
 		6EA354FA1965443500F51D70 /* SocialAccountsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialAccountsViewController.m; sourceTree = "<group>"; };
 		6EB629F019804DC100D495EB /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		6EB629F119804DC100D495EB /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
-		6EB629F3198083AB00D495EB /* APNsToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APNsToken.h; sourceTree = "<group>"; };
-		6EB629F4198083AB00D495EB /* APNsToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APNsToken.m; sourceTree = "<group>"; };
 		6EB9D6AC1921B8450080E1C5 /* loadingScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = loadingScreen.png; path = ../loadingScreen.png; sourceTree = "<group>"; };
 		6EB9D6AE1921B89D0080E1C5 /* fbLogin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fbLogin.png; path = ../fbLogin.png; sourceTree = "<group>"; };
 		6EB9D6B01921B8EC0080E1C5 /* loginBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = loginBackground.png; path = ../loginBackground.png; sourceTree = "<group>"; };
@@ -620,8 +617,6 @@
 				6EC943191958D04E0096F41F /* User.m */,
 				6E92DFF2196217AD009ECE27 /* VideoPath.h */,
 				6E92DFF3196217AD009ECE27 /* VideoPath.m */,
-				6EB629F3198083AB00D495EB /* APNsToken.h */,
-				6EB629F4198083AB00D495EB /* APNsToken.m */,
 			);
 			name = Singletons;
 			sourceTree = "<group>";
@@ -1092,7 +1087,6 @@
 				6ECDEA9E1974791800B06130 /* AFURLSessionManager.m in Sources */,
 				6ECB30F81952498200AB8854 /* InstagramViewController.m in Sources */,
 				6EFC0E7719818F4A00ED7CB2 /* JSQMessagesCollectionViewLayoutAttributes.m in Sources */,
-				6EB629F5198083AB00D495EB /* APNsToken.m in Sources */,
 				6EB629F219804DC100D495EB /* ProfileViewController.m in Sources */,
 				6EFC0E6D19818F4A00ED7CB2 /* UIView+JSQMessages.m in Sources */,
 				6E92E01719628E94009ECE27 /* PBJFocusView.m in Sources */,
