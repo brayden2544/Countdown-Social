@@ -835,8 +835,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Video paused" translatesAutoresizingMaskIntoConstraints="NO" id="6IF-J7-EVI">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="thematchgradient" translatesAutoresizingMaskIntoConstraints="NO" id="6Bq-kk-hC1">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="soO-BO-kXo">
-                                <rect key="frame" x="20" y="26" width="46" height="30"/>
+                                <rect key="frame" x="12" y="0.0" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="back">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -845,6 +853,17 @@
                                     <segue destination="Z0u-QQ-q8R" kind="modal" id="Ft7-E0-J8o"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="test peeps" translatesAutoresizingMaskIntoConstraints="NO" id="1jA-Ok-JVc">
+                                <rect key="frame" x="40" y="160" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="It's your lucky day, You and Ashley matched" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="15d-Vq-oFT">
+                                <rect key="frame" x="12" y="31" width="300" height="117"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="33"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -3404,6 +3423,7 @@ General Terms and Conditions applicable to Use of a Web Site.
         <image name="Phone set button" width="254" height="84"/>
         <image name="Preview2" width="225" height="44"/>
         <image name="Rectangle 525 + Rectangle 526" width="484" height="100"/>
+        <image name="Video paused" width="640" height="1136"/>
         <image name="accept" width="104" height="104"/>
         <image name="accounts opaque bar" width="532" height="122"/>
         <image name="add account" width="57" height="56"/>
@@ -3471,6 +3491,8 @@ General Terms and Conditions applicable to Use of a Web Site.
         <image name="snapchat off" width="96" height="96"/>
         <image name="snapchat on" width="94" height="94"/>
         <image name="snapchat set button" width="256" height="86"/>
+        <image name="test peeps" width="561" height="250"/>
+        <image name="thematchgradient" width="649" height="1088"/>
         <image name="twitter account on" width="121" height="122"/>
         <image name="twitter off" width="96" height="96"/>
         <image name="twitter on" width="94" height="94"/>
