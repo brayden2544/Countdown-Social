@@ -42,6 +42,7 @@
 @implementation PotentialMatchesViewController
 
 @synthesize currentPotentialMatch;
+@synthesize currentMatch;
 @synthesize user;
 @synthesize moviePlayer;
 @synthesize playButton;
@@ -177,7 +178,7 @@
     NSLog(@"setProfilePic");
     
     //Creat URL for image and download image
-    NSString *picURL = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?width=200&height=200", [currentPotentialMatch objectForKey:@"facebook_uid"]];
+    NSString *picURL = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/picture", [currentPotentialMatch objectForKey:@"uid"]];
     
     NSLog(@"setProfilePicURL:%@",picURL);
     NSURL *url = [NSURL URLWithString:picURL];
@@ -457,9 +458,7 @@
     
     PotentialMatches *obj =[PotentialMatches getInstance];
     [obj.passedUsers addObject:currentPotentialMatch];
-    //    NSFileManager *fileManager = [NSFileManager defaultManager];
-    //    [fileManager removeItemAtURL:[currentPotentialMatch objectForKey:@"fileURL"] error:NULL];
-    //    NSLog(@"Item deleted");
+
     
     
     
@@ -478,6 +477,7 @@
         NSLog(@"JSON: %@", responseObject);
         if ([responseObject objectForKey:@"liked_user"] != [NSNull null]) {
             NSLog(@"MATCH");
+            
         }
     }
           failure:^(AFHTTPRequestOperation *operation, NSError *error)

@@ -21,6 +21,8 @@
 @property (nonatomic,strong) NSString *name;
 @property (nonatomic, strong) NSDictionary *user;
 @property (nonatomic, strong) NSMutableDictionary *currentPotentialMatch;
+@property (nonatomic, strong) NSMutableDictionary *currentMatch;
+
 
 @property (strong, nonatomic) IBOutlet UIImageView *fbProfilePic;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
