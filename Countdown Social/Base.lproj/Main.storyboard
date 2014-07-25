@@ -87,16 +87,16 @@
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="loading logo" translatesAutoresizingMaskIntoConstraints="NO" id="U7L-SQ-6KC">
-                                        <rect key="frame" x="89" y="191" width="146" height="145"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loading logo" translatesAutoresizingMaskIntoConstraints="NO" id="U7L-SQ-6KC">
+                                        <rect key="frame" x="87" y="155" width="146" height="145"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="146" id="IWe-K2-inG"/>
                                             <constraint firstAttribute="height" constant="145" id="xAK-eX-nJG"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Countdown" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Sa-W0-OS3">
-                                        <rect key="frame" x="2" y="55" width="320" height="69"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Countdown" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Sa-W0-OS3">
+                                        <rect key="frame" x="0.0" y="43" width="320" height="69"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="69" id="1lK-s1-xE1"/>
@@ -106,63 +106,27 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Loading" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ls8-Rl-Ozg">
-                                        <rect key="frame" x="74" y="404" width="176" height="60"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="A6Y-D4-qsc"/>
-                                            <constraint firstAttribute="width" constant="176" id="BSf-3O-Qaa"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="32"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="ls8-Rl-Ozg" firstAttribute="leading" secondItem="s2Z-XU-kcf" secondAttribute="leading" constant="72" id="1OO-0I-66p"/>
-                                    <constraint firstItem="ls8-Rl-Ozg" firstAttribute="top" secondItem="U7L-SQ-6KC" secondAttribute="bottom" priority="750" constant="68" id="2Bn-OR-Fws"/>
                                     <constraint firstAttribute="trailing" secondItem="U7L-SQ-6KC" secondAttribute="trailing" constant="87" id="3Fg-fW-Ial"/>
                                     <constraint firstItem="2Sa-W0-OS3" firstAttribute="leading" secondItem="s2Z-XU-kcf" secondAttribute="leading" id="8M4-Ou-3B6"/>
-                                    <constraint firstItem="U7L-SQ-6KC" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2Sa-W0-OS3" secondAttribute="bottom" constant="50" id="Hbm-ar-V9S"/>
-                                    <constraint firstAttribute="trailing" secondItem="ls8-Rl-Ozg" secondAttribute="trailing" constant="72" id="NnR-Kp-uaQ"/>
-                                    <constraint firstItem="ls8-Rl-Ozg" firstAttribute="top" relation="greaterThanOrEqual" secondItem="U7L-SQ-6KC" secondAttribute="bottom" constant="55" id="NqE-8X-4Hh"/>
+                                    <constraint firstItem="U7L-SQ-6KC" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2Sa-W0-OS3" secondAttribute="bottom" constant="36" id="Hbm-ar-V9S"/>
                                     <constraint firstItem="U7L-SQ-6KC" firstAttribute="leading" secondItem="s2Z-XU-kcf" secondAttribute="leading" constant="87" id="QRN-Ns-2JX"/>
-                                    <constraint firstItem="2Sa-W0-OS3" firstAttribute="top" secondItem="s2Z-XU-kcf" secondAttribute="top" priority="750" constant="55" id="SKV-17-Ipk"/>
-                                    <constraint firstAttribute="bottom" secondItem="ls8-Rl-Ozg" secondAttribute="bottom" priority="750" constant="84" id="SWU-du-Vi9"/>
+                                    <constraint firstItem="2Sa-W0-OS3" firstAttribute="top" secondItem="s2Z-XU-kcf" secondAttribute="top" priority="750" constant="43" id="SKV-17-Ipk"/>
                                     <constraint firstAttribute="trailing" secondItem="2Sa-W0-OS3" secondAttribute="trailing" id="bue-3I-tfw"/>
-                                    <constraint firstItem="U7L-SQ-6KC" firstAttribute="top" secondItem="2Sa-W0-OS3" secondAttribute="bottom" priority="750" constant="67" id="dtl-ZQ-eaM"/>
-                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ls8-Rl-Ozg" secondAttribute="bottom" constant="53" id="duB-rz-bcY"/>
+                                    <constraint firstItem="U7L-SQ-6KC" firstAttribute="top" secondItem="2Sa-W0-OS3" secondAttribute="bottom" priority="750" constant="43" id="dtl-ZQ-eaM"/>
                                     <constraint firstAttribute="trailing" secondItem="2Sa-W0-OS3" secondAttribute="trailing" id="hVo-5R-q3f"/>
                                     <constraint firstItem="2Sa-W0-OS3" firstAttribute="top" relation="greaterThanOrEqual" secondItem="s2Z-XU-kcf" secondAttribute="top" constant="28" id="j7q-61-veb"/>
                                     <constraint firstItem="2Sa-W0-OS3" firstAttribute="leading" secondItem="s2Z-XU-kcf" secondAttribute="leading" id="w9B-4Q-BkT"/>
                                 </constraints>
                             </view>
-                            <view alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FaB-6P-mH0">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GTa-he-IxC">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="584"/>
+                                <rect key="frame" x="0.0" y="369" width="320" height="300"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome to Countdown" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="320" translatesAutoresizingMaskIntoConstraints="NO" id="TBd-zJ-H2H">
-                                        <rect key="frame" x="0.0" y="20" width="320" height="118"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="43"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Setup is easy, let's get you started." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="320" translatesAutoresizingMaskIntoConstraints="NO" id="AR0-dk-Ktt">
-                                        <rect key="frame" x="0.0" y="135" width="320" height="113"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="28"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DaR-zQ-fw7">
-                                        <rect key="frame" x="13" y="307" width="294" height="49"/>
+                                        <rect key="frame" x="13" y="0.0" width="294" height="49"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="fbLogin.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -171,11 +135,11 @@
                                             <action selector="buttonTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Wiz-S6-I3o"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(We won't post anything on   your Facebook.)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="pRi-l3-1gm">
-                                        <rect key="frame" x="20" y="377" width="280" height="72"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(We won't post anything on   your Facebook..... pinky promise!)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="pRi-l3-1gm">
+                                        <rect key="frame" x="20" y="75" width="280" height="78"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="19"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -192,7 +156,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="285" y="193"/>
+            <point key="canvasLocation" x="320" y="136"/>
         </scene>
         <!--Video Preview View Controller-->
         <scene sceneID="LcK-PT-nGM">
@@ -1011,6 +975,14 @@
                                         <rect key="frame" x="100" y="32" width="121" height="121"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
+                                    <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xRv-wG-8Re">
+                                        <rect key="frame" x="282" y="0.0" width="38" height="38"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" image="report button">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -1973,11 +1945,11 @@
                                             <action selector="presentTellFriends:" destination="pb2-5n-e4w" eventType="touchUpInside" id="uid-Wt-W8k"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CwM-it-3cU">
-                                        <rect key="frame" x="15" y="339" width="209" height="42"/>
+                                    <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CwM-it-3cU">
+                                        <rect key="frame" x="29" y="341" width="209" height="42"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
-                                        <state key="normal" title="           Settings" backgroundImage="hsettings">
+                                        <state key="normal" title="    Settings" backgroundImage="settings final">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
@@ -3415,7 +3387,6 @@ General Terms and Conditions applicable to Use of a Web Site.
         <image name="homecamera" width="419" height="85"/>
         <image name="hprofile" width="418" height="84"/>
         <image name="hscore" width="418" height="84"/>
-        <image name="hsettings" width="418" height="84"/>
         <image name="hshare" width="418" height="84"/>
         <image name="instagram account on" width="122" height="121"/>
         <image name="iscore" width="50" height="57"/>
@@ -3455,6 +3426,8 @@ General Terms and Conditions applicable to Use of a Web Site.
         <image name="psnapchatadded" width="212" height="55"/>
         <image name="ptwitter added" width="212" height="55"/>
         <image name="pviewprofile" width="239" height="55"/>
+        <image name="report button" width="40" height="40"/>
+        <image name="settings final" width="418" height="85"/>
         <image name="snapchat account on" width="123" height="123"/>
         <image name="snapchat off" width="96" height="96"/>
         <image name="snapchat on" width="94" height="94"/>
