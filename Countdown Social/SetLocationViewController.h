@@ -9,13 +9,16 @@
 #import "ViewController.h"
 
 #import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
+
 #import "User.h"
 
-@interface SetLocationViewController : ViewController <MKMapViewDelegate>
+@interface SetLocationViewController : ViewController <MKMapViewDelegate, CLLocationManagerDelegate>
 
 @property (strong, nonatomic) IBOutlet UISwitch *travelModeSwitch;
 @property (strong, nonatomic) IBOutlet MKMapView *setLocationMapView;
 @property (strong, nonatomic) MKPointAnnotation *travelModeAnnotation;
+@property (nonatomic,strong) CLLocationManager *locationManager;
 @property (strong, nonatomic) User *user;
 @property (strong ,nonatomic) UIImage* fbProfilePic;
 

@@ -14,6 +14,7 @@
 #import "PotentialMatches.h"
 #import "User.h"
 #import "APNsToken.h"
+#import "RESideMenu/RESideMenu.h"
 
 @interface LoginLoadViewController ()
 
@@ -23,14 +24,7 @@
 
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+
 
 -(void)getUserObject{
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
@@ -46,7 +40,6 @@
         User *Userobj =  [User getInstance];
         Userobj.user= responseObject;
         user = responseObject;
-        //[[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateLocationCompleted" object:nil];
         if ([[user objectForKey:@"vacation_mode"]  isEqual:@false] ) {
             [self checkLocationServices];
         }
@@ -109,6 +102,17 @@
 
 - (void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
     NSLog(@"Failed with error %@", error);
+    NSLog(@"Location services disabled");
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Location Services Disabled!!"
+                                                    message:@"Set Travel Mode Location \n\n or \n\n To have Countdown use your current location go to Settings, Location Services, and enable Countdown!"
+                                                   delegate:self
+                                          cancelButtonTitle:nil
+                                          otherButtonTitles:@"Okay", nil];
+    [alert show];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateLocationCompleted" object:nil];
+
+
 }
 
 
@@ -127,7 +131,6 @@
                                                object:nil];
     //Gets current Location of User
     [self getUserObject];
-    //[self checkLocationServices];
     
 }
 
@@ -144,9 +147,16 @@
     else {
         //TODO: Create code for manual selection of location.
         NSLog(@"Location services disabled");
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        UIViewController *setLocationViewController = [storyboard instantiateViewControllerWithIdentifier:@"SetLocationViewController"];
-        [self presentViewController:setLocationViewController animated:YES completion:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Location Services Disabled!!"
+                                                        message:@"Set Travel Mode Location \n or \n To have Countdown use your current location go to Settings, Location Services, and enable Countdown!"
+                                                       delegate:self
+                                              cancelButtonTitle:nil
+                                              otherButtonTitles:@"Okay", nil];
+        [alert show];
+        
+
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateLocationCompleted" object:nil];
+
     }
 
 }

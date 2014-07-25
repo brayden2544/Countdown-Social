@@ -10,7 +10,10 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "AppDelegate.h"
 #import "RESideMenu/RESideMenu.h"
+
 @interface SetLocationViewController ()
+
+@property MKCoordinateRegion mapRegion;
 
 @end
 
@@ -20,6 +23,7 @@
 @synthesize setLocationMapView;
 @synthesize travelModeAnnotation;
 @synthesize fbProfilePic;
+@synthesize mapRegion;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,6 +42,8 @@
     self.navigationController.navigationBarHidden = YES;
     self.setLocationMapView.delegate=self;
     self.user = [User getInstance];
+    self.setLocationMapView.showsUserLocation=YES;
+
     
     //Creat URL for image and download image
     NSString *picURL = @"http://graph.facebook.com/";
@@ -55,18 +61,17 @@
     [self.setLocationMapView addGestureRecognizer:lpgr];
     
     travelModeAnnotation = [[MKPointAnnotation alloc] init];
-    MKCoordinateRegion mapRegion;
+    mapRegion.span.latitudeDelta = 1;
+    mapRegion.span.longitudeDelta = 1;
+
     
     
     
     if ([[self.user.user objectForKey:@"vacation_mode"]isEqual:@true]) {
         [self.setLocationMapView removeAnnotation:travelModeAnnotation];
         [travelModeSwitch setOn:YES animated:YES];
-        MKCoordinateRegion mapRegion;
         CLLocationCoordinate2D vacation_location = CLLocationCoordinate2DMake([[self.user.user objectForKey:@"lat"]doubleValue], [[self.user.user objectForKey:@"long"]doubleValue]);
         mapRegion.center = vacation_location;
-        mapRegion.span.latitudeDelta = 10;
-        mapRegion.span.longitudeDelta = 10;
         
         [self.setLocationMapView setRegion:mapRegion animated: YES];
         
@@ -74,25 +79,37 @@
         travelModeAnnotation.coordinate = vacation_location;
         [self.setLocationMapView addAnnotation:travelModeAnnotation];
     }else{
-        
-        self.setLocationMapView.showsUserLocation=YES;
-        [self.setLocationMapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
-        mapRegion.center = self.setLocationMapView.userLocation.coordinate;
-        mapRegion.span.latitudeDelta = 10;
-        mapRegion.span.longitudeDelta = 10;
-        
-        [self.setLocationMapView setRegion:mapRegion animated: YES];
+        if ([CLLocationManager locationServicesEnabled]) {
+            self.locationManager = [[CLLocationManager alloc] init];
+            self.locationManager.delegate = self;
+            self.locationManager.distanceFilter = 500;
+            [self.locationManager startUpdatingLocation];
+        } else {
+            NSLog(@"Location services are not enabled");
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Location Services Not Enabled!!"
+                                                            message:@"To have Countdown use your current location go to Settings, Location Services, and enable Countdown!"
+                                                           delegate:self
+                                                  cancelButtonTitle:nil
+                                                  otherButtonTitles:@"Okay", nil];
+            [alert show];
+
+        }
         
     }
     
 }
 
-- (void)didReceiveMemoryWarning
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+    if (travelModeSwitch.isOn == FALSE) {
 
+    CLLocation *location = [locations lastObject];
+    mapRegion.center = location.coordinate;
+    mapRegion = [self.setLocationMapView regionThatFits:mapRegion];
+    [self.setLocationMapView setRegion:mapRegion animated:NO];
+    }
+
+}
 
 - (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer
 {
@@ -185,11 +202,9 @@ didAddAnnotationViews:(NSArray *)annotationViews
         self.setLocationMapView.showsUserLocation=YES;
         self.setLocationMapView.delegate=self;
         [self.setLocationMapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
-        MKCoordinateRegion mapRegion;
         mapRegion.center = self.setLocationMapView.userLocation.coordinate;
-        mapRegion.span.latitudeDelta = 10;
-        mapRegion.span.longitudeDelta = 10;
-        
+
+        mapRegion = [self.setLocationMapView regionThatFits:mapRegion];
         [self.setLocationMapView setRegion:mapRegion animated: YES];
         
         FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
