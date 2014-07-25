@@ -1153,7 +1153,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="menu Background" translatesAutoresizingMaskIntoConstraints="NO" id="kDd-oz-ALY">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gbg" translatesAutoresizingMaskIntoConstraints="NO" id="kDd-oz-ALY">
                                 <rect key="frame" x="-1" y="-1" width="322" height="570"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
@@ -3397,7 +3397,6 @@ General Terms and Conditions applicable to Use of a Web Site.
         <image name="location switchbg" width="644" height="79"/>
         <image name="map border" width="512" height="512"/>
         <image name="matches-2" width="38" height="55"/>
-        <image name="menu Background" width="642" height="1138"/>
         <image name="minibutton-1" width="14" height="13"/>
         <image name="miniwatch" width="66" height="72"/>
         <image name="new insta off" width="123" height="122"/>
