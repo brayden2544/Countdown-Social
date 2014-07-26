@@ -1349,10 +1349,10 @@
             </objects>
             <point key="canvasLocation" x="1265" y="1572"/>
         </scene>
-        <!--View Controller - right menu-->
+        <!--Right Menu View Controller - right menu-->
         <scene sceneID="Yhb-m3-6X1">
             <objects>
-                <viewController storyboardIdentifier="rightMenuViewController" title="right menu" id="lIO-a2-lEU" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="rightMenuViewController" title="right menu" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lIO-a2-lEU" customClass="RightMenuViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="v7P-XU-9OC"/>
                         <viewControllerLayoutGuide type="bottom" id="6DR-Gw-yqS"/>
