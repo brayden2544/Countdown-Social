@@ -149,6 +149,8 @@
 		6EFC0E8C1981907B00ED7CB2 /* JSQSystemSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC0E8B1981907B00ED7CB2 /* JSQSystemSoundPlayer.m */; };
 		6EFC0E8E1981909A00ED7CB2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EFC0E8D1981909A00ED7CB2 /* QuartzCore.framework */; };
 		6EFC0E90198190A700ED7CB2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EFC0E8F198190A700ED7CB2 /* AudioToolbox.framework */; };
+		6EFC0E93198326A100ED7CB2 /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC0E92198326A100ED7CB2 /* Connection.m */; };
+		6EFC0E961983283A00ED7CB2 /* RightMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC0E951983283A00ED7CB2 /* RightMenuViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -383,6 +385,10 @@
 		6EFC0E8B1981907B00ED7CB2 /* JSQSystemSoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQSystemSoundPlayer.m; sourceTree = "<group>"; };
 		6EFC0E8D1981909A00ED7CB2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		6EFC0E8F198190A700ED7CB2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		6EFC0E91198326A100ED7CB2 /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connection.h; sourceTree = "<group>"; };
+		6EFC0E92198326A100ED7CB2 /* Connection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connection.m; sourceTree = "<group>"; };
+		6EFC0E941983283A00ED7CB2 /* RightMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightMenuViewController.h; sourceTree = "<group>"; };
+		6EFC0E951983283A00ED7CB2 /* RightMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightMenuViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -425,6 +431,8 @@
 			children = (
 				6EC94323195C8B6E0096F41F /* LeftMenuViewController.h */,
 				6EC94324195C8B6E0096F41F /* LeftMenuViewController.m */,
+				6EFC0E941983283A00ED7CB2 /* RightMenuViewController.h */,
+				6EFC0E951983283A00ED7CB2 /* RightMenuViewController.m */,
 				6E50A473192D86FB00930D02 /* MenuViewController.h */,
 				6E50A474192D86FB00930D02 /* MenuViewController.m */,
 			);
@@ -539,8 +547,8 @@
 			children = (
 				6E967CBE190DA4960042AF93 /* AppDelegate.h */,
 				6E967CBF190DA4960042AF93 /* AppDelegate.m */,
-				6EC7D4AA196C7F890083A581 /* Social Accounts */,
 				6E967CC1190DA4960042AF93 /* Main.storyboard */,
+				6EC7D4AA196C7F890083A581 /* Social Accounts */,
 				6E4C5A4D1979E97F00CCD5A8 /* Menu */,
 				6EC5854A1975BE39008DDFFA /* Potential Matches */,
 				6EA354FC1965444700F51D70 /* Singletons */,
@@ -615,6 +623,8 @@
 				6E7691CC195398ED006CA5DB /* PotentialMatches.m */,
 				6EC943181958D04E0096F41F /* User.h */,
 				6EC943191958D04E0096F41F /* User.m */,
+				6EFC0E91198326A100ED7CB2 /* Connection.h */,
+				6EFC0E92198326A100ED7CB2 /* Connection.m */,
 				6E92DFF2196217AD009ECE27 /* VideoPath.h */,
 				6E92DFF3196217AD009ECE27 /* VideoPath.m */,
 			);
@@ -1057,9 +1067,11 @@
 				6EC5854D1975BED8008DDFFA /* WaitingAnimation.m in Sources */,
 				6E886A44190DB575009E5A92 /* LoginViewController.m in Sources */,
 				6ECE8112194A6F69007B3130 /* TwitterViewController.m in Sources */,
+				6EFC0E93198326A100ED7CB2 /* Connection.m in Sources */,
 				6EC9431A1958D04E0096F41F /* User.m in Sources */,
 				6EFC0E8219818F4A00ED7CB2 /* JSQMessagesLoadEarlierHeaderView.m in Sources */,
 				6E967CC0190DA4960042AF93 /* AppDelegate.m in Sources */,
+				6EFC0E961983283A00ED7CB2 /* RightMenuViewController.m in Sources */,
 				6E92E01819628E94009ECE27 /* PBJStrobeView.m in Sources */,
 				6E92E00119628E24009ECE27 /* PBJMediaWriter.m in Sources */,
 				6EFC0E7219818F4A00ED7CB2 /* JSQMessagesBubbleImageFactory.m in Sources */,

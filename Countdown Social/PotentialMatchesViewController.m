@@ -52,10 +52,10 @@
 - (void)viewDidLoad
 {
     //Notification observers for LoadStateChange and FinishPlaying on self.moviePlayer
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(MPMoviePlayerLoadStateDidChange:)
-                                                 name:MPMoviePlayerNowPlayingMovieDidChangeNotification
-                                               object:self.moviePlayer];
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(MPMoviePlayerLoadStateDidChange:)
+//                                                 name:MPMoviePlayerNowPlayingMovieDidChangeNotification
+//                                               object:self.moviePlayer];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(videoHasFinishedPlaying:)
                                                  name:MPMoviePlayerPlaybackDidFinishNotification
@@ -191,19 +191,6 @@
     self.fbProfilePic.layer.borderColor = [UIColor colorWithRed:248 green:248 blue:248 alpha:0.4].CGColor;
     self.fbProfilePic.layer.borderWidth = 2.0f;
     
-}
-
-//When video is loaded this method is called
-- (void)MPMoviePlayerLoadStateDidChange:(NSNotification *)notification
-{
-    //    if (self.moviePlayer.loadState == MPMovieLoadStatePlayable)
-    //    {
-    //Play Video if Video is loaded and Playable and user is holding play button
-    //    [NSTimer scheduledTimerWithTimeInterval: .05
-    //                                     target: self
-    //                                   selector:@selector(VideoTimer:)
-    //                                   userInfo: nil repeats:YES];
-    //}
 }
 
 /*Captures Screenshot of Current Matching Video*/
@@ -477,6 +464,8 @@
         NSLog(@"JSON: %@", responseObject);
         if ([responseObject objectForKey:@"liked_user"] != [NSNull null]) {
             NSLog(@"MATCH");
+            currentMatch = [responseObject objectForKey: @"liked_user"];
+            [self showMatch];
             
         }
     }
@@ -489,7 +478,40 @@
     
 }
 
+-(void)showMatch{
+    //Set Connection Message
+    NSString *newConnection = [NSString stringWithFormat:@"It's your lucky day, you've connected with %@" ,[currentMatch objectForKey:@"firstName"]];
+    
+    //Check sex to display message
+    if ([[currentMatch objectForKey:@"gender"] isEqualToString:@"M"]) {
+        
+    }
+    
+    //Set Match Image
+    NSString *picURL = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/picture", [currentMatch objectForKey:@"uid"]];
+    NSLog(@"setProfilePicURL:%@",picURL);
+    NSURL *url = [NSURL URLWithString:picURL];
+    NSData *imageData = [NSData dataWithContentsOfURL:url];
+    self.fbProfilePic.image = [UIImage imageWithData:imageData];
 
+    
+    //button matches
+    if ([currentMatch objectForKey:@"instagram_username"]) {
+        //show insta button
+    }
+    if ([currentMatch objectForKey:@"snapchat_username"]) {
+        //show snap button
+    }
+    if ([currentMatch objectForKey:@"twitter_username"]) {
+        //show twitter button
+    }
+    if ([currentMatch objectForKey:@"phone_number"]) {
+        //show phone button
+    }
+    if ([currentMatch objectForKey:@"facebook_uid"]) {
+        //show insta button
+    }
+}
 
 - (void)nextMatch{
     _likeCurrentUser = FALSE;
