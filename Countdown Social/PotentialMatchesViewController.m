@@ -51,15 +51,10 @@
 
 - (void)viewDidLoad
 {
-    //Notification observers for LoadStateChange and FinishPlaying on self.moviePlayer
-    //    [[NSNotificationCenter defaultCenter] addObserver:self
-    //                                             selector:@selector(MPMoviePlayerLoadStateDidChange:)
-    //                                                 name:MPMoviePlayerNowPlayingMovieDidChangeNotification
-    //                                               object:self.moviePlayer];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(videoHasFinishedPlaying:)
-                                                 name:MPMoviePlayerPlaybackDidFinishNotification
-                                               object:self.moviePlayer];
+                                                 name:AVPlayerItemDidPlayToEndTimeNotification
+                                               object:self.moviePlayerView.player];
     
     
     self.navigationController.navigationBarHidden = YES;
@@ -77,13 +72,10 @@
     [self.view addSubview:countdownTimer];
     
     
-    self.moviePlayer = [[MPMoviePlayerController alloc]init];
-    self.moviePlayer.shouldAutoplay = NO;
-    self.moviePlayer.controlStyle =MPMovieControlStyleNone;
-    [self.moviePlayer.view setFrame:CGRectMake (0, 100, 320, 320)];
-    [self.moviePlayer setFullscreen:NO
-                           animated:NO];
-    [self.view addSubview:self.moviePlayer.view];
+    self.moviePlayerView = [[PlayerView alloc]initWithFrame:CGRectMake (0, 100, 320, 320)];
+    self.moviePlayerView.player = [[AVPlayer alloc]init];
+    self.moviePlayerView.backgroundColor = [UIColor redColor];
+    
     [NSTimer scheduledTimerWithTimeInterval: .05
                                      target: self
                                    selector:@selector(VideoTimer:)
@@ -144,17 +136,18 @@
             _nameLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
             [self.potentialMatchesLoadingView removeFromSuperview];
             
-            
             //Load initial instance of self.movieplayer with fileurl of current match
             _videoUrl =[currentPotentialMatch objectForKey:@"fileURL"];
-            
-            [self.moviePlayer setContentURL:_videoUrl];
-            
-            
-            if ([currentPotentialMatch objectForKey:@"time_remaining"]) {
-                [self.moviePlayer setInitialPlaybackTime:[[currentPotentialMatch objectForKey:@"time_remaining"]doubleValue]];
-                NSLog(@"video already started %f",[[currentPotentialMatch objectForKey:@"time_remaining"]doubleValue]);
-                
+            self.currentVideo = [AVAsset assetWithURL:_videoUrl];
+            self.currentVideoItem = [AVPlayerItem playerItemWithAsset:self.currentVideo];
+            [self.moviePlayerView.player replaceCurrentItemWithPlayerItem:self.currentVideoItem];
+            self.moviePlayerLayer = [AVPlayerLayer playerLayerWithPlayer:self.moviePlayerView.player] ;
+            //self.moviePlayerView.backgroundColor = [UIColor redColor];
+            [self.moviePlayerView.layer addSublayer:self.moviePlayerLayer];
+            [self.view addSubview:self.moviePlayerView];
+            if ([currentPotentialMatch objectForKey:@"time_remaining"]){
+                CMTime startPoint = [[currentPotentialMatch objectForKey:@"time_remaining"]CMTimeValue];
+                [self.moviePlayerView.player seekToTime:startPoint];
                 
             }
             
@@ -178,12 +171,27 @@
     NSLog(@"setProfilePic");
     
     //Creat URL for image and download image
-    NSString *picURL = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/picture", [currentPotentialMatch objectForKey:@"uid"]];
+    NSString *picURL = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/photo", [currentPotentialMatch objectForKey:@"uid"]];
     
     NSLog(@"setProfilePicURL:%@",picURL);
     NSURL *url = [NSURL URLWithString:picURL];
-    NSData *imageData = [NSData dataWithContentsOfURL:url];
-    self.fbProfilePic.image = [UIImage imageWithData:imageData];
+    
+    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+    
+    
+    NSString *FbToken = [session accessTokenData].accessToken;
+
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    manager.operationQueue = _backgroundQueue;
+    [manager GET:picURL parameters:@{} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        self.fbProfilePic.image = responseObject;
+        NSLog(@"resonse Object %@",responseObject);
+
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Photo failed to load%@",error);
+    }];
+     
     
     //set size limitations of current potential match
     self.fbProfilePic.layer.cornerRadius = self.fbProfilePic.frame.size.height/2;
@@ -195,9 +203,12 @@
 
 /*Captures Screenshot of Current Matching Video*/
 - (void)CaptureSnapshot{
-    UIImage *thumbnail = [self.moviePlayer thumbnailImageAtTime:self.moviePlayer.currentPlaybackTime
-                                                     timeOption:MPMovieTimeOptionNearestKeyFrame];
+    AVAssetImageGenerator *imageGenerator = [[AVAssetImageGenerator alloc]initWithAsset:self.currentVideo];
+    CGImageRef imageRef = [imageGenerator copyCGImageAtTime:self.moviePlayer.currentTime actualTime:NULL error:NULL];
+//    UIImage *thumbnail = [self.moviePlayer thumbnailImageAtTime:self.moviePlayer.currentPlaybackTime
+//                                                     timeOption:MPMovieTimeOptionNearestKeyFrame];
     
+    UIImage *thumbnail = [UIImage imageWithCGImage:imageRef];
     CIContext *context = [CIContext contextWithOptions:nil];
     CIImage *inputImage = [CIImage imageWithCGImage:thumbnail.CGImage];
     
@@ -223,12 +234,12 @@
 -(void)BlurImage{
     
     //Blur Video Screenshot and add it infront of video
-    self.darken=[[UIView alloc] initWithFrame:self.moviePlayer.view.frame];
+    self.darken=[[UIView alloc] initWithFrame:self.moviePlayerView.frame];
     self.darken.backgroundColor = [UIColor colorWithRed:34/255.0 green:48/255.0 blue:46/255.0 alpha:1];
     self.darken.alpha = 0.4;
     [self.blur setImage:_videoImage];
     self.blur.userInteractionEnabled = YES;
-    self.blur.frame = self.moviePlayer.view.frame;
+    self.blur.frame = self.moviePlayerLayer.frame;
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.view addSubview:self.blur];
@@ -242,35 +253,16 @@
 }
 
 - (void) videoHasFinishedPlaying:(NSNotification *)paramNotification{
-    int reason = [[[paramNotification userInfo] valueForKey:MPMoviePlayerPlaybackDidFinishReasonUserInfoKey] intValue];
-    if (reason == MPMovieFinishReasonPlaybackEnded) {
-        //movie finished playing
+            //movie finished playing
         if(_likeCurrentUser == FALSE){
-            if([currentPotentialMatch objectForKey:@"time_remaining"]){
-                [self firstMatch];
-                NSLog(@"user left view controller");
-                NSLog(@"%f",_timeRemaining);
-                [currentPotentialMatch removeObjectForKey:@"time_remaining"];
-                PotentialMatches *obj = [PotentialMatches getInstance];
-                if ([obj.potentialMatches count] >0) {
-                    [obj.potentialMatches replaceObjectAtIndex:0 withObject:currentPotentialMatch];
-                }
-            }else {
-                NSLog(@"%f",_timeRemaining);
-                [self userPass];
-                NSLog(@"user considered as passed");
-            }
+         
+            [self userPass];
             
-        }
-        if (_likeCurrentUser ==TRUE) {
+        }else{
             [self nextMatch];
         }
-    }else if (reason == MPMovieFinishReasonUserExited) {
-        //user hit the done button
-    }else if (reason == MPMovieFinishReasonPlaybackError) {
-        //error
-    }
-}
+    
+      }
 
 
 
@@ -280,8 +272,9 @@
         _playButtonHeld = TRUE;
         self.blur.hidden = TRUE;
         self.createMatch.hidden = TRUE;
-        [self.view bringSubviewToFront:self.moviePlayer.view];
-        [self.moviePlayer play];
+        self.darken.hidden = TRUE;
+        [self.view bringSubviewToFront:self.moviePlayerView];
+        [self.moviePlayerView.player play];
     }
 }
 
@@ -289,25 +282,24 @@
     
     if(_likeCurrentUser ==FALSE & _loading ==FALSE){
         _playButtonHeld = FALSE;
-        [self.moviePlayer pause];
+        [self.moviePlayerView.player pause];
         [self CaptureSnapshot];
     }
 }
 
 
 -(void) playVideo{
-    [self.moviePlayer setContentURL:_videoUrl];
-    self.moviePlayer.initialPlaybackTime = -.01;
+    //[self.moviePlayer setContentURL:_videoUrl];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.view bringSubviewToFront:self.moviePlayer.view];
-        [self.view insertSubview:countdownTimer aboveSubview:self.moviePlayer.view];
+        [self.view bringSubviewToFront:self.moviePlayerView];
+        [self.view insertSubview:countdownTimer aboveSubview:self.moviePlayerView];
         
     });
     if(_playButtonHeld == TRUE){
-        [self.moviePlayer play];
+        [self.moviePlayerView.player play];
     }
     else if(playButton.isTouchInside){
-        [self.moviePlayer play];
+        [self.moviePlayerView.player play];
     }
     
     
@@ -407,6 +399,7 @@
     NSMutableDictionary *params = [[NSMutableDictionary alloc]init];
     self.blur.hidden = TRUE;
     self.createMatch.hidden = TRUE;
+    self.darken.hidden = TRUE;
     
     if (self.instagramDeselect.enabled == false) {
         [params setValue:@"true" forKey:@"instagram"];
@@ -477,7 +470,7 @@
          NSLog(@"Error: %@", error);
      }];
     
-    [self.moviePlayer play];
+    [self.moviePlayerView.player play];
     
 }
 
@@ -491,7 +484,7 @@
     }
     
     //Set Match Image
-    NSString *picURL = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/picture", [currentMatch objectForKey:@"uid"]];
+    NSString *picURL = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/photo", [currentMatch objectForKey:@"uid"]];
     NSLog(@"setProfilePicURL:%@",picURL);
     NSURL *url = [NSURL URLWithString:picURL];
     NSData *imageData = [NSData dataWithContentsOfURL:url];
@@ -532,11 +525,14 @@
     else {
         NSLog(@"Next Match");
         currentPotentialMatch =[obj.potentialMatches objectAtIndex:0];
-        NSLog(@"crash ehre?");
         if ([currentPotentialMatch objectForKey:@"fileURL"]){
             _loading = FALSE;
             [self.potentialMatchesLoadingView removeFromSuperview];
             _videoUrl =[currentPotentialMatch objectForKey:@"fileURL"];
+            self.currentVideo = [AVAsset assetWithURL:_videoUrl];
+            self.currentVideoItem = [AVPlayerItem playerItemWithAsset:self.currentVideo];
+            [self.moviePlayerView.player replaceCurrentItemWithPlayerItem:self.currentVideoItem];
+
             
             //Change lables on main queue
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -686,11 +682,13 @@
 
 -(void)viewDidDisappear:(BOOL)animated{
     PotentialMatches *obj = [PotentialMatches getInstance];
-    NSNumber *timeStopped = [NSNumber numberWithDouble:self.moviePlayer.currentPlaybackTime];
+    CMTime time = self.moviePlayerView.player.currentItem.currentTime;
+    Float64 time_seconds = CMTimeGetSeconds(time);
+    NSNumber *time_remaining = [[NSNumber alloc]initWithDouble:time_seconds];
     if (_likeCurrentUser ==FALSE) {
         
         if ([obj.potentialMatches count] >0) {
-            [currentPotentialMatch setValue:timeStopped forKey:@"time_remaining"];            
+            [currentPotentialMatch setValue:time_remaining forKey:@"time_remaining"];
         }
     }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -700,7 +698,9 @@
 
 - (void)VideoTimer:(NSTimer *)timer{
     //Initialize CountdownTimer
-    _timeRemaining =(1 -(self.moviePlayer.currentPlaybackTime / self.moviePlayer.duration))*100;
+    Float64 timeLeft = CMTimeGetSeconds(self.moviePlayerView.player.currentItem.currentTime);
+    Float64 duration = CMTimeGetSeconds(self.moviePlayerView.player.currentItem.duration);
+    _timeRemaining =(1 -(timeLeft / duration))*100;
     [countdownTimer changePercentage:_timeRemaining];
     if (_timeRemaining ==100) {
         _miniWatchButton.hidden = TRUE;

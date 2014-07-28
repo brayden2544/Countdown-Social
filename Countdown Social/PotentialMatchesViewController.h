@@ -9,6 +9,9 @@
 #import "ViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "CountdownTimer.h"
+#import <AVFoundation/AVFoundation.h>
+#import "PlayerView.h"
+
 
 
 @interface PotentialMatchesViewController : ViewController <UIActionSheetDelegate>
@@ -16,8 +19,14 @@
     CountdownTimer *countdownTimer;
 }
 
-@property (nonatomic,strong) MPMoviePlayerController *moviePlayer;
+@property (nonatomic,strong) AVPlayer *moviePlayer;
+@property (nonatomic, strong) AVPlayerLayer *moviePlayerLayer;
+@property (nonatomic, strong) AVAsset *currentVideo;
+@property (nonatomic ,strong) AVPlayerItem *currentVideoItem;
 @property (nonatomic,strong) NSURL *videoUrl;
+@property (nonatomic,strong) PlayerView *moviePlayerView;
+
+
 @property (nonatomic,strong) NSString *name;
 @property (nonatomic, strong) NSDictionary *user;
 @property (nonatomic, strong) NSMutableDictionary *currentPotentialMatch;

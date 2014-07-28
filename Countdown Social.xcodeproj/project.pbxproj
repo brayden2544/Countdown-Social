@@ -151,6 +151,7 @@
 		6EFC0E90198190A700ED7CB2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EFC0E8F198190A700ED7CB2 /* AudioToolbox.framework */; };
 		6EFC0E93198326A100ED7CB2 /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC0E92198326A100ED7CB2 /* Connection.m */; };
 		6EFC0E961983283A00ED7CB2 /* RightMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC0E951983283A00ED7CB2 /* RightMenuViewController.m */; };
+		6EFC0E991986DEC400ED7CB2 /* PlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC0E981986DEC400ED7CB2 /* PlayerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -389,6 +390,8 @@
 		6EFC0E92198326A100ED7CB2 /* Connection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connection.m; sourceTree = "<group>"; };
 		6EFC0E941983283A00ED7CB2 /* RightMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightMenuViewController.h; sourceTree = "<group>"; };
 		6EFC0E951983283A00ED7CB2 /* RightMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightMenuViewController.m; sourceTree = "<group>"; };
+		6EFC0E971986DEC400ED7CB2 /* PlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerView.h; sourceTree = "<group>"; };
+		6EFC0E981986DEC400ED7CB2 /* PlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -672,6 +675,8 @@
 				6EC585481975BE21008DDFFA /* PotentialMatchesLoadingView.m */,
 				6EC0FC0B192AC61000B72C44 /* PotentialMatchesViewController.h */,
 				6EC0FC0C192AC61000B72C44 /* PotentialMatchesViewController.m */,
+				6EFC0E971986DEC400ED7CB2 /* PlayerView.h */,
+				6EFC0E981986DEC400ED7CB2 /* PlayerView.m */,
 			);
 			name = "Potential Matches";
 			sourceTree = "<group>";
@@ -1075,6 +1080,7 @@
 				6E92E01819628E94009ECE27 /* PBJStrobeView.m in Sources */,
 				6E92E00119628E24009ECE27 /* PBJMediaWriter.m in Sources */,
 				6EFC0E7219818F4A00ED7CB2 /* JSQMessagesBubbleImageFactory.m in Sources */,
+				6EFC0E991986DEC400ED7CB2 /* PlayerView.m in Sources */,
 				6E7691CD195398ED006CA5DB /* PotentialMatches.m in Sources */,
 				6EC5855019772269008DDFFA /* UserScoreViewController.m in Sources */,
 				6EB9D6B6192415D10080E1C5 /* VideoPreviewViewController.m in Sources */,
