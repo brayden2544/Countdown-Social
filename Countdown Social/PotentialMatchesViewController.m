@@ -15,7 +15,6 @@
 #import "PotentialMatchesLoadingView.h"
 #import "RESideMenu/RESideMenu.h"
 #import "LeftMenuViewController.h"
-#import "Canvas.h"
 
 @interface PotentialMatchesViewController ()
 
@@ -135,7 +134,6 @@
             
             //Set text for name label
             _nameLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
-            [_nameLabel startCanvasAnimation];
             [self.potentialMatchesLoadingView removeFromSuperview];
             
             //Load initial instance of self.movieplayer with fileurl of current match
@@ -542,7 +540,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 _nameLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
-                [_nameLabel startCanvasAnimation];
+                [self.nameView startCanvasAnimation];
             });
             
             //play current Match Video

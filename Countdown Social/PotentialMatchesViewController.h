@@ -11,6 +11,7 @@
 #import "CountdownTimer.h"
 #import <AVFoundation/AVFoundation.h>
 #import "PlayerView.h"
+#import  "CSAnimationView.h"
 
 
 
@@ -37,6 +38,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *meetLabel;
 @property (nonatomic,strong) IBOutlet UIButton *playButton;
+@property (strong, nonatomic) IBOutlet CSAnimationView *nameView;
 
 
 @property (strong, nonatomic) IBOutlet UIButton *instagramDeselect;

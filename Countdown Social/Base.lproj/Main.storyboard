@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -1473,6 +1473,7 @@
                         <outlet property="meetLabel" destination="R3l-Qk-y7h" id="rGN-C6-cwg"/>
                         <outlet property="miniWatchButton" destination="4XV-AY-4qX" id="tIC-WJ-jWn"/>
                         <outlet property="nameLabel" destination="6qH-yV-hP8" id="fyG-oV-HUD"/>
+                        <outlet property="nameView" destination="F9b-33-Rbr" id="lYd-RD-Usg"/>
                         <outlet property="phoneDeselect" destination="9gI-sM-az4" id="u89-D5-RaB"/>
                         <outlet property="phoneSelect" destination="gRr-tR-dQr" id="CvJ-u5-Eit"/>
                         <outlet property="playButton" destination="Cv1-ZZ-k4Q" id="QIp-qf-Dxv"/>
