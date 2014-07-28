@@ -135,6 +135,7 @@
             
             //Set text for name label
             _nameLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
+            [_nameLabel startCanvasAnimation];
             [self.potentialMatchesLoadingView removeFromSuperview];
             
             //Load initial instance of self.movieplayer with fileurl of current match
