@@ -15,6 +15,7 @@
 #import "PotentialMatchesLoadingView.h"
 #import "RESideMenu/RESideMenu.h"
 #import "LeftMenuViewController.h"
+#import "Canvas.h"
 
 @interface PotentialMatchesViewController ()
 
