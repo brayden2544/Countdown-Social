@@ -184,8 +184,10 @@
 
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    manager.responseSerializer = [AFImageResponseSerializer serializer];
     manager.operationQueue = _backgroundQueue;
-    [manager GET:picURL parameters:@{} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:picURL parameters:@{@"height":@200,
+                                     @"width": @200} success:^(AFHTTPRequestOperation *operation, id responseObject) {
         self.fbProfilePic.image = responseObject;
         NSLog(@"resonse Object %@",responseObject);
 
@@ -539,6 +541,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 _nameLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
+                [_nameLabel startCanvasAnimation];
             });
             
             //play current Match Video
