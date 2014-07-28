@@ -19,4 +19,3 @@
     [(AVPlayerLayer *)[self layer] setPlayer:player];
 }
 @end
-
