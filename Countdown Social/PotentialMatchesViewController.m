@@ -52,10 +52,10 @@
 - (void)viewDidLoad
 {
     //Notification observers for LoadStateChange and FinishPlaying on self.moviePlayer
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(MPMoviePlayerLoadStateDidChange:)
-//                                                 name:MPMoviePlayerNowPlayingMovieDidChangeNotification
-//                                               object:self.moviePlayer];
+    //    [[NSNotificationCenter defaultCenter] addObserver:self
+    //                                             selector:@selector(MPMoviePlayerLoadStateDidChange:)
+    //                                                 name:MPMoviePlayerNowPlayingMovieDidChangeNotification
+    //                                               object:self.moviePlayer];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(videoHasFinishedPlaying:)
                                                  name:MPMoviePlayerPlaybackDidFinishNotification
@@ -204,7 +204,7 @@
     // setting up Gaussian Blur (we could use one of many filters offered by Core Image)
     CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
     [filter setValue:inputImage forKey:kCIInputImageKey];
-    [filter setValue:[NSNumber numberWithFloat:5.0f] forKey:@"inputRadius"];
+    [filter setValue:[NSNumber numberWithFloat:12.0f] forKey:@"inputRadius"];
     CIImage *result = [filter valueForKey:kCIOutputImageKey];
     
     // CIGaussianBlur has a tendency to shrink the image a little,
@@ -223,16 +223,19 @@
 -(void)BlurImage{
     
     //Blur Video Screenshot and add it infront of video
-    // self.blur=[[UIImageView alloc] init];
+    self.darken=[[UIView alloc] initWithFrame:self.moviePlayer.view.frame];
+    self.darken.backgroundColor = [UIColor colorWithRed:34/255.0 green:48/255.0 blue:46/255.0 alpha:1];
+    self.darken.alpha = 0.4;
     [self.blur setImage:_videoImage];
     self.blur.userInteractionEnabled = YES;
     self.blur.frame = self.moviePlayer.view.frame;
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.view addSubview:self.blur];
+        [self.view insertSubview:self.darken aboveSubview:self.blur];
         self.blur.hidden = false;
         self.createMatch.hidden = false;
-        [self.view insertSubview:self.createMatch aboveSubview:self.blur];
+        [self.view insertSubview:self.createMatch aboveSubview:self.darken];
         
     });
     
@@ -445,7 +448,7 @@
     
     PotentialMatches *obj =[PotentialMatches getInstance];
     [obj.passedUsers addObject:currentPotentialMatch];
-
+    
     
     
     
@@ -493,7 +496,7 @@
     NSURL *url = [NSURL URLWithString:picURL];
     NSData *imageData = [NSData dataWithContentsOfURL:url];
     self.fbProfilePic.image = [UIImage imageWithData:imageData];
-
+    
     
     //button matches
     if ([currentMatch objectForKey:@"instagram_username"]) {
@@ -687,13 +690,13 @@
     if (_likeCurrentUser ==FALSE) {
         
         if ([obj.potentialMatches count] >0) {
-            [[obj.potentialMatches objectAtIndex:0] setValue:timeStopped forKey:@"time_remaining"];
-            
+            [currentPotentialMatch setValue:timeStopped forKey:@"time_remaining"];            
         }
     }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     NSLog(@"NSNotification Observer Disappeared");
 }
+
 
 - (void)VideoTimer:(NSTimer *)timer{
     //Initialize CountdownTimer
@@ -706,12 +709,6 @@
         _miniWatchButton.hidden = FALSE;
     }
     
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 

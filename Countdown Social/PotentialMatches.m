@@ -67,7 +67,9 @@
                                                                                completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
                                                                                    NSLog(@"Video Saved at %@",filePath);
                                                                                    [currentPotentialMatch setValue:filePath forKey:@"fileURL"];
+                                                                                   if ([instance.potentialMatches indexOfObject:obj] < [tempPotentialMatches count]){
                                                                                    [tempPotentialMatches replaceObjectAtIndex:[instance.potentialMatches indexOfObject:obj] withObject:currentPotentialMatch];
+                                                                                   }
                                                                                    
                                                                                }];
                 [videoDownload resume];
@@ -121,8 +123,8 @@
             
             NSMutableArray *temppotentialMatchArray1 = [[NSMutableArray alloc]initWithArray:responseObject];
             NSMutableArray *potentialMatchArray = [[NSMutableArray alloc]initWithArray:responseObject];
-            for (NSDictionary *potentialMatch in temppotentialMatchArray1){
-                for (NSDictionary *currentPotenialMatch in instance.potentialMatches){
+            for (NSMutableDictionary *potentialMatch in temppotentialMatchArray1){
+                for (NSMutableDictionary *currentPotenialMatch in instance.potentialMatches){
                     if ([[potentialMatch objectForKey:@"uid"] isEqual:[currentPotenialMatch objectForKey:@"uid"]]) {
                         [potentialMatchArray removeObjectIdenticalTo:potentialMatch];
                         NSLog(@"removed: %@",[potentialMatch objectForKey:@"uid"]);
@@ -132,8 +134,8 @@
             
             NSMutableArray *tempArray = [[NSMutableArray alloc]initWithArray:potentialMatchArray];
                 if ([instance.passedUsers count]>0) {
-                    for ( NSDictionary *passedUser in instance.passedUsers) {
-                    for (NSDictionary *potentialUser in tempArray){
+                    for ( NSMutableDictionary *passedUser in instance.passedUsers) {
+                    for (NSMutableDictionary *potentialUser in tempArray){
                         if ([[passedUser objectForKey:@"uid"] isEqual:[potentialUser objectForKey:@"uid"]]) {
                             [potentialMatchArray removeObjectIdenticalTo:potentialUser];
                             NSLog(@"removed: %@",[potentialUser objectForKey:@"uid"]);
@@ -173,7 +175,10 @@
                                                                                    completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
                                                                                        NSLog(@"Video Saved at %@",filePath);
                                                                                        [currentPotentialMatch setValue:filePath forKey:@"fileURL"];
-                                                                                       [tempPotentialMatches replaceObjectAtIndex:[tempPotentialMatches indexOfObject:obj] withObject:currentPotentialMatch];
+                                                                                       if ([instance.potentialMatches indexOfObject:obj] < [tempPotentialMatches count]){
+                                                                                           [tempPotentialMatches replaceObjectAtIndex:[instance.potentialMatches indexOfObject:obj] withObject:currentPotentialMatch];
+                                                                                       }
+
                                                                                        
                                                                                    }];
                     [videoDownload resume];
