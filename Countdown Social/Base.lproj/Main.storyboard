@@ -930,7 +930,7 @@
         <!--Connection View Controller-->
         <scene sceneID="DOQ-Ms-8zO">
             <objects>
-                <viewController id="8Hi-Dg-d7d" customClass="ConnectionViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ConnectionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8Hi-Dg-d7d" customClass="ConnectionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eZk-I6-m4w"/>
                         <viewControllerLayoutGuide type="bottom" id="mEB-ey-Rfk"/>

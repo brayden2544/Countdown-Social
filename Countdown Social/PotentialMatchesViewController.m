@@ -131,6 +131,7 @@
         currentPotentialMatch =[obj.potentialMatches objectAtIndex:0];
         if ([currentPotentialMatch objectForKey:@"fileURL"]) {
             _loading = FALSE;
+            _likeCurrentUser = FALSE;
             
             //Set text for name label
             _nameLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
@@ -271,7 +272,7 @@
 
 - (IBAction)HoldPlay:(id)sender {
     
-    if( _loading ==FALSE) {
+    if( _loading ==FALSE & _likeCurrentUser ==FALSE) {
         _playButtonHeld = TRUE;
         self.blur.hidden = TRUE;
         self.createMatch.hidden = TRUE;
@@ -487,7 +488,6 @@
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     ViewController *connectionVC = (ViewController*)[storyboard instantiateViewControllerWithIdentifier:@"ConnectionViewController"];
-    
     // present
     [self presentViewController:connectionVC animated:YES completion:nil];
   
@@ -666,13 +666,11 @@
 
 
 -(void)viewDidDisappear:(BOOL)animated{
-    PotentialMatches *obj = [PotentialMatches getInstance];
-    CMTime time = self.moviePlayerView.player.currentItem.currentTime;
-    Float64 time_seconds = CMTimeGetSeconds(time);
-    NSNumber *time_remaining = [[NSNumber alloc]initWithDouble:time_seconds];
     if (_likeCurrentUser ==FALSE) {
-        
-        if ([obj.potentialMatches count] >0) {
+        if ([currentPotentialMatch objectForKey:@"fileURL" ] != [NSNull null]) {
+            CMTime time = self.moviePlayerView.player.currentItem.currentTime;
+            Float64 time_seconds = CMTimeGetSeconds(time);
+            NSNumber *time_remaining = [[NSNumber alloc]initWithDouble:time_seconds];
             [currentPotentialMatch setValue:time_remaining forKey:@"time_remaining"];
         }
     }
@@ -803,7 +801,7 @@
 }
 
 - (IBAction)Like:(id)sender {
-    if ([currentPotentialMatch count] >0){
+
         if ([user objectForKey:@"videoUri"] != [NSNull null]) {
             [self userLike];
             
@@ -816,14 +814,10 @@
                                                   otherButtonTitles:@"Okay", nil];
             [alert show];
         }
-        
-    }
-    else{
-    }
 }
 
 - (IBAction)presentLeftMenu:(id)sender {
-    [self.moviePlayer pause];
+    [self.moviePlayerView.player pause];
     [self.sideMenuViewController presentLeftMenuViewController];
     
 }
