@@ -14,12 +14,7 @@
 #import "RESideMenu/RESideMenu.h"
 
 @interface TwitterViewController ()
-@property(nonatomic, strong) UIWebView *twitterWebView;
-@property(nonatomic, strong) NSString *twitter_username;
-@property(nonatomic, strong) NSString *twitter_id;
-@property(nonatomic, strong) NSString *oauth_consumer_key;
-@property(nonatomic, strong) NSString *oauth_consumer_secret;
-@property(nonatomic, strong) NSString *twitter_access_token;
+
 
 
 
@@ -98,8 +93,6 @@
     } failure:^(NSError *error) {
         NSLog(@"fail %@",error);
     }];
-    
-    
 }
 
 -(void)twitterUsernameUpload

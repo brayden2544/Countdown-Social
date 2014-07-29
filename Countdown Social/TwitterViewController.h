@@ -13,5 +13,12 @@
 @interface TwitterViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIButton *returnToPotentialMatches;
 
+@property(nonatomic, strong) UIWebView *twitterWebView;
+@property(nonatomic, strong) NSString *twitter_username;
+@property(nonatomic, strong) NSString *twitter_id;
+@property(nonatomic, strong) NSString *oauth_consumer_key;
+@property(nonatomic, strong) NSString *oauth_consumer_secret;
+@property(nonatomic, strong) NSString *twitter_access_token;
+
 
 @end

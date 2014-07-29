@@ -11,6 +11,7 @@
 @interface InstagramViewController : UIViewController<UIWebViewDelegate>
 
 @property (strong, nonatomic) NSString *instagram_token;
+@property (strong, nonatomic) NSString *instagram_uid;
 @property (strong, nonatomic) NSString *instagram_username;
 @property (strong, nonatomic) NSString *instagram_code;
 

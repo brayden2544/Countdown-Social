@@ -21,6 +21,7 @@
 @synthesize instagram_token;
 @synthesize instagram_username;
 @synthesize instagram_code;
+@synthesize instagram_uid;
 
 //Shows loading animation while Twitter Page is Loading
 -(void)webViewDidStartLoad:(UIWebView *)webView{
@@ -126,7 +127,8 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
     NSDictionary *params=@{@"instagram_username":instagram_username,
-                           @"instagram_token": instagram_token};    [manager POST:@"http://api-dev.countdownsocial.com/user" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                           @"instagram_token": instagram_token,
+                           @"instagram_uid":instagram_uid};    [manager POST:@"http://api-dev.countdownsocial.com/user" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
         User *Userobj =  [User getInstance];
         Userobj.user = responseObject;
@@ -175,6 +177,7 @@
         
         instagram_token = [responseObject objectForKey:@"access_token"];
         instagram_username = [[responseObject objectForKey:@"user"] objectForKey:@"username"];
+        instagram_uid = [[responseObject objectForKey:@"user"]objectForKey:@"id"];
         
         //Upload new token and username to instagram.
         [self instagramUsernameUpload];
