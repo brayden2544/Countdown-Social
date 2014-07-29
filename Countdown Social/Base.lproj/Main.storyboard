@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -1333,7 +1333,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uJU-st-uiB">
-                                        <rect key="frame" x="15" y="171" width="50" height="50"/>
+                                        <rect key="frame" x="15" y="113" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" backgroundImage="facebook on">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1343,7 +1343,7 @@
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" alpha="0.45000000000000001" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1HH-3M-u4a" userLabel="facebook off">
-                                        <rect key="frame" x="15" y="171" width="50" height="50"/>
+                                        <rect key="frame" x="15" y="113" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" backgroundImage="efacebookcolor">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1353,7 +1353,7 @@
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yav-5r-KU9">
-                                        <rect key="frame" x="255" y="171" width="50" height="50"/>
+                                        <rect key="frame" x="255" y="113" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" backgroundImage="new insta on">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1363,7 +1363,7 @@
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRr-tR-dQr">
-                                        <rect key="frame" x="72" y="195" width="50" height="50"/>
+                                        <rect key="frame" x="72" y="137" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" backgroundImage="phone  on">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1373,7 +1373,7 @@
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" alpha="0.45000000000000001" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SqP-EA-zDg" userLabel="twitter off">
-                                        <rect key="frame" x="198" y="195" width="50" height="50"/>
+                                        <rect key="frame" x="198" y="137" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" backgroundImage="etwittercolor">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1383,7 +1383,7 @@
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m3C-cM-v9r">
-                                        <rect key="frame" x="135" y="206" width="50" height="50"/>
+                                        <rect key="frame" x="135" y="148" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" backgroundImage="snapchat on">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1393,7 +1393,7 @@
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZUs-oH-6zV">
-                                        <rect key="frame" x="198" y="195" width="50" height="50"/>
+                                        <rect key="frame" x="198" y="137" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" backgroundImage="twitter on">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1403,7 +1403,7 @@
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" alpha="0.45000000000000001" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YjA-4L-2uk" userLabel="snapchat off">
-                                        <rect key="frame" x="135" y="206" width="50" height="50"/>
+                                        <rect key="frame" x="135" y="148" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" backgroundImage="esnapcolor">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1413,7 +1413,7 @@
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" alpha="0.45000000000000001" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9gI-sM-az4" userLabel="phone off">
-                                        <rect key="frame" x="72" y="195" width="50" height="50"/>
+                                        <rect key="frame" x="72" y="137" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" backgroundImage="ephonecolor">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1423,7 +1423,7 @@
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" alpha="0.45000000000000001" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eLI-Z2-zUE" userLabel="insta off">
-                                        <rect key="frame" x="255" y="171" width="50" height="50"/>
+                                        <rect key="frame" x="255" y="113" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" backgroundImage="einstacolor">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1433,7 +1433,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" alpha="0.65000000000000002" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KvF-8f-nI2">
-                                        <rect key="frame" x="44" y="264" width="106" height="40"/>
+                                        <rect key="frame" x="44" y="272" width="106" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="23"/>
                                         <state key="normal" title="Pass" backgroundImage="pass">
@@ -1445,7 +1445,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" alpha="0.65000000000000002" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gnw-kh-rU5">
-                                        <rect key="frame" x="182" y="264" width="106" height="40"/>
+                                        <rect key="frame" x="182" y="272" width="106" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="23"/>
                                         <state key="normal" title="Connect" backgroundImage="Like">
@@ -1457,11 +1457,11 @@
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="candidate frame" translatesAutoresizingMaskIntoConstraints="NO" id="wUt-3q-Nsw">
-                                        <rect key="frame" x="95" y="71" width="130" height="130"/>
+                                        <rect key="frame" x="95" y="9" width="130" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SEo-A9-H1O">
-                                        <rect key="frame" x="100" y="76" width="120" height="120"/>
+                                        <rect key="frame" x="100" y="14" width="120" height="120"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <button opaque="NO" alpha="0.45000000000000001" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xRv-wG-8Re">
@@ -1485,10 +1485,10 @@
                                             <segue destination="Qsq-uR-0b2" kind="modal" id="JaL-f5-7ux"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="How would you like to connect with Ashley?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="289" translatesAutoresizingMaskIntoConstraints="NO" id="eM8-I0-xyf">
-                                        <rect key="frame" x="10" y="1" width="289" height="68"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="How would you like to connect with Ashley?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="320" translatesAutoresizingMaskIntoConstraints="NO" id="eM8-I0-xyf">
+                                        <rect key="frame" x="0.0" y="199" width="320" height="68"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="27"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="24"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -1717,8 +1717,8 @@
                                                     <color key="textColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vef-Bw-xgd">
-                                                    <rect key="frame" x="3" y="23" width="10" height="10"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="neworange" translatesAutoresizingMaskIntoConstraints="NO" id="Vef-Bw-xgd">
+                                                    <rect key="frame" x="3" y="25" width="10" height="10"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -3940,6 +3940,7 @@ General Terms and Conditions applicable to Use of a Web Site.
         <image name="minibutton-1" width="14" height="13"/>
         <image name="miniwatch" width="66" height="72"/>
         <image name="new insta on" width="88" height="88"/>
+        <image name="neworange" width="20" height="20"/>
         <image name="orange circle" width="39" height="39"/>
         <image name="paddfacebook" width="212" height="56"/>
         <image name="paddinstagram" width="212" height="56"/>
@@ -3984,6 +3985,6 @@ General Terms and Conditions applicable to Use of a Web Site.
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="jPc-dd-Ek1"/>
-        <segue reference="h4Q-g9-TCr"/>
+        <segue reference="JaL-f5-7ux"/>
     </inferredMetricsTieBreakers>
 </document>
