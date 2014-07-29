@@ -15,6 +15,7 @@
 #import "PotentialMatchesLoadingView.h"
 #import "RESideMenu/RESideMenu.h"
 #import "LeftMenuViewController.h"
+#import "Connection.h"
 
 @interface PotentialMatchesViewController ()
 
@@ -74,7 +75,6 @@
     
     self.moviePlayerView = [[PlayerView alloc]initWithFrame:CGRectMake (0, 100, 320, 320)];
     self.moviePlayerView.player = [[AVPlayer alloc]init];
-    self.moviePlayerView.backgroundColor = [UIColor redColor];
     
     [NSTimer scheduledTimerWithTimeInterval: .05
                                      target: self
@@ -262,6 +262,7 @@
             
         }else{
             [self nextMatch];
+            _likeCurrentUser = FALSE;
         }
     
       }
@@ -464,51 +465,32 @@
             NSLog(@"MATCH");
             currentMatch = [responseObject objectForKey: @"liked_user"];
             [self showMatch];
+            [self.moviePlayerView.player pause];
             
+        }else{
         }
+
     }
           failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
          NSLog(@"Error: %@", error);
      }];
-    
     [self.moviePlayerView.player play];
+
     
 }
 
 -(void)showMatch{
     //Set Connection Message
-    NSString *newConnection = [NSString stringWithFormat:@"It's your lucky day, you've connected with %@" ,[currentMatch objectForKey:@"firstName"]];
+    Connection *obj = [Connection getInstance];
+    obj.connection = currentMatch;
     
-    //Check sex to display message
-    if ([[currentMatch objectForKey:@"gender"] isEqualToString:@"M"]) {
-        
-    }
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ViewController *connectionVC = (ViewController*)[storyboard instantiateViewControllerWithIdentifier:@"ConnectionViewController"];
     
-    //Set Match Image
-    NSString *picURL = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/photo", [currentMatch objectForKey:@"uid"]];
-    NSLog(@"setProfilePicURL:%@",picURL);
-    NSURL *url = [NSURL URLWithString:picURL];
-    NSData *imageData = [NSData dataWithContentsOfURL:url];
-    self.fbProfilePic.image = [UIImage imageWithData:imageData];
-    
-    
-    //button matches
-    if ([currentMatch objectForKey:@"instagram_username"]) {
-        //show insta button
-    }
-    if ([currentMatch objectForKey:@"snapchat_username"]) {
-        //show snap button
-    }
-    if ([currentMatch objectForKey:@"twitter_username"]) {
-        //show twitter button
-    }
-    if ([currentMatch objectForKey:@"phone_number"]) {
-        //show phone button
-    }
-    if ([currentMatch objectForKey:@"facebook_uid"]) {
-        //show insta button
-    }
+    // present
+    [self presentViewController:connectionVC animated:YES completion:nil];
+  
 }
 
 - (void)nextMatch{

@@ -927,10 +927,10 @@
             </objects>
             <point key="canvasLocation" x="750" y="828"/>
         </scene>
-        <!--View Controller-->
+        <!--Connection View Controller-->
         <scene sceneID="DOQ-Ms-8zO">
             <objects>
-                <viewController id="8Hi-Dg-d7d" sceneMemberID="viewController">
+                <viewController id="8Hi-Dg-d7d" customClass="ConnectionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eZk-I6-m4w"/>
                         <viewControllerLayoutGuide type="bottom" id="mEB-ey-Rfk"/>
@@ -995,6 +995,9 @@
                                 <state key="normal" title="Keep Playing" backgroundImage="matched keep playing">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="keepPlayingAction:" destination="8Hi-Dg-d7d" eventType="touchUpInside" id="Z8L-sg-RNO"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="30W-uI-kNo" userLabel="matchresults">
                                 <rect key="frame" x="1" y="307" width="320" height="44"/>
@@ -1006,6 +1009,9 @@
                                         <state key="normal" image="matched phone">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="phoneAction:" destination="8Hi-Dg-d7d" eventType="touchUpInside" id="0Y0-6P-Xbz"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SkI-2S-uPQ" userLabel="facebookbutton">
                                         <rect key="frame" x="176" y="3" width="18" height="36"/>
@@ -1013,6 +1019,9 @@
                                         <state key="normal" image="matched facebook">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="facebookAction:" destination="8Hi-Dg-d7d" eventType="touchUpInside" id="jSq-97-Dea"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcm-oU-XYe" userLabel="snapchatbutton">
                                         <rect key="frame" x="119" y="3" width="38" height="36"/>
@@ -1020,6 +1029,9 @@
                                         <state key="normal" image="matched snapchat">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="snapchatAction:" destination="8Hi-Dg-d7d" eventType="touchUpInside" id="wjI-lI-jqN"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wk2-8e-MbG" userLabel="twitterbutton">
                                         <rect key="frame" x="63" y="3" width="38" height="36"/>
@@ -1027,6 +1039,9 @@
                                         <state key="normal" image="matched twitter">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="twitterAction:" destination="8Hi-Dg-d7d" eventType="touchUpInside" id="vvR-xt-Xg0"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8aF-wl-E9C" userLabel="instagrambutton">
                                         <rect key="frame" x="216" y="3" width="36" height="36"/>
@@ -1034,6 +1049,9 @@
                                         <state key="normal" image="matchedinsta">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="instagramAction:" destination="8Hi-Dg-d7d" eventType="touchUpInside" id="fay-7j-d6P"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WZ4-cx-90V" userLabel="messagebutton">
                                         <rect key="frame" x="271" y="8" width="37" height="34"/>
@@ -1041,6 +1059,9 @@
                                         <state key="normal" image="matchedmessaging">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="messageAction:" destination="8Hi-Dg-d7d" eventType="touchUpInside" id="zdQ-hu-Wxb"/>
+                                        </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="phonefail" translatesAutoresizingMaskIntoConstraints="NO" id="TPM-iF-GaX">
                                         <rect key="frame" x="14" y="3" width="31" height="36"/>
@@ -1128,6 +1149,18 @@
                             <constraint firstItem="6IF-J7-EVI" firstAttribute="leading" secondItem="chb-ii-bUD" secondAttribute="leading" id="wee-4u-Ino"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="checkOutLabel" destination="m7h-wL-F4L" id="JTe-hP-XgP"/>
+                        <outlet property="connectionLabel" destination="15d-Vq-oFT" id="maa-hI-Cjk"/>
+                        <outlet property="facebookButton" destination="SkI-2S-uPQ" id="pQn-dz-WMO"/>
+                        <outlet property="instagrambutton" destination="8aF-wl-E9C" id="Y3x-Tb-cEk"/>
+                        <outlet property="matchProfilePic" destination="Rvz-H6-I90" id="xZc-7k-nWj"/>
+                        <outlet property="messagButton" destination="WZ4-cx-90V" id="dMM-K8-DA0"/>
+                        <outlet property="phoneButton" destination="gnU-Vi-hgz" id="d8W-28-pFu"/>
+                        <outlet property="snapchatButton" destination="wcm-oU-XYe" id="ijF-2J-fNu"/>
+                        <outlet property="twitterButton" destination="wk2-8e-MbG" id="P7j-CG-dwO"/>
+                        <outlet property="userProfilePic" destination="42Z-i0-3ly" id="ikI-ju-iAW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tBh-qw-WNo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
