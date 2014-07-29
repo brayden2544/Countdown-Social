@@ -10,6 +10,7 @@
 #import "ConnectionsList.h"
 #import "ConnectionsCellTableViewCell.h"
 #import "AppDelegate.h"
+#import "Connection.h"
 
 @interface RightMenuViewController ()
 
@@ -116,6 +117,19 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [connections count];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Connection *obj = [Connection getInstance];
+    connection = [connections objectAtIndex:indexPath.row];
+    obj.connection = connection;
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *profileVC = (UIViewController*)[storyboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
+    // present
+    [self presentViewController:profileVC animated:YES completion:nil];
+
 }
 
 @end

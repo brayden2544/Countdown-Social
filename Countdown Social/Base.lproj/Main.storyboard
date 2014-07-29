@@ -612,10 +612,10 @@
             </objects>
             <point key="canvasLocation" x="1867" y="828"/>
         </scene>
-        <!--View Controller-->
+        <!--User Profile View Controller-->
         <scene sceneID="oal-nm-7Av">
             <objects>
-                <viewController id="Qsq-uR-0b2" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserProfileViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Qsq-uR-0b2" customClass="UserProfileViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jwO-Tj-2Kp"/>
                         <viewControllerLayoutGuide type="bottom" id="MDF-9R-GgJ"/>
