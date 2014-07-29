@@ -321,12 +321,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" image="gbg" translatesAutoresizingMaskIntoConstraints="NO" id="XeI-jQ-2XK">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" misplaced="YES" image="gbg" translatesAutoresizingMaskIntoConstraints="NO" id="XeI-jQ-2XK">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="1136"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pwz-bX-hl5">
-                                <rect key="frame" x="0.0" y="0.0" width="322" height="57"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pwz-bX-hl5">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="57"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="location navbar" translatesAutoresizingMaskIntoConstraints="NO" id="ey4-t4-IrG">
@@ -358,7 +358,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="bNw-bM-w6L">
-                                <rect key="frame" x="0.0" y="74" width="322" height="74"/>
+                                <rect key="frame" x="0.0" y="95" width="322" height="74"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location switchbg" translatesAutoresizingMaskIntoConstraints="NO" id="7os-mJ-eI4">
@@ -410,77 +410,66 @@
                                     <constraint firstAttribute="trailing" secondItem="7os-mJ-eI4" secondAttribute="trailing" id="vXm-QG-Sf6"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xTR-3s-dcr">
-                                <rect key="frame" x="0.0" y="166" width="320" height="339"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="308" translatesAutoresizingMaskIntoConstraints="NO" id="fkw-Wb-zt3">
+                                <rect key="frame" x="6" y="188" width="308" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="3Or-F8-l4x"/>
+                                    <constraint firstAttribute="width" constant="308" id="xIi-76-i9X"/>
+                                </constraints>
+                                <string key="text">Traveling? Drop a pin on your destination to enable travel mode. To use your current location, simply flip the switch back to current location.</string>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="13"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="135-bf-8zm">
+                                <rect key="frame" x="32" y="264" width="256" height="256"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="307" translatesAutoresizingMaskIntoConstraints="NO" id="fkw-Wb-zt3">
-                                        <rect key="frame" x="0.0" y="0.0" width="307" height="54"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lbordershadows" translatesAutoresizingMaskIntoConstraints="NO" id="OJ0-zR-iZE">
+                                        <rect key="frame" x="0.0" y="0.0" width="256" height="256"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="54" id="3Or-F8-l4x"/>
+                                            <constraint firstAttribute="height" constant="256" id="tZa-AA-2e0"/>
+                                            <constraint firstAttribute="width" constant="256" id="vm0-tT-Zen"/>
                                         </constraints>
-                                        <string key="text">Traveling? Drop a pin on your destination to enable travel mode. To use your current location, simply flip the switch back to current location.</string>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="13"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="135-bf-8zm">
-                                        <rect key="frame" x="26" y="78" width="256" height="256"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lbordershadows" translatesAutoresizingMaskIntoConstraints="NO" id="OJ0-zR-iZE">
-                                                <rect key="frame" x="0.0" y="0.0" width="256" height="256"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="256" id="tZa-AA-2e0"/>
-                                                    <constraint firstAttribute="width" constant="256" id="vm0-tT-Zen"/>
-                                                </constraints>
-                                            </imageView>
-                                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="4fd-7u-W0K">
-                                                <rect key="frame" x="11" y="11" width="234" height="234"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            </mapView>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="256" id="J8C-Hh-DRu"/>
-                                            <constraint firstItem="OJ0-zR-iZE" firstAttribute="centerX" secondItem="4fd-7u-W0K" secondAttribute="centerX" id="Ptb-Fx-ALd"/>
-                                            <constraint firstItem="OJ0-zR-iZE" firstAttribute="leading" secondItem="135-bf-8zm" secondAttribute="leading" id="Uw3-Jp-5vm"/>
-                                            <constraint firstAttribute="width" constant="256" id="XU1-o5-43f"/>
-                                            <constraint firstItem="4fd-7u-W0K" firstAttribute="top" secondItem="135-bf-8zm" secondAttribute="top" constant="11" id="Xe5-bj-y4h"/>
-                                            <constraint firstItem="OJ0-zR-iZE" firstAttribute="centerY" secondItem="4fd-7u-W0K" secondAttribute="centerY" id="hY1-po-KfO"/>
-                                            <constraint firstItem="OJ0-zR-iZE" firstAttribute="top" secondItem="135-bf-8zm" secondAttribute="top" id="iLH-vg-73n"/>
-                                            <constraint firstItem="4fd-7u-W0K" firstAttribute="leading" secondItem="135-bf-8zm" secondAttribute="leading" constant="11" id="l07-BD-gmX"/>
-                                        </constraints>
-                                    </view>
+                                    </imageView>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="4fd-7u-W0K">
+                                        <rect key="frame" x="11" y="11" width="234" height="234"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    </mapView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="135-bf-8zm" firstAttribute="top" secondItem="fkw-Wb-zt3" secondAttribute="bottom" constant="24" id="32Q-R1-IqZ"/>
-                                    <constraint firstItem="135-bf-8zm" firstAttribute="centerX" secondItem="xTR-3s-dcr" secondAttribute="centerX" constant="-6" id="Apu-0u-GjP"/>
-                                    <constraint firstAttribute="height" constant="339" id="QhU-zC-1IK"/>
-                                    <constraint firstItem="135-bf-8zm" firstAttribute="centerX" secondItem="fkw-Wb-zt3" secondAttribute="centerX" id="cTf-fM-owb"/>
-                                    <constraint firstItem="fkw-Wb-zt3" firstAttribute="leading" secondItem="xTR-3s-dcr" secondAttribute="leading" id="d07-kM-W4F"/>
-                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="135-bf-8zm" secondAttribute="bottom" priority="750" constant="4" id="eUf-98-uMl"/>
-                                    <constraint firstItem="fkw-Wb-zt3" firstAttribute="top" secondItem="xTR-3s-dcr" secondAttribute="top" id="iOy-ng-4JW"/>
+                                    <constraint firstAttribute="height" constant="256" id="J8C-Hh-DRu"/>
+                                    <constraint firstItem="OJ0-zR-iZE" firstAttribute="centerX" secondItem="4fd-7u-W0K" secondAttribute="centerX" id="Ptb-Fx-ALd"/>
+                                    <constraint firstItem="OJ0-zR-iZE" firstAttribute="leading" secondItem="135-bf-8zm" secondAttribute="leading" id="Uw3-Jp-5vm"/>
+                                    <constraint firstAttribute="width" constant="256" id="XU1-o5-43f"/>
+                                    <constraint firstItem="4fd-7u-W0K" firstAttribute="top" secondItem="135-bf-8zm" secondAttribute="top" constant="11" id="Xe5-bj-y4h"/>
+                                    <constraint firstItem="OJ0-zR-iZE" firstAttribute="centerY" secondItem="4fd-7u-W0K" secondAttribute="centerY" id="hY1-po-KfO"/>
+                                    <constraint firstItem="OJ0-zR-iZE" firstAttribute="top" secondItem="135-bf-8zm" secondAttribute="top" id="iLH-vg-73n"/>
+                                    <constraint firstItem="4fd-7u-W0K" firstAttribute="leading" secondItem="135-bf-8zm" secondAttribute="leading" constant="11" id="l07-BD-gmX"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="xTR-3s-dcr" secondAttribute="trailing" id="1gg-wX-KQF"/>
+                            <constraint firstItem="135-bf-8zm" firstAttribute="top" relation="greaterThanOrEqual" secondItem="fkw-Wb-zt3" secondAttribute="bottom" constant="16" id="4rf-64-OY8"/>
                             <constraint firstItem="bNw-bM-w6L" firstAttribute="top" relation="greaterThanOrEqual" secondItem="pwz-bX-hl5" secondAttribute="bottom" id="6No-Vi-dNM"/>
-                            <constraint firstItem="oRe-Aq-ffg" firstAttribute="top" relation="greaterThanOrEqual" secondItem="xTR-3s-dcr" secondAttribute="bottom" constant="2" id="8R2-de-UQK"/>
+                            <constraint firstAttribute="trailing" secondItem="fkw-Wb-zt3" secondAttribute="trailing" constant="6" id="8kg-MR-bjH"/>
                             <constraint firstAttribute="trailing" secondItem="bNw-bM-w6L" secondAttribute="trailing" constant="-2" id="9JD-8H-vKe"/>
+                            <constraint firstItem="fkw-Wb-zt3" firstAttribute="top" relation="greaterThanOrEqual" secondItem="bNw-bM-w6L" secondAttribute="bottom" constant="11" id="F1p-ng-LCf"/>
                             <constraint firstItem="pwz-bX-hl5" firstAttribute="trailing" secondItem="bNw-bM-w6L" secondAttribute="trailing" id="FHb-wJ-8KH"/>
                             <constraint firstItem="pwz-bX-hl5" firstAttribute="top" secondItem="XeI-jQ-2XK" secondAttribute="top" id="LTP-XK-USU"/>
+                            <constraint firstAttribute="trailing" secondItem="135-bf-8zm" secondAttribute="trailing" constant="32" id="MMu-Po-IMz"/>
                             <constraint firstItem="bNw-bM-w6L" firstAttribute="leading" secondItem="XeI-jQ-2XK" secondAttribute="leading" id="N4G-63-5V8"/>
-                            <constraint firstItem="bNw-bM-w6L" firstAttribute="top" secondItem="pwz-bX-hl5" secondAttribute="bottom" priority="247" constant="17" id="Rdh-To-7LY"/>
+                            <constraint firstItem="135-bf-8zm" firstAttribute="leading" secondItem="M1P-aa-0bL" secondAttribute="leading" constant="32" id="TMO-Lq-ABb"/>
                             <constraint firstItem="pwz-bX-hl5" firstAttribute="leading" secondItem="bNw-bM-w6L" secondAttribute="leading" id="VP0-Wo-CtW"/>
-                            <constraint firstItem="xTR-3s-dcr" firstAttribute="top" secondItem="bNw-bM-w6L" secondAttribute="bottom" priority="246" constant="18" id="X4e-mQ-ISP"/>
-                            <constraint firstItem="xTR-3s-dcr" firstAttribute="top" relation="greaterThanOrEqual" secondItem="bNw-bM-w6L" secondAttribute="bottom" constant="2" id="d7p-as-ehr"/>
-                            <constraint firstItem="bNw-bM-w6L" firstAttribute="leading" secondItem="xTR-3s-dcr" secondAttribute="leading" id="ey2-0M-r9g"/>
-                            <constraint firstItem="xTR-3s-dcr" firstAttribute="trailing" secondItem="XeI-jQ-2XK" secondAttribute="trailing" id="iRa-Y0-yBx"/>
-                            <constraint firstItem="oRe-Aq-ffg" firstAttribute="top" secondItem="xTR-3s-dcr" secondAttribute="bottom" priority="251" constant="63" id="teg-Nj-cSE"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="135-bf-8zm" secondAttribute="bottom" constant="8" id="WWN-dV-APY"/>
+                            <constraint firstItem="fkw-Wb-zt3" firstAttribute="top" secondItem="bNw-bM-w6L" secondAttribute="bottom" priority="750" constant="19" id="asN-hd-1df"/>
+                            <constraint firstItem="bNw-bM-w6L" firstAttribute="top" secondItem="pwz-bX-hl5" secondAttribute="bottom" priority="750" constant="38" id="hBf-0Y-yen"/>
+                            <constraint firstAttribute="bottom" secondItem="135-bf-8zm" secondAttribute="bottom" priority="750" constant="48" id="l1w-Aa-DsV"/>
+                            <constraint firstItem="fkw-Wb-zt3" firstAttribute="leading" secondItem="M1P-aa-0bL" secondAttribute="leading" constant="6" id="l1z-d0-dqi"/>
+                            <constraint firstItem="135-bf-8zm" firstAttribute="top" secondItem="fkw-Wb-zt3" secondAttribute="bottom" priority="750" constant="22" id="sch-ZZ-A9O"/>
                             <constraint firstItem="pwz-bX-hl5" firstAttribute="top" secondItem="M1P-aa-0bL" secondAttribute="top" id="uEN-Of-MoP"/>
                             <constraint firstItem="bNw-bM-w6L" firstAttribute="leading" secondItem="M1P-aa-0bL" secondAttribute="leading" id="vln-Ln-mxC"/>
                         </constraints>
