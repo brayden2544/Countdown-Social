@@ -820,23 +820,23 @@
                                         <rect key="frame" x="270" y="190" width="28" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="efacebookcolor" translatesAutoresizingMaskIntoConstraints="NO" id="qU3-3r-pet">
+                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tefacebook" translatesAutoresizingMaskIntoConstraints="NO" id="qU3-3r-pet">
                                         <rect key="frame" x="16" y="10" width="36" height="36"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
-                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="etwittercolor" translatesAutoresizingMaskIntoConstraints="NO" id="AF8-uY-hAn">
+                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tewitter" translatesAutoresizingMaskIntoConstraints="NO" id="AF8-uY-hAn">
                                         <rect key="frame" x="16" y="54" width="36" height="36"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
-                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="einstacolor" translatesAutoresizingMaskIntoConstraints="NO" id="0Zv-zM-8T6">
+                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="teinstagram" translatesAutoresizingMaskIntoConstraints="NO" id="0Zv-zM-8T6">
                                         <rect key="frame" x="16" y="98" width="36" height="36"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
-                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="esnapcolor" translatesAutoresizingMaskIntoConstraints="NO" id="nso-9O-BOq">
+                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tesnapchat" translatesAutoresizingMaskIntoConstraints="NO" id="nso-9O-BOq">
                                         <rect key="frame" x="16" y="142" width="36" height="36"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
-                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ephonecolor" translatesAutoresizingMaskIntoConstraints="NO" id="aqV-lj-Z6c">
+                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tephone" translatesAutoresizingMaskIntoConstraints="NO" id="aqV-lj-Z6c">
                                         <rect key="frame" x="16" y="186" width="36" height="36"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
@@ -1382,7 +1382,7 @@
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uJU-st-uiB">
                                         <rect key="frame" x="15" y="113" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="facebook on">
+                                        <state key="normal" backgroundImage="tfacebook">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -1392,7 +1392,7 @@
                                     <button hidden="YES" opaque="NO" alpha="0.45000000000000001" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1HH-3M-u4a" userLabel="facebook off">
                                         <rect key="frame" x="15" y="113" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="efacebookcolor">
+                                        <state key="normal" backgroundImage="tefacebook">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -1402,7 +1402,7 @@
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yav-5r-KU9">
                                         <rect key="frame" x="255" y="113" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="new insta on">
+                                        <state key="normal" backgroundImage="tinstagram">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -1412,7 +1412,7 @@
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRr-tR-dQr">
                                         <rect key="frame" x="72" y="137" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="phone  on">
+                                        <state key="normal" backgroundImage="tphone">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -1422,7 +1422,7 @@
                                     <button hidden="YES" opaque="NO" alpha="0.45000000000000001" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SqP-EA-zDg" userLabel="twitter off">
                                         <rect key="frame" x="198" y="137" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="etwittercolor">
+                                        <state key="normal" backgroundImage="tewitter">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -1432,7 +1432,7 @@
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m3C-cM-v9r">
                                         <rect key="frame" x="135" y="148" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="snapchat on">
+                                        <state key="normal" backgroundImage="tsnapchat">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -1442,7 +1442,7 @@
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZUs-oH-6zV">
                                         <rect key="frame" x="198" y="137" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="twitter on">
+                                        <state key="normal" backgroundImage="ttwitter">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -1452,7 +1452,7 @@
                                     <button hidden="YES" opaque="NO" alpha="0.45000000000000001" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YjA-4L-2uk" userLabel="snapchat off">
                                         <rect key="frame" x="135" y="148" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="esnapcolor">
+                                        <state key="normal" backgroundImage="tesnapchat">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -1462,7 +1462,7 @@
                                     <button hidden="YES" opaque="NO" alpha="0.45000000000000001" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9gI-sM-az4" userLabel="phone off">
                                         <rect key="frame" x="72" y="137" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="ephonecolor">
+                                        <state key="normal" backgroundImage="tephone">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -1472,7 +1472,7 @@
                                     <button hidden="YES" opaque="NO" alpha="0.45000000000000001" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eLI-Z2-zUE" userLabel="insta off">
                                         <rect key="frame" x="255" y="113" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="einstacolor">
+                                        <state key="normal" backgroundImage="teinstagram">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -1503,7 +1503,7 @@
                                             <action selector="Like:" destination="QP0-wH-HVL" eventType="touchUpInside" id="5Xn-MK-u4q"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="candidate frame" translatesAutoresizingMaskIntoConstraints="NO" id="wUt-3q-Nsw">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tcandidateframe" translatesAutoresizingMaskIntoConstraints="NO" id="wUt-3q-Nsw">
                                         <rect key="frame" x="95" y="9" width="130" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -1722,53 +1722,80 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="pjV-MJ-RqC">
-                                <rect key="frame" x="99" y="77" width="206" height="462"/>
+                                <rect key="frame" x="94" y="77" width="219" height="462"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="44" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="connectionCell" rowHeight="60" id="uPh-M0-mqb" customClass="ConnectionsCellTableViewCell">
-                                        <rect key="frame" x="0.0" y="22" width="206" height="60"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="connectionCell" rowHeight="72" id="uPh-M0-mqb" customClass="ConnectionsCellTableViewCell">
+                                        <rect key="frame" x="0.0" y="22" width="219" height="72"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uPh-M0-mqb" id="prx-uE-2Ec">
-                                            <rect key="frame" x="0.0" y="0.0" width="206" height="59"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="219" height="71"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tphone" translatesAutoresizingMaskIntoConstraints="NO" id="qJM-wW-QsS">
-                                                    <rect key="frame" x="69" y="30" width="24" height="24"/>
+                                                    <rect key="frame" x="69" y="32" width="24" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tephone" translatesAutoresizingMaskIntoConstraints="NO" id="7NE-pa-tBh">
+                                                    <rect key="frame" x="69" y="32" width="24" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tfacebook" translatesAutoresizingMaskIntoConstraints="NO" id="gch-AL-lk5">
-                                                    <rect key="frame" x="95" y="30" width="24" height="24"/>
+                                                    <rect key="frame" x="95" y="32" width="24" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tefacebook" translatesAutoresizingMaskIntoConstraints="NO" id="IW8-Oj-2Jb">
+                                                    <rect key="frame" x="95" y="32" width="24" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tsnapchat" translatesAutoresizingMaskIntoConstraints="NO" id="IYT-Ex-0NM">
-                                                    <rect key="frame" x="122" y="30" width="24" height="24"/>
+                                                    <rect key="frame" x="122" y="32" width="24" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tesnapchat" translatesAutoresizingMaskIntoConstraints="NO" id="O0V-0R-okQ">
+                                                    <rect key="frame" x="122" y="32" width="24" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ttwitter" translatesAutoresizingMaskIntoConstraints="NO" id="GOb-Jr-Fy5">
-                                                    <rect key="frame" x="149" y="30" width="24" height="24"/>
+                                                    <rect key="frame" x="149" y="32" width="24" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tewitter" translatesAutoresizingMaskIntoConstraints="NO" id="bqN-P3-D3K">
+                                                    <rect key="frame" x="149" y="32" width="24" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tinstagram" translatesAutoresizingMaskIntoConstraints="NO" id="aWe-rj-lys">
-                                                    <rect key="frame" x="176" y="30" width="24" height="24"/>
+                                                    <rect key="frame" x="176" y="32" width="24" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="teinstagram" translatesAutoresizingMaskIntoConstraints="NO" id="65h-w8-Myu">
+                                                    <rect key="frame" x="176" y="32" width="24" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ppic" translatesAutoresizingMaskIntoConstraints="NO" id="eGS-Pi-yE5">
-                                                    <rect key="frame" x="17" y="7" width="47" height="47"/>
+                                                    <rect key="frame" x="13" y="4" width="52" height="52"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rodney" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ak1-JY-FBp">
-                                                    <rect key="frame" x="70" y="6" width="125" height="24"/>
+                                                    <rect key="frame" x="70" y="-4" width="129" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
                                                     <color key="textColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="neworange" translatesAutoresizingMaskIntoConstraints="NO" id="Vef-Bw-xgd">
-                                                    <rect key="frame" x="3" y="25" width="10" height="10"/>
+                                                    <rect key="frame" x="0.0" y="25" width="10" height="10"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Matched 7/28" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YvC-sD-xx0">
+                                                    <rect key="frame" x="70" y="14" width="90" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="14"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1790,7 +1817,7 @@
                                 </connections>
                             </tableView>
                             <searchBar contentMode="redraw" fixedFrame="YES" barStyle="black" placeholder="Search Connections" translatesAutoresizingMaskIntoConstraints="NO" id="vN2-fl-iNm">
-                                <rect key="frame" x="97" y="33" width="208" height="44"/>
+                                <rect key="frame" x="88" y="33" width="208" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -3947,14 +3974,11 @@ General Terms and Conditions applicable to Use of a Web Site.
         <image name="back button" width="100" height="100"/>
         <image name="camera record" width="211" height="134"/>
         <image name="camera1" width="199" height="131"/>
-        <image name="candidate frame" width="260" height="260"/>
         <image name="chatsky" width="90" height="90"/>
-        <image name="efacebookcolor" width="122" height="121"/>
         <image name="einstacolor" width="124" height="123"/>
         <image name="ephonecolor" width="123" height="123"/>
         <image name="esnapcolor" width="123" height="123"/>
         <image name="etwittercolor" width="121" height="121"/>
-        <image name="facebook on" width="94" height="93"/>
         <image name="facebookfail" width="36" height="73"/>
         <image name="fbLogin.png" width="1212" height="196"/>
         <image name="gbg" width="640" height="1136"/>
@@ -3987,7 +4011,6 @@ General Terms and Conditions applicable to Use of a Web Site.
         <image name="me circle" width="326" height="326"/>
         <image name="minibutton-1" width="14" height="13"/>
         <image name="miniwatch" width="66" height="72"/>
-        <image name="new insta on" width="88" height="88"/>
         <image name="newmessage" width="90" height="90"/>
         <image name="neworange" width="20" height="20"/>
         <image name="orange circle" width="39" height="39"/>
@@ -3999,7 +4022,6 @@ General Terms and Conditions applicable to Use of a Web Site.
         <image name="pdividerline" width="523" height="3"/>
         <image name="pfacebookadded" width="212" height="55"/>
         <image name="pgradient" width="683" height="671"/>
-        <image name="phone  on" width="93" height="93"/>
         <image name="phone account on" width="123" height="123"/>
         <image name="phonefail" width="61" height="70"/>
         <image name="pinstagramadded" width="212" height="55"/>
@@ -4016,18 +4038,22 @@ General Terms and Conditions applicable to Use of a Web Site.
         <image name="requested button" width="212" height="54"/>
         <image name="settings final" width="418" height="85"/>
         <image name="snapchat account on" width="123" height="123"/>
-        <image name="snapchat on" width="94" height="94"/>
         <image name="snapchat set button" width="256" height="86"/>
         <image name="snapchatfail" width="83" height="73"/>
+        <image name="tcandidateframe" width="260" height="260"/>
+        <image name="tefacebook" width="74" height="74"/>
+        <image name="teinstagram" width="74" height="74"/>
+        <image name="tephone" width="74" height="74"/>
+        <image name="tesnapchat" width="74" height="74"/>
         <image name="test blurred" width="640" height="1136"/>
-        <image name="tfacebook" width="72" height="72"/>
+        <image name="tewitter" width="74" height="74"/>
+        <image name="tfacebook" width="74" height="74"/>
         <image name="thematchgradient" width="649" height="1088"/>
         <image name="tinstagram" width="74" height="74"/>
-        <image name="tphone" width="72" height="72"/>
+        <image name="tphone" width="74" height="74"/>
         <image name="tsnapchat" width="74" height="74"/>
         <image name="ttwitter" width="74" height="74"/>
         <image name="twitter account on" width="121" height="122"/>
-        <image name="twitter on" width="94" height="94"/>
         <image name="twitterfail" width="82" height="73"/>
         <image name="unlockbtn" width="172" height="56"/>
         <image name="white camera" width="200" height="132"/>
@@ -4038,7 +4064,7 @@ General Terms and Conditions applicable to Use of a Web Site.
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="h4Q-g9-TCr"/>
         <segue reference="jPc-dd-Ek1"/>
-        <segue reference="JaL-f5-7ux"/>
     </inferredMetricsTieBreakers>
 </document>
