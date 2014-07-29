@@ -17,6 +17,7 @@
 		6E50A475192D86FB00930D02 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E50A474192D86FB00930D02 /* MenuViewController.m */; };
 		6E50A477192D977300930D02 /* Stars.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E50A476192D977300930D02 /* Stars.png */; };
 		6E6FC1DB198715E60045CC90 /* ConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6FC1DA198715E60045CC90 /* ConnectionViewController.m */; };
+		6E6FC1DE1987360F0045CC90 /* ConnectionsList.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6FC1DD1987360F0045CC90 /* ConnectionsList.m */; };
 		6E7691CA195387DA006CA5DB /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E7691C9195387DA006CA5DB /* FacebookSDK.framework */; };
 		6E7691CD195398ED006CA5DB /* PotentialMatches.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E7691CC195398ED006CA5DB /* PotentialMatches.m */; };
 		6E886A44190DB575009E5A92 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E886A43190DB575009E5A92 /* LoginViewController.m */; };
@@ -193,6 +194,8 @@
 		6E50A476192D977300930D02 /* Stars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stars.png; sourceTree = "<group>"; };
 		6E6FC1D9198715E60045CC90 /* ConnectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionViewController.h; sourceTree = "<group>"; };
 		6E6FC1DA198715E60045CC90 /* ConnectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionViewController.m; sourceTree = "<group>"; };
+		6E6FC1DC1987360F0045CC90 /* ConnectionsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionsList.h; sourceTree = "<group>"; };
+		6E6FC1DD1987360F0045CC90 /* ConnectionsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionsList.m; sourceTree = "<group>"; };
 		6E7691C9195387DA006CA5DB /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		6E7691CB195398ED006CA5DB /* PotentialMatches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PotentialMatches.h; sourceTree = "<group>"; };
 		6E7691CC195398ED006CA5DB /* PotentialMatches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PotentialMatches.m; sourceTree = "<group>"; };
@@ -667,6 +670,8 @@
 				6EFC0E92198326A100ED7CB2 /* Connection.m */,
 				6E92DFF2196217AD009ECE27 /* VideoPath.h */,
 				6E92DFF3196217AD009ECE27 /* VideoPath.m */,
+				6E6FC1DC1987360F0045CC90 /* ConnectionsList.h */,
+				6E6FC1DD1987360F0045CC90 /* ConnectionsList.m */,
 			);
 			name = Singletons;
 			sourceTree = "<group>";
@@ -1191,6 +1196,7 @@
 				6EFC0E7D19818F4A00ED7CB2 /* JSQMessagesCollectionViewCellOutgoing.m in Sources */,
 				6ECDEA9A1974791800B06130 /* AFSecurityPolicy.m in Sources */,
 				6E886A4E190E05AC009E5A92 /* SetLocationViewController.m in Sources */,
+				6E6FC1DE1987360F0045CC90 /* ConnectionsList.m in Sources */,
 				6ECDEA9D1974791800B06130 /* AFURLResponseSerialization.m in Sources */,
 				6EFC0E6F19818F4A00ED7CB2 /* JSQMessagesViewController.m in Sources */,
 				6EC585491975BE21008DDFFA /* PotentialMatchesLoadingView.m in Sources */,

@@ -1653,7 +1653,17 @@
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="ConnectionsTableCell" destination="uPh-M0-mqb" id="ygV-qf-HZF"/>
+                        <outlet property="ConnectionsTableView" destination="pjV-MJ-RqC" id="NPv-db-HNJ"/>
+                        <outlet property="facebook" destination="gch-AL-lk5" id="Qxk-5E-x3T"/>
+                        <outlet property="instagram" destination="aWe-rj-lys" id="9vD-8J-JHy"/>
+                        <outlet property="nameLabel" destination="ak1-JY-FBp" id="6KA-tX-eYr"/>
+                        <outlet property="notification" destination="Vef-Bw-xgd" id="CsV-ny-mpI"/>
+                        <outlet property="phone" destination="qJM-wW-QsS" id="Yug-54-IuU"/>
+                        <outlet property="profilePicture" destination="eGS-Pi-yE5" id="zqG-ZL-igz"/>
                         <outlet property="searchDisplayController" destination="Gv6-2S-TDX" id="zpg-WB-JjP"/>
+                        <outlet property="snapchat" destination="IYT-Ex-0NM" id="UTZ-oq-ei2"/>
+                        <outlet property="twitter" destination="GOb-Jr-Fy5" id="qAI-TR-MzW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vCw-SZ-uZi" userLabel="First Responder" sceneMemberID="firstResponder"/>

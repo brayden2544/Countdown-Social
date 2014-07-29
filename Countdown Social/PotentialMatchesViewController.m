@@ -467,12 +467,13 @@
             currentMatch = [responseObject objectForKey: @"liked_user"];
             [self showMatch];
             [self.moviePlayerView.player pause];
+            [self nextMatch];
             
         }else{
         }
 
     }
-          failure:^(AFHTTPRequestOperation *operation, NSError *error)
+          failure:^(AFHTTPRequestOperation *operation,  NSError *error)
      {
          NSLog(@"Error: %@", error);
      }];
@@ -667,7 +668,7 @@
 
 -(void)viewDidDisappear:(BOOL)animated{
     if (_likeCurrentUser ==FALSE) {
-        if ([currentPotentialMatch objectForKey:@"fileURL" ] != [NSNull null]) {
+        if ([currentPotentialMatch objectForKey:@"fileURL" ]) {
             CMTime time = self.moviePlayerView.player.currentItem.currentTime;
             Float64 time_seconds = CMTimeGetSeconds(time);
             NSNumber *time_remaining = [[NSNumber alloc]initWithDouble:time_seconds];

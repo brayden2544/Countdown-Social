@@ -7,6 +7,7 @@
 //
 
 #import "ConnectionViewController.h"
+#import "JSQMessagesViewController.h"
 #import "Connection.h"
 #import "AppDelegate.h"
 #import "User.h"
@@ -138,6 +139,8 @@
 }
 
 - (IBAction)messageAction:(id)sender {
+    JSQMessagesViewController *messages = [[JSQMessagesViewController alloc]init];
+    [self presentViewController:messages animated:YES completion:nil];
 }
 
 - (IBAction)keepPlayingAction:(id)sender {

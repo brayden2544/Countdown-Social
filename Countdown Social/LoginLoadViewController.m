@@ -14,6 +14,7 @@
 #import "PotentialMatches.h"
 #import "User.h"
 #import "RESideMenu/RESideMenu.h"
+#import "ConnectionsList.h"
 
 @interface LoginLoadViewController ()
 
@@ -167,6 +168,7 @@
 - (void) getPotentialMatches
 {
     [PotentialMatches getInstance];
+    [ConnectionsList getInstance];
 }
 
 - (void)successfulLogin
