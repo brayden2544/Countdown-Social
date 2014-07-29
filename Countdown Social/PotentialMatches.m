@@ -45,7 +45,7 @@
             NSLog(@"JSON: %@", responseObject);
             NSMutableArray *potentialMatchesArray = responseObject;
             [instance.potentialMatches addObjectsFromArray:potentialMatchesArray];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSuccessful" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"ConnectionsLoaded" object:nil];
             
             //For loop to iterate through array
             NSMutableArray *tempPotentialMatches = [[NSMutableArray alloc]initWithArray:instance.potentialMatches];

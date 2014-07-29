@@ -126,6 +126,10 @@
                                              selector:@selector (getPotentialMatches)
                                                  name:@"UpdateLocationCompleted"
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector (getConnectionsList)
+                                                 name:@"ConnectionsLoaded"
+                                               object:nil];
     //Gets current Location of User
     [self getUserObject];
     
@@ -168,6 +172,9 @@
 - (void) getPotentialMatches
 {
     [PotentialMatches getInstance];
+}
+
+- (void) getConnectionsList{
     [ConnectionsList getInstance];
 }
 

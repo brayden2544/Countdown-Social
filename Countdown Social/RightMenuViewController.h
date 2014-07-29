@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ConnectionsCellTableViewCell.h"
 
-@interface RightMenuViewController : UIViewController
+@interface RightMenuViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *ConnectionsTableView;
+@property (strong, nonatomic) IBOutlet ConnectionsCellTableViewCell *connectionstableviewcell;
 
 
 @property (strong, nonatomic) NSMutableArray *connections;
+@property (strong, nonatomic) NSDictionary *connection;
+
 
 
 

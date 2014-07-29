@@ -199,8 +199,8 @@
     //set size limitations of current potential match
     self.fbProfilePic.layer.cornerRadius = self.fbProfilePic.frame.size.height/2;
     self.fbProfilePic.layer.masksToBounds = YES;
-    self.fbProfilePic.layer.borderColor = [UIColor colorWithRed:248 green:248 blue:248 alpha:0.4].CGColor;
-    self.fbProfilePic.layer.borderWidth = 2.0f;
+//    self.fbProfilePic.layer.borderColor = [UIColor colorWithRed:248 green:248 blue:248 alpha:0.4].CGColor;
+//    self.fbProfilePic.layer.borderWidth = 2.0f;
     
 }
 
