@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -612,6 +612,25 @@
             </objects>
             <point key="canvasLocation" x="1867" y="828"/>
         </scene>
+        <!--Messages View Controller - Title-->
+        <scene sceneID="VmZ-Gm-H6T">
+            <objects>
+                <viewController restorationIdentifier="MessagesViewController" storyboardIdentifier="MessagesViewController" id="qPd-Gg-eH8" customClass="MessagesViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="p1k-7q-PEj"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ndv-95-Ykk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1ln-DP-YeC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="L9T-uX-d26"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yFO-bC-E5S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2234" y="932"/>
+        </scene>
         <!--User Profile View Controller-->
         <scene sceneID="oal-nm-7Av">
             <objects>
@@ -686,6 +705,9 @@
                                         <state key="normal" title="Button" image="newmessage">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="goToMessaging:" destination="Qsq-uR-0b2" eventType="touchUpInside" id="omC-eu-xCp"/>
+                                        </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fib-Ex-FsO">
                                         <rect key="frame" x="260" y="150" width="45" height="45"/>
@@ -698,7 +720,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="goToMessaging:" destination="Qsq-uR-0b2" eventType="touchUpInside" id="uUe-h4-wex"/>
+                                            <action selector="goToMessaging:" destination="Qsq-uR-0b2" eventType="touchUpInside" id="of7-XN-Y10"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="53J-ky-I5c">
@@ -4020,10 +4042,10 @@ General Terms and Conditions applicable to Use of a Web Site.
         <image name="snapchat set button" width="256" height="86"/>
         <image name="snapchatfail" width="83" height="73"/>
         <image name="test blurred" width="640" height="1136"/>
-        <image name="tfacebook" width="72" height="72"/>
+        <image name="tfacebook" width="74" height="74"/>
         <image name="thematchgradient" width="649" height="1088"/>
         <image name="tinstagram" width="74" height="74"/>
-        <image name="tphone" width="72" height="72"/>
+        <image name="tphone" width="74" height="74"/>
         <image name="tsnapchat" width="74" height="74"/>
         <image name="ttwitter" width="74" height="74"/>
         <image name="twitter account on" width="121" height="122"/>

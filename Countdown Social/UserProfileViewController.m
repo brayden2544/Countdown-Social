@@ -11,8 +11,7 @@
 #import  "User.h"
 #import "AppDelegate.h"
 #import "AFNetworking/AFOAuth1Client.h"
-#import "JSQMessagesViewController.h"
-
+#import "MessagesViewController.h"
 @interface UserProfileViewController ()
 @property NSDictionary *user;
 @property NSDictionary *connection;
@@ -38,6 +37,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationController.navigationBarHidden = NO;
     Connection *obj = [Connection getInstance];
     connection = [obj.connection objectForKey:@"liked_user"];
     
@@ -195,12 +195,12 @@
     self.instagramProfile.hidden = FALSE;
     self.instagramProfile.enabled = TRUE;
     NSString *instaUrl = [NSString stringWithFormat:@"https://api.instagram.com/v1/users/%@/relationship?/access_token=%@", [connection objectForKey:@"instagram_uid"], [user objectForKey:@"instagram_token"]];
-    [manager GET:instaUrl parameters:@{} success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                         NSLog(@"resonse Object %@",responseObject);
-                                         
-                                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                         NSLog(@"Photo failed to load%@",error);
-                                     }];
+//    [manager GET:instaUrl parameters:@{} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//                                         NSLog(@"resonse Object %@",responseObject);
+//                                         
+//                                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//                                         NSLog(@"Photo failed to load%@",error);
+//                                     }];
 
 }
 
@@ -211,8 +211,10 @@
 }
 
 - (IBAction)goToMessaging:(id)sender {
-    JSQMessagesViewController *messages = [[JSQMessagesViewController alloc]init];
-    [self presentViewController:messages animated:YES completion:nil];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *messagingVC = (UIViewController*)[storyboard instantiateViewControllerWithIdentifier:@"MessagesViewController"];
+    // present
+    [self presentViewController:messagingVC animated:YES completion:nil];
 }
 
 - (IBAction)goToUserVideo:(id)sender {
