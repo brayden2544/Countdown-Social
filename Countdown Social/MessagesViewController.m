@@ -83,7 +83,7 @@
                                          NSLog(@"resonse Object %@",responseObject);
         self.messages = [[NSMutableArray alloc]init];
         for (NSDictionary *messageContent in responseObject ) {
-            JSQMessage *message = [[JSQMessage alloc] initWithText:[messageContent objectForKey:@"content"] sender:[messageContent objectForKey:@"from_user_id"] date:[NSDate dateWithTimeIntervalSince1970:[[messageContent objectForKey:@"date_time"]doubleValue]]];
+            JSQMessage *message = [[JSQMessage alloc] initWithText:[messageContent objectForKey:@"content"] sender:[messageContent objectForKey:@"from_user_id"] date:[NSDate dateWithTimeIntervalSince1970:[[messageContent objectForKey:@"date_time"]doubleValue]/1000]];
 
             [self.messages addObject:message];
         }
@@ -177,7 +177,7 @@
     [manager GET:messageURL parameters:@{} success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSMutableArray *tempMessages = [[NSMutableArray alloc]init];
         for (NSDictionary *messageContent in responseObject ) {
-            JSQMessage *message = [[JSQMessage alloc] initWithText:[messageContent objectForKey:@"content"] sender:[messageContent objectForKey:@"from_user_id"] date:[NSDate dateWithTimeIntervalSince1970:[[messageContent objectForKey:@"date_time"]doubleValue]]];
+            JSQMessage *message = [[JSQMessage alloc] initWithText:[messageContent objectForKey:@"content"] sender:[messageContent objectForKey:@"from_user_id"] date:[NSDate dateWithTimeIntervalSince1970:[[messageContent objectForKey:@"date_time"]doubleValue]/1000]];
             [tempMessages addObject:message];
         }
         NSMutableArray *newMessageArray = [[NSMutableArray alloc]initWithArray:tempMessages];
@@ -190,7 +190,6 @@
         }
         if ([newMessageArray count]>0) {
             [self.messages addObjectsFromArray:newMessageArray];
-            [self.collectionView reloadData];
             [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
             [self finishReceivingMessage];
             NSLog(@"New Messages");
@@ -203,7 +202,8 @@
     }];
 
     NSString *typingUrl = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/message/typing", [connection objectForKey:@"uid"]];
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.responseSerializer = [AFXMLParserResponseSerializer serializer];
+    //[manager.responseSerializer setAcceptableContentTypes:[NSSet setWithObject:@"text/plain"]];
     [manager GET:typingUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"User is/isn't typing %@",responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
