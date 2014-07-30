@@ -8,15 +8,18 @@
 
 #import "MessagesViewController.h"
 
+
 #import "User.h"
 #import "Connection.h"
 #import "AppDelegate.h"
+#import "RESideMenu.h"
 
 @interface MessagesViewController ()
 @property (strong, nonatomic) NSDictionary *user;
 @property (strong, nonatomic) NSDictionary *connection;
 @property (strong, nonatomic) UIImage *senderImage;
 @property (strong, nonatomic) UIImage *connectionImage;
+@property (strong, nonatomic) NSTimer *timer;
 
 
 @end
@@ -31,31 +34,69 @@
 
 - (void)viewDidLoad
 {
+    
+
+
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector (loadConnectionAvatar)
+                                                 name:@"ConnectionImageLoaded"
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector (loadUserAvatar)
+                                                 name:@"UserImageLoaded"
+                                               object:nil];
+    self.inputToolbar.contentView.leftBarButtonItem = nil;
     User *obj = [User getInstance];
     user = obj.user;
     Connection *conObj = [Connection getInstance];
-    connection = conObj.connection;
-    self.title = @"Countdown Messages";
-    self.sender =[NSString stringWithFormat:@"%@",[user objectForKey: @"firstName"]];
+    connection = [conObj.connection objectForKey:@"liked_user"];
+    self.title = [connection objectForKey:@"firstName"];
+    self.sender =[user objectForKey: @"uid"];
+    
     
     self.outgoingBubbleImageView = [JSQMessagesBubbleImageFactory
-                                    outgoingMessageBubbleImageViewWithColor:[UIColor jsq_messageBubbleLightGrayColor]];
+                                    outgoingMessageBubbleImageViewWithColor:[UIColor jsq_messageBubbleBlueColor]];
     
     self.incomingBubbleImageView = [JSQMessagesBubbleImageFactory
-                                    incomingMessageBubbleImageViewWithColor:[UIColor jsq_messageBubbleBlueColor]];
-    //[self loadMessages];
-    //[self loadAvatars];
-    [self loadMessages];
+                                    incomingMessageBubbleImageViewWithColor:[UIColor jsq_messageBubbleLightGrayColor]];
+    
 
 
+    [self getMessages];
+    [self downloadAvatars];
+
+    _timer = [NSTimer    scheduledTimerWithTimeInterval:15.0    target:self    selector:@selector(refreshMessages)    userInfo:nil repeats:YES];
 
 }
 
--(void) loadAvatars{
+-(void)getMessages{
+    NSString *messageURL = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/conversation", [connection objectForKey:@"uid"]];
+    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+    NSString *FbToken = [session accessTokenData].accessToken;
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    //manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:messageURL parameters:@{} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                         NSLog(@"resonse Object %@",responseObject);
+        self.messages = [[NSMutableArray alloc]init];
+        for (NSDictionary *messageContent in responseObject ) {
+            JSQMessage *message = [[JSQMessage alloc] initWithText:[messageContent objectForKey:@"content"] sender:[messageContent objectForKey:@"from_user_id"] date:[NSDate dateWithTimeIntervalSince1970:[[messageContent objectForKey:@"date_time"]doubleValue]]];
 
-    CGFloat outgoingDiameter = self.collectionView.collectionViewLayout.outgoingAvatarViewSize.width;
+            [self.messages addObject:message];
+        }
+        [self.collectionView reloadData];
+        [self finishReceivingMessage];
+
+       
+                                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                         NSLog(@"Photo failed to load%@",error);
+                                     }];
+}
+
+-(void) downloadAvatars{
     CGFloat incomingDiameter = self.collectionView.collectionViewLayout.incomingAvatarViewSize.width;
     //self.avatars = [[NSMutableDictionary alloc]init];
     NSString *picURL = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/photo", [connection objectForKey:@"uid"]];
@@ -64,44 +105,112 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
     manager.responseSerializer = [AFImageResponseSerializer serializer];
-    [manager GET:picURL parameters:@{} success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                         //senderImage = [JSQMessagesAvatarFactory avatarWithImage:UIImage
-                                               //                                                  diameter:incomingDiameter];
-        
+    [manager GET:picURL parameters:@{@"height": @50,
+                                     @"width": @50} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                         connectionImage = [JSQMessagesAvatarFactory avatarWithImage:responseObject
+                                                                                                diameter:incomingDiameter];
+                                         [[NSNotificationCenter defaultCenter] postNotificationName:@"ConnectionImageLoaded" object:nil];
 
+
+        
                                          NSLog(@"resonse Object %@",responseObject);
                                          
                                      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                          NSLog(@"Photo failed to load%@",error);
                                      }];
-    
-    //Set User Image
-    //Set Match Image
-
 
 
 }
 
--(void) loadMessages{
-    
-    self.messages = [[NSMutableArray alloc] initWithObjects:
-                     [[JSQMessage alloc] initWithText:@"Welcome to JSQMessages: A messaging UI framework for iOS." sender:self.sender date:[NSDate distantPast]],
-                     [[JSQMessage alloc] initWithText:@"It is simple, elegant, and easy to use. There are super sweet default settings, but you can customize like crazy." sender:self.sender date:[NSDate distantPast]],
-                     [[JSQMessage alloc] initWithText:@"It even has data detectors. You can call me tonight. My cell number is 123-456-7890. My website is www.hexedbits.com." sender:self.sender date:[NSDate distantPast]],
-                     [[JSQMessage alloc] initWithText:@"JSQMessagesViewController is nearly an exact replica of the iOS Messages App. And perhaps, better." sender:self.sender date:[NSDate date]],
-                     [[JSQMessage alloc] initWithText:@"It is unit-tested, free, and open-source." sender:self.sender date:[NSDate date]],
-                     [[JSQMessage alloc] initWithText:@"Oh, and there's sweet documentation." sender:self.sender date:[NSDate date]],
-                     nil];
-    self.avatars = @{self.sender : senderImage};
+-(void) loadConnectionAvatar{
+    CGFloat outgoingDiameter = self.collectionView.collectionViewLayout.outgoingAvatarViewSize.width;
+    //self.avatars = [[NSMutableDictionary alloc]init];
+    NSString *picURL = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/photo", [user objectForKey:@"uid"]];
+    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+    NSString *FbToken = [session accessTokenData].accessToken;
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    manager.responseSerializer = [AFImageResponseSerializer serializer];
+    [manager GET:picURL parameters:@{@"height": @50,
+                                     @"width": @50} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                         senderImage = [JSQMessagesAvatarFactory avatarWithImage:responseObject
+                                                                                            diameter:outgoingDiameter];
+                                         [[NSNotificationCenter defaultCenter] postNotificationName:@"UserImageLoaded" object:nil];
+                                         
+                                         
+                                         
+                                         NSLog(@"resonse Object %@",responseObject);
+                                         
+                                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                         NSLog(@"Photo failed to load%@",error);
+                                     }];
 
+}
+-(void) loadUserAvatar{
+    self.avatars = @{self.sender:senderImage,
+                     [connection objectForKey:@"uid"]:connectionImage};
+    [self.collectionView reloadData];
+    NSLog(@"is this called?");
+    
+    
 }
 
 - (void)closePressed:(UIBarButtonItem *)sender
 {
     [self.delegateModal didDismissMessagesViewController:self];
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"]]animated:YES];
+    [self.sideMenuViewController hideMenuViewController];
+
 }
 
+-(void)textViewDidBeginEditing:(UITextView *)textView{
+    [self typingStarted];
+}
 
+- (void)refreshMessages{
+    NSString *messageURL = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/conversation", [connection objectForKey:@"uid"]];
+    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+    NSString *FbToken = [session accessTokenData].accessToken;
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    //manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:messageURL parameters:@{} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSMutableArray *tempMessages = [[NSMutableArray alloc]init];
+        for (NSDictionary *messageContent in responseObject ) {
+            JSQMessage *message = [[JSQMessage alloc] initWithText:[messageContent objectForKey:@"content"] sender:[messageContent objectForKey:@"from_user_id"] date:[NSDate dateWithTimeIntervalSince1970:[[messageContent objectForKey:@"date_time"]doubleValue]]];
+            [tempMessages addObject:message];
+        }
+        NSMutableArray *newMessageArray = [[NSMutableArray alloc]initWithArray:tempMessages];
+        for(JSQMessage *message in tempMessages){
+        for (JSQMessage *oldMessage in self.messages ) {
+            if ([oldMessage isEqualToMessage:message]) {
+                [newMessageArray removeObject:message];
+            }
+        }
+        }
+        if ([newMessageArray count]>0) {
+            [self.messages addObjectsFromArray:newMessageArray];
+            [self.collectionView reloadData];
+            [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
+            [self finishReceivingMessage];
+            NSLog(@"New Messages");
+
+        }
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Photo failed to load%@",error);
+    }];
+
+    NSString *typingUrl = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/message/typing", [connection objectForKey:@"uid"]];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    [manager GET:typingUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"User is/isn't typing %@",responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error with typing stopped %@",error);
+    }];
+    
+}
 
 - (void)didPressSendButton:(UIButton *)button
            withMessageText:(NSString *)text
@@ -119,20 +228,60 @@
     
     JSQMessage *message = [[JSQMessage alloc] initWithText:text sender:sender date:date];
     [self.messages addObject:message];
-    
+    NSString *messageURL = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/message/", [connection objectForKey:@"uid"]];
+    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+    NSString *FbToken = [session accessTokenData].accessToken;
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    //manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    //manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager POST:messageURL parameters:@{@"content":message.text} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error);
+
+    }];
+    [self typingStopped];
     [self finishSendingMessage];
+}
+- (void) typingStopped{
+    NSString *typingUrl = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/message/typing", [connection objectForKey:@"uid"]];
+    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+    NSString *FbToken = [session accessTokenData].accessToken;
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    //manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager DELETE:typingUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Typing stopped");
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error with typing stopped %@",error);
+    }];
+}
+
+- (void) typingStarted{
+    NSString *typingUrl = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/message/typing", [connection objectForKey:@"uid"]];
+    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+    NSString *FbToken = [session accessTokenData].accessToken;
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+
+    [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    [manager POST:typingUrl parameters:@{} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Typing started");
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error with typing started %@",error);
+    }];
+    
 }
 
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    if (self.delegateModal) {
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop
-                                                                                              target:self
-                                                                                              action:@selector(closePressed:)];
-    }
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop
+                                                                                          target:self
+                                                                                          action:@selector(closePressed:)];
 }
 - (id<JSQMessageData>)collectionView:(JSQMessagesCollectionView *)collectionView messageDataForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -141,16 +290,6 @@
 
 - (UIImageView *)collectionView:(JSQMessagesCollectionView *)collectionView bubbleImageViewForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    /**
-     *  You may return nil here if you do not want bubbles.
-     *  In this case, you should set the background color of your collection view cell's textView.
-     */
-    
-    /**
-     *  Reuse created bubble images, but create new imageView to add to each cell
-     *  Otherwise, each cell would be referencing the same imageView and bubbles would disappear from cells
-     */
-    
     JSQMessage *message = [self.messages objectAtIndex:indexPath.item];
     
     if ([message.sender isEqualToString:self.sender]) {
@@ -164,28 +303,7 @@
 
 - (UIImageView *)collectionView:(JSQMessagesCollectionView *)collectionView avatarImageViewForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    /**
-     *  Return `nil` here if you do not want avatars.
-     *  If you do return `nil`, be sure to do the following in `viewDidLoad`:
-     *
-     *  self.collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeZero;
-     *  self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero;
-     *
-     *  It is possible to have only outgoing avatars or only incoming avatars, too.
-     */
-    
-    /**
-     *  Reuse created avatar images, but create new imageView to add to each cell
-     *  Otherwise, each cell would be referencing the same imageView and avatars would disappear from cells
-     *
-     *  Note: these images will be sized according to these values:
-     *
-     *  self.collectionView.collectionViewLayout.incomingAvatarViewSize
-     *  self.collectionView.collectionViewLayout.outgoingAvatarViewSize
-     *
-     *  Override the defaults in `viewDidLoad`
-     */
-    JSQMessage *message = [self.messages objectAtIndex:indexPath.item];
+     JSQMessage *message = [self.messages objectAtIndex:indexPath.item];
     
     UIImage *avatarImage = [self.avatars objectForKey:message.sender];
     return [[UIImageView alloc] initWithImage:avatarImage];
@@ -193,13 +311,7 @@
 
 - (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForCellTopLabelAtIndexPath:(NSIndexPath *)indexPath
 {
-    /**
-     *  This logic should be consistent with what you return from `heightForCellTopLabelAtIndexPath:`
-     *  The other label text delegate methods should follow a similar pattern.
-     *
-     *  Show a timestamp for every 3rd message
-     */
-    if (indexPath.item % 3 == 0) {
+      if (indexPath.item % 3 == 0) {
         JSQMessage *message = [self.messages objectAtIndex:indexPath.item];
         return [[JSQMessagesTimestampFormatter sharedFormatter] attributedTimestampForDate:message.date];
     }
@@ -267,10 +379,10 @@
     JSQMessage *msg = [self.messages objectAtIndex:indexPath.item];
     
     if ([msg.sender isEqualToString:self.sender]) {
-        cell.textView.textColor = [UIColor blackColor];
+        cell.textView.textColor = [UIColor whiteColor];
     }
     else {
-        cell.textView.textColor = [UIColor whiteColor];
+        cell.textView.textColor = [UIColor blackColor];
     }
     
     cell.textView.linkTextAttributes = @{ NSForegroundColorAttributeName : cell.textView.textColor,
@@ -336,7 +448,9 @@
     NSLog(@"Load earlier messages!");
 }
 
-
+-(void)viewDidDisappear:(BOOL)animated{
+    [_timer invalidate];
+}
 
 
 

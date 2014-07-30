@@ -45,5 +45,37 @@
     }); return instance;
 }
 
++(ConnectionsList*)updateMatches{
+    static ConnectionsList *instance = nil;
+    instance = [self getInstance];
+    User *obj = [User getInstance];
+    NSDictionary *user = obj.user;
+        instance = [[self alloc]init];
+        instance.connections = [[NSMutableArray alloc]init];
+        //download initial connections
+        NSString *urlAsString =@"http://countdown-java-dev.elasticbeanstalk.com/user/";
+        NSString *userID = [user objectForKey:@"uid"];
+        urlAsString = [urlAsString stringByAppendingString:userID];
+        urlAsString = [urlAsString stringByAppendingString:@"/matches/new"];
+        
+        FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+        
+        NSString *FbToken = [session accessTokenData].accessToken;
+        
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+        NSDictionary *params = @{};
+        [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            instance.connections = responseObject;
+            NSLog(@"Connections %@",instance.connections);
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Connections not downloaded %@",error);
+        }
+         ];
+        
+ return instance;
+}
+
+
 
 @end

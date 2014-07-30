@@ -11,9 +11,11 @@
 #import "ConnectionsCellTableViewCell.h"
 #import "AppDelegate.h"
 #import "Connection.h"
+#import "ResideMenu.h"
 
 @interface RightMenuViewController ()
 
+@property (nonatomic, strong) NSTimer *timer;
 @end
 
 @implementation RightMenuViewController
@@ -125,10 +127,8 @@
     connection = [connections objectAtIndex:indexPath.row];
     obj.connection = connection;
     
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *profileVC = (UIViewController*)[storyboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
-    // present
-    [self presentViewController:profileVC animated:YES completion:nil];
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"]]animated:YES];
+    [self.sideMenuViewController hideMenuViewController];
 
 }
 

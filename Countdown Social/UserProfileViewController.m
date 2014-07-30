@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "AFNetworking/AFOAuth1Client.h"
 #import "MessagesViewController.h"
+#import "ResideMenu.h"
 @interface UserProfileViewController ()
 @property NSDictionary *user;
 @property NSDictionary *connection;
@@ -37,7 +38,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBarHidden = YES;
     Connection *obj = [Connection getInstance];
     connection = [obj.connection objectForKey:@"liked_user"];
     
@@ -205,17 +206,14 @@
 }
 
 - (IBAction)backToConnections:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:^{
-        NSLog(@"ProfileDismissed");
-    }];
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"PotentialMatchesViewController"]]animated:YES];
+    [self.sideMenuViewController hideMenuViewController];
+    [self.sideMenuViewController presentRightMenuViewController];
 }
 
 - (IBAction)goToMessaging:(id)sender {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *messagingVC = (UIViewController*)[storyboard instantiateViewControllerWithIdentifier:@"MessagesViewController"];
-    // present
-    [self presentViewController:messagingVC animated:YES completion:nil];
-}
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"MessagesViewController"]]animated:YES];
+    [self.sideMenuViewController hideMenuViewController];}
 
 - (IBAction)goToUserVideo:(id)sender {
 }

@@ -101,6 +101,7 @@
     NSString *FbToken = [session accessTokenData].accessToken;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
     NSDictionary *params = @{@"twitter_username": _twitter_username,
                              @"twitter_token": _twitter_access_token,
                              @"twitter_uid": _twitter_id};
