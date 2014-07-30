@@ -43,11 +43,9 @@
     [super viewDidLoad];
     
     closeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [closeButton addTarget:self
-               action:@selector(aMethod:)
-     forControlEvents:UIControlEventTouchDown];
+
     [closeButton setTitle:@"Close" forState:UIControlStateNormal];
-    closeButton.frame = CGRectMake(80, 210, 160, 40);
+    closeButton.frame = CGRectMake(15, 300 , 100, 100);
     [closeButton addTarget:self action:@selector(close:) forControlEvents:UIControlEventTouchUpInside];
     // Do any additional setup after loading the view.
     socialMediaWebView= [[UIWebView alloc]initWithFrame:CGRectMake(0, 20, self.view.frame.size.width , self.view.frame.size.height - 20.0)];
@@ -68,6 +66,10 @@
     [self getImages];
     [self checkSocial];
     
+}
+- (IBAction)close:(id)sender{
+    [socialMediaWebView removeFromSuperview];
+    closeButton.hidden = TRUE;
 }
 
 - (void)getImages{
@@ -96,10 +98,7 @@
         //Facebook not shared
         self.facebookProfile.enabled = FALSE;
         self.facebookProfile.hidden = TRUE;
-        self.facebokAdded.enabled = FALSE;
-        self.facebokAdded.hidden = TRUE;
-        self.facebookAdd.enabled = FALSE;
-        self.facebookAdd.hidden =TRUE;
+    
         self.facebookCircle.hidden = TRUE;
     }else{
         [self facebookCheck];
@@ -109,10 +108,7 @@
         //Instagram not shared
         self.instagramProfile.enabled = FALSE;
         self.instagramProfile.hidden = TRUE;
-        self.instagramAdded.enabled = FALSE;
-        self.instagramAdded.hidden = TRUE;
-        self.instagramAdd.enabled = FALSE;
-        self.instagramAdd.hidden =TRUE;
+
         self.instagramCircle.hidden = TRUE;
     }else{
         [self instagramCheck];
@@ -120,24 +116,15 @@
     }
     if ([[connection objectForKey:@"phone_number"]isKindOfClass:[NSNull class]]) {
         //Phone Number not shared
-        self.phoneProfile.enabled = FALSE;
-        self.phoneProfile.hidden = TRUE;
-        self.phoneAdded.enabled = FALSE;
-        self.phoneAdded.hidden = TRUE;
-        self.phoneAdd.enabled = FALSE;
-        self.phoneAdd.hidden =TRUE;
+
+
         self.phoneCircle.hidden = TRUE;
     }else{
         
     }
     if ([[connection objectForKey:@"snapchat_username"]isKindOfClass:[NSNull class]]) {
         //Facebook not shared
-        self.snapchatProfile.enabled = FALSE;
-        self.snapchatProfile.hidden = TRUE;
-        self.snapchatAdded.enabled = FALSE;
-        self.snapchatAdded.hidden = TRUE;
-        self.snapchatAdd.enabled = FALSE;
-        self.snapchatAdd.hidden =TRUE;
+
         self.snapchatCircle.hidden = TRUE;
     }else{
         
@@ -146,10 +133,6 @@
         //Facebook not shared
         self.twitterProfile.enabled = FALSE;
         self.twitterProfile.hidden = TRUE;
-        self.twitterAdded.enabled = FALSE;
-        self.twitterAdded.hidden = TRUE;
-        self.twitterAdd.enabled = FALSE;
-        self.twitterAdd.hidden =TRUE;
         self.twitterCircle.hidden = TRUE;
     }else{
         [self twitterCheck];
@@ -173,16 +156,10 @@
                               NSArray *friendInfo = (NSArray *) [result objectForKey:@"data"];
                               NSLog(@"%@",result);
                               if ([friendInfo count]>0) {
-                                  self.facebokAdded.hidden = FALSE;
-                                  self.facebokAdded.enabled = TRUE;
-                                  self.facebookAdd.hidden = TRUE;
-                                  self.facebookAdd.enabled = FALSE;
+        
                               }else{
                                   NSLog(@"showing up as false");
-                                  self.facebokAdded.hidden = TRUE;
-                                  self.facebokAdded.enabled = FALSE;
-                                  self.facebookAdd.hidden = FALSE;
-                                  self.facebookAdd.enabled = TRUE;
+    
                               }
                           }];}
 
@@ -240,6 +217,8 @@
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     [socialMediaWebView loadRequest:requestObj];
     [self.view addSubview:socialMediaWebView];
+    [self.view addSubview:closeButton];
+    [self.view bringSubviewToFront:closeButton];
 
 }
 

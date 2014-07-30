@@ -21,38 +21,18 @@
 @property (strong, nonatomic) IBOutlet UIImageView *snapchatCircle;
 @property (strong, nonatomic) IBOutlet UIImageView *phoneCircle;
 
-//requestButtons
-@property (strong, nonatomic) IBOutlet UIButton *facebookAdd;
-@property (strong, nonatomic) IBOutlet UIButton *twitterAdd;
-@property (strong, nonatomic) IBOutlet UIButton *instagramAdd;
-@property (strong, nonatomic) IBOutlet UIButton *snapchatAdd;
-@property (strong, nonatomic) IBOutlet UIButton *phoneAdd;
 
-//addedButtons
-@property (strong, nonatomic) IBOutlet UIButton *facebokAdded;
-@property (strong, nonatomic) IBOutlet UIButton *instagramAdded;
-@property (strong, nonatomic) IBOutlet UIButton *twitterAdded;
-@property (strong, nonatomic) IBOutlet UIButton *snapchatAdded;
-@property (strong, nonatomic) IBOutlet UIButton *phoneAdded;
+
+
 
 //viewProfileButtons
 @property (strong, nonatomic) IBOutlet UIButton *facebookProfile;
 @property (strong, nonatomic) IBOutlet UIButton *twitterProfile;
 @property (strong, nonatomic) IBOutlet UIButton *instagramProfile;
-@property (strong, nonatomic) IBOutlet UIButton *snapchatProfile;
-@property (strong, nonatomic) IBOutlet UIButton *phoneProfile;
-
-
-//pendingButtons
-@property (strong, nonatomic) IBOutlet UIButton *facebookPending;
-@property (strong, nonatomic) IBOutlet UIButton *twitterPending;
-@property (strong, nonatomic) IBOutlet UIButton *instagramPending;
-
 
 
 - (IBAction)backToConnections:(id)sender;
 - (IBAction)goToMessaging:(id)sender;
 - (IBAction)goToUserVideo:(id)sender;
-- (IBAction)addFacebookFriend:(id)sender;
 
 @end
