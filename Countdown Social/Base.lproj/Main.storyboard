@@ -900,6 +900,9 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="addFacebookFriend:" destination="Qsq-uR-0b2" eventType="touchUpInside" id="vHU-jI-2yL"/>
+                                        </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q8H-Lq-tpa" userLabel="twitter follow">
                                         <rect key="frame" x="66" y="58" width="106" height="28"/>
@@ -1632,7 +1635,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="presentRightMenuViewController:" destination="QP0-wH-HVL" eventType="touchUpInside" id="vi7-Cc-YK6"/>
+                                            <action selector="presentRightMenu:" destination="QP0-wH-HVL" eventType="touchUpInside" id="OAf-gI-x88"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UzV-ct-iMA">

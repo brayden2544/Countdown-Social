@@ -72,6 +72,7 @@
 - (IBAction)Like:(id)sender;
 
 - (IBAction)presentLeftMenu:(id)sender;
+- (IBAction)presentRightMenu:(id)sender;
 
 - (IBAction)reportUser:(id)sender;
 

@@ -53,5 +53,6 @@
 - (IBAction)backToConnections:(id)sender;
 - (IBAction)goToMessaging:(id)sender;
 - (IBAction)goToUserVideo:(id)sender;
+- (IBAction)addFacebookFriend:(id)sender;
 
 @end

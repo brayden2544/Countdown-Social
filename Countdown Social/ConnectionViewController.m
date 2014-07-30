@@ -11,7 +11,7 @@
 #import "Connection.h"
 #import "AppDelegate.h"
 #import "User.h"
-
+#import "RESideMenu.h"
 
 @interface ConnectionViewController ()
 @property (nonatomic, strong) NSDictionary *currentMatch;
@@ -37,8 +37,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationController.navigationBarHidden = YES;
     Connection *obj = [Connection getInstance];
-    currentMatch = obj.connection;
+    currentMatch = [obj.connection objectForKey:@"liked_user"];
     User *userObj = [User getInstance];
     user = userObj.user;
     
@@ -95,27 +96,27 @@
     
     
     //button matches
-    if ([currentMatch objectForKey:@"instagram_username"]) {
+    if ([currentMatch objectForKey:@"instagram_username"] != [NSNull null]) {
         //show insta button
         self.instagrambutton.enabled = TRUE;
         self.instagrambutton.hidden = FALSE;
     }
-    if ([currentMatch objectForKey:@"snapchat_username"]) {
+    if ([currentMatch objectForKey:@"snapchat_username"]!= [NSNull null]) {
         //show snap button
         self.snapchatButton.enabled = TRUE;
         self.snapchatButton.hidden= FALSE;
     }
-    if ([currentMatch objectForKey:@"twitter_username"]) {
+    if ([currentMatch objectForKey:@"twitter_username"]!= [NSNull null]) {
         //show twitter button
         self.twitterButton.enabled = TRUE;
         self.twitterButton.hidden=FALSE;
     }
-    if ([currentMatch objectForKey:@"phone_number"]) {
+    if ([currentMatch objectForKey:@"phone_number"]!= [NSNull null]) {
         //show phone button
         self.phoneButton.enabled = TRUE;
         self.phoneButton.hidden=FALSE;
     }
-    if ([currentMatch objectForKey:@"facebook_uid"]) {
+    if ([currentMatch objectForKey:@"facebook_uid"]!= [NSNull null]) {
         //show insta button
         self.facebookButton.enabled = TRUE;
         self.facebookButton.hidden=FALSE;
@@ -139,14 +140,13 @@
 }
 
 - (IBAction)messageAction:(id)sender {
-    JSQMessagesViewController *messages = [[JSQMessagesViewController alloc]init];
-    [self presentViewController:messages animated:YES completion:nil];
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"MessagesViewController"]]animated:YES];
+    [self.sideMenuViewController hideMenuViewController];
 }
 
 - (IBAction)keepPlayingAction:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:^{
-        NSLog(@"View controller dismissed");
-    }];
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"PotentialMatchesViewController"]]animated:YES];
+    [self.sideMenuViewController hideMenuViewController];
     
 }
 @end

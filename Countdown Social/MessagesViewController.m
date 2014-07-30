@@ -68,7 +68,7 @@
     [self getMessages];
     [self downloadAvatars];
 
-    _timer = [NSTimer    scheduledTimerWithTimeInterval:15.0    target:self    selector:@selector(refreshMessages)    userInfo:nil repeats:YES];
+    _timer = [NSTimer    scheduledTimerWithTimeInterval:10.0    target:self    selector:@selector(refreshMessages)    userInfo:nil repeats:YES];
 
 }
 
@@ -182,10 +182,14 @@
         }
         NSMutableArray *newMessageArray = [[NSMutableArray alloc]initWithArray:tempMessages];
         for(JSQMessage *message in tempMessages){
+            if ([message.sender isEqualToString:self.sender]) {
+                [newMessageArray removeObject:message];
+            }
         for (JSQMessage *oldMessage in self.messages ) {
             if ([oldMessage isEqualToMessage:message]) {
                 [newMessageArray removeObject:message];
             }
+           
         }
         }
         if ([newMessageArray count]>0) {

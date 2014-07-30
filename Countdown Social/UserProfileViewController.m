@@ -17,6 +17,8 @@
 @property NSDictionary *user;
 @property NSDictionary *connection;
 @property AFHTTPRequestOperationManager *manager;
+@property UIWebView *socialMediaWebView;
+@property UIButton *closeButton;
 
 @end
 
@@ -24,6 +26,8 @@
 @synthesize connection;
 @synthesize manager;
 @synthesize user;
+@synthesize socialMediaWebView;
+@synthesize closeButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,7 +41,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    closeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [closeButton addTarget:self
+               action:@selector(aMethod:)
+     forControlEvents:UIControlEventTouchDown];
+    [closeButton setTitle:@"Close" forState:UIControlStateNormal];
+    closeButton.frame = CGRectMake(80, 210, 160, 40);
+    [closeButton addTarget:self action:@selector(close:) forControlEvents:UIControlEventTouchUpInside];
     // Do any additional setup after loading the view.
+    socialMediaWebView= [[UIWebView alloc]initWithFrame:CGRectMake(0, 20, self.view.frame.size.width , self.view.frame.size.height - 20.0)];
+    socialMediaWebView.layer.cornerRadius = 15.0;
+    socialMediaWebView.layer.masksToBounds = YES;
+    
     self.navigationController.navigationBarHidden = YES;
     Connection *obj = [Connection getInstance];
     connection = [obj.connection objectForKey:@"liked_user"];
@@ -145,7 +161,7 @@
     self.facebookProfile.hidden = FALSE;
     self.facebookProfile.enabled = TRUE;
     /* make the API call */
-    [FBRequestConnection startWithGraphPath:[NSString stringWithFormat:@"/{%@}/friends/{%@}", [user objectForKey:@"facebook_uid"], [connection objectForKey:@"facebook_uid"]]
+    [FBRequestConnection startWithGraphPath:[NSString stringWithFormat:@"/%@/friends/%@", [[user objectForKey:@"facebook_uid"]stringValue], [[connection objectForKey:@"facebook_uid"]stringValue]]
                                  parameters:nil
                                  HTTPMethod:@"GET"
                           completionHandler:^(
@@ -154,19 +170,19 @@
                                               NSError *error
                                               ) {
                               /* handle the result */
-                              NSLog(@"Facebook check %@", result);
-                              if ([result length] ==0) {
-                                  self.facebokAdded.hidden = TRUE;
-                                  self.facebokAdded.enabled = FALSE;
-                                  self.facebookAdd.hidden = FALSE;
-                                  self.facebookAdd.enabled = TRUE;
-                                  
-                              }else{
-                                  NSLog(@"showing up as false");
+                              NSArray *friendInfo = (NSArray *) [result objectForKey:@"data"];
+                              NSLog(@"%@",result);
+                              if ([friendInfo count]>0) {
                                   self.facebokAdded.hidden = FALSE;
                                   self.facebokAdded.enabled = TRUE;
                                   self.facebookAdd.hidden = TRUE;
                                   self.facebookAdd.enabled = FALSE;
+                              }else{
+                                  NSLog(@"showing up as false");
+                                  self.facebokAdded.hidden = TRUE;
+                                  self.facebokAdded.enabled = FALSE;
+                                  self.facebookAdd.hidden = FALSE;
+                                  self.facebookAdd.enabled = TRUE;
                               }
                           }];}
 
@@ -217,4 +233,14 @@
 
 - (IBAction)goToUserVideo:(id)sender {
 }
+
+- (IBAction)addFacebookFriend:(id)sender {
+    NSString *fullURL = [NSString stringWithFormat:@"http://www.facebook.com/addfriend.php?id=%@",[connection objectForKey:@"facebook_uid"] ];
+    NSURL *url = [NSURL URLWithString:fullURL];
+    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    [socialMediaWebView loadRequest:requestObj];
+    [self.view addSubview:socialMediaWebView];
+
+}
+
 @end

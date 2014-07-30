@@ -38,6 +38,8 @@
 @property bool phone;
 @property bool facebook;
 
+@property NSTimer *loadingTimer;
+
 @end
 
 @implementation PotentialMatchesViewController
@@ -73,16 +75,18 @@
     [self.view addSubview:countdownTimer];
     
     
-    self.moviePlayerView = [[PlayerView alloc]initWithFrame:CGRectMake (0, 100, 320, 320)];
-    self.moviePlayerView.player = [[AVPlayer alloc]init];
-    
-    [NSTimer scheduledTimerWithTimeInterval: .05
-                                     target: self
-                                   selector:@selector(VideoTimer:)
-                                   userInfo: nil repeats:YES];
     
     
     self.potentialMatchesLoadingView = [[PotentialMatchesLoadingView alloc]initWithFrame:CGRectMake(0, 57, 320, 363)];
+    
+    self.moviePlayerView = [[PlayerView alloc]initWithFrame:CGRectMake (0, 100, 320, 320)];
+    self.moviePlayerView.player = [[AVPlayer alloc]init];
+    
+    self.loadingTimer =[NSTimer scheduledTimerWithTimeInterval: .05
+                                                        target: self
+                                                      selector:@selector(VideoTimer:)
+                                                      userInfo: nil repeats:YES];
+
     
     self.blur=[[UIImageView alloc] initWithFrame:CGRectMake (0, 100, 320, 320)];
     
@@ -464,7 +468,7 @@
         NSLog(@"JSON: %@", responseObject);
         if ([responseObject objectForKey:@"liked_user"] != [NSNull null]) {
             NSLog(@"MATCH");
-            currentMatch = [responseObject objectForKey: @"liked_user"];
+            currentMatch = responseObject;
             [self showMatch];
             [self.moviePlayerView.player pause];
             [self nextMatch];
@@ -487,10 +491,8 @@
     Connection *obj = [Connection getInstance];
     obj.connection = currentMatch;
     
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    ViewController *connectionVC = (ViewController*)[storyboard instantiateViewControllerWithIdentifier:@"ConnectionViewController"];
-    // present
-    [self presentViewController:connectionVC animated:YES completion:nil];
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ConnectionViewController"]]animated:YES];
+    [self.sideMenuViewController hideMenuViewController];
   
 }
 
@@ -675,8 +677,13 @@
             [currentPotentialMatch setValue:time_remaining forKey:@"time_remaining"];
         }
     }
+    [self.loadingTimer invalidate];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     NSLog(@"NSNotification Observer Disappeared");
+    
+    if (_likeCurrentUser == true) {
+        [self nextMatch];
+    }
 }
 
 
@@ -818,9 +825,18 @@
 }
 
 - (IBAction)presentLeftMenu:(id)sender {
-    [self.moviePlayerView.player pause];
+    if (_likeCurrentUser == false) {
+        [self.moviePlayerView.player pause];
+    }
     [self.sideMenuViewController presentLeftMenuViewController];
     
+}
+
+- (IBAction)presentRightMenu:(id)sender {
+    if (_likeCurrentUser == false) {
+        [self.moviePlayerView.player pause];
+    }
+    [self.sideMenuViewController presentRightMenuViewController];
 }
 
 - (IBAction)reportUser:(id)sender {
