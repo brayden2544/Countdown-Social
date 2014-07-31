@@ -64,25 +64,36 @@
     
     connection = [[connections objectAtIndex:indexPath.row]objectForKey:@"liked_user"];
     
-    if ([connection objectForKey:@"instagram_username"]) {
+    if ([connection objectForKey:@"instagram_username"]!=[NSNull null]) {
         //show insta button
         cell.instagramImage.hidden = false;
     }
-    if ([connection objectForKey:@"snapchat_username"]) {
+    else{
+        cell.instagramImage.hidden = TRUE;
+    }
+    if ([connection objectForKey:@"snapchat_username"]!=[NSNull null]) {
         //show snap button
         cell.snapchatImage.hidden = false;
+    } else{
+        cell.snapchatImage.hidden = TRUE;
     }
-    if ([connection objectForKey:@"twitter_username"]) {
+    if ([connection objectForKey:@"twitter_username"] !=[NSNull null]) {
         //show twitter button
         cell.twitterImage.hidden = false;
+    } else{
+        cell.twitterImage.hidden = TRUE;
     }
-    if ([connection objectForKey:@"phone_number"]) {
+    if ([connection objectForKey:@"phone_number"]!=[NSNull null]) {
         //show phone button
         cell.phoneImage.hidden = false;
+    } else{
+        cell.phoneImage.hidden = TRUE;
     }
-    if ([connection objectForKey:@"facebook_uid"]) {
+    if ([connection objectForKey:@"facebook_uid"]!=[NSNull null]) {
         //show insta button
         cell.facebookImage.hidden = false;
+    } else{
+        cell.facebookImage.hidden = TRUE;
     }
     NSString *picURL = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/photo", [connection objectForKey:@"uid"]];
     

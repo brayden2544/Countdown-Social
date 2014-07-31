@@ -42,30 +42,26 @@
     self.navigationController.navigationBarHidden = YES;
     self.setLocationMapView.delegate=self;
     self.user = [User getInstance];
-    self.setLocationMapView.showsUserLocation=YES;
-
-
-    //Creat URL for image and download image
-    NSString *picURL = @"http://graph.facebook.com/";
-    NSString *uid =[[self.user.user objectForKey:@"facebook_uid"] stringValue];
-    picURL= [picURL stringByAppendingString:uid];
-    picURL = [picURL stringByAppendingString:@"/picture?width=200&height=200"];
-    NSURL *url = [NSURL URLWithString:picURL];
+    self.fbProfilePic = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"candidate frame"]];
     
-    NSData *imageData = [NSData dataWithContentsOfURL:url];
-    self.fbProfilePic = [UIImage imageWithData:imageData];
+    //Creat URL for image and download image
+
+    
+    self.setLocationMapView.showsUserLocation=YES;
+    
+    
+    
     
     
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(handleLongPress:)];
     lpgr.minimumPressDuration = 0.3; //user needs to press for .3 seconds
     [self.setLocationMapView addGestureRecognizer:lpgr];
-    setLocationMapView.layer.cornerRadius = setLocationMapView.frame.size.height/2;
     
     travelModeAnnotation = [[MKPointAnnotation alloc] init];
     mapRegion.span.latitudeDelta = 4;
     mapRegion.span.longitudeDelta = 4;
-
+    
     
     
     
@@ -94,10 +90,20 @@
                                                   cancelButtonTitle:nil
                                                   otherButtonTitles:@"Okay", nil];
             [alert show];
-
+            
         }
         
     }
+
+
+    
+    
+    setLocationMapView.layer.cornerRadius = setLocationMapView.frame.size.height/2;
+
+    
+}
+-(void)mapViewDidFinishLoadingMap:(MKMapView *)mapView{
+    
     
 }
 
@@ -146,13 +152,28 @@
             // If an existing pin view was not available, create one.
             pinView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomPinAnnotationView"];
             pinView.canShowCallout = NO;
-            pinView.image = self.fbProfilePic;
+            pinView.image = self.fbProfilePic.image;
             pinView.frame =  CGRectMake(0, 0, 50, 50);
             pinView.layer.cornerRadius = 25.0;
             pinView.layer.borderWidth = 5.0;
             pinView.layer.borderColor = [UIColor whiteColor].CGColor;
             pinView.layer.masksToBounds = YES;
             pinView.calloutOffset = CGPointMake(0, 32);
+            AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+            FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+            NSString *FbToken = [session accessTokenData].accessToken;
+            [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+            manager.responseSerializer = [AFImageResponseSerializer serializer];
+            NSString *picURL = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/photo", [self.user.user objectForKey:@"uid"]];
+            manager.responseSerializer = [AFImageResponseSerializer serializer];
+            [manager GET:picURL parameters:@{@"height":@100,
+                                             @"width": @100} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                                 pinView.image = responseObject;
+                                                 NSLog(@"resonse Object %@",responseObject);
+                                                 
+                                             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                                 NSLog(@"Photo failed to load%@",error);
+                                             }];
         } else {
             pinView.annotation = annotation;
         }

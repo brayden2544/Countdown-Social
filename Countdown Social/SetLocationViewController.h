@@ -20,7 +20,7 @@
 @property (strong, nonatomic) MKPointAnnotation *travelModeAnnotation;
 @property (nonatomic,strong) CLLocationManager *locationManager;
 @property (strong, nonatomic) User *user;
-@property (strong ,nonatomic) UIImage* fbProfilePic;
+@property (strong ,nonatomic) UIImageView *fbProfilePic;
 
 - (IBAction)travelModeSwitch:(id)sender;
 
