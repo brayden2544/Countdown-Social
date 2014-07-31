@@ -68,7 +68,7 @@
     [self getMessages];
     [self downloadAvatars];
 
-    _timer = [NSTimer    scheduledTimerWithTimeInterval:10.0    target:self    selector:@selector(refreshMessages)    userInfo:nil repeats:YES];
+    _timer = [NSTimer    scheduledTimerWithTimeInterval:5.0    target:self    selector:@selector(refreshMessages)    userInfo:nil repeats:YES];
 
 }
 
@@ -84,6 +84,7 @@
         self.messages = [[NSMutableArray alloc]init];
         for (NSDictionary *messageContent in responseObject ) {
             JSQMessage *message = [[JSQMessage alloc] initWithText:[messageContent objectForKey:@"content"] sender:[messageContent objectForKey:@"from_user_id"] date:[NSDate dateWithTimeIntervalSince1970:[[messageContent objectForKey:@"date_time"]doubleValue]/1000]];
+            NSLog(@"double value %@",message.date);
 
             [self.messages addObject:message];
         }
@@ -206,10 +207,17 @@
     }];
 
     NSString *typingUrl = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/message/typing", [connection objectForKey:@"uid"]];
-    manager.responseSerializer = [AFXMLParserResponseSerializer serializer];
-    //[manager.responseSerializer setAcceptableContentTypes:[NSSet setWithObject:@"text/plain"]];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
     [manager GET:typingUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"User is/isn't typing %@",responseObject);
+        if ([[responseObject objectForKey:@"status" ]integerValue]==1  ) {
+            self.showTypingIndicator =true;
+            [self scrollToBottomAnimated:NO];
+            NSLog(@"user is Typing");
+        }else if ([[responseObject objectForKey:@"status"]integerValue]==0){
+            self.showTypingIndicator = false;
+            NSLog(@"user is not Typing");
+
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error with typing stopped %@",error);
     }];
@@ -255,7 +263,6 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     //manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager DELETE:typingUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Typing stopped");
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -268,7 +275,6 @@
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     NSString *FbToken = [session accessTokenData].accessToken;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
 
     [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
     [manager POST:typingUrl parameters:@{} success:^(AFHTTPRequestOperation *operation, id responseObject) {

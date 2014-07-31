@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -900,9 +900,6 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <connections>
-                                            <action selector="addFacebookFriend:" destination="Qsq-uR-0b2" eventType="touchUpInside" id="vHU-jI-2yL"/>
-                                        </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q8H-Lq-tpa" userLabel="twitter follow">
                                         <rect key="frame" x="66" y="58" width="106" height="28"/>
@@ -1104,31 +1101,13 @@
                     <connections>
                         <outlet property="activityLabel" destination="k9U-AW-UKe" id="gx3-cP-nxf"/>
                         <outlet property="backgroundProfilePic" destination="GRt-bl-Ur5" id="ZuH-Eq-HJ0"/>
-                        <outlet property="facebokAdded" destination="Qmk-ka-oZW" id="4wp-1U-DsU"/>
-                        <outlet property="facebookAdd" destination="xy6-gM-bmz" id="6Pi-f3-QBt"/>
                         <outlet property="facebookCircle" destination="sWq-3R-HkJ" id="K6U-ho-gIF"/>
-                        <outlet property="facebookPending" destination="GiT-Kn-Rbu" id="2Af-Db-1BO"/>
-                        <outlet property="facebookProfile" destination="Pah-pv-zoS" id="P2R-Vm-Y83"/>
-                        <outlet property="instagramAdd" destination="mJm-lY-TtQ" id="pBh-1l-mN2"/>
-                        <outlet property="instagramAdded" destination="7tj-Dm-h14" id="TqR-do-bBD"/>
                         <outlet property="instagramCircle" destination="0pz-bw-i13" id="pkH-QP-g0N"/>
-                        <outlet property="instagramPending" destination="XMB-CL-cbd" id="AGv-0H-LuG"/>
-                        <outlet property="instagramProfile" destination="S03-2F-WpO" id="J5d-OE-LrA"/>
                         <outlet property="nameLabel" destination="Df8-uH-hBN" id="v1G-7h-gma"/>
-                        <outlet property="phoneAdd" destination="7TH-Jb-FBY" id="Otd-8G-wZV"/>
-                        <outlet property="phoneAdded" destination="YQi-gh-uQj" id="Mmr-tG-Q1n"/>
                         <outlet property="phoneCircle" destination="Hro-KD-ocP" id="SoR-X4-kOz"/>
-                        <outlet property="phoneProfile" destination="O3b-4o-TNI" id="ZKp-td-fv6"/>
                         <outlet property="profilePic" destination="5G2-fJ-YRE" id="zn0-lH-wSv"/>
-                        <outlet property="snapchatAdd" destination="eLU-ka-ANF" id="yKo-zC-rnK"/>
-                        <outlet property="snapchatAdded" destination="y02-UR-o90" id="ElU-Wg-ba3"/>
                         <outlet property="snapchatCircle" destination="u2e-Fe-S3K" id="zpK-9i-nLg"/>
-                        <outlet property="snapchatProfile" destination="les-XO-oPh" id="iuA-Vl-b6m"/>
-                        <outlet property="twitterAdd" destination="Q8H-Lq-tpa" id="bS4-Cs-aav"/>
-                        <outlet property="twitterAdded" destination="RIJ-K0-GDE" id="HXK-bo-f4O"/>
                         <outlet property="twitterCircle" destination="QZw-Fl-2PH" id="O53-fP-xAT"/>
-                        <outlet property="twitterPending" destination="pus-aI-RwO" id="s5E-7e-TzC"/>
-                        <outlet property="twitterProfile" destination="aIb-cR-eTW" id="UJm-nA-3Co"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OI2-HU-7yi" userLabel="First Responder" sceneMemberID="firstResponder"/>

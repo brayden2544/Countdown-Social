@@ -32,6 +32,8 @@
 @property int checkVideoCount;
 @property NSOperationQueue *backgroundQueue;
 
+@property NSTimer *potentialMatchesTimer;
+
 @property bool twitter;
 @property bool instagram;
 @property bool snapchat;
@@ -59,7 +61,7 @@
                                                  name:AVPlayerItemDidPlayToEndTimeNotification
                                                object:self.moviePlayerView.player];
     
-    
+    [self.potentialMatchesTimer invalidate];
     self.navigationController.navigationBarHidden = YES;
     //Pull in user object and check buttons.
     User *obj = [User getInstance];
@@ -161,6 +163,7 @@
         }
         else{
             [self.view addSubview:self.potentialMatchesLoadingView];
+            _likeCurrentUser = FALSE;
             _loading = TRUE;
             [NSTimer    scheduledTimerWithTimeInterval:2.0    target:self    selector:@selector(checkForVideo)    userInfo:nil repeats:NO];
         }
@@ -505,7 +508,8 @@
         NSLog(@"Potential Matches Empty, wait 15 seconds");
         [self.view addSubview:self.potentialMatchesLoadingView];
         _loading = TRUE;
-        [NSTimer    scheduledTimerWithTimeInterval:15.0    target:self    selector:@selector(nextMatch)    userInfo:nil repeats:NO];
+        [self.potentialMatchesTimer invalidate];
+        self.potentialMatchesTimer = [NSTimer    scheduledTimerWithTimeInterval:15.0    target:self    selector:@selector(nextMatch)    userInfo:nil repeats:NO];
         
         
     }
