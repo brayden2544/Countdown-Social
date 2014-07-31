@@ -20,6 +20,7 @@
 @property (strong, nonatomic) UIImage *senderImage;
 @property (strong, nonatomic) UIImage *connectionImage;
 @property (strong, nonatomic) NSTimer *timer;
+@property (strong, nonatomic) NSTimer *typingTimer;
 
 
 @end
@@ -68,8 +69,8 @@
     [self getMessages];
     [self downloadAvatars];
 
-    _timer = [NSTimer    scheduledTimerWithTimeInterval:5.0    target:self    selector:@selector(refreshMessages)    userInfo:nil repeats:YES];
-
+    _timer = [NSTimer    scheduledTimerWithTimeInterval:10.0    target:self    selector:@selector(refreshMessages)    userInfo:nil repeats:YES];
+    _typingTimer =[NSTimer    scheduledTimerWithTimeInterval:3.0    target:self    selector:@selector(checkTyping)    userInfo:nil repeats:YES];
 }
 
 -(void)getMessages{
@@ -205,8 +206,13 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Photo failed to load%@",error);
     }];
-
+}
+-(void)checkTyping{
     NSString *typingUrl = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/message/typing", [connection objectForKey:@"uid"]];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+    NSString *FbToken = [session accessTokenData].accessToken;
+    [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     [manager GET:typingUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([[responseObject objectForKey:@"status" ]integerValue]==1  ) {
@@ -255,6 +261,8 @@
     }];
     [self typingStopped];
     [self finishSendingMessage];
+    [self scrollToBottomAnimated:NO];
+
 }
 - (void) typingStopped{
     NSString *typingUrl = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/message/typing", [connection objectForKey:@"uid"]];
@@ -460,6 +468,7 @@
 
 -(void)viewDidDisappear:(BOOL)animated{
     [_timer invalidate];
+    [_typingTimer invalidate];
 }
 
 
