@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "tphone.png"
+      "filename" : "phonematch.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "tphone@2x.png"
+      "filename" : "phonematch@2x.png"
     }
   ],
   "info" : {

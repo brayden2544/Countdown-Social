@@ -1,42 +1,14 @@
 {
   "images" : [
     {
-      "resizing" : {
-        "mode" : "9-part",
-        "center" : {
-          "mode" : "fill",
-          "width" : 1,
-          "height" : 1
-        },
-        "capInsets" : {
-          "bottom" : 0,
-          "top" : 83,
-          "right" : 0,
-          "left" : 417
-        }
-      },
       "idiom" : "universal",
-      "filename" : "hlocation.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "pplocation.png"
     },
     {
-      "resizing" : {
-        "mode" : "9-part",
-        "center" : {
-          "mode" : "fill",
-          "width" : 1,
-          "height" : 1
-        },
-        "capInsets" : {
-          "bottom" : 0,
-          "top" : 167,
-          "right" : 0,
-          "left" : 835
-        }
-      },
       "idiom" : "universal",
-      "filename" : "hlocation@2x.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "pplocation@2x.png"
     }
   ],
   "info" : {
