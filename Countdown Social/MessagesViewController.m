@@ -20,6 +20,7 @@
 @property (strong, nonatomic) UIImage *senderImage;
 @property (strong, nonatomic) UIImage *connectionImage;
 @property (strong, nonatomic) NSTimer *timer;
+@property (strong, nonatomic) NSTimer *typingTimer;
 
 
 @end
@@ -69,7 +70,7 @@
     [self downloadAvatars];
 
     _timer = [NSTimer    scheduledTimerWithTimeInterval:10.0    target:self    selector:@selector(refreshMessages)    userInfo:nil repeats:YES];
-
+    _typingTimer =[NSTimer    scheduledTimerWithTimeInterval:3.0    target:self    selector:@selector(checkTyping)    userInfo:nil repeats:YES];
 }
 
 -(void)getMessages{
@@ -84,6 +85,7 @@
         self.messages = [[NSMutableArray alloc]init];
         for (NSDictionary *messageContent in responseObject ) {
             JSQMessage *message = [[JSQMessage alloc] initWithText:[messageContent objectForKey:@"content"] sender:[messageContent objectForKey:@"from_user_id"] date:[NSDate dateWithTimeIntervalSince1970:[[messageContent objectForKey:@"date_time"]doubleValue]/1000]];
+            NSLog(@"double value %@",message.date);
 
             [self.messages addObject:message];
         }
@@ -204,12 +206,24 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Photo failed to load%@",error);
     }];
-
+}
+-(void)checkTyping{
     NSString *typingUrl = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/message/typing", [connection objectForKey:@"uid"]];
-    manager.responseSerializer = [AFXMLParserResponseSerializer serializer];
-    //[manager.responseSerializer setAcceptableContentTypes:[NSSet setWithObject:@"text/plain"]];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+    NSString *FbToken = [session accessTokenData].accessToken;
+    [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
     [manager GET:typingUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"User is/isn't typing %@",responseObject);
+        if ([[responseObject objectForKey:@"status" ]integerValue]==1  ) {
+            self.showTypingIndicator =true;
+            [self scrollToBottomAnimated:NO];
+            NSLog(@"user is Typing");
+        }else if ([[responseObject objectForKey:@"status"]integerValue]==0){
+            self.showTypingIndicator = false;
+            NSLog(@"user is not Typing");
+
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error with typing stopped %@",error);
     }];
@@ -247,6 +261,8 @@
     }];
     [self typingStopped];
     [self finishSendingMessage];
+    [self scrollToBottomAnimated:NO];
+
 }
 - (void) typingStopped{
     NSString *typingUrl = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/message/typing", [connection objectForKey:@"uid"]];
@@ -255,7 +271,6 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     //manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager DELETE:typingUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Typing stopped");
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -268,7 +283,6 @@
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     NSString *FbToken = [session accessTokenData].accessToken;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
 
     [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
     [manager POST:typingUrl parameters:@{} success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -454,6 +468,7 @@
 
 -(void)viewDidDisappear:(BOOL)animated{
     [_timer invalidate];
+    [_typingTimer invalidate];
 }
 
 
