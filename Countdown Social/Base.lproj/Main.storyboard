@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -776,28 +776,28 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="236"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You didn't connect on Facebook." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="81a-wy-0O5" userLabel="facebook request">
+                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You didn't match on Facebook." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="81a-wy-0O5" userLabel="facebook request">
                                         <rect key="frame" x="66" y="17" width="210" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-UltraLightItalic" family="Avenir Next" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You didn't connect on Twitter." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fu4-gX-fQf" userLabel="twitter request">
+                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You didn't match on Twitter." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fu4-gX-fQf" userLabel="twitter request">
                                         <rect key="frame" x="66" y="61" width="210" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-UltraLightItalic" family="Avenir Next" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You didn't connect on Instagram." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKA-rr-5cy" userLabel="instagram request">
+                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You didn't match on Instagram." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKA-rr-5cy" userLabel="instagram request">
                                         <rect key="frame" x="68" y="105" width="210" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-UltraLightItalic" family="Avenir Next" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You didn't connect on Snapchat." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qbI-Wt-EoN" userLabel="snapchat request">
+                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You didn't match on Snapchat." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qbI-Wt-EoN" userLabel="snapchat request">
                                         <rect key="frame" x="66" y="149" width="210" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-UltraLightItalic" family="Avenir Next" pointSize="15"/>
@@ -991,29 +991,13 @@
                     <connections>
                         <outlet property="activityLabel" destination="k9U-AW-UKe" id="gx3-cP-nxf"/>
                         <outlet property="backgroundProfilePic" destination="GRt-bl-Ur5" id="ZuH-Eq-HJ0"/>
-                        <outlet property="facebookAdded" destination="Qmk-ka-oZW" id="rFK-TC-Ax2"/>
-                        <outlet property="facebookButton" destination="Uok-iz-KHf" id="3qU-gf-68r"/>
                         <outlet property="facebookCircle" destination="sWq-3R-HkJ" id="K6U-ho-gIF"/>
-                        <outlet property="facebookLabel" destination="81a-wy-0O5" id="z1g-cC-t23"/>
-                        <outlet property="facebookViewProfileSmall" destination="Pah-pv-zoS" id="mMl-rF-9Jn"/>
-                        <outlet property="instaButton" destination="XWu-9p-zQd" id="wqM-2H-r5i"/>
-                        <outlet property="instagramAdded" destination="7tj-Dm-h14" id="odg-hU-PqG"/>
                         <outlet property="instagramCircle" destination="0pz-bw-i13" id="pkH-QP-g0N"/>
-                        <outlet property="instagramLabel" destination="gKA-rr-5cy" id="iUe-dI-HsI"/>
-                        <outlet property="instagramViewProfileSmall" destination="S03-2F-WpO" id="XMp-fP-fF7"/>
                         <outlet property="nameLabel" destination="Df8-uH-hBN" id="v1G-7h-gma"/>
-                        <outlet property="phoneButton" destination="2b6-13-UPB" id="lZk-zS-yEd"/>
                         <outlet property="phoneCircle" destination="Hro-KD-ocP" id="SoR-X4-kOz"/>
-                        <outlet property="phoneLabel" destination="S2m-Fj-aKx" id="lKb-JC-vvX"/>
                         <outlet property="profilePic" destination="5G2-fJ-YRE" id="zn0-lH-wSv"/>
-                        <outlet property="snapButton" destination="Kam-qH-YJy" id="yDe-rV-HbK"/>
                         <outlet property="snapchatCircle" destination="u2e-Fe-S3K" id="zpK-9i-nLg"/>
-                        <outlet property="snapchatLabel" destination="qbI-Wt-EoN" id="cgd-HV-reG"/>
-                        <outlet property="twitterAdded" destination="RIJ-K0-GDE" id="pYl-Q5-0yg"/>
-                        <outlet property="twitterButton" destination="Ly2-xZ-VyL" id="Yvn-fX-n5e"/>
                         <outlet property="twitterCircle" destination="QZw-Fl-2PH" id="O53-fP-xAT"/>
-                        <outlet property="twitterLabel" destination="fu4-gX-fQf" id="7nT-DY-STY"/>
-                        <outlet property="twitterViewProfileSmall" destination="aIb-cR-eTW" id="Vl7-4m-d6x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OI2-HU-7yi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1211,7 +1195,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ppicframe" translatesAutoresizingMaskIntoConstraints="NO" id="Rvz-H6-I90">
-                                        <rect key="frame" x="12" y="20" width="132" height="132"/>
+                                        <rect key="frame" x="12" y="20" width="150" height="132"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ppicframe" translatesAutoresizingMaskIntoConstraints="NO" id="42Z-i0-3ly">
@@ -1659,13 +1643,13 @@
                                 <rect key="frame" x="-1" y="-1" width="322" height="570"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="76" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="pjV-MJ-RqC">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="76" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="pjV-MJ-RqC">
                                 <rect key="frame" x="94" y="77" width="219" height="462"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="44" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="connectionCell" rowHeight="76" id="uPh-M0-mqb" customClass="ConnectionsCellTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="connectionCell" rowHeight="76" id="uPh-M0-mqb" customClass="ConnectionsCellTableViewCell">
                                         <rect key="frame" x="0.0" y="22" width="219" height="76"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uPh-M0-mqb" id="prx-uE-2Ec">
@@ -1890,7 +1874,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning: by linking this you'll get more followers." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="182" translatesAutoresizingMaskIntoConstraints="NO" id="ZHY-Vk-j6p">
-                                        <rect key="frame" x="74" y="-2" width="182" height="104"/>
+                                        <rect key="frame" x="78" y="-2" width="182" height="104"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="182" id="VtJ-ab-ikR"/>
@@ -1941,7 +1925,7 @@
                                     <constraint firstAttribute="centerY" secondItem="IOc-ik-mDJ" secondAttribute="centerY" id="Nuy-qk-2iR"/>
                                     <constraint firstAttribute="centerY" secondItem="was-Vv-3ha" secondAttribute="centerY" id="PzH-4h-u5z"/>
                                     <constraint firstItem="3yM-7K-UJZ" firstAttribute="leading" secondItem="wBC-d8-p2V" secondAttribute="leading" constant="-24" id="Qdk-bJ-R1q"/>
-                                    <constraint firstAttribute="centerX" secondItem="ZHY-Vk-j6p" secondAttribute="centerX" constant="-5" id="ZAT-0h-344"/>
+                                    <constraint firstAttribute="centerX" secondItem="ZHY-Vk-j6p" secondAttribute="centerX" constant="-9" id="ZAT-0h-344"/>
                                     <constraint firstAttribute="width" constant="320" id="ccm-69-enw"/>
                                     <constraint firstItem="was-Vv-3ha" firstAttribute="leading" secondItem="wBC-d8-p2V" secondAttribute="leading" constant="-24" id="j1t-Ry-0gP"/>
                                     <constraint firstItem="e5b-oD-bzh" firstAttribute="leading" secondItem="wBC-d8-p2V" secondAttribute="leading" constant="42" id="mt6-CG-w0N"/>
@@ -1994,7 +1978,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tired of an empty snap feed? This will help." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="182" translatesAutoresizingMaskIntoConstraints="NO" id="AP3-Fe-0ZQ">
-                                        <rect key="frame" x="70" y="-2" width="182" height="104"/>
+                                        <rect key="frame" x="72" y="-2" width="182" height="104"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="104" id="AwY-Sr-xz4"/>
@@ -2023,7 +2007,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="0ye-Be-7Nq"/>
                                     <constraint firstAttribute="trailing" secondItem="D1K-4m-ss0" secondAttribute="trailing" constant="15" id="8yo-K1-Cz1"/>
-                                    <constraint firstAttribute="centerX" secondItem="AP3-Fe-0ZQ" secondAttribute="centerX" constant="-1" id="EY9-J8-cMT"/>
+                                    <constraint firstAttribute="centerX" secondItem="AP3-Fe-0ZQ" secondAttribute="centerX" constant="-3" id="EY9-J8-cMT"/>
                                     <constraint firstAttribute="centerY" secondItem="HZd-At-69O" secondAttribute="centerY" id="H75-zd-p9W"/>
                                     <constraint firstItem="aCr-c4-zcD" firstAttribute="leading" secondItem="1ek-4F-jxt" secondAttribute="leading" constant="-24" id="NPs-hm-hTe"/>
                                     <constraint firstAttribute="centerY" secondItem="AP3-Fe-0ZQ" secondAttribute="centerY" id="OaL-fp-EeV"/>
@@ -2152,8 +2136,8 @@
                                             <constraint firstAttribute="width" constant="127" id="EMW-nf-PSh"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prove you’re no catfish.     Link your Insta." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="182" translatesAutoresizingMaskIntoConstraints="NO" id="IA5-zy-SH0">
-                                        <rect key="frame" x="79" y="-2" width="182" height="104"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Prove you’re no catfish.     Link your Insta." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="182" translatesAutoresizingMaskIntoConstraints="NO" id="IA5-zy-SH0">
+                                        <rect key="frame" x="77" y="-2" width="182" height="104"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="182" id="38O-KZ-L9E"/>
