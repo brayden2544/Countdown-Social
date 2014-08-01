@@ -100,6 +100,7 @@
 		6ED73BF01965130F00539389 /* CountdownTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED73BEF1965130F00539389 /* CountdownTimer.m */; };
 		6EF0026E194FC9EF00F32217 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF0026D194FC9EF00F32217 /* Social.framework */; };
 		6EF00270194FCA2000F32217 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF0026F194FCA2000F32217 /* Accounts.framework */; };
+		6EF0DCAF198C0ED5000EA299 /* SevenSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF0DCAE198C0ED5000EA299 /* SevenSwitch.m */; };
 		6EFC0DFC1981863800ED7CB2 /* TermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC0DFB1981863800ED7CB2 /* TermsViewController.m */; };
 		6EFC0DFF1981864600ED7CB2 /* PrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC0DFE1981864600ED7CB2 /* PrivacyViewController.m */; };
 		6EFC0E5719818F4A00ED7CB2 /* bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EFC0E0419818F4A00ED7CB2 /* bubble.png */; };
@@ -327,6 +328,8 @@
 		6ED73BEF1965130F00539389 /* CountdownTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountdownTimer.m; sourceTree = "<group>"; };
 		6EF0026D194FC9EF00F32217 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		6EF0026F194FCA2000F32217 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		6EF0DCAD198C0ED5000EA299 /* SevenSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SevenSwitch.h; sourceTree = "<group>"; };
+		6EF0DCAE198C0ED5000EA299 /* SevenSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SevenSwitch.m; sourceTree = "<group>"; };
 		6EFC0DFA1981863800ED7CB2 /* TermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsViewController.h; sourceTree = "<group>"; };
 		6EFC0DFB1981863800ED7CB2 /* TermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsViewController.m; sourceTree = "<group>"; };
 		6EFC0DFD1981864600ED7CB2 /* PrivacyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivacyViewController.h; sourceTree = "<group>"; };
@@ -724,6 +727,8 @@
 		6EC5854A1975BE39008DDFFA /* Potential Matches */ = {
 			isa = PBXGroup;
 			children = (
+				6EF0DCAD198C0ED5000EA299 /* SevenSwitch.h */,
+				6EF0DCAE198C0ED5000EA299 /* SevenSwitch.m */,
 				6ED73BEE1965130F00539389 /* CountdownTimer.h */,
 				6ED73BEF1965130F00539389 /* CountdownTimer.m */,
 				6EC5854B1975BED8008DDFFA /* WaitingAnimation.h */,
@@ -1174,6 +1179,7 @@
 				CDD1D4C91986E23900DB942F /* CSAnimationView.m in Sources */,
 				6E92E01819628E94009ECE27 /* PBJStrobeView.m in Sources */,
 				6E6FC1DB198715E60045CC90 /* ConnectionViewController.m in Sources */,
+				6EF0DCAF198C0ED5000EA299 /* SevenSwitch.m in Sources */,
 				6E92E00119628E24009ECE27 /* PBJMediaWriter.m in Sources */,
 				6EFC0E7219818F4A00ED7CB2 /* JSQMessagesBubbleImageFactory.m in Sources */,
 				6E7691CD195398ED006CA5DB /* PotentialMatches.m in Sources */,

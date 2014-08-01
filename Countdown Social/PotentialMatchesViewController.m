@@ -16,6 +16,7 @@
 #import "RESideMenu/RESideMenu.h"
 #import "LeftMenuViewController.h"
 #import "Connection.h"
+#import "ConnectionsList.h"
 
 @interface PotentialMatchesViewController ()
 
@@ -472,6 +473,7 @@
         if ([responseObject objectForKey:@"liked_user"] != [NSNull null]) {
             NSLog(@"MATCH");
             currentMatch = responseObject;
+            [ConnectionsList updateMatches];
             [self showMatch];
             [self.moviePlayerView.player pause];
             [self nextMatch];

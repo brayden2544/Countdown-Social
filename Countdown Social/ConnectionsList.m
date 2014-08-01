@@ -13,7 +13,7 @@
 @synthesize connections;
 
 +(ConnectionsList*)getInstance{
-    static ConnectionsList *instance = nil;
+    static ConnectionsList *instance;
     static dispatch_once_t onceToken;
     User *obj = [User getInstance];
     NSDictionary *user = obj.user;
@@ -21,10 +21,8 @@
         instance = [[self alloc]init];
         instance.connections = [[NSMutableArray alloc]init];
         //download initial connections
-        NSString *urlAsString =@"http://countdown-java-dev.elasticbeanstalk.com/user/";
-        NSString *userID = [user objectForKey:@"uid"];
-        urlAsString = [urlAsString stringByAppendingString:userID];
-        urlAsString = [urlAsString stringByAppendingString:@"/matches/all"];
+        NSString *urlAsString =[NSString stringWithFormat:@"http://countdown-java-dev.elasticbeanstalk.com/user/%@/matches/all", [user objectForKey:@"uid"]];
+        
         
         FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
         
@@ -34,7 +32,24 @@
         [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
         NSDictionary *params = @{};
         [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            instance.connections = responseObject;
+            [instance.connections addObjectsFromArray: responseObject];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSuccessful" object:nil];
+            NSLog(@"%d Connections ",[instance.connections count]);
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Connections not downloaded %@",error);
+        }
+         ];
+        urlAsString =[NSString stringWithFormat:@"http://countdown-java-dev.elasticbeanstalk.com/user/%@/matches/new", [user objectForKey:@"uid"]];
+        [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSMutableArray * newConnections = [[NSMutableArray alloc]initWithArray:instance.connections];
+            for (NSDictionary *newConnection in responseObject) {
+                for (NSDictionary *connection in newConnections) {
+                    if ([[NSString stringWithFormat:@"%@",[[connection objectForKey:@"liked_user"]objectForKey:@"uid"]] isEqualToString:[NSString stringWithFormat:@"%@",[[newConnection objectForKey:@"liked_user"]objectForKey:@"uid"]]]) {
+                        [newConnection setValue:@true forKey:@"is_new"];
+                        [instance.connections replaceObjectAtIndex:[instance.connections indexOfObjectIdenticalTo:connection] withObject:newConnection];
+                    }
+                }
+            }
             [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSuccessful" object:nil];
             NSLog(@"Connections %@",instance.connections);
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -42,38 +57,65 @@
         }
          ];
         
+//        [NSTimer scheduledTimerWithTimeInterval: 60
+//                                         target: self
+//                                       selector:@selector(updateMatches)
+//                                       userInfo: nil repeats:YES];
+        
     }); return instance;
 }
 
 +(ConnectionsList*)updateMatches{
-    static ConnectionsList *instance = nil;
+    static ConnectionsList *instance;
     instance = [self getInstance];
     User *obj = [User getInstance];
     NSDictionary *user = obj.user;
-        instance = [[self alloc]init];
-        instance.connections = [[NSMutableArray alloc]init];
-        //download initial connections
-        NSString *urlAsString =@"http://countdown-java-dev.elasticbeanstalk.com/user/";
-        NSString *userID = [user objectForKey:@"uid"];
-        urlAsString = [urlAsString stringByAppendingString:userID];
-        urlAsString = [urlAsString stringByAppendingString:@"/matches/new"];
-        
-        FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
-        
-        NSString *FbToken = [session accessTokenData].accessToken;
-        
-        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
-        NSDictionary *params = @{};
-        [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            instance.connections = responseObject;
-            NSLog(@"Connections %@",instance.connections);
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"Connections not downloaded %@",error);
+    //download initial connections
+    NSString *urlAsString =@"http://countdown-java-dev.elasticbeanstalk.com/user/";
+    NSString *userID = [user objectForKey:@"uid"];
+    urlAsString = [urlAsString stringByAppendingString:userID];
+    urlAsString = [urlAsString stringByAppendingString:@"/matches/new"];
+    
+    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+    
+    NSString *FbToken = [session accessTokenData].accessToken;
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    NSDictionary *params = @{};
+    [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([responseObject count]>0) {
+            
+            NSLog(@"new connections%@" , responseObject);
+            NSMutableArray *connections = [[NSMutableArray alloc]init];
+            for (NSMutableDictionary *newConnections in responseObject) {
+                NSMutableDictionary *connection = [[NSMutableDictionary alloc]initWithDictionary: newConnections];
+                [connection setValue:@true forKey:@"is_new"];
+                [connections addObject:connection];
+            }
+            
+            NSMutableArray *newConnections = [[NSMutableArray alloc]initWithArray:connections];
+            for (NSMutableDictionary *connection in instance.connections) {
+                for (NSMutableDictionary *newConnection in responseObject) {
+                    if ([[NSString stringWithFormat:@"%@",[[connection objectForKey:@"liked_user"]objectForKey:@"uid"]]  isEqualToString:[NSString stringWithFormat:@"%@",[[newConnection objectForKey:@"liked_user"]objectForKey:@"uid"]]] ) {
+                        [newConnections removeObjectAtIndex:[newConnections indexOfObjectIdenticalTo:connection]];
+                        NSLog(@"user is same");
+                    }
+                }
+            }
+            [instance.connections addObjectsFromArray:newConnections];
+            NSLog(@"%d New Connections", [newConnections count]);
+            if ([newConnections count]>0) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"newConnections" object:nil];
+                
+            }
         }
-         ];
-        
- return instance;
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Connections not downloaded %@",error);
+    }
+     ];
+    
+    return instance;
 }
 
 

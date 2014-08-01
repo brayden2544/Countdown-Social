@@ -57,6 +57,7 @@
              [appDelegate sessionStateChanged:session state:state error:error];
          }];
     }
+    exit(0);
 }
 -(void)uploadActivity{
     NSString *isActive;
