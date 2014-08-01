@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "matchvid.png"
+      "filename" : "scaled camera.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "matchvid@2x.png"
+      "filename" : "scaled camera@2x.png"
     }
   ],
   "info" : {

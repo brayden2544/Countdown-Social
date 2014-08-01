@@ -691,7 +691,7 @@
                                             <constraint firstAttribute="width" constant="45" id="kEy-aL-7ko"/>
                                             <constraint firstAttribute="height" constant="45" id="tz6-Si-flm"/>
                                         </constraints>
-                                        <state key="normal" title="Button" image="newmessage">
+                                        <state key="normal" title="Button" image="chatsky">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -772,7 +772,7 @@
                                 <rect key="frame" x="0.0" y="333" width="320" height="236"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gbg" translatesAutoresizingMaskIntoConstraints="NO" id="A3g-i6-LiY">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="scaled locationbg" translatesAutoresizingMaskIntoConstraints="NO" id="A3g-i6-LiY">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="236"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -1007,7 +1007,7 @@
         <!--Navigation Controller-->
         <scene sceneID="KQt-lU-Pf4">
             <objects>
-                <navigationController storyboardIdentifier="contentViewController" definesPresentationContext="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" navigationBarHidden="YES" id="Wlj-5m-54v" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="contentViewController" definesPresentationContext="YES" modalTransitionStyle="crossDissolve" useStoryboardIdentifierAsRestorationIdentifier="YES" navigationBarHidden="YES" id="Wlj-5m-54v" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2dM-T6-OJr">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1429,13 +1429,31 @@
                                             <action selector="reportUser:" destination="QP0-wH-HVL" eventType="touchUpInside" id="0tz-co-dxx"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="How would you like to connect with Ashley?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="320" translatesAutoresizingMaskIntoConstraints="NO" id="eM8-I0-xyf">
-                                        <rect key="frame" x="0.0" y="199" width="320" height="68"/>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0ek-T1-aC2">
+                                        <rect key="frame" x="12" y="206" width="51" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="24"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <color key="onTintColor" red="0.31372549019607843" green="0.44313725490196076" blue="0.6588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                    </switch>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hkw-iO-v34">
+                                        <rect key="frame" x="73" y="206" width="51" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="onTintColor" red="0.41960784313725491" green="0.71764705882352942" blue="0.094117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                                    </switch>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="psg-Mw-ABM">
+                                        <rect key="frame" x="134" y="206" width="51" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="onTintColor" red="0.94117647058823528" green="0.90196078431372551" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                                    </switch>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rKF-Yb-TrJ">
+                                        <rect key="frame" x="195" y="206" width="51" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="onTintColor" red="0.34509803921568627" green="0.63921568627450975" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
+                                    </switch>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GyE-AG-mgU">
+                                        <rect key="frame" x="258" y="206" width="51" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="onTintColor" red="0.31372549019607843" green="0.51764705882352935" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
+                                    </switch>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -2790,7 +2808,7 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="66p-di-e7I">
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" onImage="matching snapchat on" offImage="matching snapchat off" translatesAutoresizingMaskIntoConstraints="NO" id="66p-di-e7I">
                                                         <rect key="frame" x="195" y="140" width="51" height="31"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="onTintColor" red="0.34509803919999998" green="0.94117647059999998" blue="0.80784313730000001" alpha="1" colorSpace="deviceRGB"/>
@@ -3212,7 +3230,7 @@
                                         <rect key="frame" x="0.0" y="80" width="320" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" image="location switchbg" translatesAutoresizingMaskIntoConstraints="NO" id="Yyi-lN-6Vg">
+                                            <imageView userInteractionEnabled="NO" alpha="0.49999999999999961" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" image="location switchbg" translatesAutoresizingMaskIntoConstraints="NO" id="Yyi-lN-6Vg">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             </imageView>
@@ -3844,7 +3862,7 @@ General Terms and Conditions applicable to Use of a Web Site.
         <image name="back button" width="100" height="100"/>
         <image name="camera record" width="211" height="134"/>
         <image name="camera1" width="199" height="131"/>
-        <image name="chatsky" width="90" height="90"/>
+        <image name="chatsky" width="45" height="45"/>
         <image name="einstacolor" width="124" height="123"/>
         <image name="ephonecolor" width="123" height="123"/>
         <image name="esnapcolor" width="123" height="123"/>
@@ -3885,11 +3903,10 @@ General Terms and Conditions applicable to Use of a Web Site.
         <image name="matching snapchat on" width="50" height="50"/>
         <image name="matching twitter off" width="50" height="50"/>
         <image name="matching twitter on" width="50" height="50"/>
-        <image name="matchvid" width="90" height="90"/>
+        <image name="matchvid" width="45" height="45"/>
         <image name="minibutton-1" width="14" height="13"/>
         <image name="miniwatch" width="33" height="36"/>
-        <image name="newmessage" width="90" height="90"/>
-        <image name="neworange" width="20" height="20"/>
+        <image name="neworange" width="10" height="10"/>
         <image name="orange circle" width="39" height="39"/>
         <image name="pass" width="210" height="78"/>
         <image name="pdividerline" width="523" height="3"/>
@@ -3900,7 +3917,7 @@ General Terms and Conditions applicable to Use of a Web Site.
         <image name="pinstagramadded" width="212" height="55"/>
         <image name="pphome" width="214" height="40"/>
         <image name="ppic" width="791" height="794"/>
-        <image name="ppicframe" width="351" height="351"/>
+        <image name="ppicframe" width="176" height="177"/>
         <image name="ppvfacebook" width="240" height="28"/>
         <image name="ppvinstagram" width="240" height="28"/>
         <image name="ppvsms" width="240" height="28"/>
