@@ -102,9 +102,14 @@
 - (void)checkSocial{
     if ([[connection objectForKey:@"facebook_uid"]isKindOfClass:[NSNull class]]) {
         //Facebook not shared
-        self.facebookProfile.enabled = FALSE;
-        self.facebookProfile.hidden = TRUE;
-    
+        self.facebookAdded.enabled = FALSE;
+        self.facebookAdded.hidden = TRUE;
+        self.facebookViewProfileSmall.hidden = TRUE;
+        self.facebookViewProfileSmall.enabled = FALSE;
+        self.facebookButton.enabled = FALSE;
+        self.facebookButton.hidden = TRUE;
+        self.facebookLabel.hidden = TRUE;
+        
         self.facebookCircle.hidden = TRUE;
     }else{
         [self facebookCheck];
@@ -112,9 +117,13 @@
     }
     if ([[connection objectForKey:@"instagram_username"]isKindOfClass:[NSNull class]]) {
         //Instagram not shared
-        self.instagramProfile.enabled = FALSE;
-        self.instagramProfile.hidden = TRUE;
-
+        self.instagramAdded.enabled = FALSE;
+        self.instagramAdded.hidden = TRUE;
+        self.instagramViewProfileSmall.hidden = TRUE;
+        self.instagramViewProfileSmall.enabled = FALSE;
+        self.instaButton.enabled = FALSE;
+        self.instaButton.hidden = TRUE;
+        self.instagramLabel.hidden = FALSE;
         self.instagramCircle.hidden = TRUE;
     }else{
         [self instagramCheck];
@@ -123,32 +132,38 @@
     if ([[connection objectForKey:@"phone_number"]isKindOfClass:[NSNull class]]) {
         //Phone Number not shared
 
-
+        self.phoneButton.enabled =FALSE;
+        self.phoneButton.hidden = TRUE;
+        self.phoneLabel.hidden = FALSE;
         self.phoneCircle.hidden = TRUE;
     }else{
         
     }
     if ([[connection objectForKey:@"snapchat_username"]isKindOfClass:[NSNull class]]) {
         //Facebook not shared
-
+        self.snapButton.enabled =FALSE;
+        self.snapButton.hidden = TRUE;
+        self.snapchatLabel.hidden = FALSE;
         self.snapchatCircle.hidden = TRUE;
     }else{
         
     }
     if ([[connection objectForKey:@"twitter_username"]isKindOfClass:[NSNull class]]) {
         //Facebook not shared
-        self.twitterProfile.enabled = FALSE;
-        self.twitterProfile.hidden = TRUE;
-        self.twitterCircle.hidden = TRUE;
-    }else{
+        self.twitterAdded.enabled = FALSE;
+        self.twitterAdded.hidden = TRUE;
+        self.twitterViewProfileSmall.hidden = TRUE;
+        self.twitterViewProfileSmall.enabled = FALSE;
+        self.twitterButton.enabled = FALSE;
+        self.twitterButton.hidden = TRUE;
+        self.twitterLabel.hidden = FALSE;
+        self.twitterLabel.hidden = TRUE;    }else{
         [self twitterCheck];
     }
 }
 
 - (void)facebookCheck{
     self.facebookCircle.hidden = FALSE;
-    self.facebookProfile.hidden = FALSE;
-    self.facebookProfile.enabled = TRUE;
     /* make the API call */
     [FBRequestConnection startWithGraphPath:[NSString stringWithFormat:@"/%@/friends/%@", [[user objectForKey:@"facebook_uid"]stringValue], [[connection objectForKey:@"facebook_uid"]stringValue]]
                                  parameters:nil
@@ -162,10 +177,24 @@
                               NSArray *friendInfo = (NSArray *) [result objectForKey:@"data"];
                               NSLog(@"%@",result);
                               if ([friendInfo count]>0) {
+                                  self.facebookAdded.hidden = FALSE;
+                                  self.facebookAdded.enabled = TRUE;
+                                  self.facebookViewProfileSmall.enabled = TRUE;
+                                  self.facebookViewProfileSmall.hidden = FALSE;
+                                  self.facebookLabel.hidden = TRUE;
+                                  self.facebookButton.enabled = FALSE;
+                                  self.facebookButton.hidden = TRUE;
+                                  
         
                               }else{
                                   NSLog(@"showing up as false");
-    
+                                  self.facebookAdded.hidden = TRUE;
+                                  self.facebookAdded.enabled = FALSE;
+                                  self.facebookViewProfileSmall.enabled = FALSE;
+                                  self.facebookViewProfileSmall.hidden = TRUE;
+                                  self.facebookLabel.hidden = TRUE;
+                                  self.facebookButton.enabled = TRUE;
+                                  self.facebookButton.hidden = FALSE;
                               }
                           }];}
 
@@ -192,15 +221,16 @@
 
 - (void) instagramCheck{
     self.instagramCircle.hidden = FALSE;
-    self.instagramProfile.hidden = FALSE;
-    self.instagramProfile.enabled = TRUE;
+    if ([connection objectForKey:@"instagram_uid"]!=[NSNull null] && [user objectForKey:@"intagram_token"]!=[NSNull null]) {
+   
     NSString *instaUrl = [NSString stringWithFormat:@"https://api.instagram.com/v1/users/%@/relationship?/access_token=%@", [connection objectForKey:@"instagram_uid"], [user objectForKey:@"instagram_token"]];
-//    [manager GET:instaUrl parameters:@{} success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//                                         NSLog(@"resonse Object %@",responseObject);
-//                                         
-//                                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//                                         NSLog(@"Photo failed to load%@",error);
-//                                     }];
+    [manager GET:instaUrl parameters:@{} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                         NSLog(@"resonse Object %@",responseObject);
+                                         
+                                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                         NSLog(@"Photo failed to load%@",error);
+                                     }];
+    }
 
 }
 

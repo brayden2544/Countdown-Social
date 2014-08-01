@@ -14,6 +14,13 @@
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *activityLabel;
 
+@property (strong, nonatomic) IBOutlet UILabel *facebookLabel;
+@property (strong, nonatomic) IBOutlet UILabel *twitterLabel;
+@property (strong, nonatomic) IBOutlet UILabel *instagramLabel;
+@property (strong, nonatomic) IBOutlet UILabel *snapchatLabel;
+@property (strong, nonatomic) IBOutlet UILabel *phoneLabel;
+
+
 //LeftCircileImages
 @property (strong, nonatomic) IBOutlet UIImageView *facebookCircle;
 @property (strong, nonatomic) IBOutlet UIImageView *instagramCircle;
@@ -21,14 +28,22 @@
 @property (strong, nonatomic) IBOutlet UIImageView *snapchatCircle;
 @property (strong, nonatomic) IBOutlet UIImageView *phoneCircle;
 
+@property (strong, nonatomic) IBOutlet UIButton *facebookViewProfileSmall;
+@property (strong, nonatomic) IBOutlet UIButton *twitterViewProfileSmall;
+@property (strong, nonatomic) IBOutlet UIButton *instagramViewProfileSmall;
 
+@property (strong, nonatomic) IBOutlet UIButton *facebookAdded;
+@property (strong, nonatomic) IBOutlet UIButton *instagramAdded;
+@property (strong, nonatomic) IBOutlet UIButton *twitterAdded;
 
+@property (strong, nonatomic) IBOutlet UIButton *phoneButton;
+@property (strong, nonatomic) IBOutlet UIButton *snapButton;
+@property (strong, nonatomic) IBOutlet UIButton *instaButton;
+@property (strong, nonatomic) IBOutlet UIButton *twitterButton;
+@property (strong, nonatomic) IBOutlet UIButton *facebookButton;
 
 
 //viewProfileButtons
-@property (strong, nonatomic) IBOutlet UIButton *facebookProfile;
-@property (strong, nonatomic) IBOutlet UIButton *twitterProfile;
-@property (strong, nonatomic) IBOutlet UIButton *instagramProfile;
 
 
 - (IBAction)backToConnections:(id)sender;
