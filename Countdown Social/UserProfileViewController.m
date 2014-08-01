@@ -265,7 +265,7 @@
 - (IBAction)goToUserVideo:(id)sender {
 }
 
-- (IBAction)addFacebookFriend:(id)sender {
+- (IBAction)goToUserFacebook:(id)sender {
     NSString *fullURL = [NSString stringWithFormat:@"http://www.facebook.com/addfriend.php?id=%@",[connection objectForKey:@"facebook_uid"] ];
     NSURL *url = [NSURL URLWithString:fullURL];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
@@ -275,5 +275,29 @@
     [self.view bringSubviewToFront:closeButton];
 
 }
+
+- (IBAction)goToUserTwitter:(id)sender {
+    NSString *fullURL = [NSString stringWithFormat:@"http://twitter.com/%@",[connection objectForKey:@"twitter_username"] ];
+    NSURL *url = [NSURL URLWithString:fullURL];
+    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    [socialMediaWebView loadRequest:requestObj];
+    [self.view addSubview:socialMediaWebView];
+    [self.view addSubview:closeButton];
+    [self.view bringSubviewToFront:closeButton];
+
+}
+
+- (IBAction)goToUserInstagram:(id)sender {
+    NSString *fullURL = [NSString stringWithFormat:@"http://instagram.com/%@",[connection objectForKey:@"instagram_username"] ];
+    NSURL *url = [NSURL URLWithString:fullURL];
+    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    [socialMediaWebView loadRequest:requestObj];
+    [self.view addSubview:socialMediaWebView];
+    [self.view addSubview:closeButton];
+    [self.view bringSubviewToFront:closeButton];
+
+}
+
+
 
 @end

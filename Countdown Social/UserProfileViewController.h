@@ -50,4 +50,9 @@
 - (IBAction)goToMessaging:(id)sender;
 - (IBAction)goToUserVideo:(id)sender;
 
+
+- (IBAction)goToUserFacebook:(id)sender;
+- (IBAction)goToUserTwitter:(id)sender;
+- (IBAction)goToUserInstagram:(id)sender;
+
 @end
