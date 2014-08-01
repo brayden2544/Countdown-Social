@@ -12,6 +12,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "PlayerView.h"
 #import  "CSAnimationView.h"
+#import "SevenSwitch.h"
 
 
 
@@ -39,6 +40,15 @@
 @property (strong, nonatomic) IBOutlet UILabel *meetLabel;
 @property (nonatomic,strong) IBOutlet UIButton *playButton;
 @property (strong, nonatomic) IBOutlet CSAnimationView *nameView;
+
+@property (strong, nonatomic) SevenSwitch *facebookSwitch;
+@property (strong, nonatomic) SevenSwitch *phoneSwitch;
+@property (strong, nonatomic) SevenSwitch *snapchatSwitch;
+@property (strong, nonatomic) SevenSwitch *twitterSwitch;
+@property (strong, nonatomic) SevenSwitch *instagramSwitch;
+
+
+
 
 
 @property (strong, nonatomic) IBOutlet UIButton *instagramDeselect;

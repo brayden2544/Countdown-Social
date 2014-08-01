@@ -65,7 +65,13 @@
     [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
     [self getImages];
     [self checkSocial];
-    
+    [self notificationStatus];
+}
+- (void)notificationStatus{
+    Connection *obj = [Connection getInstance];
+    if ([[obj.connection objectForKey:@"is_new"]isEqual:@true]) {
+        NSLog(@"User is new");
+    }
 }
 - (IBAction)close:(id)sender{
     [socialMediaWebView removeFromSuperview];

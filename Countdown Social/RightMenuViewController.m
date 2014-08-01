@@ -34,6 +34,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTable) name:@"newConnections" object:nil];
+
     ConnectionsList *obj = [ConnectionsList getInstance];
     connections = obj.connections;
 //    self.ConnectionsTableView.dataSource = self;
@@ -51,7 +53,11 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void)updateTable{
+    ConnectionsList *obj = [ConnectionsList getInstance];
+    connections = obj.connections;
+    [self.ConnectionsTableView reloadData];
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"cell should be populating");
     static NSString *CellIdentifier = @"connectionCell";
@@ -63,7 +69,12 @@
     }
     
     connection = [[connections objectAtIndex:indexPath.row]objectForKey:@"liked_user"];
-    
+    if ([[connections objectAtIndex:indexPath.row]objectForKey:@"is_new"]==false) {
+        cell.notificationImage.hidden = false;
+    }
+    else{
+        cell.notificationImage.hidden = true;
+    }
     if ([connection objectForKey:@"instagram_username"]!=[NSNull null]) {
         //show insta button
         cell.instagramImage.hidden = false;
@@ -107,7 +118,8 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
     manager.responseSerializer = [AFImageResponseSerializer serializer];
-    [manager GET:picURL parameters:@{} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:picURL parameters:@{@"height":@100,
+                                     @"width": @100} success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                          cell.profilePic.image = responseObject;
                                          cell.profilePic.layer.cornerRadius = cell.profilePic.layer.frame.size.height/2;
                                          cell.profilePic.layer.masksToBounds = YES;
