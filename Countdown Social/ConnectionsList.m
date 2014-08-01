@@ -45,8 +45,9 @@
             for (NSDictionary *newConnection in responseObject) {
                 for (NSDictionary *connection in newConnections) {
                     if ([[NSString stringWithFormat:@"%@",[[connection objectForKey:@"liked_user"]objectForKey:@"uid"]] isEqualToString:[NSString stringWithFormat:@"%@",[[newConnection objectForKey:@"liked_user"]objectForKey:@"uid"]]]) {
-                        [newConnection setValue:@true forKey:@"is_new"];
-                        [instance.connections replaceObjectAtIndex:[instance.connections indexOfObjectIdenticalTo:connection] withObject:newConnection];
+                        NSMutableDictionary *newConnectionWithNotification = [[NSMutableDictionary alloc]initWithDictionary: newConnection];
+                        [newConnectionWithNotification setValue:@true forKey:@"is_new"];
+                        [instance.connections replaceObjectAtIndex:[instance.connections indexOfObjectIdenticalTo:connection] withObject:newConnectionWithNotification];
                     }
                 }
             }
