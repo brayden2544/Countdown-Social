@@ -69,8 +69,8 @@
     }
     
     connection = [[connections objectAtIndex:indexPath.row]objectForKey:@"liked_user"];
-    if ([[connections objectAtIndex:indexPath.row]objectForKey:@"is_new"]==false) {
-        cell.notificationImage.hidden = false;
+    if ([[connections objectAtIndex:indexPath.row]objectForKey:@"is_new"]!=[NSNull null] && [[[connections objectAtIndex:indexPath.row]objectForKey:@"is_new"]boolValue]==true)  {
+        cell.notificationImage.hidden = FALSE;
     }
     else{
         cell.notificationImage.hidden = true;
@@ -147,7 +147,29 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Connection *obj = [Connection getInstance];
-    connection = [connections objectAtIndex:indexPath.row];
+    connection = [[NSMutableDictionary alloc]initWithDictionary:[connections objectAtIndex:indexPath.row]];
+    if ([[connection objectForKey:@"is_true"]boolValue]==true) {
+        [connections setValue:FALSE forKey:@"is_new"];
+        [connections replaceObjectAtIndex:indexPath.row withObject:connection];
+        [self.ConnectionsTableView reloadData];
+        NSString *urlAsString =[NSString stringWithFormat:@"http://countdown-java-dev.elasticbeanstalk.com/user/%@/like/viewed", [connection objectForKey:@"uid"]];
+        
+        
+        FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+        
+        NSString *FbToken = [session accessTokenData].accessToken;
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+        NSDictionary *params = @{};
+        [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"User shown as seen");
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"User not shown as seen%@", error);
+        }];
+
+    }
     obj.connection = connection;
     
     [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"]]animated:YES];

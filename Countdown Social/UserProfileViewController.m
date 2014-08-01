@@ -13,6 +13,7 @@
 #import "AFNetworking/AFOAuth1Client.h"
 #import "MessagesViewController.h"
 #import "ResideMenu.h"
+#import "ConnectionsList.h"
 @interface UserProfileViewController ()
 @property NSDictionary *user;
 @property NSDictionary *connection;
@@ -70,13 +71,14 @@
 - (void)notificationStatus{
     Connection *obj = [Connection getInstance];
     if ([[obj.connection objectForKey:@"is_new"]isEqual:@true]) {
-        NSLog(@"User is new");
+                NSLog(@"User is new");
     }
 }
 - (IBAction)close:(id)sender{
     [socialMediaWebView removeFromSuperview];
     closeButton.hidden = TRUE;
 }
+
 
 - (void)getImages{
     
@@ -217,6 +219,14 @@
 //    self.twitterCircle.hidden = FALSE;
 //    self.twitterProfile.hidden = FALSE;
 //    self.twitterProfile.enabled = TRUE;
+    self.twitterAdded.hidden = TRUE;
+    self.twitterAdded.enabled = FALSE;
+    self.twitterViewProfileSmall.enabled = FALSE;
+    self.twitterViewProfileSmall.hidden = TRUE;
+    self.twitterLabel.hidden = TRUE;
+    self.twitterButton.enabled = TRUE;
+    self.twitterButton.hidden = FALSE;
+
     }
 
 - (void) instagramCheck{
@@ -230,6 +240,14 @@
                                      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                          NSLog(@"Photo failed to load%@",error);
                                      }];
+    }else{
+        self.instagramAdded.hidden = TRUE;
+        self.instagramAdded.enabled = FALSE;
+        self.instagramViewProfileSmall.enabled = FALSE;
+        self.instagramViewProfileSmall.hidden = TRUE;
+        self.instagramLabel.hidden = TRUE;
+        self.instaButton.enabled = TRUE;
+        self.instaButton.hidden = FALSE;
     }
 
 }

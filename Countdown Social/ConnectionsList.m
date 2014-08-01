@@ -52,16 +52,18 @@
                 }
             }
             [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSuccessful" object:nil];
+
             NSLog(@"Connections %@",instance.connections);
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"newConnections" object:nil];
+
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Connections not downloaded %@",error);
         }
          ];
-        
-//        [NSTimer scheduledTimerWithTimeInterval: 60
-//                                         target: self
-//                                       selector:@selector(updateMatches)
-//                                       userInfo: nil repeats:YES];
+                [NSTimer scheduledTimerWithTimeInterval: 60
+                                         target: self
+                                       selector:@selector(updateMatches)
+                                       userInfo: nil repeats:YES];
         
     }); return instance;
 }
@@ -97,9 +99,9 @@
             
             NSMutableArray *newConnections = [[NSMutableArray alloc]initWithArray:connections];
             for (NSMutableDictionary *connection in instance.connections) {
-                for (NSMutableDictionary *newConnection in responseObject) {
+                for (NSMutableDictionary *newConnection in connections) {
                     if ([[NSString stringWithFormat:@"%@",[[connection objectForKey:@"liked_user"]objectForKey:@"uid"]]  isEqualToString:[NSString stringWithFormat:@"%@",[[newConnection objectForKey:@"liked_user"]objectForKey:@"uid"]]] ) {
-                        [newConnections removeObjectAtIndex:[newConnections indexOfObjectIdenticalTo:connection]];
+                        [newConnections removeObjectAtIndex:[newConnections indexOfObjectIdenticalTo:newConnection]];
                         NSLog(@"user is same");
                     }
                 }
