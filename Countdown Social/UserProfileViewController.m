@@ -46,10 +46,10 @@
     closeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 
     [closeButton setTitle:@"Close" forState:UIControlStateNormal];
-    closeButton.frame = CGRectMake(15, 300 , 100, 100);
+    closeButton.frame = CGRectMake(300,15  , 100, 100);
     [closeButton addTarget:self action:@selector(close:) forControlEvents:UIControlEventTouchUpInside];
     // Do any additional setup after loading the view.
-    socialMediaWebView= [[UIWebView alloc]initWithFrame:CGRectMake(0, 20, self.view.frame.size.width , self.view.frame.size.height - 20.0)];
+    socialMediaWebView= [[UIWebView alloc]initWithFrame:CGRectMake(0, 60, self.view.frame.size.width , self.view.frame.size.height - 60.0)];
     socialMediaWebView.layer.cornerRadius = 15.0;
     socialMediaWebView.layer.masksToBounds = YES;
     
@@ -139,7 +139,8 @@
         self.phoneLabel.hidden = FALSE;
         self.phoneCircle.hidden = TRUE;
     }else{
-        
+        self.phoneButton.enabled =TRUE ;
+        self.phoneButton.hidden = FALSE;
     }
     if ([[connection objectForKey:@"snapchat_username"]isKindOfClass:[NSNull class]]) {
         //Facebook not shared
@@ -148,6 +149,8 @@
         self.snapchatLabel.hidden = FALSE;
         self.snapchatCircle.hidden = TRUE;
     }else{
+        self.snapButton.enabled =TRUE;
+        self.snapButton.hidden = FALSE;
         
     }
     if ([[connection objectForKey:@"twitter_username"]isKindOfClass:[NSNull class]]) {
@@ -272,6 +275,8 @@
     [socialMediaWebView loadRequest:requestObj];
     [self.view addSubview:socialMediaWebView];
     [self.view addSubview:closeButton];
+    closeButton.hidden =false;
+
     [self.view bringSubviewToFront:closeButton];
 
 }
@@ -283,7 +288,10 @@
     [socialMediaWebView loadRequest:requestObj];
     [self.view addSubview:socialMediaWebView];
     [self.view addSubview:closeButton];
+    closeButton.hidden =false;
+
     [self.view bringSubviewToFront:closeButton];
+
 
 }
 
@@ -294,7 +302,10 @@
     [socialMediaWebView loadRequest:requestObj];
     [self.view addSubview:socialMediaWebView];
     [self.view addSubview:closeButton];
+    closeButton.hidden =false;
+
     [self.view bringSubviewToFront:closeButton];
+
 
 }
 
