@@ -941,6 +941,9 @@
                                         <state key="normal" title="SMS" image="ppvsms">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="goToSMS:" destination="Qsq-uR-0b2" eventType="touchUpInside" id="6jf-k3-MrE"/>
+                                        </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kam-qH-YJy">
                                         <rect key="frame" x="66" y="146" width="240" height="28"/>
@@ -950,6 +953,9 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="goToSnap:" destination="Qsq-uR-0b2" eventType="touchUpInside" id="F5B-1u-v4D"/>
+                                        </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XWu-9p-zQd">
                                         <rect key="frame" x="66" y="102" width="240" height="28"/>

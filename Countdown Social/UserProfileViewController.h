@@ -6,9 +6,10 @@
 //  Copyright (c) 2014 Brayden Adams. All rights reserved.
 //
 
+#import <MessageUI/MessageUI.h>
 #import <UIKit/UIKit.h>
 
-@interface UserProfileViewController : UIViewController
+@interface UserProfileViewController : UIViewController <MFMessageComposeViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet UIImageView *backgroundProfilePic;
 @property (strong, nonatomic) IBOutlet UIImageView *profilePic;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
@@ -54,5 +55,7 @@
 - (IBAction)goToUserFacebook:(id)sender;
 - (IBAction)goToUserTwitter:(id)sender;
 - (IBAction)goToUserInstagram:(id)sender;
+- (IBAction)goToSMS:(id)sender;
+- (IBAction)goToSnap:(id)sender;
 
 @end

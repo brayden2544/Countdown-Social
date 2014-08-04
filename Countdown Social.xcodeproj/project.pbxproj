@@ -78,6 +78,7 @@
 		6EC0FC1A192AD9AE00B72C44 /* matchesButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0FC19192AD9AE00B72C44 /* matchesButton.png */; };
 		6EC0FC2F192B145C00B72C44 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC0FC2E192B145C00B72C44 /* Accelerate.framework */; };
 		6EC4BFA219799A0C00E66339 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC4BFA119799A0C00E66339 /* SettingsViewController.m */; };
+		6EC52B3B198FECC100D831F3 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC52B3A198FECC100D831F3 /* MessageUI.framework */; };
 		6EC585491975BE21008DDFFA /* PotentialMatchesLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC585481975BE21008DDFFA /* PotentialMatchesLoadingView.m */; };
 		6EC5854D1975BED8008DDFFA /* WaitingAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC5854C1975BED8008DDFFA /* WaitingAnimation.m */; };
 		6EC5855019772269008DDFFA /* UserScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC5854F19772269008DDFFA /* UserScoreViewController.m */; };
@@ -287,6 +288,7 @@
 		6EC0FC2E192B145C00B72C44 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		6EC4BFA019799A0C00E66339 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		6EC4BFA119799A0C00E66339 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		6EC52B3A198FECC100D831F3 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		6EC585471975BE21008DDFFA /* PotentialMatchesLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PotentialMatchesLoadingView.h; sourceTree = "<group>"; };
 		6EC585481975BE21008DDFFA /* PotentialMatchesLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PotentialMatchesLoadingView.m; sourceTree = "<group>"; };
 		6EC5854B1975BED8008DDFFA /* WaitingAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitingAnimation.h; sourceTree = "<group>"; };
@@ -448,6 +450,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EC52B3B198FECC100D831F3 /* MessageUI.framework in Frameworks */,
 				6EFC0E90198190A700ED7CB2 /* AudioToolbox.framework in Frameworks */,
 				6EFC0E8E1981909A00ED7CB2 /* QuartzCore.framework in Frameworks */,
 				6E4C5A58197D981400CCD5A8 /* StoreKit.framework in Frameworks */,
@@ -577,6 +580,7 @@
 		6E967CAE190DA4960042AF93 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6EC52B3A198FECC100D831F3 /* MessageUI.framework */,
 				6EFC0E8F198190A700ED7CB2 /* AudioToolbox.framework */,
 				6EFC0E8D1981909A00ED7CB2 /* QuartzCore.framework */,
 				6E4C5A57197D981400CCD5A8 /* StoreKit.framework */,

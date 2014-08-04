@@ -14,6 +14,9 @@
 #import "MessagesViewController.h"
 #import "ResideMenu.h"
 #import "ConnectionsList.h"
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMessageComposeViewController.h>
+
 @interface UserProfileViewController ()
 @property NSDictionary *user;
 @property NSDictionary *connection;
@@ -30,15 +33,6 @@
 @synthesize socialMediaWebView;
 @synthesize closeButton;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -48,6 +42,7 @@
     [closeButton setTitle:@"Close" forState:UIControlStateNormal];
     closeButton.frame = CGRectMake(300,15  , 100, 100);
     [closeButton addTarget:self action:@selector(close:) forControlEvents:UIControlEventTouchUpInside];
+    [closeButton setImage:[UIImage imageNamed:@"back_button"] forState:UIControlStateNormal];
     // Do any additional setup after loading the view.
     socialMediaWebView= [[UIWebView alloc]initWithFrame:CGRectMake(0, 60, self.view.frame.size.width , self.view.frame.size.height - 60.0)];
     socialMediaWebView.layer.cornerRadius = 15.0;
@@ -67,6 +62,8 @@
     [self getImages];
     [self checkSocial];
     [self notificationStatus];
+    [self.view addSubview:closeButton];
+
 }
 - (void)notificationStatus{
     Connection *obj = [Connection getInstance];
@@ -252,7 +249,48 @@
         self.instaButton.enabled = TRUE;
         self.instaButton.hidden = FALSE;
     }
+}
 
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult) result
+{
+    switch (result) {
+        case MessageComposeResultCancelled:
+            break;
+            
+        case MessageComposeResultFailed:
+        {
+            UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to send SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [warningAlert show];
+            break;
+        }
+            
+        case MessageComposeResultSent:
+            break;
+            
+        default:
+            break;
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (void)showSMS{
+    
+    if(![MFMessageComposeViewController canSendText]) {
+        UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [warningAlert show];
+        return;
+    }
+    
+    NSArray *recipents = @[[NSString stringWithFormat:@"%@",[connection objectForKey:@"phone_number"]]];
+   // NSString *message = [NSString stringWithFormat:@"Just sent the %@ file to your email. Please check!", file];
+    
+    MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
+    messageController.messageComposeDelegate = self;
+    [messageController setRecipients:recipents];
+    //[messageController setBody:message];
+    
+    // Present message view controller on screen
+    [self presentViewController:messageController animated:YES completion:nil];
 }
 
 - (IBAction)backToConnections:(id)sender {
@@ -274,7 +312,6 @@
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     [socialMediaWebView loadRequest:requestObj];
     [self.view addSubview:socialMediaWebView];
-    [self.view addSubview:closeButton];
     closeButton.hidden =false;
 
     [self.view bringSubviewToFront:closeButton];
@@ -287,7 +324,6 @@
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     [socialMediaWebView loadRequest:requestObj];
     [self.view addSubview:socialMediaWebView];
-    [self.view addSubview:closeButton];
     closeButton.hidden =false;
 
     [self.view bringSubviewToFront:closeButton];
@@ -301,12 +337,24 @@
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     [socialMediaWebView loadRequest:requestObj];
     [self.view addSubview:socialMediaWebView];
-    [self.view addSubview:closeButton];
     closeButton.hidden =false;
 
     [self.view bringSubviewToFront:closeButton];
 
 
+}
+
+- (IBAction)goToSMS:(id)sender {
+    [self showSMS];
+}
+
+- (IBAction)goToSnap:(id)sender {
+        [UIPasteboard generalPasteboard].string = [NSString stringWithFormat:@"%@",[connection objectForKey:@"snapchat_username"]];
+    UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Username copied to clipboard!" message:@"Snapchat will now open. \n Go to add friends and paste the username!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [warningAlert show];
+
+    NSString *snapchatURL = [NSString stringWithFormat:@"snapchat://?u=%@",[connection objectForKey:@"snapchat_username"]];
+     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:snapchatURL]];
 }
 
 
