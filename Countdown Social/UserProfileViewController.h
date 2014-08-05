@@ -9,7 +9,7 @@
 #import <MessageUI/MessageUI.h>
 #import <UIKit/UIKit.h>
 
-@interface UserProfileViewController : UIViewController <MFMessageComposeViewControllerDelegate>
+@interface UserProfileViewController : UIViewController <MFMessageComposeViewControllerDelegate, UIActionSheetDelegate, UIWebViewDelegate>
 @property (strong, nonatomic) IBOutlet UIImageView *backgroundProfilePic;
 @property (strong, nonatomic) IBOutlet UIImageView *profilePic;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;

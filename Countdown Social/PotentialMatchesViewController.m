@@ -100,6 +100,22 @@
     
     NSLog(@"ViewDidLoad");
     
+    //Create Seven Switches
+    CGRect switchRect = CGRectMake(0, 0, 50, 100);
+    
+    self.facebookSwitch = [[SevenSwitch alloc]initWithFrame:switchRect];
+    self.instagramSwitch =[[SevenSwitch alloc]initWithFrame:switchRect];
+    self.phoneSwitch = [[SevenSwitch alloc]initWithFrame:switchRect];
+    self.twitterSwitch = [[SevenSwitch alloc]initWithFrame:switchRect];
+    self.snapchatSwitch = [[SevenSwitch alloc]initWithFrame:switchRect];
+    
+    self.instagramSwitch.onImage = [UIImage imageNamed:@"instagram account on"];
+    self.instagramSwitch.offImage = [UIImage imageNamed:@"instagram account off"];
+    self.instagramSwitch.center = CGPointMake(255, 200);
+    self.instagramSwitch.transform = CGAffineTransformRotate(self.instagramSwitch.transform,90.0/180*M_PI);
+    [self.createMatch addSubview:self.instagramSwitch];
+    
+    
     //get first match
     [self firstMatch];
     
@@ -551,17 +567,7 @@
     }
     
 }
-//Alert showing there are no more users or a server error has occured.
-- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex{
-    NSLog(@"login in again hoping for more matches. button index = %d",buttonIndex);
-    
-    if (buttonIndex == 1){
-        
-    }
-    if (buttonIndex ==2){
-        
-    }
-}
+
 //Actionsheet listener for social media applications that havent yet been configured
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (actionSheet.tag==0) {

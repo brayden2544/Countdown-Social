@@ -23,6 +23,8 @@
 @property AFHTTPRequestOperationManager *manager;
 @property UIWebView *socialMediaWebView;
 @property UIButton *closeButton;
+@property UIActivityIndicatorView *activityView;
+@property UIView *loadingView;
 
 @end
 
@@ -32,6 +34,8 @@
 @synthesize user;
 @synthesize socialMediaWebView;
 @synthesize closeButton;
+@synthesize activityView;
+@synthesize loadingView;
 
 - (void)viewDidLoad
 {
@@ -39,14 +43,16 @@
     
     closeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 
-    [closeButton setTitle:@"Close" forState:UIControlStateNormal];
-    closeButton.frame = CGRectMake(300,15  , 100, 100);
+    closeButton.frame = CGRectMake(3,14  , 45, 45);
     [closeButton addTarget:self action:@selector(close:) forControlEvents:UIControlEventTouchUpInside];
-    [closeButton setImage:[UIImage imageNamed:@"back_button"] forState:UIControlStateNormal];
+    [closeButton setImage:[UIImage imageNamed:@"closeWebView"] forState:UIControlStateNormal];
+    closeButton.hidden = YES;
     // Do any additional setup after loading the view.
     socialMediaWebView= [[UIWebView alloc]initWithFrame:CGRectMake(0, 60, self.view.frame.size.width , self.view.frame.size.height - 60.0)];
     socialMediaWebView.layer.cornerRadius = 15.0;
     socialMediaWebView.layer.masksToBounds = YES;
+    socialMediaWebView.delegate = self;
+    [socialMediaWebView setBackgroundColor:[UIColor whiteColor]];
     
     self.navigationController.navigationBarHidden = YES;
     Connection *obj = [Connection getInstance];
@@ -63,6 +69,19 @@
     [self checkSocial];
     [self notificationStatus];
     [self.view addSubview:closeButton];
+    
+    //create loading view
+    loadingView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, socialMediaWebView.frame.size.width , socialMediaWebView.frame.size.height)];
+    loadingView.backgroundColor = [UIColor colorWithWhite:0. alpha:0.6];
+    loadingView.layer.cornerRadius = 5;
+    
+    activityView=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    activityView.center = CGPointMake(loadingView.frame.size.width / 2.0, loadingView.frame.size.height/2);
+    [activityView startAnimating];
+    activityView.tag = 100;
+    [loadingView addSubview:activityView];
+    [socialMediaWebView addSubview:loadingView];
+
 
 }
 - (void)notificationStatus{
@@ -72,6 +91,7 @@
     }
 }
 - (IBAction)close:(id)sender{
+    [socialMediaWebView loadHTMLString:@"" baseURL:nil];
     [socialMediaWebView removeFromSuperview];
     closeButton.hidden = TRUE;
 }
@@ -293,6 +313,33 @@
     [self presentViewController:messageController animated:YES completion:nil];
 }
 
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (actionSheet.tag==0) {
+        
+        if (buttonIndex == 0) {
+            NSLog(@"button index 0 selected");
+            NSString *snapchatURL = [NSString stringWithFormat:@"snapchat://?u=%@",[connection objectForKey:@"snapchat_username"]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:snapchatURL]];
+        } else if (buttonIndex == 1) {
+            NSLog(@"button index 1 selected");
+        }
+    }
+    if (actionSheet.tag ==1) {
+        if (buttonIndex ==0) {
+            NSLog(@"report User");
+                   }
+    }
+}
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [loadingView setHidden:YES];
+}
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+    
+    [loadingView setHidden:NO];
+    
+}
+
 - (IBAction)backToConnections:(id)sender {
     [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"PotentialMatchesViewController"]]animated:YES];
     [self.sideMenuViewController hideMenuViewController];
@@ -304,10 +351,13 @@
     [self.sideMenuViewController hideMenuViewController];}
 
 - (IBAction)goToUserVideo:(id)sender {
-}
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ConnectionVideoViewController"]]animated:YES];
+    [self.sideMenuViewController hideMenuViewController];}
+
 
 - (IBAction)goToUserFacebook:(id)sender {
-    NSString *fullURL = [NSString stringWithFormat:@"http://www.facebook.com/addfriend.php?id=%@",[connection objectForKey:@"facebook_uid"] ];
+    NSString *fullURL = [NSString stringWithFormat:@"http://m.facebook.com/profile.php?id=%@",[connection objectForKey:@"facebook_uid"] ];
+    NSLog(@"Facebook opened with url:%@",[connection objectForKey:@"facebook_uid"]);
     NSURL *url = [NSURL URLWithString:fullURL];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     [socialMediaWebView loadRequest:requestObj];
@@ -349,12 +399,13 @@
 }
 
 - (IBAction)goToSnap:(id)sender {
-        [UIPasteboard generalPasteboard].string = [NSString stringWithFormat:@"%@",[connection objectForKey:@"snapchat_username"]];
-    UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Username copied to clipboard!" message:@"Snapchat will now open. \n Go to add friends and paste the username!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [warningAlert show];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"%@'s Snapchat username copied!!\n\n\t-Open Snapchat\n\t   -Click Add Friends\n\t -Paste Username", [connection objectForKey:@"firstName"]] delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Open Snapchat", nil];
+    actionSheet.tag = 0;
+    [actionSheet showInView:self.view];
 
-    NSString *snapchatURL = [NSString stringWithFormat:@"snapchat://?u=%@",[connection objectForKey:@"snapchat_username"]];
-     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:snapchatURL]];
+    
+        [UIPasteboard generalPasteboard].string = [NSString stringWithFormat:@"%@",[connection objectForKey:@"snapchat_username"]];
+
 }
 
 

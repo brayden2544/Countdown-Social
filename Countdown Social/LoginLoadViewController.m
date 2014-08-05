@@ -51,7 +51,7 @@
           failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
          NSLog(@"Error: %@", error);
-         [self getUserObject];
+         [NSTimer scheduledTimerWithTimeInterval:5.0 target:self   selector:@selector(getUserObject) userInfo:nil repeats:NO];
      }];
 
     
