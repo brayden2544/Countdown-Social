@@ -33,7 +33,6 @@
         NSDictionary *params = @{};
         [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             [instance.connections addObjectsFromArray: responseObject];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSuccessful" object:nil];
             NSLog(@"%d Connections ",[instance.connections count]);
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Connections not downloaded %@",error);

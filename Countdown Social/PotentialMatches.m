@@ -98,7 +98,7 @@
         [instance.potentialMatches removeObjectAtIndex:0];
     }
     
-    if ([instance.potentialMatches count] <= 3 ){
+    if ([instance.potentialMatches count] <= 5 ){
         User *obj = [User getInstance];
         NSDictionary *user = obj.user;
         //start filling Potential Matches Queue

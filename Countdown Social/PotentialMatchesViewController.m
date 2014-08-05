@@ -150,7 +150,8 @@
     [self.createMatch addSubview:self.phoneSwitch];
     [self.createMatch addSubview:self.twitterSwitch];
     [self.createMatch addSubview:self.snapchatSwitch];
-//Perform Button Check after switch creation
+
+    //Perform Button Check after switch creation
     [self buttonCheck];
 
     
@@ -822,9 +823,6 @@
     if ([currentPotentialMatch count] >0){
         [self userPass];
         _likeCurrentUser = false;
-        
-    }
-    else{
     }
 }
 
