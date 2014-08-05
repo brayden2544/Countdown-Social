@@ -53,7 +53,6 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSuccessful" object:nil];
 
             NSLog(@"Connections %@",instance.connections);
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"newConnections" object:nil];
 
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Connections not downloaded %@",error);

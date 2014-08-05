@@ -169,6 +169,14 @@
     [self typingStarted];
 }
 
+-(void)textViewDidEndEditing:(UITextView *)textView{
+    [self typingStopped];
+}
+
+-(void)textViewDidChange:(UITextView *)textView{
+    [self typingStarted];
+}
+
 - (void)refreshMessages{
     NSString *messageURL = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/conversation", [connection objectForKey:@"uid"]];
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];

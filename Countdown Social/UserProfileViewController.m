@@ -251,16 +251,7 @@
 
 - (void) instagramCheck{
     self.instagramCircle.hidden = FALSE;
-    if ([connection objectForKey:@"instagram_uid"]!=[NSNull null] && [user objectForKey:@"intagram_token"]!=[NSNull null]) {
-   
-    NSString *instaUrl = [NSString stringWithFormat:@"https://api.instagram.com/v1/users/%@/relationship?/access_token=%@", [connection objectForKey:@"instagram_uid"], [user objectForKey:@"instagram_token"]];
-    [manager GET:instaUrl parameters:@{} success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                         NSLog(@"resonse Object %@",responseObject);
-                                         
-                                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                         NSLog(@"Photo failed to load%@",error);
-                                     }];
-    }else{
+    if ([[user objectForKey:@"instagram_token"] isKindOfClass:[NSNull class]]) {
         self.instagramAdded.hidden = TRUE;
         self.instagramAdded.enabled = FALSE;
         self.instagramViewProfileSmall.enabled = FALSE;
@@ -268,6 +259,23 @@
         self.instagramLabel.hidden = TRUE;
         self.instaButton.enabled = TRUE;
         self.instaButton.hidden = FALSE;
+        }else if ([[connection objectForKey:@"instagram_uid"]isKindOfClass:[NSNull class]]) {
+            self.instagramAdded.hidden = TRUE;
+            self.instagramAdded.enabled = FALSE;
+            self.instagramViewProfileSmall.enabled = FALSE;
+            self.instagramViewProfileSmall.hidden = TRUE;
+            self.instagramLabel.hidden = TRUE;
+            self.instaButton.enabled = TRUE;
+            self.instaButton.hidden = FALSE;
+        }else{
+            NSString *instaUrl = [NSString stringWithFormat:@"https://api.instagram.com/v1/users/%@/relationship?/access_token=%@", [connection objectForKey:@"instagram_uid"], [user objectForKey:@"instagram_token"]];
+            [manager GET:instaUrl parameters:@{} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                NSLog(@"resonse Object %@",responseObject);
+                
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                NSLog(@"Photo failed to load%@",error);
+            }];
+
     }
 }
 
