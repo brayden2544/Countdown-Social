@@ -38,8 +38,8 @@
 
     ConnectionsList *obj = [ConnectionsList getInstance];
     connections = obj.connections;
-//    self.ConnectionsTableView.dataSource = self;
-//    self.ConnectionsTableView.delegate = self;
+    self.ConnectionsTableView.dataSource = self;
+    self.ConnectionsTableView.delegate = self;
     // Do any additional setup after loading the view.
     //[self.ConnectionsTableView registerClass:[ConnectionsCellTableViewCell class] forCellReuseIdentifier:@"connectionCell"];
     self.ConnectionsTableView.layer.cornerRadius = 5;
