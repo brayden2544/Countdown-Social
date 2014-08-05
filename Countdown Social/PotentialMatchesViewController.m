@@ -634,10 +634,12 @@
     if ([[user objectForKey: @"twitter_username"] isKindOfClass:[NSNull class]]||
         [[user objectForKey: @"twitter_username"]isEqualToString:@""] ||
         [[user objectForKey: @"twitter_username"]isEqualToString:@"<null>"]){
-        self.twitterDeselect.hidden = false;
-        self.twitterSelect.enabled = false;
-        self.twitterDeselect.enabled=TRUE;
-        self.twitterSelect.hidden =TRUE;
+//        self.twitterDeselect.hidden = false;
+//        self.twitterSelect.enabled = false;
+//        self.twitterDeselect.enabled=TRUE;
+//        self.twitterSelect.hidden =TRUE;
+        self.twitterSwitch.enabled = FALSE;
+        self.twitterSwitch.isOn = FALSE;
     }
     else{
         self.twitterDeselect.hidden = TRUE;
