@@ -101,7 +101,7 @@
     NSLog(@"ViewDidLoad");
     
     //Create Seven Switches
-    CGRect switchRect = CGRectMake(0, 0, 50, 100);
+    CGRect switchRect = CGRectMake(0, 0, 50 , 80);
     
     self.facebookSwitch = [[SevenSwitch alloc]initWithFrame:switchRect];
     self.instagramSwitch =[[SevenSwitch alloc]initWithFrame:switchRect];
@@ -109,11 +109,42 @@
     self.twitterSwitch = [[SevenSwitch alloc]initWithFrame:switchRect];
     self.snapchatSwitch = [[SevenSwitch alloc]initWithFrame:switchRect];
     
-    self.instagramSwitch.onImage = [UIImage imageNamed:@"instagram account on"];
-    self.instagramSwitch.offImage = [UIImage imageNamed:@"instagram account off"];
-    self.instagramSwitch.center = CGPointMake(255, 200);
-    self.instagramSwitch.transform = CGAffineTransformRotate(self.instagramSwitch.transform,90.0/180*M_PI);
+    self.facebookSwitch.thumbTintColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"facebookThumb"]];
+    self.facebookSwitch.onTintColor = [UIColor colorWithRed:74/255.0 green:110/255.0 blue:169/255.0 alpha:1];
+    self.facebookSwitch.center = CGPointMake(40, 200);
+    self.facebookSwitch.shadowColor = [UIColor blackColor];
+    self.facebookSwitch.borderColor = [UIColor whiteColor];
+    
+    self.phoneSwitch.thumbTintColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"phoneThumb"]];
+    self.phoneSwitch.onTintColor = [UIColor colorWithRed:103/255.0 green:190/255.0 blue:8/255.0 alpha:1];
+    self.phoneSwitch.center = CGPointMake(100, 200);
+    self.phoneSwitch.shadowColor = [UIColor blackColor];
+    self.phoneSwitch.borderColor = [UIColor whiteColor];
+    
+    self.snapchatSwitch.thumbTintColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"snapchatThumb"]];
+    self.snapchatSwitch.onTintColor = [UIColor colorWithRed:248/255.0 green:231/255.0 blue:28/255.0 alpha:1];
+    self.snapchatSwitch.center = CGPointMake(160, 200);
+    self.snapchatSwitch.shadowColor = [UIColor blackColor];
+    self.snapchatSwitch.borderColor = [UIColor whiteColor];
+
+    self.twitterSwitch.thumbTintColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"twitterThumb"]];
+    self.twitterSwitch.onTintColor = [UIColor colorWithRed:64/255.0 green:153/255.0 blue:255/255.0 alpha:1];
+    self.twitterSwitch.center = CGPointMake(220, 200);
+    self.twitterSwitch.shadowColor = [UIColor blackColor];
+    self.twitterSwitch.borderColor = [UIColor whiteColor];
+    
+    self.instagramSwitch.thumbTintColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"instagramThumb"]];
+    self.instagramSwitch.onTintColor = [UIColor colorWithRed:69/255.0 green:131/255.0 blue:177/255.0 alpha:1];
+    self.instagramSwitch.center = CGPointMake(280, 200);
+    self.instagramSwitch.shadowColor = [UIColor blackColor];
+    self.instagramSwitch.borderColor = [UIColor whiteColor];
+    
     [self.createMatch addSubview:self.instagramSwitch];
+    [self.createMatch addSubview:self.facebookSwitch];
+    [self.createMatch addSubview:self.phoneSwitch];
+    [self.createMatch addSubview:self.twitterSwitch];
+    [self.createMatch addSubview:self.snapchatSwitch];
+
     
     
     //get first match
