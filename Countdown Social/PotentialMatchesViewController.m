@@ -35,12 +35,6 @@
 
 @property NSTimer *potentialMatchesTimer;
 
-@property bool twitter;
-@property bool instagram;
-@property bool snapchat;
-@property bool phone;
-@property bool facebook;
-
 @property NSTimer *loadingTimer;
 
 @end
@@ -67,7 +61,6 @@
     //Pull in user object and check buttons.
     User *obj = [User getInstance];
     user = obj.user;
-    [self buttonCheck];
     
     _backgroundQueue = [[NSOperationQueue alloc]init];
     
@@ -114,38 +107,52 @@
     self.facebookSwitch.center = CGPointMake(40, 200);
     self.facebookSwitch.shadowColor = [UIColor blackColor];
     self.facebookSwitch.borderColor = [UIColor whiteColor];
+    [self.facebookSwitch addTarget:self action:@selector(facebook) forControlEvents:UIControlEventValueChanged];
     
     self.phoneSwitch.thumbTintColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"phoneThumb"]];
     self.phoneSwitch.onTintColor = [UIColor colorWithRed:103/255.0 green:190/255.0 blue:8/255.0 alpha:1];
     self.phoneSwitch.center = CGPointMake(100, 200);
     self.phoneSwitch.shadowColor = [UIColor blackColor];
     self.phoneSwitch.borderColor = [UIColor whiteColor];
+    [self.phoneSwitch addTarget:self action:@selector(phone) forControlEvents:UIControlEventValueChanged];
     
     self.snapchatSwitch.thumbTintColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"snapchatThumb"]];
     self.snapchatSwitch.onTintColor = [UIColor colorWithRed:248/255.0 green:231/255.0 blue:28/255.0 alpha:1];
     self.snapchatSwitch.center = CGPointMake(160, 200);
     self.snapchatSwitch.shadowColor = [UIColor blackColor];
     self.snapchatSwitch.borderColor = [UIColor whiteColor];
+    [self.snapchatSwitch addTarget:self action:@selector(snapchat) forControlEvents:UIControlEventValueChanged];
 
     self.twitterSwitch.thumbTintColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"twitterThumb"]];
     self.twitterSwitch.onTintColor = [UIColor colorWithRed:64/255.0 green:153/255.0 blue:255/255.0 alpha:1];
     self.twitterSwitch.center = CGPointMake(220, 200);
     self.twitterSwitch.shadowColor = [UIColor blackColor];
     self.twitterSwitch.borderColor = [UIColor whiteColor];
+    [self.twitterSwitch addTarget:self action:@selector(twitter) forControlEvents:UIControlEventValueChanged];
+
     
     self.instagramSwitch.thumbTintColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"instagramThumb"]];
     self.instagramSwitch.onTintColor = [UIColor colorWithRed:69/255.0 green:131/255.0 blue:177/255.0 alpha:1];
     self.instagramSwitch.center = CGPointMake(280, 200);
     self.instagramSwitch.shadowColor = [UIColor blackColor];
     self.instagramSwitch.borderColor = [UIColor whiteColor];
+    [self.instagramSwitch addTarget:self action:@selector(instagram) forControlEvents:UIControlEventValueChanged];
+
+    self.instagramSwitch.alpha = 0.8;
+    self.facebookSwitch.alpha = 0.8;
+    self.phoneSwitch.alpha = 0.8;
+    self.twitterSwitch.alpha = 0.8;
+    self.snapchatSwitch.alpha = 0.8;
+
     
     [self.createMatch addSubview:self.instagramSwitch];
     [self.createMatch addSubview:self.facebookSwitch];
     [self.createMatch addSubview:self.phoneSwitch];
     [self.createMatch addSubview:self.twitterSwitch];
     [self.createMatch addSubview:self.snapchatSwitch];
+//Perform Button Check after switch creation
+    [self buttonCheck];
 
-    
     
     //get first match
     [self firstMatch];
@@ -460,33 +467,33 @@
     self.createMatch.hidden = TRUE;
     self.darken.hidden = TRUE;
     
-    if (self.instagramDeselect.enabled == false) {
+    if (self.instagramSwitch.isOn == TRUE) {
         [params setValue:@"true" forKey:@"instagram"];
     }else{
         [params setValue:@"false" forKey:@"instagram"];
     }
     
-    if (self.twitterDeselect.enabled == false) {
+    if (self.twitterSwitch.isOn == TRUE) {
         [params setValue:@"true" forKey:@"twitter"];
     }else{
         [params setValue:@"false" forKey:@"twitter"];
     }
     
-    if (self.snapchatDeselect.enabled == false) {
+    if (self.snapchatSwitch.isOn == TRUE) {
         [params setValue:@"true" forKey:@"snapchat"];
     }
     else{
         [params setValue:@"false" forKey:@"snapchat"];
     }
     
-    if (self.phoneDeselect.enabled == false) {
+    if (self.phoneSwitch.isOn == TRUE) {
         [params setValue:@"true" forKey:@"phone"];
     }
     else{
         [params setValue:@"false" forKey:@"phone"];
     }
     
-    if (self.facebookDeselect.enabled == false) {
+    if (self.facebookSwitch.isOn == TRUE) {
         [params setValue:@"true" forKey:@"facebook"];
     }
     else{
@@ -634,82 +641,108 @@
     if ([[user objectForKey: @"twitter_username"] isKindOfClass:[NSNull class]]||
         [[user objectForKey: @"twitter_username"]isEqualToString:@""] ||
         [[user objectForKey: @"twitter_username"]isEqualToString:@"<null>"]){
-//        self.twitterDeselect.hidden = false;
-//        self.twitterSelect.enabled = false;
-//        self.twitterDeselect.enabled=TRUE;
-//        self.twitterSelect.hidden =TRUE;
-        self.twitterSwitch.enabled = FALSE;
-        self.twitterSwitch.isOn = FALSE;
+        [self.twitterSwitch setOn:FALSE];
     }
     else{
-        self.twitterDeselect.hidden = TRUE;
-        self.twitterSelect.enabled = TRUE;
-        self.twitterDeselect.enabled=FALSE;
-        self.twitterSelect.hidden=FALSE;
-        NSLog(@"Twitter username blank");
+        [self.twitterSwitch setOn:TRUE];
     }
     
     //Check for Instagram Account
     if ([[user objectForKey: @"instagram_username"]isKindOfClass:[NSNull class]]||
         [[user objectForKey: @"instagram_username"]isEqualToString:@""] ||
         [[user objectForKey: @"instagram_username"]isEqualToString:@"<null>"]){
-        self.instagramDeselect.hidden = FALSE;
-        self.instagramSelect.enabled = false;
-        self.instagramDeselect.enabled=TRUE;
-        self.instagramSelect.hidden =TRUE;
+        [self.instagramSwitch setOn:FALSE];
         
     }
     else{
-        self.instagramDeselect.hidden = TRUE;
-        self.instagramSelect.enabled = TRUE;
-        self.instagramDeselect.enabled=false;
-        self.instagramSelect.hidden =false;
-        
+        [self.instagramSwitch setOn:TRUE];
     }
     
     //Check for Phone Number
     if ([[user objectForKey: @"phone_number"]isKindOfClass:[NSNull class]]||
         [[user objectForKey: @"phone_number"]isEqualToString:@""] ||
         [[user objectForKey: @"phone_number"]isEqualToString:@"<null>"]){
-        self.phoneDeselect.hidden = FALSE;
-        self.phoneSelect.enabled = false;
-        self.phoneDeselect.enabled=TRUE;
-        self.phoneSelect.hidden =TRUE;
+        [self.phoneSwitch setOn:FALSE];
         
     }
     else{
-        self.phoneDeselect.hidden = TRUE;
-        self.phoneSelect.enabled = TRUE;
-        self.phoneDeselect.enabled=false;
-        self.phoneSelect.hidden =false;
-        
+        [self.phoneSwitch setOn:TRUE];
     }
     
     //Check for Snapchat Account
     if ([[user objectForKey: @"snapchat_username"]isKindOfClass:[NSNull class]]||
         [[user objectForKey: @"snapchat_username"]isEqualToString:@""] ||
         [[user objectForKey: @"snapchat_username"]isEqualToString:@"<null>"]){
-        self.snapchatDeselect.hidden = FALSE;
-        self.snapchatSelect.enabled = false;
-        self.snapchatDeselect.enabled=TRUE;
-        self.snapchatSelect.hidden =TRUE;
+        [self.snapchatSwitch setOn:FALSE];
         
     }
     else{
-        self.snapchatDeselect.hidden = TRUE;
-        self.snapchatSelect.enabled = TRUE;
-        self.snapchatDeselect.enabled=false;
-        self.snapchatSelect.hidden =false;
+        [self.snapchatSwitch setOn:TRUE];
         
     }
     
     
     
     //Facebook is alwayas available
-    self.facebookSelect.hidden=FALSE;
-    self.facebookDeselect.enabled =FALSE;
+    [self.facebookSwitch setOn:YES animated:YES];
     
     
+}
+
+-(void)facebook{
+    //facebook doesn't need to do anything
+}
+
+-(void)phone{
+    if ([[user objectForKey: @"phone_number"]isKindOfClass:[NSNull class]]||
+        [[user objectForKey: @"phone_number"]isEqualToString:@""] ||
+        [[user objectForKey: @"phone_number"]isEqualToString:@"<null>"]){
+        [self.phoneSwitch setOn:FALSE];
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"To be able to use this feature you first need to have your phone number added" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Social Account Settings", nil];
+        actionSheet.tag = 0;
+        
+        
+        [actionSheet showInView:self.view];
+    }
+
+   
+}
+
+-(void)snapchat{
+    if ([[user objectForKey:@"snapchat_username"] isKindOfClass:[NSNull class]]||
+        [[user objectForKey: @"snapchat_username"]isEqualToString:@""] ||
+        [[user objectForKey: @"snapchat_username"]isEqualToString:@"<null>"]){
+        [self.snapchatSwitch setOn:FALSE];
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"You can't match with others on Snapchat until you add your Snapchat username" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Social Account Settings", nil];
+        actionSheet.tag = 0;
+        
+        
+        [actionSheet showInView:self.view];
+    }
+
+}
+
+-(void)twitter{
+    if ([[user objectForKey:@"twitter_username"] isKindOfClass:[NSNull class]]||
+        [[user objectForKey: @"twitter_username"]isEqualToString:@""] ||
+        [[user objectForKey: @"twitte_username"]isEqualToString:@"<null>"]) {
+        [self.twitterSwitch setOn:FALSE];
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"You can't match with others on Twitter until you have your Twitter account linked" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Social Account Settings", nil];
+        actionSheet.tag = 0;
+        [actionSheet showInView:self.view];
+    }
+    
+}
+
+-(void)instagram{
+    if([[user objectForKey:@"instagram_username"] isKindOfClass:[NSNull class]]||
+       [[user objectForKey: @"instagram_username"]isEqualToString:@""] ||
+       [[user objectForKey: @"instagram_username"]isEqualToString:@"<null>"]) {
+        [self.instagramSwitch setOn:FALSE];
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"You can't match with others on Instagram until you have your Instagram account linked" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Social Account Settings", nil];
+        actionSheet.tag = 0;
+        [actionSheet showInView:self.view];
+    }
 }
 
 
@@ -747,111 +780,6 @@
     
 }
 
-
-
-- (IBAction)enableInstagram:(id)sender {
-    if([[user objectForKey:@"instagram_username"] isKindOfClass:[NSNull class]]||
-       [[user objectForKey: @"instagram_username"]isEqualToString:@""] ||
-       [[user objectForKey: @"instagram_username"]isEqualToString:@"<null>"]) {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"You can't match with others on Instagram until you have your Instagram account linked" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Social Account Settings", nil];
-        actionSheet.tag = 0;
-        [actionSheet showInView:self.view];
-    }
-    else {
-        self.instagramSelect.hidden = FALSE;
-        self.instagramSelect.enabled=TRUE;
-        self.instagramDeselect.hidden=TRUE;
-    }
-}
-
-- (IBAction)enableTwitter:(id)sender {
-    if ([[user objectForKey:@"twitter_username"] isKindOfClass:[NSNull class]]||
-        [[user objectForKey: @"twitter_username"]isEqualToString:@""] ||
-        [[user objectForKey: @"twitte_username"]isEqualToString:@"<null>"]) {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"You can't match with others on Twitter until you have your Twitter account linked" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Social Account Settings", nil];
-        actionSheet.tag = 0;
-        [actionSheet showInView:self.view];
-    }
-    else {
-        self.twitterSelect.hidden=FALSE;
-        self.twitterSelect.enabled=TRUE;
-        self.twitterDeselect.hidden=TRUE;
-    }
-}
-
-- (IBAction)enableSnapChat:(id)sender {
-    if ([[user objectForKey:@"snapchat_username"] isKindOfClass:[NSNull class]]||
-        [[user objectForKey: @"snapchat_username"]isEqualToString:@""] ||
-        [[user objectForKey: @"snapchat_username"]isEqualToString:@"<null>"]){
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"You can't match with others on Snapchat until you add your Snapchat username" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Social Account Settings", nil];
-        actionSheet.tag = 0;
-        
-        
-        [actionSheet showInView:self.view];
-    }
-    else{
-        self.snapchatSelect.hidden=FALSE;
-        self.snapchatSelect.enabled=TRUE;
-        self.snapchatDeselect.hidden=TRUE;
-    }
-}
-
-- (IBAction)enableFacebook:(id)sender {
-    self.facebookSelect.hidden=FALSE;
-    self.facebookSelect.enabled=TRUE;
-    self.facebookDeselect.hidden=TRUE;
-}
-
-- (IBAction)enablePhone:(id)sender {
-    if ([[user objectForKey:@"phone_number"] isKindOfClass:[NSNull class]]||
-        [[user objectForKey: @"phone_number"]isEqualToString:@""] ||
-        [[user objectForKey: @"phone_number"]isEqualToString:@"<null>"]){
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"To be able to use this feature you first need to have your phone number added" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Social Account Settings", nil];
-        actionSheet.tag = 0;
-        
-        
-        [actionSheet showInView:self.view];
-    }
-    else{
-        
-        self.phoneSelect.hidden=FALSE;
-        self.phoneSelect.enabled=TRUE;
-        self.phoneDeselect.hidden=TRUE;
-    }
-}
-
-- (IBAction)disableInstagram:(id)sender {
-    self.instagramSelect.hidden = TRUE;
-    self.instagramDeselect.hidden=FALSE;
-    self.instagramDeselect.enabled=TRUE;
-    
-}
-
-- (IBAction)disableTwitter:(id)sender {
-    self.twitterSelect.hidden = TRUE;
-    self.twitterDeselect.hidden=FALSE;
-    self.twitterDeselect.enabled=TRUE;
-    
-}
-
-- (IBAction)disableSnapChat:(id)sender {
-    self.snapchatSelect.hidden = TRUE;
-    self.snapchatDeselect.hidden=FALSE;
-    self.snapchatDeselect.enabled=TRUE;
-    
-}
-
-- (IBAction)disableFacebook:(id)sender {
-    self.facebookSelect.hidden = TRUE;
-    self.facebookDeselect.enabled=TRUE;
-    self.facebookDeselect.hidden=FALSE;
-}
-
-- (IBAction)disablePhone:(id)sender {
-    self.phoneSelect.hidden = TRUE;
-    self.phoneDeselect.hidden=FALSE;
-    self.phoneDeselect.enabled=TRUE;
-}
 
 - (IBAction)Like:(id)sender {
 
