@@ -1336,107 +1336,7 @@
                                 <rect key="frame" x="0.0" y="100" width="320" height="320"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uJU-st-uiB">
-                                        <rect key="frame" x="15" y="130" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="matching facebook on">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="disableFacebook:" destination="QP0-wH-HVL" eventType="touchUpInside" id="3Nn-Kk-wgN"/>
-                                        </connections>
-                                    </button>
-                                    <button hidden="YES" opaque="NO" alpha="0.45000000000000001" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1HH-3M-u4a" userLabel="facebook off">
-                                        <rect key="frame" x="15" y="130" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="matching facebook off">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="enableFacebook:" destination="QP0-wH-HVL" eventType="touchUpInside" id="kFf-xf-9aF"/>
-                                        </connections>
-                                    </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yav-5r-KU9">
-                                        <rect key="frame" x="255" y="130" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="matching instagram on">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="disableInstagram:" destination="QP0-wH-HVL" eventType="touchUpInside" id="ejz-tv-YXT"/>
-                                        </connections>
-                                    </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRr-tR-dQr">
-                                        <rect key="frame" x="72" y="154" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="matching phone on">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="disablePhone:" destination="QP0-wH-HVL" eventType="touchUpInside" id="S3g-3z-wcP"/>
-                                        </connections>
-                                    </button>
-                                    <button hidden="YES" opaque="NO" alpha="0.45000000000000001" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SqP-EA-zDg" userLabel="twitter off">
-                                        <rect key="frame" x="198" y="154" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="matching twitter off">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="enableTwitter:" destination="QP0-wH-HVL" eventType="touchUpInside" id="Qg6-DD-5Eu"/>
-                                        </connections>
-                                    </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m3C-cM-v9r">
-                                        <rect key="frame" x="135" y="165" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="matching snapchat on">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="disableSnapChat:" destination="QP0-wH-HVL" eventType="touchUpInside" id="1TU-01-EQF"/>
-                                        </connections>
-                                    </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZUs-oH-6zV">
-                                        <rect key="frame" x="198" y="154" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="matching twitter on">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="disableTwitter:" destination="QP0-wH-HVL" eventType="touchUpInside" id="507-fn-h7o"/>
-                                        </connections>
-                                    </button>
-                                    <button hidden="YES" opaque="NO" alpha="0.45000000000000001" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YjA-4L-2uk" userLabel="snapchat off">
-                                        <rect key="frame" x="136" y="165" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="matching snapchat off">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="enableSnapChat:" destination="QP0-wH-HVL" eventType="touchUpInside" id="qHD-vQ-40R"/>
-                                        </connections>
-                                    </button>
-                                    <button hidden="YES" opaque="NO" alpha="0.45000000000000001" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9gI-sM-az4" userLabel="phone off">
-                                        <rect key="frame" x="72" y="154" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="matching phone off">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="enablePhone:" destination="QP0-wH-HVL" eventType="touchUpInside" id="Mxb-uO-iHv"/>
-                                        </connections>
-                                    </button>
-                                    <button hidden="YES" opaque="NO" alpha="0.45000000000000001" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eLI-Z2-zUE" userLabel="insta off">
-                                        <rect key="frame" x="255" y="130" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="matching instagram off">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="enableInstagram:" destination="QP0-wH-HVL" eventType="touchUpInside" id="1zS-kG-bMq"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KvF-8f-nI2">
+                                    <button opaque="NO" alpha="0.65000000000000002" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KvF-8f-nI2">
                                         <rect key="frame" x="44" y="272" width="106" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="23"/>
@@ -1631,21 +1531,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="createMatch" destination="5oh-ni-41P" id="IUJ-Ao-Azg"/>
-                        <outlet property="facebookDeselect" destination="1HH-3M-u4a" id="t5w-IX-XZf"/>
-                        <outlet property="facebookSelect" destination="uJU-st-uiB" id="DZo-f4-AoN"/>
                         <outlet property="fbProfilePic" destination="SEo-A9-H1O" id="rdV-yr-6dj"/>
-                        <outlet property="instagramDeselect" destination="eLI-Z2-zUE" id="RC1-J7-b5D"/>
-                        <outlet property="instagramSelect" destination="yav-5r-KU9" id="NeQ-Wp-qmG"/>
                         <outlet property="miniWatchButton" destination="4XV-AY-4qX" id="tIC-WJ-jWn"/>
                         <outlet property="nameLabel" destination="6qH-yV-hP8" id="fyG-oV-HUD"/>
                         <outlet property="nameView" destination="F9b-33-Rbr" id="lYd-RD-Usg"/>
-                        <outlet property="phoneDeselect" destination="9gI-sM-az4" id="u89-D5-RaB"/>
-                        <outlet property="phoneSelect" destination="gRr-tR-dQr" id="CvJ-u5-Eit"/>
                         <outlet property="playButton" destination="Cv1-ZZ-k4Q" id="QIp-qf-Dxv"/>
-                        <outlet property="snapchatDeselect" destination="YjA-4L-2uk" id="Mth-F7-rGF"/>
-                        <outlet property="snapchatSelect" destination="m3C-cM-v9r" id="ssX-Wa-x6Y"/>
-                        <outlet property="twitterDeselect" destination="SqP-EA-zDg" id="j4R-uT-1De"/>
-                        <outlet property="twitterSelect" destination="ZUs-oH-6zV" id="HX1-F7-ibY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qzy-hH-Une" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3903,16 +3793,8 @@ General Terms and Conditions applicable to Use of a Web Site.
         <image name="matchedmessaging" width="78" height="72"/>
         <image name="matcher frames" width="136" height="137"/>
         <image name="matches-2" width="38" height="55"/>
-        <image name="matching facebook off" width="50" height="50"/>
-        <image name="matching facebook on" width="50" height="50"/>
-        <image name="matching instagram off" width="50" height="50"/>
-        <image name="matching instagram on" width="50" height="50"/>
-        <image name="matching phone off" width="50" height="50"/>
-        <image name="matching phone on" width="50" height="50"/>
         <image name="matching snapchat off" width="50" height="50"/>
         <image name="matching snapchat on" width="50" height="50"/>
-        <image name="matching twitter off" width="50" height="50"/>
-        <image name="matching twitter on" width="50" height="50"/>
         <image name="matchvid" width="45" height="45"/>
         <image name="minibutton-1" width="14" height="13"/>
         <image name="miniwatch" width="33" height="36"/>
