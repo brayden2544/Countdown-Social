@@ -3565,6 +3565,31 @@
                             <constraint firstItem="qyK-S0-ndw" firstAttribute="leading" secondItem="kRN-hU-eis" secondAttribute="leading" id="lX3-Fg-aLJ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="averageScore" destination="tqF-uf-MRR" id="W6q-nY-5lE"/>
+                        <outlet property="averageScoreLabel" destination="1Mg-Qi-xhQ" id="zVQ-m7-oh6"/>
+                        <outlet property="currentVideoScore" destination="gyW-Mo-TkE" id="VEK-gJ-Pne"/>
+                        <outlet property="currentVideoScoreLabel" destination="AH0-Mf-XRi" id="gsO-YG-Af0"/>
+                        <outlet property="facebookClicksLabel" destination="OFb-4a-3Fh" id="8HM-zm-lvM"/>
+                        <outlet property="facebookRequestLabel" destination="yPt-2k-mdg" id="MaL-vG-TBF"/>
+                        <outlet property="facebookRequests" destination="esl-ao-CHR" id="G1n-Eh-69q"/>
+                        <outlet property="instagramClicks" destination="0Bk-kT-W4q" id="IVw-jx-QUq"/>
+                        <outlet property="instagramClicksLabel" destination="10e-7W-QV1" id="HWz-ZS-T7n"/>
+                        <outlet property="instagramRequests" destination="Gb4-Oo-I34" id="RVc-he-nHF"/>
+                        <outlet property="isntagramRequestLabel" destination="YSV-aq-20o" id="ArA-6e-ll0"/>
+                        <outlet property="phoneClicks" destination="8N7-QJ-8yC" id="3LZ-3H-rvA"/>
+                        <outlet property="phoneClicksLabel" destination="Hmw-08-1ve" id="cbU-ff-3ph"/>
+                        <outlet property="phoneRequestLabel" destination="M66-ux-PcK" id="LTR-Ep-Wqv"/>
+                        <outlet property="phoneRequests" destination="9jq-lk-qEV" id="Cfc-iY-BmP"/>
+                        <outlet property="snapchatClicks" destination="nu3-MR-7Nw" id="ZmQ-Yf-Lp8"/>
+                        <outlet property="snapchatClicksLabel" destination="5vd-x2-u9X" id="EWr-nH-58J"/>
+                        <outlet property="snapchatRequestLabel" destination="g1v-K3-miw" id="RVx-K4-Qvp"/>
+                        <outlet property="snapchatRequests" destination="aZq-2E-mTz" id="X0k-8Q-Mts"/>
+                        <outlet property="twitterClicks" destination="Bkb-mf-FUb" id="xTm-8l-wje"/>
+                        <outlet property="twitterClicksLabel" destination="09k-uC-JZJ" id="dqo-km-DWI"/>
+                        <outlet property="twitterRequestLabel" destination="zra-c5-O3J" id="zkQ-pi-Bic"/>
+                        <outlet property="twitterRequests" destination="pKq-MK-Bb7" id="WKb-og-yBl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4ho-cb-Vf6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
