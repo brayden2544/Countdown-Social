@@ -79,7 +79,8 @@
     
     self.moviePlayerView = [[PlayerView alloc]initWithFrame:CGRectMake (0, 100, 320, 320)];
     self.moviePlayerView.player = [[AVPlayer alloc]init];
-    
+    [self.view addSubview:self.moviePlayerView];
+
     self.loadingTimer =[NSTimer scheduledTimerWithTimeInterval: .05
                                                         target: self
                                                       selector:@selector(VideoTimer:)
@@ -209,7 +210,6 @@
             self.moviePlayerLayer = [AVPlayerLayer playerLayerWithPlayer:self.moviePlayerView.player] ;
             //self.moviePlayerView.backgroundColor = [UIColor redColor];
             [self.moviePlayerView.layer addSublayer:self.moviePlayerLayer];
-            [self.view addSubview:self.moviePlayerView];
             if ([currentPotentialMatch objectForKey:@"time_remaining"]){
                 CMTime startPoint = [[currentPotentialMatch objectForKey:@"time_remaining"]CMTimeValue];
                 [self.moviePlayerView.player seekToTime:startPoint];
@@ -240,8 +240,6 @@
     NSString *picURL = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/photo", [currentPotentialMatch objectForKey:@"uid"]];
     
     NSLog(@"setProfilePicURL:%@",picURL);
-    NSURL *url = [NSURL URLWithString:picURL];
-    
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     
     
@@ -539,8 +537,9 @@
             [ConnectionsList updateMatches];
             //Add timer to show match at end of video
             CMTime time = self.moviePlayerView.player.currentItem.currentTime;
-            Float64 time_seconds = CMTimeGetSeconds(time);
-            [NSTimer scheduledTimerWithTimeInterval:6 -time_seconds target:self selector:@selector(showMatch) userInfo:nil repeats:NO];
+            CMTime fullTime = self.moviePlayerView.player.currentItem.duration;
+            Float64 time_seconds = CMTimeGetSeconds(fullTime) - CMTimeGetSeconds(time);
+            [NSTimer scheduledTimerWithTimeInterval:time_seconds  target:self selector:@selector(showMatch) userInfo:nil repeats:NO];
             
         }else{
         }
@@ -559,7 +558,6 @@
     //Set Connection Message
     Connection *obj = [Connection getInstance];
     obj.connection = currentMatch;
-    [self nextMatch];
     [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ConnectionViewController"]]animated:YES];
     [self.sideMenuViewController hideMenuViewController];
   
