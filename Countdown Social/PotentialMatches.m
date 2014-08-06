@@ -54,7 +54,7 @@
                 
                 ///Download Video for Each instance in array
                 NSMutableDictionary *currentPotentialMatch = [[NSMutableDictionary alloc]initWithDictionary:obj];
-                NSString *videoUrlString =[currentPotentialMatch objectForKey:@"videoUri"];
+                NSString *videoUrlString =[currentPotentialMatch objectForKey:@"video_uri"];
                 NSURL *videoURl = [NSURL URLWithString:videoUrlString];
                 NSURLRequest *videoRequest = [NSURLRequest requestWithURL:videoURl];
                 
@@ -166,7 +166,7 @@
                 else{
                     ///Download Video for Each instance in array
                     NSMutableDictionary *currentPotentialMatch = [[NSMutableDictionary alloc]initWithDictionary:obj];
-                    NSString *videoUrlString =[currentPotentialMatch objectForKey:@"videoUri"];
+                    NSString *videoUrlString =[currentPotentialMatch objectForKey:@"video_uri"];
                     NSURL *videoURl = [NSURL URLWithString:videoUrlString];
                     NSURLRequest *videoRequest = [NSURLRequest requestWithURL:videoURl];
                     

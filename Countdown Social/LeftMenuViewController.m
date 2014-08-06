@@ -56,7 +56,19 @@
 }
 
 
+-(void)presentSocialMethod{
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"SocialAccountsViewController"]]animated:YES];
+    [self.sideMenuViewController hideMenuViewController];
+    _profileImage.hidden = true;
+    _locationImage.hidden = true;
+    _socialImage.hidden = false;
+    _scoreImage.hidden = true;
+    _tellFriendsImage.hidden = true;
+    _feedbackImage.hidden= true;
+    _settingsImage.hidden = true;
+    _homeImage.hidden = true;
 
+}
 
 - (IBAction)presentLocation:(id)sender {
     [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"SetLocationViewController"]]animated:YES];
@@ -75,17 +87,7 @@
 }
 
 - (IBAction)presentSocial:(id)sender {
-    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"SocialAccountsViewController"]]animated:YES];
-    [self.sideMenuViewController hideMenuViewController];
-    _profileImage.hidden = true;
-    _locationImage.hidden = true;
-    _socialImage.hidden = false;
-    _scoreImage.hidden = true;
-    _tellFriendsImage.hidden = true;
-    _feedbackImage.hidden= true;
-    _settingsImage.hidden = true;
-    _homeImage.hidden = true;
-
+    [self presentSocialMethod];
     
 }
 

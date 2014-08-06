@@ -17,6 +17,7 @@
 #import "LeftMenuViewController.h"
 #import "Connection.h"
 #import "ConnectionsList.h"
+#import "RightMenuViewController.h"
 
 @interface PotentialMatchesViewController ()
 
@@ -383,7 +384,9 @@
     //    NSLog(@"Item deleted");
     
     urlAsString = [urlAsString stringByAppendingString:[currentPotentialMatch objectForKey:@"uid"]];
-    urlAsString =[urlAsString stringByAppendingString:@"/pass"];
+    urlAsString =[urlAsString stringByAppendingString:@"/pass/"];
+    urlAsString = [urlAsString stringByAppendingString:[currentPotentialMatch objectForKey:@"video_filename"]];
+
     
     
     
@@ -515,6 +518,8 @@
     NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/";
     urlAsString = [urlAsString stringByAppendingString:[currentPotentialMatch objectForKey:@"uid"]];
     urlAsString =[urlAsString stringByAppendingString:@"/like"];
+    urlAsString = [urlAsString stringByAppendingString:[currentPotentialMatch objectForKey:@"video_filename"]];
+
     
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     NSString *FbToken = [session accessTokenData].accessToken;
@@ -616,8 +621,7 @@
         if (buttonIndex == 0) {
             NSLog(@"button index 0 selected");
             LeftMenuViewController *leftMenuViewController = [[LeftMenuViewController alloc]init];
-            leftMenuViewController.socialImage.hidden = false;
-            leftMenuViewController.homeImage.hidden = true;
+            
             [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"SocialAccountsViewController"]]animated:YES];
             [self.sideMenuViewController hideMenuViewController];
             
@@ -786,16 +790,16 @@
 
 - (IBAction)Like:(id)sender {
 
-        if ([user objectForKey:@"videoUri"] != [NSNull null]) {
+        if ([user objectForKey:@"video_uri"] != [NSNull null]) {
             [self userLike];
             
         }
         else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You don't have a Video!!"
-                                                            message:@"You can't connect until you have uploaded a video!"
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You forgot to upload a video!!"
+                                                            message:[NSString stringWithFormat:@"You need a video before you can connect with %@!",[currentPotentialMatch objectForKey:@"firstName"]]
                                                            delegate:self
-                                                  cancelButtonTitle:nil
-                                                  otherButtonTitles:@"Okay", nil];
+                                                  cancelButtonTitle:@"Keep browsing"
+                                                  otherButtonTitles:@"Make my video", nil];
             [alert show];
         }
 }
