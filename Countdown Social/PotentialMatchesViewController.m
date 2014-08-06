@@ -347,14 +347,7 @@
         [self.moviePlayerView.player play];
     }
 }
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-    if(_likeCurrentUser ==FALSE & _loading ==FALSE){
-        _playButtonHeld = FALSE;
-        [self.sideMenuViewController setPanGestureEnabled:YES];
-        [self.moviePlayerView.player pause];
-        [self CaptureSnapshot];
-}
-}
+
 
 - (IBAction)ReleasePlay:(id)sender {
     
@@ -544,11 +537,10 @@
             NSLog(@"MATCH");
             currentMatch = responseObject;
             [ConnectionsList updateMatches];
-            
             //Add timer to show match at end of video
             CMTime time = self.moviePlayerView.player.currentItem.currentTime;
             Float64 time_seconds = CMTimeGetSeconds(time);
-            [NSTimer timerWithTimeInterval:6 - time_seconds target:self selector:@selector(showMatch) userInfo:nil repeats:NO];
+            [NSTimer scheduledTimerWithTimeInterval:6 -time_seconds target:self selector:@selector(showMatch) userInfo:nil repeats:NO];
             
         }else{
         }
