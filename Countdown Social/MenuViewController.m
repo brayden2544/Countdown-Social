@@ -50,6 +50,9 @@
 {
     //NSLog(@"didHideMenuViewController: %@", NSStringFromClass([menuViewController class]));
 }
+- (void)sideMenu:(RESideMenu *)sideMenu didRecognizePanGesture:(UIPanGestureRecognizer *)recognizer{
+    NSLog(@"gesture recognized");
+}
 
 
 

@@ -87,7 +87,7 @@
     _bouncesHorizontally = YES;
     
     _panGestureEnabled = YES;
-    _panFromEdge = YES;
+    _panFromEdge = NO;
     _panMinimumOpenThreshold = 60.0;
     
     _contentViewShadowEnabled = YES;

@@ -29,6 +29,7 @@
 @property  BOOL playButtonHeld;
 @property  BOOL likeCurrentUser;
 @property  BOOL loading;
+@property  BOOL menuDisplayed;
 @property (strong, nonatomic) UIImage *videoImage;
 @property NSTimeInterval timeRemaining;
 @property int checkVideoCount;
@@ -341,20 +342,29 @@
         self.blur.hidden = TRUE;
         self.createMatch.hidden = TRUE;
         self.darken.hidden = TRUE;
+        [self.sideMenuViewController setPanGestureEnabled:NO];
         [self.view bringSubviewToFront:self.moviePlayerView];
         [self.moviePlayerView.player play];
     }
+}
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    if(_likeCurrentUser ==FALSE & _loading ==FALSE){
+        _playButtonHeld = FALSE;
+        [self.sideMenuViewController setPanGestureEnabled:YES];
+        [self.moviePlayerView.player pause];
+        [self CaptureSnapshot];
+}
 }
 
 - (IBAction)ReleasePlay:(id)sender {
     
     if(_likeCurrentUser ==FALSE & _loading ==FALSE){
         _playButtonHeld = FALSE;
+        [self.sideMenuViewController setPanGestureEnabled:YES];
         [self.moviePlayerView.player pause];
         [self CaptureSnapshot];
     }
 }
-
 
 -(void) playVideo{
     //[self.moviePlayer setContentURL:_videoUrl];
@@ -517,7 +527,7 @@
     
     NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/";
     urlAsString = [urlAsString stringByAppendingString:[currentPotentialMatch objectForKey:@"uid"]];
-    urlAsString =[urlAsString stringByAppendingString:@"/like"];
+    urlAsString =[urlAsString stringByAppendingString:@"/like/"];
     urlAsString = [urlAsString stringByAppendingString:[currentPotentialMatch objectForKey:@"video_filename"]];
 
     
@@ -809,7 +819,6 @@
         [self.moviePlayerView.player pause];
     }
     [self.sideMenuViewController presentLeftMenuViewController];
-    
 }
 
 - (IBAction)presentRightMenu:(id)sender {
