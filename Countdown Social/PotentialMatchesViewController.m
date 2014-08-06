@@ -529,9 +529,11 @@
             NSLog(@"MATCH");
             currentMatch = responseObject;
             [ConnectionsList updateMatches];
-            [self showMatch];
-            [self.moviePlayerView.player pause];
-            [self nextMatch];
+            
+            //Add timer to show match at end of video
+            CMTime time = self.moviePlayerView.player.currentItem.currentTime;
+            Float64 time_seconds = CMTimeGetSeconds(time);
+            [NSTimer timerWithTimeInterval:6 - time_seconds target:self selector:@selector(showMatch) userInfo:nil repeats:NO];
             
         }else{
         }
@@ -550,7 +552,7 @@
     //Set Connection Message
     Connection *obj = [Connection getInstance];
     obj.connection = currentMatch;
-    
+    [self nextMatch];
     [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ConnectionViewController"]]animated:YES];
     [self.sideMenuViewController hideMenuViewController];
   

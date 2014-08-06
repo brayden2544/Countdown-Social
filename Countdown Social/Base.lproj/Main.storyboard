@@ -1574,6 +1574,7 @@
                     <navigationItem key="navigationItem" title="Countdown" prompt="null" id="vwC-bL-I6l">
                         <barButtonItem key="backBarButtonItem" title="null" id="RHt-XO-kUu"/>
                     </navigationItem>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="createMatch" destination="5oh-ni-41P" id="IUJ-Ao-Azg"/>
                         <outlet property="fbProfilePic" destination="SEo-A9-H1O" id="rdV-yr-6dj"/>
@@ -3615,6 +3616,7 @@
                         <outlet property="averageScoreLabel" destination="1Mg-Qi-xhQ" id="zVQ-m7-oh6"/>
                         <outlet property="currentVideoScore" destination="gyW-Mo-TkE" id="VEK-gJ-Pne"/>
                         <outlet property="currentVideoScoreLabel" destination="AH0-Mf-XRi" id="gsO-YG-Af0"/>
+                        <outlet property="facebookClicks" destination="aAr-qy-Nmp" id="k3X-4a-N4r"/>
                         <outlet property="facebookClicksLabel" destination="OFb-4a-3Fh" id="8HM-zm-lvM"/>
                         <outlet property="facebookRequestLabel" destination="yPt-2k-mdg" id="MaL-vG-TBF"/>
                         <outlet property="facebookRequests" destination="esl-ao-CHR" id="G1n-Eh-69q"/>
@@ -3626,6 +3628,7 @@
                         <outlet property="phoneClicksLabel" destination="Hmw-08-1ve" id="cbU-ff-3ph"/>
                         <outlet property="phoneRequestLabel" destination="M66-ux-PcK" id="LTR-Ep-Wqv"/>
                         <outlet property="phoneRequests" destination="9jq-lk-qEV" id="Cfc-iY-BmP"/>
+                        <outlet property="purchasedView" destination="4KY-tQ-KUd" id="obm-EC-hUz"/>
                         <outlet property="snapchatClicks" destination="nu3-MR-7Nw" id="ZmQ-Yf-Lp8"/>
                         <outlet property="snapchatClicksLabel" destination="5vd-x2-u9X" id="EWr-nH-58J"/>
                         <outlet property="snapchatRequestLabel" destination="g1v-K3-miw" id="RVx-K4-Qvp"/>
@@ -3634,6 +3637,7 @@
                         <outlet property="twitterClicksLabel" destination="09k-uC-JZJ" id="dqo-km-DWI"/>
                         <outlet property="twitterRequestLabel" destination="zra-c5-O3J" id="zkQ-pi-Bic"/>
                         <outlet property="twitterRequests" destination="pKq-MK-Bb7" id="WKb-og-yBl"/>
+                        <outlet property="unpurchasedView" destination="RQG-8B-9Wj" id="o3m-zs-BDF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4ho-cb-Vf6" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -32,8 +32,14 @@
     self.navigationController.navigationBarHidden = YES;
     //Start Playing User's newly recorded video
     User *obj = [User getInstance];
-    _videoPath = [obj.user objectForKey:@"videoUri"];
-    [self startPlayingVideo:nil];
+    _videoPath = [obj.user objectForKey:@"video_uri"];
+    if ([obj.user objectForKey:@"video_uri"]==[NSNull null]||
+        [[obj.user objectForKey:@"video_uri"]isKindOfClass:[NSNull class]]||
+        [[obj.user objectForKey:@"video_uri"]isEqualToString:@"<null>"]) {
+    }else{
+        [self startPlayingVideo:nil];
+
+    }
     
     
 }

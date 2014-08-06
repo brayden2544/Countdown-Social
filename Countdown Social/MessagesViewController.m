@@ -206,7 +206,12 @@
 
         }
         
-        
+        if (    self.inputToolbar.contentView.textView.hasText) {
+            [self typingStarted];
+        }
+        else{
+            [self typingStopped];
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Photo failed to load%@",error);
     }];
@@ -221,7 +226,7 @@
     [manager GET:typingUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([[responseObject objectForKey:@"status" ]integerValue]==1  ) {
             self.showTypingIndicator =true;
-            [self scrollToBottomAnimated:NO];
+            [self scrollToBottomAnimated:YES];
             NSLog(@"user is Typing");
         }else if ([[responseObject objectForKey:@"status"]integerValue]==0){
             self.showTypingIndicator = false;

@@ -19,6 +19,13 @@
 
 @property (nonatomic,strong) NSDictionary *user;
 
+//purchased view
+@property (strong, nonatomic) IBOutlet UIView *purchasedView;
+
+//unpurchased view
+@property (strong, nonatomic) IBOutlet UIView *unpurchasedView;
+
+
 //Click Images
 @property (strong, nonatomic) IBOutlet CSAnimationView *facebookClicks;
 @property (strong, nonatomic) IBOutlet CSAnimationView *phoneClicks;

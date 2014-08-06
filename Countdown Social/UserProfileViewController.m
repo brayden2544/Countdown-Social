@@ -179,6 +179,7 @@
         self.twitterButton.enabled = FALSE;
         self.twitterButton.hidden = TRUE;
         self.twitterLabel.hidden = FALSE;
+        self.twitterCircle.hidden = TRUE;
         
     }else{
         self.twitterLabel.hidden = TRUE;

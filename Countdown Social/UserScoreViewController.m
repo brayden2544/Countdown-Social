@@ -29,6 +29,13 @@
     // Do any additional setup after loading the view.
     User *obj = [User getInstance];
     _user = obj.user;
+    if ([[_user objectForKey:@"in_app_purchase"]boolValue]==TRUE) {
+        self.unpurchasedView.hidden = TRUE;
+        self.purchasedView.hidden = false;
+    }else{
+        self.unpurchasedView.hidden = false;
+        self.purchasedView.hidden = TRUE;
+    }
     
 }
 
@@ -85,7 +92,12 @@
     NSDictionary *params = @{@"in_app_purchase":@"true"};
     [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
+        _user = responseObject;
+        User *obj = [User getInstance];
+        obj.user = _user;
         NSLog(@"show stats view");
+        self.unpurchasedView.hidden = TRUE;
+        self.purchasedView.hidden = false;
     }
           failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
@@ -126,7 +138,13 @@
     NSDictionary *params = @{@"in_app_purchase":@"true"};
     [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
+        _user = responseObject;
+        User *obj = [User getInstance];
+        obj.user = _user;
         NSLog(@"show stats view");
+        self.unpurchasedView.hidden = TRUE;
+        self.purchasedView.hidden = false;
+
     }
           failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
