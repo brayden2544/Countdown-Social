@@ -410,7 +410,7 @@
                                     <constraint firstAttribute="trailing" secondItem="7os-mJ-eI4" secondAttribute="trailing" id="vXm-QG-Sf6"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Traveling? Drop a pin on your destination to enable travel mode." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="308" translatesAutoresizingMaskIntoConstraints="NO" id="fkw-Wb-zt3">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Traveling? press and hold until a pin drops on your destination to enable travel mode." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="308" translatesAutoresizingMaskIntoConstraints="NO" id="fkw-Wb-zt3">
                                 <rect key="frame" x="6" y="198" width="308" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
@@ -4360,7 +4360,7 @@ Special- To operate the service, we also may make identifiable and anonymous inf
         <image name="facebook views" width="50" height="106"/>
         <image name="facebookfail" width="36" height="73"/>
         <image name="fbLogin.png" width="1212" height="196"/>
-        <image name="gbg" width="640" height="1136"/>
+        <image name="gbg" width="320" height="568"/>
         <image name="haccounts" width="214" height="40"/>
         <image name="hfeedback" width="214" height="40"/>
         <image name="hlocation" width="214" height="40"/>
