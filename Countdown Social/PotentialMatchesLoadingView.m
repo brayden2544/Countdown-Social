@@ -34,7 +34,7 @@
         watchButton.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:watchButton];
         
-        UILabel *topLabel = [[UILabel alloc]initWithFrame:CGRectMake(75, 18, 170, 40)];
+        UILabel *topLabel = [[UILabel alloc]initWithFrame:CGRectMake(75, 10, 170, 40)];
         topLabel.text = @"Hang Tight!";
         topLabel.font = [UIFont fontWithName:@"AvenirNext-UltraLight" size:31];
         topLabel.textColor = [UIColor whiteColor];
@@ -42,7 +42,7 @@
         topLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:topLabel];
         
-        UILabel *bottomLabel = [[UILabel alloc]initWithFrame:CGRectMake(22 , 242 , 276, 72)];
+        UILabel *bottomLabel = [[UILabel alloc]initWithFrame:CGRectMake(22 , 260 , 276, 72)];
         bottomLabel.text = @"We're searching for people around you.";
         bottomLabel.font = [UIFont fontWithName:@"AvenirNext-UltraLight" size:23];
         bottomLabel.textColor = [UIColor whiteColor];

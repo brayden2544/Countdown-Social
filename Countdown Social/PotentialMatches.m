@@ -148,6 +148,10 @@
             
             [instance.potentialMatches addObjectsFromArray:potentialMatchArray];
             
+            //Added if matches is empty.
+            if ([instance.potentialMatches count] ==0) {
+                [NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(nextMatch) userInfo:nil repeats:NO];
+            }
             
             
             //Download Video for each new piece of array
