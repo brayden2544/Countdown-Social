@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "pass.png"
+      "filename" : "ndecline.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "pass@2x.png"
+      "filename" : "ndecline@2x.png"
     }
   ],
   "info" : {
