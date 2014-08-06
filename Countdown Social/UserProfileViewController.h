@@ -7,6 +7,7 @@
 //
 
 #import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMessageComposeViewController.h>
 #import <UIKit/UIKit.h>
 
 @interface UserProfileViewController : UIViewController <MFMessageComposeViewControllerDelegate, UIActionSheetDelegate, UIWebViewDelegate>

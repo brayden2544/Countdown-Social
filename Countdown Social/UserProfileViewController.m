@@ -320,6 +320,7 @@
         }
             
         case MessageComposeResultSent:
+            NSLog(@"Message sent successfully");
             break;
             
         default:
@@ -428,7 +429,6 @@
 
 
 }
-
 - (IBAction)goToSMS:(id)sender {
     [self showSMS];
 }
@@ -442,7 +442,6 @@
         [UIPasteboard generalPasteboard].string = [NSString stringWithFormat:@"%@",[connection objectForKey:@"snapchat_username"]];
 
 }
-
 
 
 @end
