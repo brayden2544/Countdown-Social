@@ -39,6 +39,25 @@
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Connections not downloaded %@",error);
         }];
+                  urlAsString =[NSString stringWithFormat:@"http://countdown-java-dev.elasticbeanstalk.com/user/%@/matches/new", [user objectForKey:@"uid"]];
+                  [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSMutableArray * newConnections = [[NSMutableArray alloc]initWithArray:instance.connections];
+        for (NSDictionary *newConnection in responseObject) {
+            for (NSDictionary *connection in newConnections) {
+                if ([[NSString stringWithFormat:@"%@",[[connection objectForKey:@"liked_user"]objectForKey:@"uid"]] isEqualToString:[NSString stringWithFormat:@"%@",[[newConnection objectForKey:@"liked_user"]objectForKey:@"uid"]]]) {
+                    NSMutableDictionary *newConnectionWithNotification = [[NSMutableDictionary alloc]initWithDictionary: newConnection];
+                    [newConnectionWithNotification setValue:@true forKey:@"is_new"];
+                    [instance.connections replaceObjectAtIndex:[instance.connections indexOfObjectIdenticalTo:connection] withObject:newConnectionWithNotification];
+                }
+            }
+        }
+        
+        NSLog(@"Connections %@",instance.connections);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Connections not downloaded %@",error);
+    }
+                   ];
         
         dispatch_queue_t backgroundQueue= dispatch_queue_create("backgroundQueue", 0);
         dispatch_async(backgroundQueue, ^{

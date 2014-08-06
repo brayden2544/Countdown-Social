@@ -1289,17 +1289,17 @@
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="orange circle" translatesAutoresizingMaskIntoConstraints="NO" id="URG-Af-547">
                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="type" value="pop"/>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="delay">
-                                                        <real key="value" value="0.5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="duration">
-                                                        <real key="value" value="0.20000000000000001"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
                                             </imageView>
                                         </subviews>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="type" value="pop"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="delay">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="duration">
+                                                <real key="value" value="0.20000000000000001"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                                 <constraints>

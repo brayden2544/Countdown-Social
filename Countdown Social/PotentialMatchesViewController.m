@@ -535,6 +535,8 @@
             NSLog(@"MATCH");
             currentMatch = responseObject;
             [ConnectionsList updateMatches];
+            Connection *obj = [Connection getInstance];
+            obj.connection = currentMatch;
             //Add timer to show match at end of video
             CMTime time = self.moviePlayerView.player.currentItem.currentTime;
             CMTime fullTime = self.moviePlayerView.player.currentItem.duration;
@@ -556,8 +558,7 @@
 
 -(void)showMatch{
     //Set Connection Message
-    Connection *obj = [Connection getInstance];
-    obj.connection = currentMatch;
+    
     [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ConnectionViewController"]]animated:YES];
     [self.sideMenuViewController hideMenuViewController];
   
@@ -573,7 +574,8 @@
         [self.view addSubview:self.potentialMatchesLoadingView];
         _loading = TRUE;
         [self.potentialMatchesTimer invalidate];
-        self.potentialMatchesTimer = [NSTimer    scheduledTimerWithTimeInterval:15.0    target:self    selector:@selector(nextMatch)    userInfo:nil repeats:NO];
+#warning Finish this below. see if it still pulls matches every 15 seconds.
+        //self.potentialMatchesTimer = [NSTimer    scheduledTimerWithTimeInterval:15.0    target:self    selector:@selector(nextMatch)    userInfo:nil repeats:NO];
         
         
     }

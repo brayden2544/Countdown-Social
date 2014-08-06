@@ -45,7 +45,6 @@
             NSLog(@"JSON: %@", responseObject);
             NSMutableArray *potentialMatchesArray = responseObject;
             [instance.potentialMatches addObjectsFromArray:potentialMatchesArray];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"ConnectionsLoaded" object:nil];
             
             //For loop to iterate through array
             NSMutableArray *tempPotentialMatches = [[NSMutableArray alloc]initWithArray:instance.potentialMatches];
@@ -65,10 +64,16 @@
                     return [documentsDirectoryPath URLByAppendingPathComponent:[response suggestedFilename]];
                 }
                                                                                completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
-                                                                                   NSLog(@"Video Saved at %@",filePath);
-                                                                                   [currentPotentialMatch setValue:filePath forKey:@"fileURL"];
-                                                                                   if ([instance.potentialMatches indexOfObject:obj] < [tempPotentialMatches count]){
-                                                                                   [tempPotentialMatches replaceObjectAtIndex:[instance.potentialMatches indexOfObject:obj] withObject:currentPotentialMatch];
+                                                                                   if (error ==nil) {
+                                                                                       NSLog(@"Video Saved at %@",filePath);
+                                                                                       [currentPotentialMatch setValue:filePath forKey:@"fileURL"];
+                                                                                       if ([instance.potentialMatches indexOfObject:obj] < [tempPotentialMatches count]){
+                                                                                           [tempPotentialMatches replaceObjectAtIndex:[tempPotentialMatches indexOfObjectIdenticalTo:obj] withObject:currentPotentialMatch];
+                                                                                       }
+                                                                                       }else{
+                                                                                           NSLog(@"error with video download : %@",error);
+                                                                                           [tempPotentialMatches removeObjectAtIndex:[tempPotentialMatches indexOfObjectIdenticalTo:obj]];
+                                                                                   
                                                                                    }
                                                                                    
                                                                                }];
