@@ -45,7 +45,7 @@
 
     closeButton.frame = CGRectMake(3,14  , 45, 45);
     [closeButton addTarget:self action:@selector(close:) forControlEvents:UIControlEventTouchUpInside];
-    [closeButton setImage:[UIImage imageNamed:@"closeWebView"] forState:UIControlStateNormal];
+    //[closeButton setImage:[UIImage imageNamed:@"back button"] forState:UIControlStateNormal];
     closeButton.hidden = YES;
     // Do any additional setup after loading the view.
     socialMediaWebView= [[UIWebView alloc]initWithFrame:CGRectMake(0, 60, self.view.frame.size.width , self.view.frame.size.height - 60.0)];
@@ -171,7 +171,7 @@
         
     }
     if ([[connection objectForKey:@"twitter_username"]isKindOfClass:[NSNull class]]) {
-        //Facebook not shared
+        //Twitter not shared
         self.twitterAdded.enabled = FALSE;
         self.twitterAdded.hidden = TRUE;
         self.twitterViewProfileSmall.hidden = TRUE;
@@ -179,7 +179,9 @@
         self.twitterButton.enabled = FALSE;
         self.twitterButton.hidden = TRUE;
         self.twitterLabel.hidden = FALSE;
-        self.twitterLabel.hidden = TRUE;    }else{
+        
+    }else{
+        self.twitterLabel.hidden = TRUE;
         [self twitterCheck];
     }
 }
@@ -268,12 +270,37 @@
             self.instaButton.enabled = TRUE;
             self.instaButton.hidden = FALSE;
         }else{
-            NSString *instaUrl = [NSString stringWithFormat:@"https://api.instagram.com/v1/users/%@/relationship?/access_token=%@", [connection objectForKey:@"instagram_uid"], [user objectForKey:@"instagram_token"]];
+            NSString *instaUrl = [NSString stringWithFormat:@"https://api.instagram.com/v1/users/%@/relationship?access_token=%@", [connection objectForKey:@"instagram_uid"], [user objectForKey:@"instagram_token"]];
+            NSLog(@"%@",instaUrl);
+            manager.responseSerializer = [AFJSONResponseSerializer serializer];
             [manager GET:instaUrl parameters:@{} success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 NSLog(@"resonse Object %@",responseObject);
+                if ([[[responseObject objectForKey:@"data"]objectForKey:@"incoming_status"]isEqualToString:@"followed_by"]) {
+                    self.instagramAdded.hidden = false;
+                    self.instagramViewProfileSmall.enabled = TRUE;
+                    self.instagramViewProfileSmall.hidden = FALSE;
+                    self.instaButton.enabled = FALSE;
+                    self.instaButton.hidden = TRUE;
+                }else{
+                    self.instagramAdded.hidden = TRUE;
+                    self.instagramAdded.enabled = FALSE;
+                    self.instagramViewProfileSmall.enabled = FALSE;
+                    self.instagramViewProfileSmall.hidden = TRUE;
+                    self.instagramLabel.hidden = TRUE;
+                    self.instaButton.enabled = TRUE;
+                    self.instaButton.hidden = FALSE;
+
+                }
                 
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                 NSLog(@"Photo failed to load%@",error);
+                self.instagramAdded.hidden = TRUE;
+                self.instagramAdded.enabled = FALSE;
+                self.instagramViewProfileSmall.enabled = FALSE;
+                self.instagramViewProfileSmall.hidden = TRUE;
+                self.instagramLabel.hidden = TRUE;
+                self.instaButton.enabled = TRUE;
+                self.instaButton.hidden = FALSE;
             }];
 
     }

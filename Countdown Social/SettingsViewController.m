@@ -33,6 +33,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden = YES;
+    User *obj = [User getInstance];
+    if ([[obj.user objectForKey:@"gender"] isEqualToString:@"M"]) {
+        self.straightLabel.text = @"Girls";
+        self.gayLabel.text = @"Guys";
+    }else{
+        self.straightLabel.text = @"Guys";
+        self.gayLabel.text = @"Girls";
+    }
+    
 }
 - (IBAction)facebookSignOut:(id)sender {
     // If the session state is any of the two "open" states when the button is clicked

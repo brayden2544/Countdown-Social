@@ -22,4 +22,8 @@
 - (IBAction)presentPrivacy:(id)sender;
 - (IBAction)presentTerms:(id)sender;
 
+
+@property (strong, nonatomic) IBOutlet UILabel *gayLabel;
+@property (strong, nonatomic) IBOutlet UILabel *straightLabel;
+
 @end

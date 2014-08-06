@@ -10,5 +10,6 @@
 
 @interface ProfileViewController : UIViewController
 - (IBAction)recordVideo:(id)sender;
+- (IBAction)presentLeftMenu:(id)sender;
 
 @end

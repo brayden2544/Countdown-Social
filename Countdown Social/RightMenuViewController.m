@@ -159,8 +159,6 @@
         
         NSString *FbToken = [session accessTokenData].accessToken;
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-
-        manager.requestSerializer = [AFJSONRequestSerializer serializer];
         [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
         NSDictionary *params = @{};
         [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {

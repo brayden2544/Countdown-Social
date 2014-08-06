@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *twitterImage;
 @property (weak, nonatomic) IBOutlet UIImageView *instagramImage;
 @property (weak, nonatomic) IBOutlet UIImageView *profilePic;
+@property (strong, nonatomic) IBOutlet UILabel *label;
 
 
 @end

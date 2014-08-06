@@ -39,12 +39,14 @@
         User *Userobj =  [User getInstance];
         Userobj.user= responseObject;
         user = responseObject;
+        [PotentialMatches getInstance];
+        [ConnectionsList getInstance];
+
         if ([[user objectForKey:@"vacation_mode"]  isEqual:@false] ) {
             [self checkLocationServices];
         }
         else{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateLocationCompleted" object:nil];
- 
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSuccessful" object:nil];
         }
         
     }
@@ -85,7 +87,7 @@
                 User *Userobj =  [User getInstance];
                 Userobj.user= responseObject;
                 user = responseObject;
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateLocationCompleted" object:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSuccessful" object:nil];
 
 
         }
@@ -107,7 +109,7 @@
                                           otherButtonTitles:@"Okay", nil];
     [alert show];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateLocationCompleted" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSuccessful" object:nil];
 
 
 }
@@ -122,15 +124,7 @@
                                              selector:@selector (successfulLogin)
                                             name:@"LoginSuccessful"
                                             object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector (getPotentialMatches)
-                                                 name:@"UpdateLocationCompleted"
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector (getConnectionsList)
-                                                 name:@"ConnectionsLoaded"
-                                               object:nil];
-    //Gets current Location of User
+        //Gets current Location of User
     [self getUserObject];
     
 }
@@ -156,7 +150,7 @@
         [alert show];
         
 
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateLocationCompleted" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSuccessful" object:nil];
 
     }
 
@@ -171,11 +165,11 @@
 
 - (void) getPotentialMatches
 {
-    [PotentialMatches getInstance];
+    //[PotentialMatches getInstance];
 }
 
 - (void) getConnectionsList{
-    [ConnectionsList getInstance];
+  //  [ConnectionsList getInstance];
 }
 
 - (void)successfulLogin

@@ -68,7 +68,7 @@
                 NSString* redirectUrl = [[NSString alloc] initWithFormat:@"https://instagram.com/"];
                 NSURL *url = [NSURL URLWithString:redirectUrl];
                 NSURLRequest *request = [NSURLRequest requestWithURL:url];
-                self.instagramWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0,65,320,506)];
+                self.instagramWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0,57,self.view.frame.size.width,self.view.frame.size.height - 57)];
 
                 [self.instagramWebView loadRequest:request];
                 [self.view addSubview:self.instagramWebView];
@@ -97,7 +97,7 @@
     
     // Do any additional setup after loading the view.
     //if ([[user objectForKey:@"instagram_token"]isKindOfClass:[NSNull class]]){
-    UIWebView* instagramWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0,65,320,506)];
+    UIWebView* instagramWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0,57,self.view.frame.size.width,self.view.frame.size.height - 57)];
     self.instagramWebView.scalesPageToFit = YES;
     
     NSString *stringURL = @"http://www.instagram.com/oauth/authorize/?client_id=932befca29884b378bfa33415fe71da6&redirect_uri=http://localhost:8888/MAMP/&response_type=code";

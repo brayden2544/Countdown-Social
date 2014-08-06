@@ -51,7 +51,7 @@
     // Do any additional setup after loading the view.
     
     self.navigationController.navigationBarHidden =YES;
-    self.twitterWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0,65,325,506)];
+    self.twitterWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0,57,325,506)];
     self.twitterWebView.scalesPageToFit = YES;
     [self.view addSubview:self.twitterWebView];
     [self obtainRequestToken];

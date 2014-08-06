@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -1599,7 +1599,7 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" alpha="0.25" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tewitter" translatesAutoresizingMaskIntoConstraints="NO" id="GOb-Jr-Fy5">
-                                                    <rect key="frame" x="149" y="42" width="24" height="24"/>
+                                                    <rect key="frame" x="149" y="41" width="24" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ttwitter" translatesAutoresizingMaskIntoConstraints="NO" id="bqN-P3-D3K">
@@ -1642,12 +1642,13 @@
                                         <connections>
                                             <outlet property="facebookImage" destination="gch-AL-lk5" id="5iS-m1-kvR"/>
                                             <outlet property="instagramImage" destination="aWe-rj-lys" id="KJQ-bS-otQ"/>
+                                            <outlet property="label" destination="YvC-sD-xx0" id="y7p-Zt-kpK"/>
                                             <outlet property="nameLabel" destination="ak1-JY-FBp" id="O5r-7U-NDI"/>
                                             <outlet property="notificationImage" destination="Vef-Bw-xgd" id="Cxf-l2-ZXj"/>
                                             <outlet property="phoneImage" destination="qJM-wW-QsS" id="OJm-hi-Iyh"/>
                                             <outlet property="profilePic" destination="eGS-Pi-yE5" id="F43-7l-3LT"/>
                                             <outlet property="snapchatImage" destination="IYT-Ex-0NM" id="ydW-Eb-hS7"/>
-                                            <outlet property="twitterImage" destination="GOb-Jr-Fy5" id="wA0-iO-xGs"/>
+                                            <outlet property="twitterImage" destination="bqN-P3-D3K" id="WTP-1d-Ljj"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -2582,7 +2583,6 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="MGB-Ev-adR"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wDV-Wm-j75" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2625,7 +2625,6 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="rKH-a3-Br4"/>
                     <connections>
                         <outlet property="returnToPotentialMatches" destination="2nr-ur-1Zt" id="6pF-n8-xiv"/>
                     </connections>
@@ -2698,20 +2697,6 @@
                                                     </label>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Girls" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tOu-Oj-vY6">
                                                         <rect key="frame" x="252" y="58" width="61" height="24"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="17"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Girls" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qpq-2H-13C">
-                                                        <rect key="frame" x="148" y="58" width="61" height="24"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="17"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Guys" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0a-Al-ITW">
-                                                        <rect key="frame" x="252" y="58" width="42" height="21"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="17"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2999,8 +2984,10 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <size key="freeformSize" width="320" height="800"/>
                     <connections>
+                        <outlet property="gayLabel" destination="6Ud-Ow-1w3" id="N2D-6M-0Kn"/>
                         <outlet property="hideProfile" destination="66p-di-e7I" id="yHY-5q-mBX"/>
                         <outlet property="sexualOrientation" destination="U7J-Aq-dMf" id="OZf-07-OhF"/>
+                        <outlet property="straightLabel" destination="tOu-Oj-vY6" id="mxg-HC-hge"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5dI-Gb-h6t" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3815,7 +3802,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="presentLeftMenuViewController:" destination="e5h-i2-1xq" eventType="touchUpInside" id="XIx-pa-3TK"/>
+                                            <action selector="presentLeftMenu:" destination="e5h-i2-1xq" eventType="touchUpInside" id="VWA-Zf-wuO"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Countdown" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Epg-Tn-4K8">
@@ -3853,7 +3840,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hdd-ip-BIg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2303" y="1667"/>
+            <point key="canvasLocation" x="-2293" y="1659"/>
         </scene>
         <!--Terms View Controller - settings-->
         <scene sceneID="VQI-ov-ZLe">
