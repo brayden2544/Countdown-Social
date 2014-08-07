@@ -51,7 +51,7 @@
                                                object:nil];
     
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"gnavbar"] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"messagingNavbar"] forBarMetrics:UIBarMetricsDefault];
     self.inputToolbar.contentView.leftBarButtonItem = nil;
     User *obj = [User getInstance];
     user = obj.user;
