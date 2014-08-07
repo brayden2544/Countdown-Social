@@ -49,17 +49,24 @@
                                              selector:@selector (loadUserAvatar)
                                                  name:@"UserImageLoaded"
                                                object:nil];
+    
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"gnavbar"] forBarMetrics:UIBarMetricsDefault];
     self.inputToolbar.contentView.leftBarButtonItem = nil;
     User *obj = [User getInstance];
     user = obj.user;
     Connection *conObj = [Connection getInstance];
     connection = [conObj.connection objectForKey:@"liked_user"];
     self.title = [connection objectForKey:@"firstName"];
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSForegroundColorAttributeName : [UIColor whiteColor],
+       NSFontAttributeName : [UIFont fontWithName:@"AvenirNext-Regular" size:26.0]}];
+
     self.sender =[user objectForKey: @"uid"];
     
     
     self.outgoingBubbleImageView = [JSQMessagesBubbleImageFactory
-                                    outgoingMessageBubbleImageViewWithColor:[UIColor jsq_messageBubbleBlueColor]];
+                                    outgoingMessageBubbleImageViewWithColor:[UIColor colorWithRed:80/255.0 green:227/255.0 blue:194/255.0 alpha:0.5]];
     
     self.incomingBubbleImageView = [JSQMessagesBubbleImageFactory
                                     incomingMessageBubbleImageViewWithColor:[UIColor jsq_messageBubbleLightGrayColor]];

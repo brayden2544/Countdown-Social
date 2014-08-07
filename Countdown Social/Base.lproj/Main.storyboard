@@ -1060,6 +1060,8 @@
                 <navigationController storyboardIdentifier="contentViewController" definesPresentationContext="YES" modalTransitionStyle="crossDissolve" useStoryboardIdentifierAsRestorationIdentifier="YES" navigationBarHidden="YES" id="Wlj-5m-54v" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2dM-T6-OJr">
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <connections>
                         <segue destination="QP0-wH-HVL" kind="relationship" relationship="rootViewController" id="dS5-wE-UgZ"/>
@@ -4304,8 +4306,8 @@ Special- To operate the service, we also may make identifiable and anonymous inf
         <image name="location navbar" width="640" height="111"/>
         <image name="location set" width="608" height="110"/>
         <image name="location switchbg" width="644" height="79"/>
-        <image name="matched keep playing" width="412" height="84"/>
-        <image name="matcher frames" width="136" height="137"/>
+        <image name="matched keep playing" width="206" height="42"/>
+        <image name="matcher frames" width="272" height="272"/>
         <image name="matches-2" width="38" height="55"/>
         <image name="matching snapchat off" width="50" height="50"/>
         <image name="matching snapchat on" width="50" height="50"/>
