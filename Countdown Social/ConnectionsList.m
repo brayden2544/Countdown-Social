@@ -66,9 +66,6 @@
                                            selector:@selector(updateMatches)
                                            userInfo: nil repeats:YES];
             
-            
-            [self updateMatches];
-            
         });
     }); return instance;
     

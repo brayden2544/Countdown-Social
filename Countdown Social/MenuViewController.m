@@ -28,6 +28,9 @@
     self.delegate =self;
 }
 
+
+
+
 #pragma mark -
 #pragma mark RESideMenu Delegate
 

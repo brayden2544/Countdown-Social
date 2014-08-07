@@ -495,6 +495,15 @@
         }
     }
     
+    //code added for countdown
+    if ([touch.view isKindOfClass:[UIButton class]]) {
+        return NO;
+    }
+    else{
+        return YES;
+    }
+    
+    
     return YES;
 }
 

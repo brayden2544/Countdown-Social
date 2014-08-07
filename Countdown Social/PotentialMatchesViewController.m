@@ -340,7 +340,7 @@
         self.blur.hidden = TRUE;
         self.createMatch.hidden = TRUE;
         self.darken.hidden = TRUE;
-        [self.sideMenuViewController setPanGestureEnabled:NO];
+        //[self.sideMenuViewController setPanGestureEnabled:NO];
         [self.view bringSubviewToFront:self.moviePlayerView];
         [self.moviePlayerView.player play];
     }
@@ -351,7 +351,7 @@
     
     if(_likeCurrentUser ==FALSE & _loading ==FALSE){
         _playButtonHeld = FALSE;
-        [self.sideMenuViewController setPanGestureEnabled:YES];
+        //[self.sideMenuViewController setPanGestureEnabled:YES];
         [self.moviePlayerView.player pause];
         [self CaptureSnapshot];
     }
@@ -373,7 +373,6 @@
     
     
 }
-
 
 
 -(void) userPass{
