@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "It's a match frame.png"
+      "filename" : "messagingNavbar.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "It's a match frame@2x.png"
+      "filename" : "messagingNavbar@2x.png"
     }
   ],
   "info" : {

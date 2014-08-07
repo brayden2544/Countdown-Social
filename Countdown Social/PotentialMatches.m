@@ -16,9 +16,9 @@
 @synthesize passedUsers;
 
 +(PotentialMatches *)getInstance{
-        static dispatch_once_t onceToken;
-        static PotentialMatches *instance;
-
+    static dispatch_once_t onceToken;
+    static PotentialMatches *instance;
+    
     dispatch_once(&onceToken, ^{
         instance= [[self alloc]init];
         instance.potentialMatches = [[NSMutableArray alloc]init];
@@ -67,22 +67,22 @@
                                                                                    if (error ==nil) {
                                                                                        if ([filePath isKindOfClass:[NSNull class]]) {
                                                                                            NSLog(@"Video Null at %@",filePath);
-
-                                                                                           [tempPotentialMatches removeObjectAtIndex:[tempPotentialMatches indexOfObjectIdenticalTo:obj]];
-
-                                                                                       }else{
-                                                                                       [currentPotentialMatch setValue:filePath forKey:@"fileURL"];
-                                                                                       if ([instance.potentialMatches indexOfObject:obj] < [tempPotentialMatches count]){
-                                                                                           [tempPotentialMatches replaceObjectAtIndex:[tempPotentialMatches indexOfObjectIdenticalTo:obj] withObject:currentPotentialMatch];
-                                                                                       }
-                                                                                       }
-                                                                                       }else{
-                                                                                           if ([tempPotentialMatches count]>[tempPotentialMatches indexOfObjectIdenticalTo:obj]) {
-                                                                                               NSLog(@"error with video download : %@",error);
-                                                                                               [tempPotentialMatches removeObjectAtIndex:[tempPotentialMatches indexOfObjectIdenticalTo:obj]];
-                                                                                           }
                                                                                            
-
+                                                                                           [tempPotentialMatches removeObjectAtIndex:[tempPotentialMatches indexOfObjectIdenticalTo:obj]];
+                                                                                           
+                                                                                       }else{
+                                                                                           [currentPotentialMatch setValue:filePath forKey:@"fileURL"];
+                                                                                           if ([instance.potentialMatches indexOfObject:obj] < [tempPotentialMatches count]){
+                                                                                               [tempPotentialMatches replaceObjectAtIndex:[tempPotentialMatches indexOfObjectIdenticalTo:obj] withObject:currentPotentialMatch];
+                                                                                           }
+                                                                                       }
+                                                                                   }else{
+                                                                                       if ([tempPotentialMatches count]>[tempPotentialMatches indexOfObjectIdenticalTo:obj]) {
+                                                                                           NSLog(@"error with video download : %@",error);
+                                                                                           [tempPotentialMatches removeObjectAtIndex:[tempPotentialMatches indexOfObjectIdenticalTo:obj]];
+                                                                                       }
+                                                                                       
+                                                                                       
                                                                                    }
                                                                                    
                                                                                }];
@@ -106,7 +106,7 @@
     instance = [self getInstance];
     if ([instance.potentialMatches count] >0) {
         //instance.passedUsers = [instance.potentialMatches objectAtIndex:0];
-       NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
         [fileManager removeItemAtURL:[[instance.potentialMatches objectAtIndex:0] objectForKey:@"fileURL"] error:NULL];
         NSLog(@"Item deleted at: %@",[[instance.potentialMatches objectAtIndex:0] objectForKey:@"fileURL"] );
         [instance.potentialMatches removeObjectAtIndex:0];
@@ -147,14 +147,14 @@
             }
             
             NSMutableArray *tempArray = [[NSMutableArray alloc]initWithArray:potentialMatchArray];
-                if ([instance.passedUsers count]>0) {
-                    for ( NSMutableDictionary *passedUser in instance.passedUsers) {
+            if ([instance.passedUsers count]>0) {
+                for ( NSMutableDictionary *passedUser in instance.passedUsers) {
                     for (NSMutableDictionary *potentialUser in tempArray){
                         if ([[passedUser objectForKey:@"uid"] isEqual:[potentialUser objectForKey:@"uid"]]) {
                             [potentialMatchArray removeObjectIdenticalTo:potentialUser];
                             NSLog(@"removed: %@",[potentialUser objectForKey:@"uid"]);
                             NSLog(@"removed");
-
+                            
                         }
                     }
                 }
@@ -162,10 +162,6 @@
             
             [instance.potentialMatches addObjectsFromArray:potentialMatchArray];
             
-            //Added if matches is empty.
-            if ([instance.potentialMatches count] ==0) {
-                [NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(nextMatch) userInfo:nil repeats:NO];
-            }
             
             
             //Download Video for each new piece of array
@@ -211,12 +207,17 @@
                                                                                            
                                                                                            
                                                                                        }
-
+                                                                                       
                                                                                        
                                                                                    }];
                     [videoDownload resume];
                 }
                 instance.potentialMatches = tempPotentialMatches;
+                //Added if matches is empty.
+                if ([instance.potentialMatches count] ==0) {
+                    [NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(nextMatch) userInfo:nil repeats:NO];
+                }
+
             }
         }
               failure:^(AFHTTPRequestOperation *operation, NSError *error) {
