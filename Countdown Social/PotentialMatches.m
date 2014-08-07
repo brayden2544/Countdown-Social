@@ -191,10 +191,25 @@
                         return [documentsDirectoryPath URLByAppendingPathComponent:[response suggestedFilename]];
                     }
                                                                                    completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
-                                                                                       NSLog(@"Video Saved at %@",filePath);
-                                                                                       [currentPotentialMatch setValue:filePath forKey:@"fileURL"];
-                                                                                       if ([instance.potentialMatches indexOfObject:obj] < [tempPotentialMatches count]){
-                                                                                           [tempPotentialMatches replaceObjectAtIndex:[instance.potentialMatches indexOfObject:obj] withObject:currentPotentialMatch];
+                                                                                       if (error ==nil) {
+                                                                                           if ([filePath isKindOfClass:[NSNull class]]) {
+                                                                                               NSLog(@"Video Null at %@",filePath);
+                                                                                               
+                                                                                               [tempPotentialMatches removeObjectAtIndex:[tempPotentialMatches indexOfObjectIdenticalTo:obj]];
+                                                                                               
+                                                                                           }else{
+                                                                                               [currentPotentialMatch setValue:filePath forKey:@"fileURL"];
+                                                                                               if ([instance.potentialMatches indexOfObject:obj] < [tempPotentialMatches count]){
+                                                                                                   [tempPotentialMatches replaceObjectAtIndex:[tempPotentialMatches indexOfObjectIdenticalTo:obj] withObject:currentPotentialMatch];
+                                                                                               }
+                                                                                           }
+                                                                                       }else{
+                                                                                           if ([tempPotentialMatches count]>[tempPotentialMatches indexOfObjectIdenticalTo:obj]) {
+                                                                                               NSLog(@"error with video download : %@",error);
+                                                                                               [tempPotentialMatches removeObjectAtIndex:[tempPotentialMatches indexOfObjectIdenticalTo:obj]];
+                                                                                           }
+                                                                                           
+                                                                                           
                                                                                        }
 
                                                                                        

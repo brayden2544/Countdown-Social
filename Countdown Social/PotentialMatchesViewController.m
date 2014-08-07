@@ -192,10 +192,7 @@
 
 -(void)checkForVideo{
     //_checkVideoCount +=1;
-    if (_checkVideoCount<100) {
-        
-        
-        NSLog(@"check for video");
+            NSLog(@"check for video");
         //Get current potential match
         PotentialMatches *obj =[PotentialMatches getInstance];
         currentPotentialMatch =[obj.potentialMatches objectAtIndex:0];
@@ -220,7 +217,6 @@
                 [self.moviePlayerView.player seekToTime:startPoint];
                 
             }
-            
             //Set Profile Pic for current potential match
             [self setProfilePic];
         }
@@ -230,11 +226,6 @@
             _loading = TRUE;
             [NSTimer    scheduledTimerWithTimeInterval:2.0    target:self    selector:@selector(checkForVideo)    userInfo:nil repeats:NO];
         }
-    }
-    else{
-        [self nextMatch];
-    }
-    
 }
 
 //Set profile picture for current potential match
