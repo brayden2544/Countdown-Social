@@ -10,7 +10,6 @@
 
 @interface ConnectionViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIImageView *matchProfilePic;
-@property (strong, nonatomic) IBOutlet UIImageView *userProfilePic;
 
 
 @property (strong, nonatomic) IBOutlet UILabel *connectionLabel;
