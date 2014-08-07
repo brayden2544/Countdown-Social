@@ -657,11 +657,11 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5G2-fJ-YRE">
-                                        <rect key="frame" x="86" y="99" width="148" height="148"/>
+                                        <rect key="frame" x="88" y="101" width="144" height="144"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="148" id="GfB-EA-yvI"/>
-                                            <constraint firstAttribute="width" constant="148" id="QjF-PQ-8EV"/>
+                                            <constraint firstAttribute="height" constant="144" id="GfB-EA-yvI"/>
+                                            <constraint firstAttribute="width" constant="144" id="QjF-PQ-8EV"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -756,16 +756,16 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="fib-Ex-FsO" firstAttribute="leading" secondItem="8Rn-ZS-P6I" secondAttribute="trailing" constant="18" id="1gP-4Q-h4i"/>
-                                    <constraint firstItem="5G2-fJ-YRE" firstAttribute="leading" secondItem="53J-ky-I5c" secondAttribute="trailing" constant="26" id="4WL-ie-vUd"/>
+                                    <constraint firstItem="5G2-fJ-YRE" firstAttribute="leading" secondItem="53J-ky-I5c" secondAttribute="trailing" constant="28" id="4WL-ie-vUd"/>
                                     <constraint firstItem="9jK-bv-8GM" firstAttribute="leading" secondItem="rdg-ep-GXF" secondAttribute="leading" constant="3" id="5M4-h1-Ogj"/>
                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="8Rn-ZS-P6I" secondAttribute="bottom" constant="20" id="IEs-2M-YuB"/>
                                     <constraint firstItem="8Rn-ZS-P6I" firstAttribute="leading" secondItem="53J-ky-I5c" secondAttribute="trailing" constant="18" id="K8A-I5-nPA"/>
                                     <constraint firstItem="Df8-uH-hBN" firstAttribute="top" secondItem="rdg-ep-GXF" secondAttribute="top" constant="20" id="Pbp-nT-nBc"/>
-                                    <constraint firstItem="fib-Ex-FsO" firstAttribute="leading" secondItem="5G2-fJ-YRE" secondAttribute="trailing" constant="26" id="Spo-8c-rM6"/>
+                                    <constraint firstItem="fib-Ex-FsO" firstAttribute="leading" secondItem="5G2-fJ-YRE" secondAttribute="trailing" constant="28" id="Spo-8c-rM6"/>
                                     <constraint firstAttribute="width" constant="320" id="Vfn-rO-WBe"/>
-                                    <constraint firstItem="5G2-fJ-YRE" firstAttribute="top" secondItem="8Rn-ZS-P6I" secondAttribute="bottom" constant="-156" id="Vid-mv-QY1"/>
+                                    <constraint firstItem="5G2-fJ-YRE" firstAttribute="top" secondItem="8Rn-ZS-P6I" secondAttribute="bottom" constant="-154" id="Vid-mv-QY1"/>
                                     <constraint firstItem="9jK-bv-8GM" firstAttribute="top" secondItem="rdg-ep-GXF" secondAttribute="top" constant="14" id="YjM-UU-L04"/>
-                                    <constraint firstItem="5G2-fJ-YRE" firstAttribute="top" secondItem="8f8-rF-fx7" secondAttribute="bottom" constant="-96" id="Zih-CO-jRZ"/>
+                                    <constraint firstItem="5G2-fJ-YRE" firstAttribute="top" secondItem="8f8-rF-fx7" secondAttribute="bottom" constant="-94" id="Zih-CO-jRZ"/>
                                     <constraint firstItem="53J-ky-I5c" firstAttribute="leading" secondItem="rdg-ep-GXF" secondAttribute="leading" constant="15" id="atl-uK-9Mi"/>
                                     <constraint firstAttribute="trailing" secondItem="8f8-rF-fx7" secondAttribute="trailing" constant="15" id="fMr-we-bJy"/>
                                     <constraint firstAttribute="trailing" secondItem="fib-Ex-FsO" secondAttribute="trailing" constant="15" id="geG-LU-DFl"/>
