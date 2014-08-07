@@ -42,7 +42,7 @@
 -(void)showConnection{
     //Set Connection Message
     self.connectionLabel.text = [NSString stringWithFormat:@"It's your lucky day, you've connected with %@" ,[currentMatch objectForKey:@"firstName"]];
-    
+    [self.viewProfileButton setTitle:[NSString stringWithFormat:@"%@'s Profile",[currentMatch objectForKeyedSubscript:@"firstName"]] forState:UIControlStateNormal];
     //Check sex to display message
     if ([[currentMatch objectForKey:@"gender"] isEqualToString:@"M"]) {
         self.checkOutLabel.text = @"Check him out!";
@@ -84,62 +84,16 @@
                                      }];
     
     
-    //set size limitations of current potential match
-
-    
-    
-    //button matches
-    if ([currentMatch objectForKey:@"instagram_username"] != [NSNull null]) {
-        //show insta button
-        self.instagrambutton.enabled = TRUE;
-        self.instagrambutton.hidden = FALSE;
-    }
-    if ([currentMatch objectForKey:@"snapchat_username"]!= [NSNull null]) {
-        //show snap button
-        self.snapchatButton.enabled = TRUE;
-        self.snapchatButton.hidden= FALSE;
-    }
-    if ([currentMatch objectForKey:@"twitter_username"]!= [NSNull null]) {
-        //show twitter button
-        self.twitterButton.enabled = TRUE;
-        self.twitterButton.hidden=FALSE;
-    }
-    if ([currentMatch objectForKey:@"phone_number"]!= [NSNull null]) {
-        //show phone button
-        self.phoneButton.enabled = TRUE;
-        self.phoneButton.hidden=FALSE;
-    }
-    if ([currentMatch objectForKey:@"facebook_uid"]!= [NSNull null]) {
-        //show insta button
-        self.facebookButton.enabled = TRUE;
-        self.facebookButton.hidden=FALSE;
-    }
-}
-//Message Icon always shows
-
-- (IBAction)facebookAction:(id)sender {
-}
-
-- (IBAction)phoneAction:(id)sender {
-}
-
-- (IBAction)snapchatAction:(id)sender {
-}
-
-- (IBAction)twitterAction:(id)sender {
-}
-
-- (IBAction)instagramAction:(id)sender {
-}
-
-- (IBAction)messageAction:(id)sender {
-    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"MessagesViewController"]]animated:YES];
-    [self.sideMenuViewController hideMenuViewController];
 }
 
 - (IBAction)keepPlayingAction:(id)sender {
     [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"PotentialMatchesViewController"]]animated:YES];
     [self.sideMenuViewController hideMenuViewController];
     
+}
+
+- (IBAction)viewProfileAction:(id)sender {
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"]]animated:YES];
+    [self.sideMenuViewController hideMenuViewController];
 }
 @end

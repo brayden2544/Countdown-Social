@@ -1134,10 +1134,13 @@
                                         <rect key="frame" x="30" y="0.0" width="260" height="46"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="26"/>
-                                        <state key="normal" title="Ashley's Profile" backgroundImage="matched keep playing">
+                                        <state key="normal" title="View Profile" backgroundImage="matched keep playing">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="viewProfileAction:" destination="8Hi-Dg-d7d" eventType="touchUpInside" id="gQA-PT-LNi"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -1306,6 +1309,7 @@
                         <outlet property="connectionLabel" destination="15d-Vq-oFT" id="maa-hI-Cjk"/>
                         <outlet property="matchProfilePic" destination="Rvz-H6-I90" id="xZc-7k-nWj"/>
                         <outlet property="userProfilePic" destination="42Z-i0-3ly" id="ikI-ju-iAW"/>
+                        <outlet property="viewProfileButton" destination="meV-4b-X1h" id="qZ4-E5-eEl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tBh-qw-WNo" userLabel="First Responder" sceneMemberID="firstResponder"/>

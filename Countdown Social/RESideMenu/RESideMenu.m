@@ -496,7 +496,7 @@
     }
     
     //code added for countdown
-    if ([touch.view isKindOfClass:[UIButton class]]) {
+    if ([touch.view isKindOfClass:[UIButton class]] && touch.view != self.contentButton) {
         return NO;
     }
     else{

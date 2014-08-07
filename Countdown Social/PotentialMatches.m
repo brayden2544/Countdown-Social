@@ -65,15 +65,20 @@
                 }
                                                                                completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
                                                                                    if (error ==nil) {
+                                                                                       if ([filePath isKindOfClass:[NSNull null]]) {
+                                                                                           [tempPotentialMatches removeObjectAtIndex:[tempPotentialMatches indexOfObjectIdenticalTo:obj]];
+
+                                                                                       }else{
                                                                                        NSLog(@"Video Saved at %@",filePath);
                                                                                        [currentPotentialMatch setValue:filePath forKey:@"fileURL"];
                                                                                        if ([instance.potentialMatches indexOfObject:obj] < [tempPotentialMatches count]){
                                                                                            [tempPotentialMatches replaceObjectAtIndex:[tempPotentialMatches indexOfObjectIdenticalTo:obj] withObject:currentPotentialMatch];
                                                                                        }
+                                                                                       }
                                                                                        }else{
                                                                                            NSLog(@"error with video download : %@",error);
                                                                                            [tempPotentialMatches removeObjectAtIndex:[tempPotentialMatches indexOfObjectIdenticalTo:obj]];
-                                                                                   
+
                                                                                    }
                                                                                    
                                                                                }];
