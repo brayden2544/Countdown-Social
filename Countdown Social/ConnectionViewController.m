@@ -69,21 +69,7 @@
                                          NSLog(@"Photo failed to load%@",error);
                                      }];
     
-    //Set User Image
-    //Set Match Image
-    self.userProfilePic.layer.cornerRadius = self.userProfilePic.frame.size.height/2;
-    self.userProfilePic.layer.masksToBounds = YES;
-    picURL = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/photo", [user objectForKey:@"uid"]];
-    [manager GET:picURL parameters:@{@"height":@200,
-                                     @"width": @200} success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                         self.userProfilePic.image = responseObject;
-                                         NSLog(@"resonse Object %@",responseObject);
-                                         
-                                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                         NSLog(@"Photo failed to load%@",error);
-                                     }];
-    
-    
+        
 }
 
 - (IBAction)keepPlayingAction:(id)sender {
