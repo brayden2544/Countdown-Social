@@ -50,8 +50,9 @@
                                                  name:@"UserImageLoaded"
                                                object:nil];
     
-    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"messagingNavbar"] forBarMetrics:UIBarMetricsDefault];
+//    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"messagingNavbar"] forBarMetrics:UIBarMetricsDefault];
+    
     self.inputToolbar.contentView.leftBarButtonItem = nil;
     User *obj = [User getInstance];
     user = obj.user;
@@ -66,7 +67,7 @@
     
     
     self.outgoingBubbleImageView = [JSQMessagesBubbleImageFactory
-                                    outgoingMessageBubbleImageViewWithColor:[UIColor colorWithRed:80/255.0 green:227/255.0 blue:194/255.0 alpha:0.5]];
+                                    outgoingMessageBubbleImageViewWithColor:[UIColor colorWithRed:14/255.0 green:248/255.0 blue:226/255.0 alpha:0.62]];
     
     self.incomingBubbleImageView = [JSQMessagesBubbleImageFactory
                                     incomingMessageBubbleImageViewWithColor:[UIColor jsq_messageBubbleLightGrayColor]];

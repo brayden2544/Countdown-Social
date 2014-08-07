@@ -215,10 +215,7 @@
                 instance.potentialMatches = tempPotentialMatches;
                 //Added if matches is empty.
                 NSLog(@"potential matches has:%lu",(unsigned long)[instance.potentialMatches count]);
-                if ([instance.potentialMatches count] ==0) {
-                    [NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(nextMatch) userInfo:nil repeats:NO];
-                }
-
+               
             }
         }
               failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -226,6 +223,10 @@
               }];
         
     }
+    if ([instance.potentialMatches count] ==0) {
+        [NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(nextMatch) userInfo:nil repeats:NO];
+    }
+
     return instance;
 }
 
