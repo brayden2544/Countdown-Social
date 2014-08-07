@@ -26,6 +26,7 @@
 #import "RESideMenu.h"
 #import "UIViewController+RESideMenu.h"
 #import "RECommonFunctions.h"
+#import "SevenSwitch.h"
 
 @interface RESideMenu ()
 
@@ -496,7 +497,8 @@
     }
     
     //code added for countdown
-    if ([touch.view isKindOfClass:[UIButton class]] && touch.view != self.contentButton) {
+    if (([touch.view isKindOfClass:[UIButton class]] && touch.view != self.contentButton) ||
+        ([touch.view isKindOfClass:[SevenSwitch class]] && touch.view != self.contentButton)) {
         return NO;
     }
     else{

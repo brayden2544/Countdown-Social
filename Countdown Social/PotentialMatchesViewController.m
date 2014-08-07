@@ -107,38 +107,43 @@
     
     self.facebookSwitch.thumbTintColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"facebookThumb"]];
     self.facebookSwitch.onTintColor = [UIColor colorWithRed:74/255.0 green:110/255.0 blue:169/255.0 alpha:1];
-    self.facebookSwitch.center = CGPointMake(40, 210);
+    self.facebookSwitch.center = CGPointMake(40, 225);
     self.facebookSwitch.shadowColor = [UIColor blackColor];
     self.facebookSwitch.borderColor = [UIColor whiteColor];
+    self.facebookSwitch.activeColor = [UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:0.3];
     [self.facebookSwitch addTarget:self action:@selector(facebook) forControlEvents:UIControlEventValueChanged];
     
     self.phoneSwitch.thumbTintColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"phoneThumb"]];
     self.phoneSwitch.onTintColor = [UIColor colorWithRed:103/255.0 green:190/255.0 blue:8/255.0 alpha:1];
-    self.phoneSwitch.center = CGPointMake(100, 210);
+    self.phoneSwitch.center = CGPointMake(100, 225);
     self.phoneSwitch.shadowColor = [UIColor blackColor];
     self.phoneSwitch.borderColor = [UIColor whiteColor];
+    self.phoneSwitch.activeColor = [UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:0.3];
     [self.phoneSwitch addTarget:self action:@selector(phone) forControlEvents:UIControlEventValueChanged];
     
     self.snapchatSwitch.thumbTintColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"snapchatThumb"]];
     self.snapchatSwitch.onTintColor = [UIColor colorWithRed:248/255.0 green:231/255.0 blue:28/255.0 alpha:1];
-    self.snapchatSwitch.center = CGPointMake(160, 210);
+    self.snapchatSwitch.center = CGPointMake(160, 225);
     self.snapchatSwitch.shadowColor = [UIColor blackColor];
     self.snapchatSwitch.borderColor = [UIColor whiteColor];
+    self.snapchatSwitch.activeColor = [UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:0.3];
     [self.snapchatSwitch addTarget:self action:@selector(snapchat) forControlEvents:UIControlEventValueChanged];
 
     self.twitterSwitch.thumbTintColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"twitterThumb"]];
     self.twitterSwitch.onTintColor = [UIColor colorWithRed:64/255.0 green:153/255.0 blue:255/255.0 alpha:1];
-    self.twitterSwitch.center = CGPointMake(220, 210);
+    self.twitterSwitch.center = CGPointMake(220, 225);
     self.twitterSwitch.shadowColor = [UIColor blackColor];
     self.twitterSwitch.borderColor = [UIColor whiteColor];
+    self.twitterSwitch.activeColor = [UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:0.3];
     [self.twitterSwitch addTarget:self action:@selector(twitter) forControlEvents:UIControlEventValueChanged];
 
     
     self.instagramSwitch.thumbTintColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"instagramThumb"]];
     self.instagramSwitch.onTintColor = [UIColor colorWithRed:69/255.0 green:131/255.0 blue:177/255.0 alpha:1];
-    self.instagramSwitch.center = CGPointMake(280, 210);
+    self.instagramSwitch.center = CGPointMake(280, 225);
     self.instagramSwitch.shadowColor = [UIColor blackColor];
     self.instagramSwitch.borderColor = [UIColor whiteColor];
+    self.instagramSwitch.activeColor = [UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:0.3];
     [self.instagramSwitch addTarget:self action:@selector(instagram) forControlEvents:UIControlEventValueChanged];
 
 //    self.instagramSwitch.alpha = 0.8;
@@ -186,7 +191,7 @@
 }
 
 -(void)checkForVideo{
-    _checkVideoCount +=1;
+    //_checkVideoCount +=1;
     if (_checkVideoCount<100) {
         
         
@@ -532,7 +537,9 @@
         NSLog(@"JSON: %@", responseObject);
         if ([responseObject objectForKey:@"liked_user"] != [NSNull null]) {
             NSLog(@"MATCH");
-            currentMatch = responseObject;
+            NSMutableDictionary *tempMatch = [[NSMutableDictionary alloc]initWithDictionary:responseObject];
+            [tempMatch setValue:@true forKey:@"is_new"];
+            currentMatch = tempMatch;
             [ConnectionsList updateMatches];
             Connection *obj = [Connection getInstance];
             obj.connection = currentMatch;

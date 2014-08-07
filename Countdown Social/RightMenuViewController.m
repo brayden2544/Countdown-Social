@@ -148,28 +148,9 @@
 {
     Connection *obj = [Connection getInstance];
     connection = [[NSMutableDictionary alloc]initWithDictionary:[connections objectAtIndex:indexPath.row]];
-    if ([[connection objectForKey:@"is_true"]boolValue]==true) {
-        [connections setValue:FALSE forKey:@"is_new"];
-        [connections replaceObjectAtIndex:indexPath.row withObject:connection];
-        [self.ConnectionsTableView reloadData];
-        NSString *urlAsString =[NSString stringWithFormat:@"http://countdown-java-dev.elasticbeanstalk.com/user/%@/like/viewed", [connection objectForKey:@"uid"]];
-        
-        
-        FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
-        
-        NSString *FbToken = [session accessTokenData].accessToken;
-        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
-        NSDictionary *params = @{};
-        [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSLog(@"User shown as seen");
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"User not shown as seen%@", error);
-        }];
-
-    }
-    obj.connection = connection;
-    
+        obj.connection = connection;
+    ConnectionsCellTableViewCell *cell = (ConnectionsCellTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    cell.notificationImage.hidden = TRUE;
     [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"]]animated:YES];
     [self.sideMenuViewController hideMenuViewController];
 

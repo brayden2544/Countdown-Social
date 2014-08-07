@@ -19,7 +19,7 @@
 
 @interface UserProfileViewController ()
 @property NSDictionary *user;
-@property NSDictionary *connection;
+@property NSMutableDictionary *connection;
 @property AFHTTPRequestOperationManager *manager;
 @property UIWebView *socialMediaWebView;
 @property UIButton *closeButton;
@@ -82,14 +82,37 @@
     [loadingView addSubview:activityView];
     [socialMediaWebView addSubview:loadingView];
 
+    if ([[connection objectForKey:@"is_new"]boolValue]==true) {
+        
+    }
+
 
 }
 - (void)notificationStatus{
     Connection *obj = [Connection getInstance];
     if ([[obj.connection objectForKey:@"is_new"]isEqual:@true]) {
-                NSLog(@"User is new");
+        NSMutableDictionary *viewedConnection = [[NSMutableDictionary alloc]initWithDictionary: connection];
+        [viewedConnection setValue:@false forKeyPath:@"is_new"];
+        ConnectionsList *obj = [ConnectionsList getInstance];
+        //[obj.connections replaceObjectAtIndex:[obj.connections indexOfObject:connection] withObject:viewedConnection];
+        
+        NSString *urlAsString =[NSString stringWithFormat:@"http://countdown-java-dev.elasticbeanstalk.com/user/%@/like/viewed", [connection objectForKey:@"uid"]];
+        
+        
+        FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+        
+        NSString *FbToken = [session accessTokenData].accessToken;
+        [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+        manager.responseSerializer = [AFJSONResponseSerializer serializer];
+        NSDictionary *params = @{};
+        [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"User shown as seen");
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"User not shown as seen%@", error);
+        }];
+
     }
-}
+} 
 - (IBAction)close:(id)sender{
     [socialMediaWebView loadHTMLString:@"" baseURL:nil];
     [socialMediaWebView removeFromSuperview];
@@ -100,7 +123,6 @@
 - (void)getImages{
     
     
-    manager.responseSerializer = [AFImageResponseSerializer serializer];
 
     NSString *picURL = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/photo", [connection objectForKey:@"uid"]];
     manager.responseSerializer = [AFImageResponseSerializer serializer];

@@ -65,19 +65,23 @@
                 }
                                                                                completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
                                                                                    if (error ==nil) {
-                                                                                       if ([filePath isKindOfClass:[NSNull null]]) {
+                                                                                       if ([filePath isKindOfClass:[NSNull class]]) {
+                                                                                           NSLog(@"Video Null at %@",filePath);
+
                                                                                            [tempPotentialMatches removeObjectAtIndex:[tempPotentialMatches indexOfObjectIdenticalTo:obj]];
 
                                                                                        }else{
-                                                                                       NSLog(@"Video Saved at %@",filePath);
                                                                                        [currentPotentialMatch setValue:filePath forKey:@"fileURL"];
                                                                                        if ([instance.potentialMatches indexOfObject:obj] < [tempPotentialMatches count]){
                                                                                            [tempPotentialMatches replaceObjectAtIndex:[tempPotentialMatches indexOfObjectIdenticalTo:obj] withObject:currentPotentialMatch];
                                                                                        }
                                                                                        }
                                                                                        }else{
-                                                                                           NSLog(@"error with video download : %@",error);
-                                                                                           [tempPotentialMatches removeObjectAtIndex:[tempPotentialMatches indexOfObjectIdenticalTo:obj]];
+                                                                                           if ([tempPotentialMatches count]>[tempPotentialMatches indexOfObjectIdenticalTo:obj]) {
+                                                                                               NSLog(@"error with video download : %@",error);
+                                                                                               [tempPotentialMatches removeObjectAtIndex:[tempPotentialMatches indexOfObjectIdenticalTo:obj]];
+                                                                                           }
+                                                                                           
 
                                                                                    }
                                                                                    
