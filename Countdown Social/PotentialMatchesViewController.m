@@ -97,7 +97,7 @@
     NSLog(@"ViewDidLoad");
     
     //Create Seven Switches
-    CGRect switchRect = CGRectMake(0, 0, 50 , 80);
+    CGRect switchRect = CGRectMake(0, 0, 35 , 60);
     
     self.facebookSwitch = [[SevenSwitch alloc]initWithFrame:switchRect];
     self.instagramSwitch =[[SevenSwitch alloc]initWithFrame:switchRect];
