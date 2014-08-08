@@ -102,7 +102,7 @@
 
 +(PotentialMatches *)nextMatch{
     
-    static PotentialMatches *instance = nil;
+    static PotentialMatches *instance;
     instance = [self getInstance];
     if ([instance.potentialMatches count] >0) {
         //instance.passedUsers = [instance.potentialMatches objectAtIndex:0];

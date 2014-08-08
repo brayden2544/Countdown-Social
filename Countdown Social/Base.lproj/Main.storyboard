@@ -1351,8 +1351,8 @@
                                             <action selector="ReleasePlay:" destination="QP0-wH-HVL" eventType="touchUpInside" id="mLh-2L-XjZ"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hold to Play" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UzK-hB-SOM">
-                                        <rect key="frame" x="51" y="90" width="218" height="50"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Hold to Play" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UzK-hB-SOM">
+                                        <rect key="frame" x="20" y="90" width="280" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="4B3-r9-Bsh"/>
@@ -1476,6 +1476,7 @@
                         <outlet property="nameLabel" destination="6qH-yV-hP8" id="fyG-oV-HUD"/>
                         <outlet property="nameView" destination="F9b-33-Rbr" id="lYd-RD-Usg"/>
                         <outlet property="playButton" destination="Cv1-ZZ-k4Q" id="QIp-qf-Dxv"/>
+                        <outlet property="playButtonLabel" destination="UzK-hB-SOM" id="JZy-yk-MZz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qzy-hH-Une" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -173,7 +173,6 @@
     
     //Get instance of potential matches
     PotentialMatches *obj =[PotentialMatches getInstance];
-    
     //Test to see if the array has potential matches
     if ([obj.potentialMatches count] == 0){
         [self.view addSubview:self.potentialMatchesLoadingView];
@@ -181,13 +180,10 @@
         [NSTimer    scheduledTimerWithTimeInterval:2.0    target:self    selector:@selector(nextMatch)    userInfo:nil repeats:NO];
         
     }
-    
     //If there are users
     else {
-        _checkVideoCount = 0;
         [self checkForVideo];
     }
-    
 }
 
 -(void)checkForVideo{
@@ -195,14 +191,18 @@
             NSLog(@"check for video");
         //Get current potential match
         PotentialMatches *obj =[PotentialMatches getInstance];
+    if ([obj.potentialMatches count]>0) {
+    
         currentPotentialMatch =[obj.potentialMatches objectAtIndex:0];
         if ([currentPotentialMatch objectForKey:@"fileURL"]) {
             _loading = FALSE;
             _likeCurrentUser = FALSE;
             
+            [self.potentialMatchesLoadingView removeFromSuperview];
+
             //Set text for name label
             _nameLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
-            [self.potentialMatchesLoadingView removeFromSuperview];
+            [self.nameLabel startCanvasAnimation];
             
             //Load initial instance of self.movieplayer with fileurl of current match
             _videoUrl =[currentPotentialMatch objectForKey:@"fileURL"];
@@ -219,7 +219,16 @@
             }
             //Set Profile Pic for current potential match
             [self setProfilePic];
+            [self playVideo];
         }
+        else{
+            [self.view addSubview:self.potentialMatchesLoadingView];
+            _likeCurrentUser = FALSE;
+            _loading = TRUE;
+            [NSTimer    scheduledTimerWithTimeInterval:2.0    target:self    selector:@selector(checkForVideo)    userInfo:nil repeats:NO];
+        }
+
+    }
         else{
             [self.view addSubview:self.potentialMatchesLoadingView];
             _likeCurrentUser = FALSE;
@@ -327,15 +336,16 @@
     
       }
 
-
-
 - (IBAction)HoldPlay:(id)sender {
-    
+    [self PlayButtonHeld];
+}
+-(void)PlayButtonHeld{
     if( _loading ==FALSE & _likeCurrentUser ==FALSE) {
         _playButtonHeld = TRUE;
         self.blur.hidden = TRUE;
         self.createMatch.hidden = TRUE;
         self.darken.hidden = TRUE;
+        self.playButtonLabel.text = @"Release to Connect";
         //[self.sideMenuViewController setPanGestureEnabled:NO];
         [self.view bringSubviewToFront:self.moviePlayerView];
         [self.moviePlayerView.player play];
@@ -344,13 +354,17 @@
 
 
 - (IBAction)ReleasePlay:(id)sender {
-    
+    [self PlayButtonReleased];
+   }
+-(void)PlayButtonReleased{
     if(_likeCurrentUser ==FALSE & _loading ==FALSE){
         _playButtonHeld = FALSE;
         //[self.sideMenuViewController setPanGestureEnabled:YES];
         [self.moviePlayerView.player pause];
+        self.playButtonLabel.text = @"Hold to Play";
         [self CaptureSnapshot];
     }
+
 }
 
 -(void) playVideo{
@@ -365,6 +379,8 @@
     }
     else if(playButton.isTouchInside){
         [self.moviePlayerView.player play];
+    }else{
+        [self PlayButtonReleased];
     }
     
     
@@ -564,53 +580,51 @@
 - (void)nextMatch{
     _likeCurrentUser = FALSE;
     
-    PotentialMatches *obj =[PotentialMatches nextMatch];
-    //NSLog(@"@%@",obj.potentialMatches);
-    if ([obj.potentialMatches count]==0){
-        NSLog(@"Potential Matches Empty, wait 15 seconds");
-        [self.view addSubview:self.potentialMatchesLoadingView];
-        _loading = TRUE;
-        [self.potentialMatchesTimer invalidate];
-#warning Finish this below. see if it still pulls matches every 15 seconds.
-        //self.potentialMatchesTimer = [NSTimer    scheduledTimerWithTimeInterval:15.0    target:self    selector:@selector(nextMatch)    userInfo:nil repeats:NO];
-        
-        
-    }
-    else {
-        NSLog(@"Next Match");
-        currentPotentialMatch =[obj.potentialMatches objectAtIndex:0];
-        if ([currentPotentialMatch objectForKey:@"fileURL"]){
-            _loading = FALSE;
-            [self.potentialMatchesLoadingView removeFromSuperview];
-            _videoUrl =[currentPotentialMatch objectForKey:@"fileURL"];
-            self.currentVideo = [AVAsset assetWithURL:_videoUrl];
-            self.currentVideoItem = [AVPlayerItem playerItemWithAsset:self.currentVideo];
-            [self.moviePlayerView.player replaceCurrentItemWithPlayerItem:self.currentVideoItem];
-
-            
-            //Change lables on main queue
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-                _nameLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
-                [self.nameView startCanvasAnimation];
-            });
-            
-            //play current Match Video
-            [self playVideo];
-            [self setProfilePic];
-        }else{
-            NSLog(@"Loading video");
-            //self.potentialMatchesLoadingView = [[PotentialMatchesLoadingView alloc]initWithFrame:CGRectMake(0, 90, 320, 320)];
-            [self.view addSubview:self.potentialMatchesLoadingView];
-            _playButtonHeld = FALSE;
-            _loading = TRUE;
-            _checkVideoCount = 0;
-            [NSTimer    scheduledTimerWithTimeInterval:2.0    target:self    selector:@selector(checkForVideo)    userInfo:nil repeats:NO];
-            
-        }
-        
-    }
-    
+    [PotentialMatches nextMatch];
+//    //NSLog(@"@%@",obj.potentialMatches);
+//    if ([obj.potentialMatches count]==0){
+//        NSLog(@"Potential Matches Empty, wait 15 seconds");
+//        [self.view addSubview:self.potentialMatchesLoadingView];
+//        _loading = TRUE;
+//        [self.potentialMatchesTimer invalidate];
+//        
+//        
+//    }
+//    else {
+//        NSLog(@"Next Match");
+//        currentPotentialMatch =[obj.potentialMatches objectAtIndex:0];
+//        if ([currentPotentialMatch objectForKey:@"fileURL"]){
+//            _loading = FALSE;
+//            [self.potentialMatchesLoadingView removeFromSuperview];
+//            _videoUrl =[currentPotentialMatch objectForKey:@"fileURL"];
+//            self.currentVideo = [AVAsset assetWithURL:_videoUrl];
+//            self.currentVideoItem = [AVPlayerItem playerItemWithAsset:self.currentVideo];
+//            [self.moviePlayerView.player replaceCurrentItemWithPlayerItem:self.currentVideoItem];
+//
+//            
+//            //Change lables on main queue
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                
+//                _nameLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
+//                [self.nameView startCanvasAnimation];
+//            });
+//            
+//            //play current Match Video
+//            [self playVideo];
+//            [self setProfilePic];
+//        }else{
+//            NSLog(@"Loading video");
+//            //self.potentialMatchesLoadingView = [[PotentialMatchesLoadingView alloc]initWithFrame:CGRectMake(0, 90, 320, 320)];
+//            [self.view addSubview:self.potentialMatchesLoadingView];
+//            _playButtonHeld = FALSE;
+//            _loading = TRUE;
+//            _checkVideoCount = 0;
+//            [NSTimer    scheduledTimerWithTimeInterval:2.0    target:self    selector:@selector(checkForVideo)    userInfo:nil repeats:NO];
+//            
+//        }
+//        
+//    }
+    [self checkForVideo];
 }
 
 //Actionsheet listener for social media applications that havent yet been configured
@@ -760,6 +774,8 @@
             NSNumber *time_remaining = [[NSNumber alloc]initWithDouble:time_seconds];
             [currentPotentialMatch setValue:time_remaining forKey:@"time_remaining"];
         }
+    }else{
+        [PotentialMatches nextMatch];
     }
     [self.loadingTimer invalidate];
     [[NSNotificationCenter defaultCenter] removeObserver:self];

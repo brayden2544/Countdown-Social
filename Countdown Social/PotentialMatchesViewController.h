@@ -39,6 +39,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *meetLabel;
 @property (nonatomic,strong) IBOutlet UIButton *playButton;
+@property (strong, nonatomic) IBOutlet UILabel *playButtonLabel;
+
 @property (strong, nonatomic) IBOutlet CSAnimationView *nameView;
 
 @property (strong, nonatomic) SevenSwitch *facebookSwitch;
