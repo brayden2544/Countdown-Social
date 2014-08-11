@@ -37,16 +37,16 @@
 }
 
 - (IBAction)share:(id)sender {
-    NSString *string = @" Check this out";
-    NSURL *URL =[NSURL URLWithString: @"www.facebook.com"];
+    NSString *string = @"Post a video on Countdown, the newest way to find people on Insta, Twitter and Snapchat!countdownsocial.com";
+    NSURL *URL =[NSURL URLWithString: @"countdownsocial.com"];
+    UIImage *image = [UIImage imageNamed:@"teal & grey 2@1x"];
     
     UIActivityViewController *activityViewController =
-    [[UIActivityViewController alloc] initWithActivityItems:@[string, URL]
+    [[UIActivityViewController alloc] initWithActivityItems:@[string, URL,image]
                                       applicationActivities:nil];
     [self.navigationController presentViewController:activityViewController
                                        animated:YES
                                      completion:^{
-                                         // ...
                                      }];
 }
 @end

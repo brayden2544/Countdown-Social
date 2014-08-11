@@ -60,14 +60,14 @@
     connection = [conObj.connection objectForKey:@"liked_user"];
     self.title = [connection objectForKey:@"firstName"];
     [self.navigationController.navigationBar setTitleTextAttributes:
-     @{NSForegroundColorAttributeName : [UIColor whiteColor],
+     @{NSForegroundColorAttributeName : [UIColor blackColor],
        NSFontAttributeName : [UIFont fontWithName:@"AvenirNext-Regular" size:26.0]}];
 
     self.sender =[user objectForKey: @"uid"];
     
     
     self.outgoingBubbleImageView = [JSQMessagesBubbleImageFactory
-                                    outgoingMessageBubbleImageViewWithColor:[UIColor colorWithRed:14/255.0 green:248/255.0 blue:226/255.0 alpha:0.62]];
+                                    outgoingMessageBubbleImageViewWithColor:[UIColor jsq_messageBubbleBlueColor]];
     
     self.incomingBubbleImageView = [JSQMessagesBubbleImageFactory
                                     incomingMessageBubbleImageViewWithColor:[UIColor jsq_messageBubbleLightGrayColor]];

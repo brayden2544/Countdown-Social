@@ -63,7 +63,7 @@
     //Pull in user object and check buttons.
     User *obj = [User getInstance];
     user = obj.user;
-    
+    self.imageView.hidden = TRUE;
     _backgroundQueue = [[NSOperationQueue alloc]init];
     
     //change countdown timer to circle.
@@ -202,7 +202,7 @@
 
             //Set text for name label
             _nameLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
-            [self.nameLabel startCanvasAnimation];
+            [self.nameView startCanvasAnimation];
             
             //Load initial instance of self.movieplayer with fileurl of current match
             _videoUrl =[currentPotentialMatch objectForKey:@"fileURL"];
@@ -257,6 +257,8 @@
     [manager GET:picURL parameters:@{@"height":@200,
                                      @"width": @200} success:^(AFHTTPRequestOperation *operation, id responseObject) {
         self.fbProfilePic.image = responseObject;
+                                         self.imageView.hidden = FALSE;
+                                         [self.imageView startCanvasAnimation];
         NSLog(@"resonse Object %@",responseObject);
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -579,51 +581,9 @@
 
 - (void)nextMatch{
     _likeCurrentUser = FALSE;
-    
+    self.imageView.hidden = YES;
     [PotentialMatches nextMatch];
-//    //NSLog(@"@%@",obj.potentialMatches);
-//    if ([obj.potentialMatches count]==0){
-//        NSLog(@"Potential Matches Empty, wait 15 seconds");
-//        [self.view addSubview:self.potentialMatchesLoadingView];
-//        _loading = TRUE;
-//        [self.potentialMatchesTimer invalidate];
-//        
-//        
-//    }
-//    else {
-//        NSLog(@"Next Match");
-//        currentPotentialMatch =[obj.potentialMatches objectAtIndex:0];
-//        if ([currentPotentialMatch objectForKey:@"fileURL"]){
-//            _loading = FALSE;
-//            [self.potentialMatchesLoadingView removeFromSuperview];
-//            _videoUrl =[currentPotentialMatch objectForKey:@"fileURL"];
-//            self.currentVideo = [AVAsset assetWithURL:_videoUrl];
-//            self.currentVideoItem = [AVPlayerItem playerItemWithAsset:self.currentVideo];
-//            [self.moviePlayerView.player replaceCurrentItemWithPlayerItem:self.currentVideoItem];
-//
-//            
-//            //Change lables on main queue
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                
-//                _nameLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
-//                [self.nameView startCanvasAnimation];
-//            });
-//            
-//            //play current Match Video
-//            [self playVideo];
-//            [self setProfilePic];
-//        }else{
-//            NSLog(@"Loading video");
-//            //self.potentialMatchesLoadingView = [[PotentialMatchesLoadingView alloc]initWithFrame:CGRectMake(0, 90, 320, 320)];
-//            [self.view addSubview:self.potentialMatchesLoadingView];
-//            _playButtonHeld = FALSE;
-//            _loading = TRUE;
-//            _checkVideoCount = 0;
-//            [NSTimer    scheduledTimerWithTimeInterval:2.0    target:self    selector:@selector(checkForVideo)    userInfo:nil repeats:NO];
-//            
-//        }
-//        
-//    }
+
     [self checkForVideo];
 }
 
@@ -694,19 +654,13 @@
         [[user objectForKey: @"snapchat_username"]isEqualToString:@""] ||
         [[user objectForKey: @"snapchat_username"]isEqualToString:@"<null>"]){
         [self.snapchatSwitch setOn:FALSE];
-        
     }
     else{
         [self.snapchatSwitch setOn:TRUE];
         
     }
-    
-    
-    
     //Facebook is alwayas available
     [self.facebookSwitch setOn:YES animated:YES];
-    
-    
 }
 
 -(void)facebook{
@@ -718,14 +672,17 @@
         [[user objectForKey: @"phone_number"]isEqualToString:@""] ||
         [[user objectForKey: @"phone_number"]isEqualToString:@"<null>"]){
         [self.phoneSwitch setOn:FALSE];
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"To be able to use this feature you first need to have your phone number added" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Social Account Settings", nil];
-        actionSheet.tag = 0;
-        
-        
-        [actionSheet showInView:self.view];
-    }
+        NSString *addPhone;
+        if ([[currentPotentialMatch objectForKey:@"gender"] isEqualToString:@"M"]) {
+            addPhone = @"Want him to text you? \n Click below to add your number first.";
+        }else{
+            addPhone = @"Want to text her? \n Click below to add your number first. ";
 
-   
+        }
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:addPhone delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Social Account Settings", nil];
+        actionSheet.tag = 0;
+        [actionSheet showInView:self.view];
+    }   
 }
 
 -(void)snapchat{
@@ -733,10 +690,15 @@
         [[user objectForKey: @"snapchat_username"]isEqualToString:@""] ||
         [[user objectForKey: @"snapchat_username"]isEqualToString:@"<null>"]){
         [self.snapchatSwitch setOn:FALSE];
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"You can't match with others on Snapchat until you add your Snapchat username" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Social Account Settings", nil];
+        NSString *addSnapchat;
+        if ([[currentPotentialMatch objectForKey:@"gender"] isEqualToString:@"M"]) {
+            addSnapchat = @"Want him to Snap you? \n Click below to add your Snapchat.";
+        }else{
+            addSnapchat = @"Want to Snap her? \n Click below to add your Snapchat. ";
+            
+        }
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:addSnapchat delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Social Account Settings", nil];
         actionSheet.tag = 0;
-        
-        
         [actionSheet showInView:self.view];
     }
 
@@ -747,7 +709,14 @@
         [[user objectForKey: @"twitter_username"]isEqualToString:@""] ||
         [[user objectForKey: @"twitte_username"]isEqualToString:@"<null>"]) {
         [self.twitterSwitch setOn:FALSE];
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"You can't match with others on Twitter until you have your Twitter account linked" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Social Account Settings", nil];
+        NSString *addTwitter;
+        if ([[currentPotentialMatch objectForKey:@"gender"] isEqualToString:@"M"]) {
+            addTwitter = @"Want to see his tweets? \n Click below to link your Twitter.";
+        }else{
+            addTwitter = @"Want to see her tweets? \n Click below to link your Twitter. ";
+            
+        }
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:addTwitter delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Social Account Settings", nil];
         actionSheet.tag = 0;
         [actionSheet showInView:self.view];
     }
@@ -758,8 +727,14 @@
     if([[user objectForKey:@"instagram_username"] isKindOfClass:[NSNull class]]||
        [[user objectForKey: @"instagram_username"]isEqualToString:@""] ||
        [[user objectForKey: @"instagram_username"]isEqualToString:@"<null>"]) {
-        [self.instagramSwitch setOn:FALSE];
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"You can't match with others on Instagram until you have your Instagram account linked" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Social Account Settings", nil];
+        NSString *addInstagram;
+        if ([[currentPotentialMatch objectForKey:@"gender"] isEqualToString:@"M"]) {
+            addInstagram = @"Want to check out his Insta? \n Click below to link your Instagram Account.";
+        }else{
+            addInstagram = @"Want to check out her Insta? \n Click below to link your Instagram Account. ";
+            
+        }
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:addInstagram delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Social Account Settings", nil];
         actionSheet.tag = 0;
         [actionSheet showInView:self.view];
     }

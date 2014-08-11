@@ -41,7 +41,7 @@
 
 -(void)showConnection{
     //Set Connection Message
-    self.connectionLabel.text = [NSString stringWithFormat:@"It's your lucky day, you've connected with %@" ,[currentMatch objectForKey:@"firstName"]];
+    self.connectionLabel.text = [NSString stringWithFormat:@"New Connection with %@" ,[currentMatch objectForKey:@"firstName"]];
     [self.viewProfileButton setTitle:[NSString stringWithFormat:@"%@'s Profile",[currentMatch objectForKeyedSubscript:@"firstName"]] forState:UIControlStateNormal];
     //Check sex to display message
     if ([[currentMatch objectForKey:@"gender"] isEqualToString:@"M"]) {
@@ -60,8 +60,8 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
     manager.responseSerializer = [AFImageResponseSerializer serializer];
-    [manager GET:picURL parameters:@{@"height":@200,
-                                     @"width": @200} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:picURL parameters:@{@"height":@300,
+                                     @"width": @300} success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                          self.matchProfilePic.image = responseObject;
                                          NSLog(@"resonse Object %@",responseObject);
                                          
