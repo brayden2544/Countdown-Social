@@ -62,12 +62,11 @@
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName : [UIColor blackColor],
        NSFontAttributeName : [UIFont fontWithName:@"AvenirNext-Regular" size:26.0]}];
-
     self.sender =[user objectForKey: @"uid"];
     
     
     self.outgoingBubbleImageView = [JSQMessagesBubbleImageFactory
-                                    outgoingMessageBubbleImageViewWithColor:[UIColor jsq_messageBubbleBlueColor]];
+                                    outgoingMessageBubbleImageViewWithColor:[UIColor colorWithRed:86/255.0 green:249/255.0 blue:213/255.0 alpha:1]];
     
     self.incomingBubbleImageView = [JSQMessagesBubbleImageFactory
                                     incomingMessageBubbleImageViewWithColor:[UIColor jsq_messageBubbleLightGrayColor]];
@@ -317,6 +316,7 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop
                                                                                           target:self
                                                                                           action:@selector(closePressed:)];
+    self.navigationItem.leftBarButtonItem.tintColor =[UIColor colorWithRed:86/255.0 green:249/255.0 blue:213/255.0 alpha:1];
 }
 - (id<JSQMessageData>)collectionView:(JSQMessagesCollectionView *)collectionView messageDataForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -456,17 +456,17 @@
     /**
      *  iOS7-style sender name labels
      */
-    JSQMessage *currentMessage = [self.messages objectAtIndex:indexPath.item];
-    if ([[currentMessage sender] isEqualToString:self.sender]) {
-        return 0.0f;
-    }
-    
-    if (indexPath.item - 1 > 0) {
-        JSQMessage *previousMessage = [self.messages objectAtIndex:indexPath.item - 1];
-        if ([[previousMessage sender] isEqualToString:[currentMessage sender]]) {
-            return 0.0f;
-        }
-    }
+//    JSQMessage *currentMessage = [self.messages objectAtIndex:indexPath.item];
+//    if ([[currentMessage sender] isEqualToString:self.sender]) {
+//        return 0.0f;
+//    }
+//    
+//    if (indexPath.item - 1 > 0) {
+//        JSQMessage *previousMessage = [self.messages objectAtIndex:indexPath.item - 1];
+//        if ([[previousMessage sender] isEqualToString:[currentMessage sender]]) {
+//            return 0.0f;
+//        }
+//    }
     
     return kJSQMessagesCollectionViewCellLabelHeightDefault;
 }

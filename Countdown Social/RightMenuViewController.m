@@ -67,12 +67,14 @@
     if (cell == nil) {
         cell = [[ConnectionsCellTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    NSLog(@"%@",connections);
     connection = [[connections objectAtIndex:indexPath.row]objectForKey:@"liked_user"];
     NSLog(@"connection%@", connection);
 
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MM/dd"];
-    NSDate *connectionNSDate = [NSDate dateWithTimeIntervalSince1970:[[connection objectForKey:@"date_time"]doubleValue]/1000];
+    NSDate *connectionNSDate = [NSDate dateWithTimeIntervalSince1970:[[[connections objectAtIndex:indexPath.row] objectForKey:@"date_time"]doubleValue]/1000];
+    NSLog(@"Date = %@", connectionNSDate);
     NSString *connectionDate = [NSString stringWithFormat:@"%@",[formatter stringFromDate:connectionNSDate ]];
     cell.label.text = [NSString stringWithFormat:@"Connected %@ ",connectionDate];
     
@@ -130,14 +132,10 @@
                                          cell.profilePic.image = responseObject;
                                          cell.profilePic.layer.cornerRadius = cell.profilePic.layer.frame.size.height/2;
                                          cell.profilePic.layer.masksToBounds = YES;
-                                         //NSLog(@"resonse Object %@",responseObject);
-                                         
                                      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                          NSLog(@"Photo failed to load%@",error);
                                      }];
     cell.nameLabel.text = [connection objectForKey:@"firstName"];
-    
-    
     
     return cell;
 }
