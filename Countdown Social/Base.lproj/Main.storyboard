@@ -1149,7 +1149,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="biJ-Ne-6Oz">
+                            <view contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="biJ-Ne-6Oz">
                                 <rect key="frame" x="40" y="114" width="240" height="240"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -1180,6 +1180,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="240" id="Kqr-Te-KVy"/>
                                     <constraint firstAttribute="width" constant="240" id="syN-YN-hok"/>
+                                    <constraint firstAttribute="width" secondItem="biJ-Ne-6Oz" secondAttribute="height" multiplier="1:1" id="yWN-X6-Mgl"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GcH-nu-GtO" customClass="CSAnimationView">
@@ -1230,11 +1231,11 @@
                             <constraint firstAttribute="trailing" secondItem="30W-uI-kNo" secondAttribute="trailing" id="DL5-UE-k3P"/>
                             <constraint firstItem="biJ-Ne-6Oz" firstAttribute="leading" secondItem="chb-ii-bUD" secondAttribute="leading" constant="40" id="EjJ-Sw-NdS"/>
                             <constraint firstAttribute="trailing" secondItem="biJ-Ne-6Oz" secondAttribute="trailing" constant="40" id="EtX-jc-SmK"/>
-                            <constraint firstItem="15d-Vq-oFT" firstAttribute="top" secondItem="eZk-I6-m4w" secondAttribute="bottom" constant="5" id="KON-zw-mxC"/>
                             <constraint firstItem="15d-Vq-oFT" firstAttribute="leading" secondItem="chb-ii-bUD" secondAttribute="leading" constant="10" id="Ned-VV-aRW"/>
                             <constraint firstItem="6IF-J7-EVI" firstAttribute="top" secondItem="chb-ii-bUD" secondAttribute="top" id="Prl-fL-86U"/>
                             <constraint firstAttribute="trailing" secondItem="m7h-wL-F4L" secondAttribute="trailing" id="T6e-bU-Khv"/>
                             <constraint firstAttribute="trailing" secondItem="6IF-J7-EVI" secondAttribute="trailing" id="TL6-qh-NZl"/>
+                            <constraint firstItem="GcH-nu-GtO" firstAttribute="top" secondItem="30W-uI-kNo" secondAttribute="bottom" constant="18" id="Tby-6R-Byx"/>
                             <constraint firstItem="30W-uI-kNo" firstAttribute="top" secondItem="m7h-wL-F4L" secondAttribute="bottom" priority="750" constant="46" id="U5e-dI-qBc"/>
                             <constraint firstItem="30W-uI-kNo" firstAttribute="top" relation="greaterThanOrEqual" secondItem="m7h-wL-F4L" secondAttribute="bottom" constant="10" id="W9Y-rz-y2B"/>
                             <constraint firstItem="30W-uI-kNo" firstAttribute="leading" secondItem="chb-ii-bUD" secondAttribute="leading" id="cOU-LH-xPS"/>
@@ -3867,27 +3868,53 @@
                                             <action selector="recordVideo:" destination="e5h-i2-1xq" eventType="touchUpInside" id="2zk-cw-ypb"/>
                                         </connections>
                                     </button>
-                                    <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="500" misplaced="YES" image="camera record" translatesAutoresizingMaskIntoConstraints="NO" id="oQL-mD-2oa">
-                                        <rect key="frame" x="107" y="39" width="110" height="72"/>
+                                    <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="500" image="camera record" translatesAutoresizingMaskIntoConstraints="NO" id="oQL-mD-2oa">
+                                        <rect key="frame" x="105" y="39" width="110" height="72"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="oQL-mD-2oa" secondAttribute="height" multiplier="55:36" id="Sgd-Cq-jYx"/>
                                         </constraints>
                                     </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="245-aZ-QWd">
+                                        <rect key="frame" x="9" y="59" width="84" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="31" id="0lX-6q-acN"/>
+                                            <constraint firstAttribute="width" constant="84" id="pew-85-rrh"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="22"/>
+                                        <color key="textColor" red="0.22352942824363708" green="0.22352942824363708" blue="0.22352942824363708" alpha="1" colorSpace="deviceRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Video" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4zy-2D-sn6">
+                                        <rect key="frame" x="238" y="59" width="58" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="58" id="27N-Gm-dhs"/>
+                                            <constraint firstAttribute="height" constant="31" id="VY0-IK-aPk"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="22"/>
+                                        <color key="textColor" red="0.22352941176470587" green="0.22352941176470587" blue="0.22352941176470587" alpha="1" colorSpace="deviceRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="oQL-mD-2oa" firstAttribute="top" secondItem="245-aZ-QWd" secondAttribute="bottom" constant="-51" id="25n-Kf-q9L"/>
                                     <constraint firstAttribute="trailing" secondItem="2ON-Zv-x68" secondAttribute="trailing" id="Exo-Iv-zIA"/>
                                     <constraint firstItem="oQL-mD-2oa" firstAttribute="top" relation="greaterThanOrEqual" secondItem="uW5-cr-F6b" secondAttribute="top" id="H00-D9-AVY"/>
                                     <constraint firstItem="2ON-Zv-x68" firstAttribute="leading" secondItem="uW5-cr-F6b" secondAttribute="leading" id="IMZ-Yu-0zJ"/>
                                     <constraint firstAttribute="bottom" secondItem="2ON-Zv-x68" secondAttribute="bottom" id="Lgt-aZ-bcz"/>
                                     <constraint firstAttribute="bottom" secondItem="oQL-mD-2oa" secondAttribute="bottom" priority="697" constant="49" id="S12-fV-yC2"/>
                                     <constraint firstItem="oQL-mD-2oa" firstAttribute="leading" secondItem="uW5-cr-F6b" secondAttribute="leading" constant="105" id="VNu-Bt-Wqt"/>
+                                    <constraint firstAttribute="trailing" secondItem="4zy-2D-sn6" secondAttribute="trailing" constant="24" id="a9A-xF-Mv5"/>
                                     <constraint firstItem="2ON-Zv-x68" firstAttribute="top" secondItem="uW5-cr-F6b" secondAttribute="top" id="eRg-Ho-xWd"/>
                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="oQL-mD-2oa" secondAttribute="bottom" constant="3" id="gdl-We-cRN"/>
+                                    <constraint firstItem="oQL-mD-2oa" firstAttribute="top" secondItem="4zy-2D-sn6" secondAttribute="bottom" constant="-51" id="moO-e8-dG7"/>
                                     <constraint firstAttribute="trailing" secondItem="oQL-mD-2oa" secondAttribute="trailing" constant="105" id="pPR-wW-ObM"/>
                                     <constraint firstAttribute="width" constant="320" id="uOU-rJ-3mD"/>
                                     <constraint firstAttribute="height" priority="250" constant="160" id="uVI-QY-WoH"/>
                                     <constraint firstItem="oQL-mD-2oa" firstAttribute="top" secondItem="uW5-cr-F6b" secondAttribute="top" priority="250" constant="39" id="waf-LP-Z96"/>
+                                    <constraint firstItem="245-aZ-QWd" firstAttribute="leading" secondItem="uW5-cr-F6b" secondAttribute="leading" constant="9" id="zPo-dw-4oV"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2KR-Ys-u1H">
