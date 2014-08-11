@@ -34,9 +34,8 @@
         [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             [instance.connections addObjectsFromArray: responseObject];
             NSLog(@"%d Connections ",[instance.connections count]);
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"newConnections" object:nil];
-            
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
             NSLog(@"Connections not downloaded %@",error);
         }];
                   urlAsString =[NSString stringWithFormat:@"http://countdown-java-dev.elasticbeanstalk.com/user/%@/matches/new", [user objectForKey:@"uid"]];

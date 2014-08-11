@@ -67,8 +67,11 @@
     if (cell == nil) {
         cell = [[ConnectionsCellTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
+    NSLog(@"connection%@", connection);
     connection = [[connections objectAtIndex:indexPath.row]objectForKey:@"liked_user"];
+    
+    //cell.label.text = [connection objectForKey:<#(id)#>]
+    
     if ([[connections objectAtIndex:indexPath.row]objectForKey:@"is_new"]!=[NSNull null] && [[[connections objectAtIndex:indexPath.row]objectForKey:@"is_new"]boolValue]==true)  {
         cell.notificationImage.hidden = FALSE;
     }
