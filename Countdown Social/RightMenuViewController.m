@@ -70,8 +70,11 @@
     connection = [[connections objectAtIndex:indexPath.row]objectForKey:@"liked_user"];
     NSLog(@"connection%@", connection);
 
-    
-    //cell.label.text = [connection objectForKey:<#(id)#>]
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MM/dd"];
+    NSDate *connectionNSDate = [NSDate dateWithTimeIntervalSince1970:[[connection objectForKey:@"date_time"]doubleValue]/1000];
+    NSString *connectionDate = [NSString stringWithFormat:@"%@",[formatter stringFromDate:connectionNSDate ]];
+    cell.label.text = [NSString stringWithFormat:@"Connected %@ ",connectionDate];
     
     if ([[connections objectAtIndex:indexPath.row]objectForKey:@"is_new"]!=[NSNull null] && [[[connections objectAtIndex:indexPath.row]objectForKey:@"is_new"]boolValue]==true)  {
         cell.notificationImage.hidden = FALSE;
