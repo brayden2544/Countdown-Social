@@ -67,8 +67,9 @@
     if (cell == nil) {
         cell = [[ConnectionsCellTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    NSLog(@"connection%@", connection);
     connection = [[connections objectAtIndex:indexPath.row]objectForKey:@"liked_user"];
+    NSLog(@"connection%@", connection);
+
     
     //cell.label.text = [connection objectForKey:<#(id)#>]
     
