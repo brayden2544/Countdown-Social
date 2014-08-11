@@ -410,7 +410,7 @@
                                     <constraint firstAttribute="trailing" secondItem="7os-mJ-eI4" secondAttribute="trailing" id="vXm-QG-Sf6"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Traveling? press and hold until a pin drops on your destination to enable travel mode." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="308" translatesAutoresizingMaskIntoConstraints="NO" id="fkw-Wb-zt3">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Traveling? press &amp; hold your finger on your destination to enable travel mode." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="308" translatesAutoresizingMaskIntoConstraints="NO" id="fkw-Wb-zt3">
                                 <rect key="frame" x="6" y="198" width="308" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
@@ -1853,7 +1853,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tired of an empty snap feed? This will help." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="182" translatesAutoresizingMaskIntoConstraints="NO" id="AP3-Fe-0ZQ">
-                                        <rect key="frame" x="72" y="-2" width="182" height="104"/>
+                                        <rect key="frame" x="75" y="-2" width="182" height="104"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="104" id="AwY-Sr-xz4"/>
@@ -1882,7 +1882,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="0ye-Be-7Nq"/>
                                     <constraint firstAttribute="trailing" secondItem="D1K-4m-ss0" secondAttribute="trailing" constant="15" id="8yo-K1-Cz1"/>
-                                    <constraint firstAttribute="centerX" secondItem="AP3-Fe-0ZQ" secondAttribute="centerX" constant="-3" id="EY9-J8-cMT"/>
+                                    <constraint firstAttribute="centerX" secondItem="AP3-Fe-0ZQ" secondAttribute="centerX" constant="-6" id="EY9-J8-cMT"/>
                                     <constraint firstAttribute="centerY" secondItem="HZd-At-69O" secondAttribute="centerY" id="H75-zd-p9W"/>
                                     <constraint firstItem="aCr-c4-zcD" firstAttribute="leading" secondItem="1ek-4F-jxt" secondAttribute="leading" constant="-24" id="NPs-hm-hTe"/>
                                     <constraint firstAttribute="centerY" secondItem="AP3-Fe-0ZQ" secondAttribute="centerY" id="OaL-fp-EeV"/>
@@ -2011,7 +2011,7 @@
                                             <constraint firstAttribute="width" constant="127" id="EMW-nf-PSh"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Prove you’re no catfish.     Link your Insta." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="182" translatesAutoresizingMaskIntoConstraints="NO" id="IA5-zy-SH0">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prove you’re no catfish.     Link your Insta." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="182" translatesAutoresizingMaskIntoConstraints="NO" id="IA5-zy-SH0">
                                         <rect key="frame" x="77" y="-2" width="182" height="104"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
@@ -2063,7 +2063,7 @@
                                     <constraint firstAttribute="centerY" secondItem="aph-OB-YR2" secondAttribute="centerY" id="cIL-dU-PNg"/>
                                     <constraint firstItem="aph-OB-YR2" firstAttribute="leading" secondItem="gHj-Sk-c4Y" secondAttribute="leading" constant="-24" id="elb-Hp-UMb"/>
                                     <constraint firstAttribute="centerY" secondItem="3HZ-qv-FXC" secondAttribute="centerY" id="eli-VB-ieN"/>
-                                    <constraint firstAttribute="centerX" secondItem="IA5-zy-SH0" secondAttribute="centerX" constant="-10" id="iCQ-tV-VLK"/>
+                                    <constraint firstAttribute="centerX" secondItem="IA5-zy-SH0" secondAttribute="centerX" constant="-8" id="iCQ-tV-VLK"/>
                                     <constraint firstAttribute="centerY" secondItem="8t1-xc-cLq" secondAttribute="centerY" id="lFn-Nr-nZy"/>
                                     <constraint firstAttribute="centerY" secondItem="YQU-yP-gjN" secondAttribute="centerY" id="nS1-pN-27v"/>
                                     <constraint firstAttribute="trailing" secondItem="8t1-xc-cLq" secondAttribute="trailing" constant="15" id="pqY-ma-MJM"/>
@@ -3111,7 +3111,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aAr-qy-Nmp" customClass="CSAnimationView">
-                                                <rect key="frame" x="13" y="0.0" width="50" height="106"/>
+                                                <rect key="frame" x="74" y="0.0" width="50" height="106"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="facebook views" translatesAutoresizingMaskIntoConstraints="NO" id="CT6-yk-v6s">
@@ -3136,7 +3136,7 @@
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="type" value="slideUp"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="delay">
-                                                        <real key="value" value="0.20000000000000001"/>
+                                                        <real key="value" value="0.25"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="duration">
                                                         <real key="value" value="0.20000000000000001"/>
@@ -3144,7 +3144,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8N7-QJ-8yC" customClass="CSAnimationView">
-                                                <rect key="frame" x="74" y="0.0" width="50" height="106"/>
+                                                <rect key="frame" x="13" y="0.0" width="50" height="106"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="phone views" translatesAutoresizingMaskIntoConstraints="NO" id="6lJ-P1-I6g">
@@ -3169,7 +3169,7 @@
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="type" value="slideUp"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="delay">
-                                                        <real key="value" value="0.25"/>
+                                                        <real key="value" value="0.20000000000000001"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="duration">
                                                         <real key="value" value="0.20000000000000001"/>
