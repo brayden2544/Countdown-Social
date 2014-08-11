@@ -752,6 +752,18 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bvu-nQ-yO2">
+                                        <rect key="frame" x="3" y="287" width="45" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="NJD-m5-y00"/>
+                                            <constraint firstAttribute="width" constant="45" id="in1-F6-fHX"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="25" maxX="30" maxY="5"/>
+                                        <state key="normal" image="report button">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
@@ -771,6 +783,7 @@
                                     <constraint firstAttribute="trailing" secondItem="fib-Ex-FsO" secondAttribute="trailing" constant="15" id="geG-LU-DFl"/>
                                     <constraint firstAttribute="trailing" secondItem="Df8-uH-hBN" secondAttribute="trailing" constant="68" id="lOd-E2-3hL"/>
                                     <constraint firstAttribute="bottom" secondItem="8Rn-ZS-P6I" secondAttribute="bottom" priority="750" constant="78" id="leI-Xp-PKg"/>
+                                    <constraint firstItem="bvu-nQ-yO2" firstAttribute="leading" secondItem="rdg-ep-GXF" secondAttribute="leading" constant="3" id="q9N-v6-jim"/>
                                     <constraint firstItem="Df8-uH-hBN" firstAttribute="leading" secondItem="9jK-bv-8GM" secondAttribute="trailing" constant="20" id="ql1-Na-txl"/>
                                     <constraint firstItem="8Rn-ZS-P6I" firstAttribute="top" secondItem="Df8-uH-hBN" secondAttribute="bottom" priority="750" constant="38" id="wvF-EQ-sTA"/>
                                     <constraint firstItem="8Rn-ZS-P6I" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Df8-uH-hBN" secondAttribute="bottom" constant="8" id="xR3-4E-0gU"/>
@@ -1013,6 +1026,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="D0c-sG-OC9" firstAttribute="top" secondItem="bvu-nQ-yO2" secondAttribute="bottom" constant="1" id="5WB-Ma-63S"/>
                             <constraint firstItem="D0c-sG-OC9" firstAttribute="leading" secondItem="IHL-95-WqJ" secondAttribute="leading" id="CqA-Tj-NVz"/>
                             <constraint firstAttribute="trailing" secondItem="D0c-sG-OC9" secondAttribute="trailing" id="FtK-JZ-Oe8"/>
                             <constraint firstItem="rdg-ep-GXF" firstAttribute="leading" secondItem="IHL-95-WqJ" secondAttribute="leading" id="e9A-Cv-q6Q"/>
@@ -1096,7 +1110,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You've connected with Ashley." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="15d-Vq-oFT">
-                                <rect key="frame" x="10" y="25" width="300" height="69"/>
+                                <rect key="frame" x="10" y="26" width="300" height="69"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="69" id="dzc-em-HTF"/>
@@ -1239,7 +1253,7 @@
                             <constraint firstItem="30W-uI-kNo" firstAttribute="top" secondItem="m7h-wL-F4L" secondAttribute="bottom" priority="750" constant="46" id="U5e-dI-qBc"/>
                             <constraint firstItem="30W-uI-kNo" firstAttribute="top" relation="greaterThanOrEqual" secondItem="m7h-wL-F4L" secondAttribute="bottom" constant="10" id="W9Y-rz-y2B"/>
                             <constraint firstItem="30W-uI-kNo" firstAttribute="leading" secondItem="chb-ii-bUD" secondAttribute="leading" id="cOU-LH-xPS"/>
-                            <constraint firstItem="biJ-Ne-6Oz" firstAttribute="top" secondItem="15d-Vq-oFT" secondAttribute="bottom" constant="20" id="dh3-Pn-eOB"/>
+                            <constraint firstItem="biJ-Ne-6Oz" firstAttribute="top" secondItem="15d-Vq-oFT" secondAttribute="bottom" constant="19" id="dh3-Pn-eOB"/>
                             <constraint firstItem="m7h-wL-F4L" firstAttribute="top" secondItem="biJ-Ne-6Oz" secondAttribute="bottom" constant="3" id="diI-Sv-Qxf"/>
                             <constraint firstAttribute="trailing" secondItem="GcH-nu-GtO" secondAttribute="trailing" constant="30" id="kZJ-vL-eOd"/>
                             <constraint firstAttribute="trailing" secondItem="30W-uI-kNo" secondAttribute="trailing" id="osE-bb-Fen"/>
