@@ -763,6 +763,9 @@
                                         <state key="normal" image="report button">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="reportAction:" destination="Qsq-uR-0b2" eventType="touchUpInside" id="Y6c-zr-nbz"/>
+                                        </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="newmessage-1" translatesAutoresizingMaskIntoConstraints="NO" id="6at-LV-Uhr">
                                         <rect key="frame" x="260" y="180" width="10" height="10"/>
@@ -4043,7 +4046,7 @@
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="286" translatesAutoresizingMaskIntoConstraints="NO" id="y1b-1r-SM8">
                                                 <rect key="frame" x="15" y="68" width="286" height="1759"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <mutableString key="text">1. Terms
+                                                <string key="text">1. Terms
 By accessing this application, you are agreeing to be bound by these Terms and Conditions of Use, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws. If you do not agree with any of these terms, you are prohibited from using or accessing this appliation. The materials contained in this application and application servers are protected by applicable copyright and trade mark law.
 2. Use License
 a.	Permission is granted to temporarily download one copy of the materials  on Countdown Social LLC's app for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:
@@ -4065,7 +4068,7 @@ Countdown Social LLC has not reviewed all of the profiles linked to its applicat
 Countdown Social LLC may revise these terms of use for its application at any time without notice. By using this application you are agreeing to be bound by the then current version of these Terms and Conditions of Use.
 8. Governing Law
 Any claim relating to Countdown Social LLC's application shall be governed by the laws of the State of Utah without regard to its conflict of law provisions.
-</mutableString>
+</string>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="13"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -4176,7 +4179,7 @@ Any claim relating to Countdown Social LLC's application shall be governed by th
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="286" translatesAutoresizingMaskIntoConstraints="NO" id="hXf-cg-Vpt">
                                                 <rect key="frame" x="13" y="60" width="286" height="1364"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <mutableString key="text">Data-
+                                                <string key="text">Data-
 We may collect personally identifiable information that you provide to us, such as your name, address, phone number or email address. With your permission, we may also access other personal information on your device, such as your phone book, calendar or messages, in order to provide services to you. If authorized by you, we may also access profile and other information from services like Facebook, Snapchat, Instagram, Twitter, etc.
 
 Our systems may associate this personal information with your activities in the course of providing service to you .
@@ -4197,7 +4200,7 @@ Contact- Analytics companies may access anonymous to help us understand how our 
 Security- We take reasonable steps to secure your personally identifiable information against unauthorized access or disclosure.
 
 Special- To operate the service, we also may make identifiable and anonymous information available to third parties in these limited circumstances: (1) with your express consent, (2) when we have a good faith belief it is required by law, (3) when we have a good faith belief it is necessary to protect our rights or property, or (4) to any successor or purchaser in a merger, acquisition, liquidation, dissolution or sale of assets. Your consent will not be required for disclosure in these cases, but we will attempt to notify you, to the extent permitted by law to do so.
-</mutableString>
+</string>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="13"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>

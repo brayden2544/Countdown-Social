@@ -45,10 +45,10 @@
     [self.viewProfileButton setTitle:[NSString stringWithFormat:@"%@'s Profile",[currentMatch objectForKeyedSubscript:@"firstName"]] forState:UIControlStateNormal];
     //Check sex to display message
     if ([[currentMatch objectForKey:@"gender"] isEqualToString:@"M"]) {
-        self.checkOutLabel.text = @"Check him out!";
+        self.checkOutLabel.text = @"See what he's up to!";
     }
     else{
-        self.checkOutLabel.text = @"Check her out!";
+        self.checkOutLabel.text = @"See what she's up to!";
     }
     
     //Set Match Image

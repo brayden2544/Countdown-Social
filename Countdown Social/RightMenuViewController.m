@@ -67,9 +67,9 @@
     if (cell == nil) {
         cell = [[ConnectionsCellTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    NSLog(@"%@",connections);
+    //NSLog(@"%@",connections);
     connection = [[connections objectAtIndex:indexPath.row]objectForKey:@"liked_user"];
-    NSLog(@"connection%@", connection);
+    //NSLog(@"connection%@", connection);
 
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MM/dd"];

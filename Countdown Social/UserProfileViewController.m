@@ -386,8 +386,53 @@
     }
     if (actionSheet.tag ==1) {
         if (buttonIndex ==0) {
-            NSLog(@"report User");
+            NSLog(@"block User");
+            NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/";
+            urlAsString = [urlAsString stringByAppendingString:[connection objectForKey:@"uid"]];
+            urlAsString =[urlAsString stringByAppendingString:@"/block"];
+            FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+            NSString *FbToken = [session accessTokenData].accessToken;
+            [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+            manager.responseSerializer = [AFJSONResponseSerializer serializer];
+            NSDictionary *params = @{};
+            [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                
+                NSLog(@"User reported: %@", responseObject);
+            }
+                  failure:^(AFHTTPRequestOperation *operation, NSError *error)
+             {
+                 NSLog(@"Error: %@", error);
+             }];
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"PotentialMatchesViewController"]]animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
+            [self.sideMenuViewController presentRightMenuViewController];
+
+
                    }
+        else if (buttonIndex ==1){
+            NSLog(@"report user");
+            NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/";
+            urlAsString = [urlAsString stringByAppendingString:[connection objectForKey:@"uid"]];
+            urlAsString =[urlAsString stringByAppendingString:@"/report"];
+            FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+            NSString *FbToken = [session accessTokenData].accessToken;
+            [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+            manager.responseSerializer = [AFJSONResponseSerializer serializer];
+            NSDictionary *params = @{};
+            [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                
+                    NSLog(@"User reported: %@", responseObject);
+            }
+                  failure:^(AFHTTPRequestOperation *operation, NSError *error)
+             {
+                 NSLog(@"Error: %@", error);
+             }];
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"PotentialMatchesViewController"]]animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
+            [self.sideMenuViewController presentRightMenuViewController];
+
+
+        }
     }
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
@@ -422,7 +467,6 @@
     [socialMediaWebView loadRequest:requestObj];
     [self.view addSubview:socialMediaWebView];
     closeButton.hidden =false;
-
     [self.view bringSubviewToFront:closeButton];
 
 }
@@ -434,7 +478,6 @@
     [socialMediaWebView loadRequest:requestObj];
     [self.view addSubview:socialMediaWebView];
     closeButton.hidden =false;
-
     [self.view bringSubviewToFront:closeButton];
 
 
@@ -447,7 +490,6 @@
     [socialMediaWebView loadRequest:requestObj];
     [self.view addSubview:socialMediaWebView];
     closeButton.hidden =false;
-
     [self.view bringSubviewToFront:closeButton];
 
 
@@ -467,4 +509,10 @@
 }
 
 
+- (IBAction)reportAction:(id)sender {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:[NSString stringWithFormat:@"Block %@",[connection objectForKey:@"firstName"]] otherButtonTitles:[NSString stringWithFormat: @"Report %@",[connection objectForKey:@"firstName"]], nil];
+    actionSheet.tag = 1;
+    [actionSheet showInView:self.view];
+
+}
 @end

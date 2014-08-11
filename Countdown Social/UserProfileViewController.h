@@ -44,6 +44,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *twitterButton;
 @property (strong, nonatomic) IBOutlet UIButton *facebookButton;
 
+- (IBAction)reportAction:(id)sender;
 
 //viewProfileButtons
 
