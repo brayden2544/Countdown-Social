@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "User.h"
 #import "RESideMenu.h"
+#import "Constants.h"
 
 @interface ConnectionViewController ()
 @property (nonatomic, strong) NSDictionary *currentMatch;
@@ -54,7 +55,8 @@
     //Set Match Image
     self.matchProfilePic.layer.cornerRadius = self.matchProfilePic.frame.size.height/2;
     self.matchProfilePic.layer.masksToBounds = YES;
-    NSString *picURL = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/photo", [currentMatch objectForKey:@"uid"]];
+    NSString *picURL =kBaseURL;
+    picURL = [picURL stringByAppendingString:[NSString stringWithFormat:@"user/%@/photo", [currentMatch objectForKey:@"uid"]]];
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     NSString *FbToken = [session accessTokenData].accessToken;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

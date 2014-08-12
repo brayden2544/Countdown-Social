@@ -13,6 +13,7 @@
 #import "SnapchatView.h"
 #import "RESideMenu/RESideMenu.h"
 #import <QuartzCore/QuartzCore.h>
+#import "Constants.h"
 
 @interface SocialAccountsViewController ()
 
@@ -29,14 +30,6 @@
 @synthesize blur;
 @synthesize overlay;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "Constants.h"
 
 
 
@@ -141,12 +142,14 @@
     NSString *tokenstring = [[deviceToken description] stringByTrimmingCharactersInSet: [NSCharacterSet characterSetWithCharactersInString:@"<>"]];
     tokenstring = [tokenstring stringByReplacingOccurrencesOfString:@" " withString:@""];
 
-    
+    NSString *urlAsString =kBaseURL;
+    urlAsString = [urlAsString stringByAppendingString: @"user/"];
+
     NSString *FbToken = [FBsession accessTokenData].accessToken;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
     NSDictionary *params = @{@"apns_token":tokenstring};
-    [manager POST:@"http://api-dev.countdownsocial.com/user" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Token uploaded:%@",tokenstring);
     }
           failure:^(AFHTTPRequestOperation *operation, NSError *error)
@@ -165,7 +168,10 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
     NSDictionary *params = @{@"apns_token":@""};
-    [manager POST:@"http://api-dev.countdownsocial.com/user" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSString *urlAsString =kBaseURL;
+    urlAsString = [urlAsString stringByAppendingString: @"user/"];
+
+    [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Token not uploaded");
     }
           failure:^(AFHTTPRequestOperation *operation, NSError *error)

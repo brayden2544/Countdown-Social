@@ -200,7 +200,7 @@ self.navigationController.navigationBarHidden = YES;
     _instructionLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:15.0f];
     _instructionLabel.textColor = [UIColor whiteColor];
     _instructionLabel.backgroundColor = [UIColor blackColor];
-    _instructionLabel.text = NSLocalizedString(@"Touch and hold to record", @"Instruction message for capturing video.");
+    _instructionLabel.text = NSLocalizedString(@"Touch and hold anywhere to record", @"Instruction message for capturing video.");
     [_instructionLabel sizeToFit];
     CGPoint labelCenter = _previewView.center;
     labelCenter.y += ((CGRectGetHeight(_previewView.frame) * 0.5f) + 35.0f);
@@ -413,7 +413,7 @@ self.navigationController.navigationBarHidden = YES;
         _instructionLabel.alpha = 0;
     } completion:^(BOOL finished) {
         _instructionLabel.text = _focusButton.selected ? NSLocalizedString(@"Touch to focus", @"Touch to focus") :
-                                                         NSLocalizedString(@"Touch and hold to record", @"Touch and hold to record");
+                                                         NSLocalizedString(@"Touch and hold anywhere to record", @"Touch and hold to record");
         [UIView animateWithDuration:0.15f delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             _instructionLabel.alpha = 1;
         } completion:^(BOOL finished1) {

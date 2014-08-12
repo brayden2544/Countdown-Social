@@ -11,6 +11,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "User.h"
 #import "AppDelegate.h"
+#import "Constants.h"
 
 
 @interface FeedbackViewController ()
@@ -37,8 +38,9 @@
 }
 
 - (void)postFeedback{
-
-    NSString *urlAsString =@"http://api-dev.countdownsocial.com/feedback/";
+    
+    NSString *urlAsString =kBaseURL;
+    urlAsString = [urlAsString stringByAppendingString: @"feedback/"];
 
     
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];

@@ -10,6 +10,7 @@
 #import "User.h"
 #import "AppDelegate.h"
 #import <QuartzCore/QuartzCore.h>
+#import "Constants.h"
 
 
 @implementation SnapchatView
@@ -17,14 +18,6 @@
 @synthesize snapchatUsername;
 
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
 - (id) initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     if (self){
@@ -47,7 +40,9 @@
 
 -(void)snapchatUsernameUpload
 {
-    NSString *urlAsString =@"http://api-dev.countdownsocial.com/user";
+    
+    NSString *urlAsString =kBaseURL;
+    urlAsString = [urlAsString stringByAppendingString:@"user"];
     
     NSURL *url = [NSURL URLWithString:urlAsString];
     

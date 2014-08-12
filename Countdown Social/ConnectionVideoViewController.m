@@ -10,6 +10,7 @@
 #import "RESideMenu/RESideMenu.h"
 #import "Connection.h"
 
+
 @interface ConnectionVideoViewController ()
 @property Connection *connection;
 @property NSDictionary *currentConnection;

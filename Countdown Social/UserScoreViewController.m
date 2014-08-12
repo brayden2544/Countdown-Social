@@ -13,6 +13,7 @@
 #import "User.h"
 #import "AppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "Constants.h"
 
 
 @interface UserScoreViewController ()
@@ -78,7 +79,8 @@
     NSLog(@"Transaction Completed");
     // You can create a method to record the transaction.
     // [self recordTransaction: transaction];
-    NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/";
+    NSString *urlAsString =kBaseURL;
+    urlAsString = [urlAsString stringByAppendingString: @"user/"];
     
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     NSString *FbToken = [session accessTokenData].accessToken;
@@ -123,7 +125,8 @@
 {
     NSLog(@"Transaction Restored");
     // You can create a method to record the transaction.
-    NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/";
+    NSString *urlAsString =kBaseURL;
+    urlAsString = [urlAsString stringByAppendingString: @"user/"];
     urlAsString = [urlAsString stringByAppendingString:[[_user objectForKey:@"uid"] stringValue]];
     
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];

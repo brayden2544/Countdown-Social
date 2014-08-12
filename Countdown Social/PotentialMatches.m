@@ -9,6 +9,7 @@
 #import "PotentialMatches.h"
 #import "AppDelegate.h"
 #import "User.h"
+#import "Constants.h"
 
 @implementation PotentialMatches
 @synthesize potentialMatches;
@@ -29,7 +30,8 @@
         
         
         //Download potential matches here
-        NSString *urlAsString =@"http://countdown-java-dev.elasticbeanstalk.com/user/";
+        NSString *urlAsString =kBaseURL;
+        urlAsString = [urlAsString stringByAppendingString: @"user/"];
         NSString *userID = [user objectForKey:@"uid"];
         urlAsString = [urlAsString stringByAppendingString:userID];
         urlAsString = [urlAsString stringByAppendingString:@"/nextPotentials"];
@@ -119,7 +121,8 @@
         
         
         //Download potential matches here
-        NSString *urlAsString =@"http://countdown-java-dev.elasticbeanstalk.com/user/";
+        NSString *urlAsString =kBaseURL;
+        urlAsString = [urlAsString stringByAppendingString: @"user/"];
         NSString *userID = [user objectForKey:@"uid"];
         urlAsString = [urlAsString stringByAppendingString:userID];
         urlAsString = [urlAsString stringByAppendingString:@"/nextPotentials"];

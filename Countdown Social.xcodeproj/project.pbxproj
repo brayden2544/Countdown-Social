@@ -64,6 +64,7 @@
 		6E967CD9190DA4960042AF93 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6E967CD7190DA4960042AF93 /* InfoPlist.strings */; };
 		6E967CDB190DA4960042AF93 /* Countdown_SocialTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E967CDA190DA4960042AF93 /* Countdown_SocialTests.m */; };
 		6EA354FB1965443500F51D70 /* SocialAccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA354FA1965443500F51D70 /* SocialAccountsViewController.m */; };
+		6EABD5D01999A7A000571294 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EABD5CF1999A7A000571294 /* Constants.m */; };
 		6EB629F219804DC100D495EB /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB629F119804DC100D495EB /* ProfileViewController.m */; };
 		6EB9D6AD1921B8450080E1C5 /* loadingScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB9D6AC1921B8450080E1C5 /* loadingScreen.png */; };
 		6EB9D6AF1921B89D0080E1C5 /* fbLogin.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB9D6AE1921B89D0080E1C5 /* fbLogin.png */; };
@@ -271,6 +272,8 @@
 		6E967CDA190DA4960042AF93 /* Countdown_SocialTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Countdown_SocialTests.m; sourceTree = "<group>"; };
 		6EA354F91965443500F51D70 /* SocialAccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialAccountsViewController.h; sourceTree = "<group>"; };
 		6EA354FA1965443500F51D70 /* SocialAccountsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialAccountsViewController.m; sourceTree = "<group>"; };
+		6EABD5CE1999A7A000571294 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		6EABD5CF1999A7A000571294 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		6EB629F019804DC100D495EB /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		6EB629F119804DC100D495EB /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		6EB9D6AC1921B8450080E1C5 /* loadingScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = loadingScreen.png; path = ../loadingScreen.png; sourceTree = "<group>"; };
@@ -699,6 +702,8 @@
 				6E92DFF3196217AD009ECE27 /* VideoPath.m */,
 				6E6FC1DC1987360F0045CC90 /* ConnectionsList.h */,
 				6E6FC1DD1987360F0045CC90 /* ConnectionsList.m */,
+				6EABD5CE1999A7A000571294 /* Constants.h */,
+				6EABD5CF1999A7A000571294 /* Constants.m */,
 			);
 			name = Singletons;
 			sourceTree = "<group>";
@@ -1233,6 +1238,7 @@
 				6ECDEA9D1974791800B06130 /* AFURLResponseSerialization.m in Sources */,
 				6E6FC1E1198740D00045CC90 /* ConnectionsCellTableViewCell.m in Sources */,
 				6EFC0E6F19818F4A00ED7CB2 /* JSQMessagesViewController.m in Sources */,
+				6EABD5D01999A7A000571294 /* Constants.m in Sources */,
 				6EC585491975BE21008DDFFA /* PotentialMatchesLoadingView.m in Sources */,
 				6ECDEA9C1974791800B06130 /* AFURLRequestSerialization.m in Sources */,
 				6EFC0E6E19818F4A00ED7CB2 /* JSQMessagesKeyboardController.m in Sources */,

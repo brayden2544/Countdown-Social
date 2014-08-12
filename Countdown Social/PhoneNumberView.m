@@ -9,6 +9,8 @@
 #import "PhoneNumberView.h"
 #import "User.h"
 #import "AppDelegate.h"
+#include "constants.h"
+
 
 @implementation PhoneNumberView
 
@@ -37,7 +39,9 @@
 
 
 -(void)phoneNumberUpload{
-    NSString *urlAsString =@"http://api-dev.countdownsocial.com/user";
+    
+    NSString *urlAsString =kBaseURL;
+    urlAsString = [urlAsString stringByAppendingString:@"user"];
     
     NSURL *url = [NSURL URLWithString:urlAsString];
     

@@ -12,6 +12,7 @@
 #import "AFNetworking/AFNetworking.h"
 #import "AFOAuth1Client.h"
 #import "RESideMenu/RESideMenu.h"
+#import "Constants.h"
 
 @interface TwitterViewController ()
 
@@ -36,14 +37,6 @@
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -97,6 +90,9 @@
 
 -(void)twitterUsernameUpload
 {
+    
+    NSString *urlAsString =kBaseURL;
+    urlAsString = [urlAsString stringByAppendingString:@"user"];
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     NSString *FbToken = [session accessTokenData].accessToken;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -104,7 +100,7 @@
     NSDictionary *params = @{@"twitter_username": _twitter_username,
                              @"twitter_token": _twitter_access_token,
                              @"twitter_uid": _twitter_id};
-    [manager POST:@"http://api-dev.countdownsocial.com/user" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
         User *Userobj =  [User getInstance];
         Userobj.user = responseObject;

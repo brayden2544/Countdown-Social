@@ -84,7 +84,6 @@
 }
 
 - (IBAction)presentLeftMenu:(id)sender {
-    [self.moviePlayer pause];
     [self.sideMenuViewController presentLeftMenuViewController];
 }
 @end

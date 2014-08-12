@@ -8,6 +8,7 @@
 
 #import "ConnectionsList.h"
 #import "AppDelegate.h"
+#import "Constants.h"
 
 @implementation ConnectionsList
 @synthesize connections;
@@ -21,7 +22,8 @@
         instance = [[self alloc]init];
         instance.connections = [[NSMutableArray alloc]init];
         //download initial connections
-        NSString *urlAsString =[NSString stringWithFormat:@"http://countdown-java-dev.elasticbeanstalk.com/user/%@/matches/all", [user objectForKey:@"uid"]];
+        NSString *urlAsString =kBaseURL;
+        urlAsString = [urlAsString stringByAppendingString:[NSString stringWithFormat:@"user/%@/matches/all", [user objectForKey:@"uid"]]];
         
         
         FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
@@ -39,7 +41,8 @@
             
             NSLog(@"Connections not downloaded %@",error);
         }];
-                  urlAsString =[NSString stringWithFormat:@"http://countdown-java-dev.elasticbeanstalk.com/user/%@/matches/new", [user objectForKey:@"uid"]];
+        urlAsString =kBaseURL;
+        urlAsString = [urlAsString stringByAppendingString:[NSString stringWithFormat:@"user/%@/matches/all", [user objectForKey:@"uid"]]];
                   [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSMutableArray * newConnections = [[NSMutableArray alloc]initWithArray:instance.connections];
         for (NSDictionary *newConnection in responseObject) {
@@ -79,10 +82,8 @@
     User *obj = [User getInstance];
     NSDictionary *user = obj.user;
     //download initial connections
-    NSString *urlAsString =@"http://countdown-java-dev.elasticbeanstalk.com/user/";
-    NSString *userID = [user objectForKey:@"uid"];
-    urlAsString = [urlAsString stringByAppendingString:userID];
-    urlAsString = [urlAsString stringByAppendingString:@"/matches/new"];
+    NSString *urlAsString =kBaseURL;
+    urlAsString = [urlAsString stringByAppendingString:[NSString stringWithFormat:@"user/%@/matches/all", [user objectForKey:@"uid"]]];
     
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     
@@ -112,7 +113,7 @@
                 }
             }
             [instance.connections addObjectsFromArray:newConnections];
-            NSLog(@"%d New Connections", [newConnections count]);
+            NSLog(@"%lu New Connections", (unsigned long)[newConnections count]);
             if ([newConnections count]>0) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"newConnections" object:nil];
                 

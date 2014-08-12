@@ -10,6 +10,7 @@
 #import "User.h"
 #import "AppDelegate.h"
 #import "RESideMenu/RESideMenu.h"
+#import "Constants.h"
 
 @interface InstagramViewController ()
 @property(nonatomic, strong) UIWebView *instagramWebView;
@@ -121,14 +122,15 @@
 
 -(void)instagramUsernameUpload
 {
-   
+    NSString *urlAsString = kBaseURL;
+    urlAsString = [urlAsString stringByAppendingString:@"user"];
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     NSString *FbToken = [session accessTokenData].accessToken;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
     NSDictionary *params=@{@"instagram_username":instagram_username,
                            @"instagram_token": instagram_token,
-                           @"instagram_uid":instagram_uid};    [manager POST:@"http://api-dev.countdownsocial.com/user" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                           @"instagram_uid":instagram_uid};    [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
         User *Userobj =  [User getInstance];
         Userobj.user = responseObject;

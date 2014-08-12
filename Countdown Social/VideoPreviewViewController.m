@@ -15,6 +15,7 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <AVFoundation/AVFoundation.h>
 #import "RESideMenu/RESideMenu.h"
+#import "Constants.h"
 
 
 
@@ -88,8 +89,8 @@
 -(void)uploadProfileVideo{
     User *userObj = [User getInstance];
     user = userObj.user;
-    NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/";
-    urlAsString = [urlAsString stringByAppendingFormat:@"%@",[user objectForKey:@"uid"]];
+    NSString *urlAsString =kBaseURL;
+    urlAsString = [urlAsString stringByAppendingFormat:@"user/%@",[user objectForKey:@"uid"]];
     urlAsString = [urlAsString stringByAppendingString:@"/video"];
     
     NSURL *url = [NSURL URLWithString:urlAsString];
@@ -106,7 +107,7 @@
     NSString *FbToken = [session accessTokenData].accessToken;
 
     
-    NSString *postLength = [NSString stringWithFormat:@"%d", [videoData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[videoData length]];
     
     [urlRequest setValue:@"video/mp4" forHTTPHeaderField:@"Content-Type"];
     [urlRequest setValue:FbToken forHTTPHeaderField:@"Access-Token"];
@@ -154,7 +155,7 @@
      }];
 }
 - (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex{
-    NSLog(@"video Uploaded successfully: %d",buttonIndex);
+    NSLog(@"video Uploaded successfully: %ld",(long)buttonIndex);
     
     if (buttonIndex == 0){
         [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ProfileViewController"]]animated:YES];
@@ -181,7 +182,9 @@
     [self.view addSubview:activityView];
 }
 
-
+-(void)viewDidDisappear:(BOOL)animated{
+    [self.moviePlayer pause];
+}
 
 //Action when user approves video and wants to approve it.
 - (IBAction)approveVideo:(id)sender {

@@ -18,6 +18,7 @@
 #import "Connection.h"
 #import "ConnectionsList.h"
 #import "RightMenuViewController.h"
+#import "Constants.h"
 
 @interface PotentialMatchesViewController ()
 
@@ -242,7 +243,8 @@
     NSLog(@"setProfilePic");
     
     //Creat URL for image and download image
-    NSString *picURL = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/photo", [currentPotentialMatch objectForKey:@"uid"]];
+    NSString *picURL = kBaseURL;
+    picURL = [picURL stringByAppendingString:[NSString stringWithFormat:@"user/%@/photo", [currentPotentialMatch objectForKey:@"uid"]]];
     
     NSLog(@"setProfilePicURL:%@",picURL);
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
@@ -390,7 +392,8 @@
 
 
 -(void) userPass{
-    NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/";
+    NSString *urlAsString =kBaseURL;
+    urlAsString = [urlAsString stringByAppendingString:@"user/"];
     PotentialMatches *obj =[PotentialMatches getInstance];
     [obj.passedUsers addObject:currentPotentialMatch];
     //    NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -436,7 +439,8 @@
 }
 
 -(void) reportUser{
-    NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/";
+    NSString *urlAsString =kBaseURL;
+    urlAsString = [urlAsString stringByAppendingString: @"user/"];
     PotentialMatches *obj =[PotentialMatches getInstance];
     [obj.passedUsers addObject:currentPotentialMatch];
     //    NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -529,7 +533,8 @@
     
     
     
-    NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/";
+    NSString *urlAsString =kBaseURL;
+    urlAsString = [urlAsString stringByAppendingString: @"user/"];
     urlAsString = [urlAsString stringByAppendingString:[currentPotentialMatch objectForKey:@"uid"]];
     urlAsString =[urlAsString stringByAppendingString:@"/like/"];
     urlAsString = [urlAsString stringByAppendingString:[currentPotentialMatch objectForKey:@"video_filename"]];

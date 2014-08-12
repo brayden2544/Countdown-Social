@@ -16,6 +16,7 @@
 #import "ConnectionsList.h"
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMessageComposeViewController.h>
+#import "Constants.h"
 
 @interface UserProfileViewController ()
 @property NSDictionary *user;
@@ -96,7 +97,8 @@
         ConnectionsList *obj = [ConnectionsList getInstance];
         //[obj.connections replaceObjectAtIndex:[obj.connections indexOfObject:connection] withObject:viewedConnection];
         
-        NSString *urlAsString =[NSString stringWithFormat:@"http://countdown-java-dev.elasticbeanstalk.com/user/%@/like/viewed", [connection objectForKey:@"uid"]];
+        NSString *urlAsString =kBaseURL;
+        urlAsString = [urlAsString stringByAppendingString:[NSString stringWithFormat:@"user/%@/like/viewed", [connection objectForKey:@"uid"]]];
         
         
         FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
@@ -124,7 +126,8 @@
     
     
 
-    NSString *picURL = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/photo", [connection objectForKey:@"uid"]];
+    NSString *picURL =kBaseURL;
+    picURL = [picURL stringByAppendingString:[NSString stringWithFormat:@"user/%@/photo", [connection objectForKey:@"uid"]]];
     manager.responseSerializer = [AFImageResponseSerializer serializer];
     [manager GET:picURL parameters:@{@"height":@300,
                                      @"width": @300} success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -387,7 +390,8 @@
     if (actionSheet.tag ==1) {
         if (buttonIndex ==0) {
             NSLog(@"block User");
-            NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/";
+            NSString *urlAsString =kBaseURL;
+            urlAsString = [urlAsString stringByAppendingString: @"user/"];
             urlAsString = [urlAsString stringByAppendingString:[connection objectForKey:@"uid"]];
             urlAsString =[urlAsString stringByAppendingString:@"/block"];
             FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
@@ -411,7 +415,8 @@
                    }
         else if (buttonIndex ==1){
             NSLog(@"report user");
-            NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/";
+            NSString *urlAsString =kBaseURL;
+            urlAsString = [urlAsString stringByAppendingString: @"user/"];
             urlAsString = [urlAsString stringByAppendingString:[connection objectForKey:@"uid"]];
             urlAsString =[urlAsString stringByAppendingString:@"/report"];
             FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];

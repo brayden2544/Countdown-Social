@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "Connection.h"
 #import "ResideMenu.h"
+#import "Constants.h"
 
 @interface RightMenuViewController ()
 
@@ -115,7 +116,8 @@
     } else{
         cell.facebookImage.hidden = TRUE;
     }
-    NSString *picURL = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/photo", [connection objectForKey:@"uid"]];
+    NSString *picURL = kBaseURL;
+    picURL = [picURL stringByAppendingString:[NSString stringWithFormat:@"user/%@/photo", [connection objectForKey:@"uid"]]];
     
     NSLog(@"setProfilePicURL:%@",picURL);
     

@@ -13,6 +13,7 @@
 #import "Connection.h"
 #import "AppDelegate.h"
 #import "RESideMenu.h"
+#import "Constants.h"
 
 @interface MessagesViewController ()
 @property (strong, nonatomic) NSDictionary *user;
@@ -81,7 +82,8 @@
 }
 
 -(void)getMessages{
-    NSString *messageURL = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/conversation", [connection objectForKey:@"uid"]];
+    NSString *messageURL =kBaseURL;
+    messageURL = [messageURL stringByAppendingString:[NSString stringWithFormat:@"user/%@/conversation", [connection objectForKey:@"uid"]]];
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     NSString *FbToken = [session accessTokenData].accessToken;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -108,7 +110,8 @@
 -(void) downloadAvatars{
     CGFloat incomingDiameter = self.collectionView.collectionViewLayout.incomingAvatarViewSize.width;
     //self.avatars = [[NSMutableDictionary alloc]init];
-    NSString *picURL = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/photo", [connection objectForKey:@"uid"]];
+    NSString *picURL =kBaseURL;
+    picURL = [picURL stringByAppendingString:[NSString stringWithFormat:@"user/%@/photo", [connection objectForKey:@"uid"]]];
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     NSString *FbToken = [session accessTokenData].accessToken;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -134,7 +137,8 @@
 -(void) loadConnectionAvatar{
     CGFloat outgoingDiameter = self.collectionView.collectionViewLayout.outgoingAvatarViewSize.width;
     //self.avatars = [[NSMutableDictionary alloc]init];
-    NSString *picURL = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/photo", [user objectForKey:@"uid"]];
+    NSString *picURL =kBaseURL;
+    picURL = [picURL stringByAppendingString:[NSString stringWithFormat:@"user/%@/photo", [user objectForKey:@"uid"]]];
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     NSString *FbToken = [session accessTokenData].accessToken;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -181,7 +185,8 @@
 }
 
 - (void)refreshMessages{
-    NSString *messageURL = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/conversation", [connection objectForKey:@"uid"]];
+    NSString *messageURL =kBaseURL;
+    messageURL = [messageURL stringByAppendingString:[NSString stringWithFormat:@"user/%@/conversation", [connection objectForKey:@"uid"]]];
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     NSString *FbToken = [session accessTokenData].accessToken;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -224,7 +229,8 @@
     }];
 }
 -(void)checkTyping{
-    NSString *typingUrl = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/message/typing", [connection objectForKey:@"uid"]];
+    NSString *typingUrl =kBaseURL;
+    typingUrl = [typingUrl stringByAppendingString:[NSString stringWithFormat:@"user/%@/message/typing", [connection objectForKey:@"uid"] ]];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     NSString *FbToken = [session accessTokenData].accessToken;
@@ -262,7 +268,7 @@
     
     JSQMessage *message = [[JSQMessage alloc] initWithText:text sender:sender date:date];
     [self.messages addObject:message];
-    NSString *messageURL = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/message/", [connection objectForKey:@"uid"]];
+    NSString *messageURL = [NSString stringWithFormat:@"user/%@/message/", [connection objectForKey:@"uid"]];
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     NSString *FbToken = [session accessTokenData].accessToken;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -281,7 +287,8 @@
 
 }
 - (void) typingStopped{
-    NSString *typingUrl = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/message/typing", [connection objectForKey:@"uid"]];
+    NSString *typingUrl =kBaseURL;
+    typingUrl = [typingUrl stringByAppendingString:[NSString stringWithFormat:@"user/%@/message/typing", [connection objectForKey:@"uid"]]];
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     NSString *FbToken = [session accessTokenData].accessToken;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -295,7 +302,8 @@
 }
 
 - (void) typingStarted{
-    NSString *typingUrl = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/message/typing", [connection objectForKey:@"uid"]];
+    NSString *typingUrl =kBaseURL;
+    typingUrl = [typingUrl stringByAppendingString:[NSString stringWithFormat:@"user/%@/message/typing", [connection objectForKey:@"uid"]]];
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     NSString *FbToken = [session accessTokenData].accessToken;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

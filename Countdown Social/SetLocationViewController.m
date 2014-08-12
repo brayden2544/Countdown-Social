@@ -10,6 +10,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "AppDelegate.h"
 #import "RESideMenu/RESideMenu.h"
+#import "Constants.h"
 
 @interface SetLocationViewController ()
 
@@ -164,7 +165,8 @@
             NSString *FbToken = [session accessTokenData].accessToken;
             [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
             manager.responseSerializer = [AFImageResponseSerializer serializer];
-            NSString *picURL = [NSString stringWithFormat:@"http://api-dev.countdownsocial.com/user/%@/photo", [self.user.user objectForKey:@"uid"]];
+            NSString *picURL =kBaseURL;
+            picURL = [picURL stringByAppendingString:[NSString stringWithFormat:@"user/%@/photo", [self.user.user objectForKey:@"uid"]]];
             manager.responseSerializer = [AFImageResponseSerializer serializer];
             [manager GET:picURL parameters:@{@"height":@100,
                                              @"width": @100} success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -199,12 +201,15 @@ didAddAnnotationViews:(NSArray *)annotationViews
     //Update Travel Location
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     NSString *FbToken = [session accessTokenData].accessToken;
+    NSString *urlAsString =kBaseURL;
+    urlAsString = [urlAsString stringByAppendingString: @"user/"];
+
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
     NSDictionary *params = @{@"lat": [NSString stringWithFormat:@"%g",travelModeAnnotation.coordinate.latitude],
                              @"long": [NSString stringWithFormat:@"%g",travelModeAnnotation.coordinate.longitude],
                              @"vacation_mode":@"true"};
-    [manager POST:@"http://api-dev.countdownsocial.com/user" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
         User *Userobj =  [User getInstance];
         Userobj.user= responseObject;
@@ -230,6 +235,9 @@ didAddAnnotationViews:(NSArray *)annotationViews
         mapRegion = [self.setLocationMapView regionThatFits:mapRegion];
         [self.setLocationMapView setRegion:mapRegion animated: YES];
         
+        NSString *urlAsString =kBaseURL;
+        urlAsString = [urlAsString stringByAppendingString: @"user/"];
+
         FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
         NSString *FbToken = [session accessTokenData].accessToken;
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -237,7 +245,7 @@ didAddAnnotationViews:(NSArray *)annotationViews
         NSDictionary *params = @{@"lat": [NSString stringWithFormat:@"%g",self.setLocationMapView.userLocation.coordinate.latitude],
                                  @"long": [NSString stringWithFormat:@"%g",self.setLocationMapView.userLocation.coordinate.longitude],
                                  @"vacation_mode":@"false"};
-        [manager POST:@"http://api-dev.countdownsocial.com/user" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"JSON: %@", responseObject);
             User *Userobj =  [User getInstance];
             Userobj.user= responseObject;
