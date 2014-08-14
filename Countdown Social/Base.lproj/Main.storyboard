@@ -656,8 +656,8 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="380"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5G2-fJ-YRE">
-                                        <rect key="frame" x="90" y="103" width="140" height="140"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5G2-fJ-YRE">
+                                        <rect key="frame" x="85" y="98" width="150" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="140" id="GfB-EA-yvI"/>
@@ -716,7 +716,7 @@
                                             <constraint firstAttribute="width" constant="45" id="GwZ-aa-tIf"/>
                                             <constraint firstAttribute="height" constant="45" id="Sw7-5U-XGZ"/>
                                         </constraints>
-                                        <state key="normal" title="Button" image="chatsky">
+                                        <state key="normal" title="Button" image="newChatsky">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -737,8 +737,8 @@
                                             <action selector="goToUserVideo:" destination="Qsq-uR-0b2" eventType="touchUpInside" id="VHI-Qk-9K4"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ppicframe" translatesAutoresizingMaskIntoConstraints="NO" id="8Rn-ZS-P6I">
-                                        <rect key="frame" x="78" y="91" width="164" height="164"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ppicframe" translatesAutoresizingMaskIntoConstraints="NO" id="8Rn-ZS-P6I">
+                                        <rect key="frame" x="73" y="86" width="174" height="174"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="164" id="Yys-JL-F27"/>
@@ -767,10 +767,6 @@
                                             <action selector="reportAction:" destination="Qsq-uR-0b2" eventType="touchUpInside" id="Y6c-zr-nbz"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="newmessage-1" translatesAutoresizingMaskIntoConstraints="NO" id="6at-LV-Uhr">
-                                        <rect key="frame" x="260" y="180" width="10" height="10"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
@@ -814,14 +810,14 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You didn't match on Twitter." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fu4-gX-fQf" userLabel="twitter request">
-                                        <rect key="frame" x="81" y="60" width="217" height="25"/>
+                                        <rect key="frame" x="66" y="60" width="217" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You didn't match on Instagram." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKA-rr-5cy" userLabel="instagram request">
-                                        <rect key="frame" x="68" y="105" width="246" height="25"/>
+                                        <rect key="frame" x="66" y="105" width="246" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -835,7 +831,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Too soon to swap numbers." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S2m-Fj-aKx" userLabel="phone request">
-                                        <rect key="frame" x="70" y="188" width="217" height="25"/>
+                                        <rect key="frame" x="66" y="188" width="217" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -4356,7 +4352,7 @@ Special- To operate the service, we also may make identifiable and anonymous inf
         <image name="matchvid" width="45" height="45"/>
         <image name="minibutton-1" width="14" height="13"/>
         <image name="miniwatch" width="33" height="36"/>
-        <image name="newmessage-1" width="11" height="11"/>
+        <image name="newChatsky" width="45" height="45"/>
         <image name="neworange" width="10" height="10"/>
         <image name="pass" width="105" height="39"/>
         <image name="pdividerline" width="523" height="3"/>
