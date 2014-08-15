@@ -51,8 +51,6 @@
                                                  name:@"UserImageLoaded"
                                                object:nil];
     
-//    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"messagingNavbar"] forBarMetrics:UIBarMetricsDefault];
     
     self.inputToolbar.contentView.leftBarButtonItem = nil;
     User *obj = [User getInstance];
@@ -268,7 +266,8 @@
     
     JSQMessage *message = [[JSQMessage alloc] initWithText:text sender:sender date:date];
     [self.messages addObject:message];
-    NSString *messageURL = [NSString stringWithFormat:@"user/%@/message/", [connection objectForKey:@"uid"]];
+    NSString *messageURL = kBaseURL;
+    messageURL = [messageURL stringByAppendingString:[NSString stringWithFormat:@"user/%@/message/", [connection objectForKey:@"uid"]]];
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     NSString *FbToken = [session accessTokenData].accessToken;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

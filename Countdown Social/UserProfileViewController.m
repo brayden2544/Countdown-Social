@@ -26,6 +26,7 @@
 @property UIButton *closeButton;
 @property UIActivityIndicatorView *activityView;
 @property UIView *loadingView;
+@property NSURL *facebookURL;
 
 @end
 
@@ -37,6 +38,7 @@
 @synthesize closeButton;
 @synthesize activityView;
 @synthesize loadingView;
+@synthesize facebookURL;
 
 - (void)viewDidLoad
 {
@@ -82,6 +84,7 @@
     activityView.tag = 100;
     [loadingView addSubview:activityView];
     [socialMediaWebView addSubview:loadingView];
+    [self fetchFacebookUrl];
 
     if ([[connection objectForKey:@"is_new"]boolValue]==true) {
         
@@ -89,13 +92,25 @@
 
 
 }
+
+-(void)fetchFacebookUrl{
+    [FBRequestConnection startWithGraphPath:[NSString stringWithFormat:@"/%@", [connection objectForKey:@"facebook_uid"]] completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+        if (error == nil) {
+            facebookURL = [NSURL URLWithString:[result objectForKey:@"link"]];
+            NSLog(@"Facebook url is %@",facebookURL);
+        }else{
+            NSLog(@"error:%@",error);
+            NSLog(@"Facebook url is %@",facebookURL);
+
+        }
+
+    }];
+}
 - (void)notificationStatus{
     Connection *obj = [Connection getInstance];
     if ([[obj.connection objectForKey:@"is_new"]isEqual:@true]) {
         NSMutableDictionary *viewedConnection = [[NSMutableDictionary alloc]initWithDictionary: connection];
         [viewedConnection setValue:@false forKeyPath:@"is_new"];
-        ConnectionsList *obj = [ConnectionsList getInstance];
-        //[obj.connections replaceObjectAtIndex:[obj.connections indexOfObject:connection] withObject:viewedConnection];
         
         NSString *urlAsString =kBaseURL;
         urlAsString = [urlAsString stringByAppendingString:[NSString stringWithFormat:@"user/%@/like/viewed", [connection objectForKey:@"uid"]]];
@@ -215,7 +230,7 @@
 - (void)facebookCheck{
     self.facebookCircle.hidden = FALSE;
     /* make the API call */
-    [FBRequestConnection startWithGraphPath:[NSString stringWithFormat:@"/%@/friends/%@", [[user objectForKey:@"facebook_uid"]stringValue], [[connection objectForKey:@"facebook_uid"]stringValue]]
+    [FBRequestConnection startWithGraphPath:[NSString stringWithFormat:@"/%@/friends/%@/", [[user objectForKey:@"facebook_uid"]stringValue], [[connection objectForKey:@"facebook_uid"]stringValue]]
                                  parameters:nil
                                  HTTPMethod:@"GET"
                           completionHandler:^(
@@ -225,7 +240,7 @@
                                               ) {
                               /* handle the result */
                               NSArray *friendInfo = (NSArray *) [result objectForKey:@"data"];
-                              NSLog(@"%@",result);
+                              NSLog(@"Facebook Friends Result: %@",result);
                               if ([friendInfo count]>0) {
                                   self.facebookAdded.hidden = FALSE;
                                   self.facebookAdded.enabled = TRUE;
@@ -440,6 +455,26 @@
         }
     }
 }
+-(void)addToViewCount:(NSString *)socialMediaType{
+    NSString *urlAsString =kBaseURL;
+    urlAsString = [urlAsString stringByAppendingString: @"user/"];
+    urlAsString = [urlAsString stringByAppendingString:[connection objectForKey:@"uid"]];
+    urlAsString =[urlAsString stringByAppendingString:@"/viewed"];
+    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+    NSString *FbToken = [session accessTokenData].accessToken;
+    [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    NSDictionary *params = @{@"type":socialMediaType};
+    [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSLog(@"Added to view count: %@", responseObject);
+    }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"Error: %@", error);
+     }];
+
+}
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     [loadingView setHidden:YES];
 }
@@ -465,25 +500,28 @@
 
 
 - (IBAction)goToUserFacebook:(id)sender {
-    NSString *fullURL = [NSString stringWithFormat:@"http://m.facebook.com/profile.php?id=%@",[connection objectForKey:@"facebook_uid"] ];
-    NSLog(@"Facebook opened with url:%@",[connection objectForKey:@"facebook_uid"]);
-    NSURL *url = [NSURL URLWithString:fullURL];
-    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+
+    NSLog(@"Facebook opened with url:%@",facebookURL);
+    NSURLRequest *requestObj = [NSURLRequest requestWithURL:facebookURL];
     [socialMediaWebView loadRequest:requestObj];
     [self.view addSubview:socialMediaWebView];
     closeButton.hidden =false;
     [self.view bringSubviewToFront:closeButton];
+    [self addToViewCount:@"facebook"];
 
 }
 
 - (IBAction)goToUserTwitter:(id)sender {
-    NSString *fullURL = [NSString stringWithFormat:@"http://twitter.com/%@",[connection objectForKey:@"twitter_username"] ];
+    NSString *fullURL = [NSString stringWithFormat:@"https://twitter.com/%@",[connection objectForKey:@"twitter_username"] ];
+    NSLog(@"Twitter url: %@",fullURL);
     NSURL *url = [NSURL URLWithString:fullURL];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     [socialMediaWebView loadRequest:requestObj];
     [self.view addSubview:socialMediaWebView];
     closeButton.hidden =false;
     [self.view bringSubviewToFront:closeButton];
+    [self addToViewCount:@"twitter"];
+
 
 
 }
@@ -496,19 +534,20 @@
     [self.view addSubview:socialMediaWebView];
     closeButton.hidden =false;
     [self.view bringSubviewToFront:closeButton];
-
+    [self addToViewCount:@"instagram"];
 
 }
 - (IBAction)goToSMS:(id)sender {
     [self showSMS];
+    [self addToViewCount:@"phone"];
+
 }
 
 - (IBAction)goToSnap:(id)sender {
+    [self addToViewCount:@"snapchat"];
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"%@'s Snapchat username copied!!\n\n\t-Open Snapchat\n\t   -Click Add Friends\n\t -Paste Username", [connection objectForKey:@"firstName"]] delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Open Snapchat", nil];
     actionSheet.tag = 0;
     [actionSheet showInView:self.view];
-
-    
         [UIPasteboard generalPasteboard].string = [NSString stringWithFormat:@"%@",[connection objectForKey:@"snapchat_username"]];
 
 }

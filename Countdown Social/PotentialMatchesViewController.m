@@ -598,8 +598,6 @@
         
         if (buttonIndex == 0) {
             NSLog(@"button index 0 selected");
-            LeftMenuViewController *leftMenuViewController = [[LeftMenuViewController alloc]init];
-            
             [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"SocialAccountsViewController"]]animated:YES];
             [self.sideMenuViewController hideMenuViewController];
             
@@ -616,6 +614,16 @@
             [self userPass];
             _likeCurrentUser = false;
         }
+    }
+    if (actionSheet.tag ==2) {
+        if (buttonIndex == 1) {
+            [self userLike];
+        }
+        if (buttonIndex ==0) {
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ProfileViewController"]]animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
+        }
+
     }
 }
 
@@ -732,6 +740,7 @@
     if([[user objectForKey:@"instagram_username"] isKindOfClass:[NSNull class]]||
        [[user objectForKey: @"instagram_username"]isEqualToString:@""] ||
        [[user objectForKey: @"instagram_username"]isEqualToString:@"<null>"]) {
+        [self.instagramSwitch setOn:FALSE];
         NSString *addInstagram;
         if ([[currentPotentialMatch objectForKey:@"gender"] isEqualToString:@"M"]) {
             addInstagram = @"Want to check out his Insta? \n Click below to link your Instagram Account.";
@@ -790,12 +799,9 @@
             
         }
         else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You forgot to upload a video!!"
-                                                            message:[NSString stringWithFormat:@"You need a video before you can connect with %@!",[currentPotentialMatch objectForKey:@"firstName"]]
-                                                           delegate:self
-                                                  cancelButtonTitle:@"Keep browsing"
-                                                  otherButtonTitles:@"Make my video", nil];
-            [alert show];
+            UIActionSheet *makeVideo = [[UIActionSheet alloc]initWithTitle:[NSString stringWithFormat:@"%@ can't see you yet! \n Upload a video so you can connect with %@.", [currentPotentialMatch objectForKey:@"firstName"], [currentPotentialMatch objectForKey:@"firstName"]] delegate:self                                                                                    cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Make my video",@"Continue without video", nil];
+            makeVideo.tag = 2;
+            [makeVideo showInView:self.view];
         }
 }
 

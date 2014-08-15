@@ -33,6 +33,7 @@
     if ([[_user objectForKey:@"in_app_purchase"]boolValue]==TRUE) {
         self.unpurchasedView.hidden = TRUE;
         self.purchasedView.hidden = false;
+        [self getScore];
     }else{
         self.unpurchasedView.hidden = false;
         self.purchasedView.hidden = TRUE;
@@ -40,6 +41,24 @@
     
 }
 
+-(void)getScore{
+    NSString *scoreURL = kBaseURL;
+    scoreURL = [scoreURL stringByAppendingString:[NSString stringWithFormat:@"user/%@/stats", [_user objectForKey:@"uid"]]];
+    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+    NSString *FbToken = [session accessTokenData].accessToken;
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    [manager POST:scoreURL parameters:@{} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"score object %@",responseObject);
+        
+            
+        }
+     
+        failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Photo failed to load%@",error);
+    }];
+
+}
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
 {
     [[SKPaymentQueue defaultQueue] addTransactionObserver:self];

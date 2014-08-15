@@ -9,11 +9,14 @@
 #import "ConnectionVideoViewController.h"
 #import "RESideMenu/RESideMenu.h"
 #import "Connection.h"
+#import "AppDelegate.h"
+#import "Constants.h"
 
 
 @interface ConnectionVideoViewController ()
 @property Connection *connection;
 @property NSDictionary *currentConnection;
+@property NSURL *connectionVideo;
 
 @end
 
@@ -26,41 +29,46 @@
     [super viewDidLoad];
     _connection = [Connection getInstance];
     _currentConnection = [_connection.connection objectForKey:@"liked_user"];
+    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+    NSString *urlAsString =kBaseURL;
+    urlAsString = [urlAsString stringByAppendingString:[NSString stringWithFormat:@"user/%@",[_currentConnection objectForKey:@"uid" ]]];
+    
+    NSString *FbToken = [session accessTokenData].accessToken;
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    NSDictionary *params = @{};
+    [manager GET:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+        _videoUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"video_uri"]]];
+        [self playVideo];
+               
+    }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"Error: %@", error);
+     }];
+
     self.navigationController.navigationBarHidden = YES;
     
-    self.moviePlayerView = [[PlayerView alloc]initWithFrame:CGRectMake (0, 100, 320, 320)];
-    _videoUrl =[NSURL URLWithString:[NSString stringWithFormat:@"%@",[_currentConnection objectForKey:@"videoUri"]]];
-    self.moviePlayerView.player = [[AVPlayer alloc]initWithURL:_videoUrl];
-    //self.currentVideoItem = [AVPlayerItem playerItemWithURL:_videoUrl];
-    //[self.moviePlayerView.player replaceCurrentItemWithPlayerItem:self.currentVideoItem];
-    self.moviePlayerLayer = [[AVPlayerLayer alloc]init];
-    self.moviePlayerLayer = [AVPlayerLayer playerLayerWithPlayer:self.moviePlayerView.player] ;
-    self.moviePlayerView.backgroundColor = [UIColor redColor];
-    [self.moviePlayerView.layer addSublayer:self.moviePlayerLayer];
-    [self.view addSubview:self.moviePlayerView];
-    [self.moviePlayerView.player play];
-
+    
     
 
     // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)playVideo{
+    self.moviePlayerView = [[PlayerView alloc]initWithFrame:CGRectMake (0, 100, 320, 320)];
+    self.moviePlayerView.player = [[AVPlayer alloc]initWithURL:_videoUrl];
+    //self.currentVideoItem = [AVPlayerItem playerItemWithURL:_videoUrl];
+    //[self.moviePlayerView.player replaceCurrentItemWithPlayerItem:self.currentVideoItem];
+    self.moviePlayerLayer = [[AVPlayerLayer alloc]init];
+    self.moviePlayerLayer = [AVPlayerLayer playerLayerWithPlayer:self.moviePlayerView.player] ;
+    [self.moviePlayerView.layer addSublayer:self.moviePlayerLayer];
+    [self.view addSubview:self.moviePlayerView];
+    [self.moviePlayerView.player play];
+
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)backToProfile:(id)sender {
     [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"]]animated:YES];
