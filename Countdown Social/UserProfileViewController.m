@@ -159,7 +159,8 @@
 }
 
 - (void)checkSocial{
-    if ([[connection objectForKey:@"facebook_uid"]isKindOfClass:[NSNull class]]) {
+    if ([[connection objectForKey:@"facebook_uid"]isKindOfClass:[NSNull class]]||
+        [[[connection objectForKey:@"facebook_uid"]stringValue] isEqualToString:@"0"] ) {
         //Facebook not shared
         self.facebookAdded.enabled = FALSE;
         self.facebookAdded.hidden = TRUE;
@@ -167,8 +168,7 @@
         self.facebookViewProfileSmall.enabled = FALSE;
         self.facebookButton.enabled = FALSE;
         self.facebookButton.hidden = TRUE;
-        self.facebookLabel.hidden = TRUE;
-        
+        self.facebookLabel.hidden = false;
         self.facebookCircle.hidden = TRUE;
     }else{
         [self facebookCheck];

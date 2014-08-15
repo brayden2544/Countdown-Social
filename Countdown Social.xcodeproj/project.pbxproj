@@ -1398,7 +1398,7 @@
 					/Users/braydenadams/Documents/FacebookSDK/FacebookSDK.framework/Versions/A,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d6191c82-eb0e-41d7-8fac-b00188c0564c";
+				PROVISIONING_PROFILE = "b92f2c08-03f1-4275-900f-d16c1aabdb72";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1426,7 +1426,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "bc86ec42-81c2-4151-a061-b945a88e20d5";
+				PROVISIONING_PROFILE = "0710bf8a-7e01-4a65-971f-bc0ef1c0a50f";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
