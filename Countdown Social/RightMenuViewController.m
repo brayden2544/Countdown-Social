@@ -110,11 +110,12 @@
     } else{
         cell.phoneImage.hidden = TRUE;
     }
-    if ([connection objectForKey:@"facebook_uid"]!=[NSNull null]) {
+    if ([connection objectForKey:@"facebook_uid"]==[NSNull null]||
+        [[[connection objectForKey:@"facebook_uid"]stringValue] isEqualToString:@"0"]) {
         //show insta button
-        cell.facebookImage.hidden = false;
+        cell.facebookImage.hidden = true;
     } else{
-        cell.facebookImage.hidden = TRUE;
+        cell.facebookImage.hidden = false;
     }
     NSString *picURL = kBaseURL;
     picURL = [picURL stringByAppendingString:[NSString stringWithFormat:@"user/%@/photo", [connection objectForKey:@"uid"]]];
