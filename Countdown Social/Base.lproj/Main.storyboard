@@ -4295,7 +4295,7 @@ Special- To operate the service, we also may make identifiable and anonymous inf
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tvI-1L-jgx">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tvI-1L-jgx">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="256"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
@@ -4307,13 +4307,21 @@ Special- To operate the service, we also may make identifiable and anonymous inf
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="256"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VK1-ns-3rv">
-                                        <rect key="frame" x="98" y="66" width="124" height="124"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VK1-ns-3rv">
+                                        <rect key="frame" x="98" y="76" width="124" height="124"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="124" id="KM2-ra-RKK"/>
+                                            <constraint firstAttribute="width" constant="124" id="jMj-Vy-obF"/>
+                                        </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ownProfileFrame" translatesAutoresizingMaskIntoConstraints="NO" id="IJs-di-apP">
-                                        <rect key="frame" x="88" y="56" width="144" height="144"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ownProfileFrame" translatesAutoresizingMaskIntoConstraints="NO" id="IJs-di-apP">
+                                        <rect key="frame" x="88" y="66" width="144" height="144"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="144" id="eFP-N3-3ec"/>
+                                            <constraint firstAttribute="width" constant="144" id="kSR-ry-Hb3"/>
+                                        </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZyV-Jh-HvC">
                                         <rect key="frame" x="3" y="14" width="45" height="45"/>
@@ -4323,10 +4331,32 @@ Special- To operate the service, we also may make identifiable and anonymous inf
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rodney" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TrZ-Lz-2uu">
+                                        <rect key="frame" x="115" y="15" width="91" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="4kB-PF-S1f"/>
+                                            <constraint firstAttribute="width" constant="91" id="Xsz-SZ-b6J"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="26"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="IJs-di-apP" firstAttribute="top" secondItem="TrZ-Lz-2uu" secondAttribute="bottom" constant="15" id="BDy-DP-uwm"/>
+                                    <constraint firstItem="IJs-di-apP" firstAttribute="leading" secondItem="tvI-1L-jgx" secondAttribute="leading" constant="88" id="DMA-nq-60A"/>
+                                    <constraint firstItem="IJs-di-apP" firstAttribute="top" secondItem="VK1-ns-3rv" secondAttribute="bottom" constant="-134" id="MRs-e1-Oft"/>
+                                    <constraint firstAttribute="trailing" secondItem="TrZ-Lz-2uu" secondAttribute="trailing" constant="114" id="YbJ-vs-nBD"/>
+                                    <constraint firstItem="IJs-di-apP" firstAttribute="top" relation="greaterThanOrEqual" secondItem="tvI-1L-jgx" secondAttribute="top" constant="16" id="dSu-S6-sjp"/>
+                                    <constraint firstAttribute="trailing" secondItem="IJs-di-apP" secondAttribute="trailing" constant="88" id="dV4-1W-Wmk"/>
+                                    <constraint firstItem="IJs-di-apP" firstAttribute="leading" secondItem="VK1-ns-3rv" secondAttribute="trailing" constant="-134" id="ekY-6m-nhF"/>
+                                    <constraint firstAttribute="bottom" secondItem="IJs-di-apP" secondAttribute="bottom" priority="750" constant="46" id="mS3-nw-Evy"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="IJs-di-apP" secondAttribute="bottom" constant="8" id="wqR-l3-op5"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="211-AF-PTL">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="211-AF-PTL">
                                 <rect key="frame" x="0.0" y="256" width="320" height="312"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -4480,9 +4510,22 @@ Special- To operate the service, we also may make identifiable and anonymous inf
                                         </subviews>
                                     </view>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="312" id="hBH-gp-OjU"/>
+                                    <constraint firstAttribute="width" constant="320" id="iY8-aS-MeI"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="HKC-iZ-vAp" firstAttribute="top" secondItem="211-AF-PTL" secondAttribute="bottom" id="6S7-gq-WTa"/>
+                            <constraint firstItem="211-AF-PTL" firstAttribute="top" secondItem="tvI-1L-jgx" secondAttribute="bottom" id="Nci-0g-w7t"/>
+                            <constraint firstAttribute="trailing" secondItem="211-AF-PTL" secondAttribute="trailing" id="jYl-tw-pRP"/>
+                            <constraint firstItem="tvI-1L-jgx" firstAttribute="leading" secondItem="A5i-wJ-WNd" secondAttribute="leading" id="pgx-8l-780"/>
+                            <constraint firstItem="tvI-1L-jgx" firstAttribute="top" secondItem="A5i-wJ-WNd" secondAttribute="top" id="v9y-j5-81g"/>
+                            <constraint firstItem="211-AF-PTL" firstAttribute="leading" secondItem="A5i-wJ-WNd" secondAttribute="leading" id="wCm-6x-KUA"/>
+                            <constraint firstAttribute="trailing" secondItem="tvI-1L-jgx" secondAttribute="trailing" id="yL4-FP-x0G"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yqi-lV-8b7" userLabel="First Responder" sceneMemberID="firstResponder"/>
