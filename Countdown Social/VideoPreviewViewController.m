@@ -149,7 +149,7 @@
     NSLog(@"video Uploaded successfully: %ld",(long)buttonIndex);
     
     if (buttonIndex == 0){
-        [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ProfileViewController"]]animated:YES];
+        [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"OwnProfileViewController"]]animated:YES];
         [self.sideMenuViewController hideMenuViewController];
 
     }

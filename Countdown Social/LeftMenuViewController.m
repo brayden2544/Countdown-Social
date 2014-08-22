@@ -166,7 +166,7 @@
 
 - (IBAction)presentProfile:(id)sender {
     
-    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ProfileViewController"]]animated:YES];
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"OwnProfileViewController"]]animated:YES];
     [self.sideMenuViewController hideMenuViewController];
     _profileImage.hidden = false;
     _locationImage.hidden = true;

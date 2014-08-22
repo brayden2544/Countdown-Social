@@ -57,7 +57,7 @@
 @property (strong, nonatomic) IBOutlet CSAnimationView *twitterRequests;
 
 //Request Labels
-@property (strong, nonatomic) IBOutlet UILabel *isntagramRequestLabel;
+@property (strong, nonatomic) IBOutlet UILabel *instagramRequestLabel;
 @property (strong, nonatomic) IBOutlet UILabel *twitterRequestLabel;
 @property (strong, nonatomic) IBOutlet UILabel *snapchatRequestLabel;
 @property (strong, nonatomic) IBOutlet UILabel *facebookRequestLabel;

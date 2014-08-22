@@ -37,7 +37,6 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView *fbProfilePic;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
-@property (strong, nonatomic) IBOutlet UILabel *meetLabel;
 @property (nonatomic,strong) IBOutlet UIButton *playButton;
 @property (strong, nonatomic) IBOutlet UILabel *playButtonLabel;
 
@@ -50,9 +49,19 @@
 @property (strong, nonatomic) SevenSwitch *twitterSwitch;
 @property (strong, nonatomic) SevenSwitch *instagramSwitch;
 
+//Connection Updates
+@property (strong, nonatomic) IBOutlet UILabel *connectionLabel;
+@property (strong, nonatomic) IBOutlet UIButton *connectionSkipButton;
+
+//Regular Buttons
+@property (strong, nonatomic) IBOutlet UIButton *potentialSkipButton;
+@property (strong, nonatomic) IBOutlet UIButton *potentialConnectButton;
+
+
 @property (strong, nonatomic) IBOutlet UIImageView *miniWatchButton;
 
 - (IBAction)HoldPlay:(id)sender;
+- (IBAction)passConnection:(id)sender;
 
 - (IBAction)Pass:(id)sender;
 - (IBAction)Like:(id)sender;

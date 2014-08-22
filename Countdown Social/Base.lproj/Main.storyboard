@@ -1360,13 +1360,16 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <button hidden="YES" opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VZK-fS-GRG">
-                                        <rect key="frame" x="133" y="265" width="55" height="55"/>
+                                        <rect key="frame" x="133" y="259" width="55" height="55"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="decline-1">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="passConnection:" destination="QP0-wH-HVL" eventType="touchUpInside" id="8QE-wZ-zz2"/>
+                                        </connections>
                                     </button>
-                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You've already connected with Ashley. If you dont want to see her new vid's press the button below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="292" translatesAutoresizingMaskIntoConstraints="NO" id="5mP-U5-8K9">
+                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You've already connected. If you dont want to see this person's new vid's press the button below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="292" translatesAutoresizingMaskIntoConstraints="NO" id="5mP-U5-8K9">
                                         <rect key="frame" x="14" y="189" width="292" height="62"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
@@ -1518,6 +1521,8 @@
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
+                        <outlet property="connectionLabel" destination="5mP-U5-8K9" id="tAN-yt-br6"/>
+                        <outlet property="connectionSkipButton" destination="VZK-fS-GRG" id="gaV-bf-tyY"/>
                         <outlet property="createMatch" destination="5oh-ni-41P" id="IUJ-Ao-Azg"/>
                         <outlet property="fbProfilePic" destination="SEo-A9-H1O" id="rdV-yr-6dj"/>
                         <outlet property="imageView" destination="igB-0T-u4G" id="68o-rC-Gci"/>
@@ -1526,6 +1531,8 @@
                         <outlet property="nameView" destination="F9b-33-Rbr" id="lYd-RD-Usg"/>
                         <outlet property="playButton" destination="Cv1-ZZ-k4Q" id="QIp-qf-Dxv"/>
                         <outlet property="playButtonLabel" destination="UzK-hB-SOM" id="JZy-yk-MZz"/>
+                        <outlet property="potentialConnectButton" destination="gnw-kh-rU5" id="vFh-hf-yYv"/>
+                        <outlet property="potentialSkipButton" destination="KvF-8f-nI2" id="gff-U7-aRZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qzy-hH-Une" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2722,11 +2729,10 @@
                                                             <action selector="profileVisibilityChange:" destination="ZbB-1Z-dZv" eventType="valueChanged" id="96z-xc-EC7"/>
                                                         </connections>
                                                     </switch>
-                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="286" translatesAutoresizingMaskIntoConstraints="NO" id="ovD-3M-mPB">
+                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hide your profile to only be seen by current connections." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="286" translatesAutoresizingMaskIntoConstraints="NO" id="ovD-3M-mPB">
                                                         <rect key="frame" x="13" y="60" width="286" height="57"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <string key="text">Setting your video to hidden keeps anyone else from seeing your video, but continues your ability to communicate with previous matches.</string>
-                                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="13"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -3567,8 +3573,8 @@
                         <outlet property="facebookRequests" destination="esl-ao-CHR" id="G1n-Eh-69q"/>
                         <outlet property="instagramClicks" destination="0Bk-kT-W4q" id="IVw-jx-QUq"/>
                         <outlet property="instagramClicksLabel" destination="10e-7W-QV1" id="HWz-ZS-T7n"/>
+                        <outlet property="instagramRequestLabel" destination="YSV-aq-20o" id="AVh-YT-Y9a"/>
                         <outlet property="instagramRequests" destination="Gb4-Oo-I34" id="RVc-he-nHF"/>
-                        <outlet property="isntagramRequestLabel" destination="YSV-aq-20o" id="ArA-6e-ll0"/>
                         <outlet property="phoneClicks" destination="8N7-QJ-8yC" id="3LZ-3H-rvA"/>
                         <outlet property="phoneClicksLabel" destination="Hmw-08-1ve" id="cbU-ff-3ph"/>
                         <outlet property="phoneRequestLabel" destination="M66-ux-PcK" id="LTR-Ep-Wqv"/>
@@ -3652,10 +3658,9 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             </imageView>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="K6b-WK-Yxb">
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="Are you and your friends tired of being cat-fished by filters? Give the gift of Countdown and find fun new people nearby." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="K6b-WK-Yxb">
                                                 <rect key="frame" x="10" y="0.0" width="300" height="156"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <string key="text">If you and your friends are tired of getting catfished by filters then give them the gift of Countdown so you can find new people to hang with together.</string>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="19"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -4330,25 +4335,38 @@ Special- To operate the service, we also may make identifiable and anonymous inf
                                         <state key="normal" image="back button">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="backAction:" destination="UMF-bX-jv4" eventType="touchUpInside" id="i8z-Fb-IMC"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rodney" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TrZ-Lz-2uu">
-                                        <rect key="frame" x="115" y="15" width="91" height="36"/>
+                                        <rect key="frame" x="60" y="15" width="200" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="4kB-PF-S1f"/>
-                                            <constraint firstAttribute="width" constant="91" id="Xsz-SZ-b6J"/>
+                                            <constraint firstAttribute="width" constant="200" id="Xsz-SZ-b6J"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="26"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HjD-Jo-QJx">
+                                        <rect key="frame" x="27" y="115" width="53" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="matchvid">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="viewVideoAction:" destination="UMF-bX-jv4" eventType="touchUpInside" id="9ba-I4-8ez"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="IJs-di-apP" firstAttribute="top" secondItem="TrZ-Lz-2uu" secondAttribute="bottom" constant="15" id="BDy-DP-uwm"/>
                                     <constraint firstItem="IJs-di-apP" firstAttribute="leading" secondItem="tvI-1L-jgx" secondAttribute="leading" constant="88" id="DMA-nq-60A"/>
                                     <constraint firstItem="IJs-di-apP" firstAttribute="top" secondItem="VK1-ns-3rv" secondAttribute="bottom" constant="-134" id="MRs-e1-Oft"/>
-                                    <constraint firstAttribute="trailing" secondItem="TrZ-Lz-2uu" secondAttribute="trailing" constant="114" id="YbJ-vs-nBD"/>
+                                    <constraint firstAttribute="trailing" secondItem="TrZ-Lz-2uu" secondAttribute="trailing" constant="60" id="YbJ-vs-nBD"/>
                                     <constraint firstItem="IJs-di-apP" firstAttribute="top" relation="greaterThanOrEqual" secondItem="tvI-1L-jgx" secondAttribute="top" constant="16" id="dSu-S6-sjp"/>
                                     <constraint firstAttribute="trailing" secondItem="IJs-di-apP" secondAttribute="trailing" constant="88" id="dV4-1W-Wmk"/>
                                     <constraint firstItem="IJs-di-apP" firstAttribute="leading" secondItem="VK1-ns-3rv" secondAttribute="trailing" constant="-134" id="ekY-6m-nhF"/>
@@ -4372,12 +4390,22 @@ Special- To operate the service, we also may make identifiable and anonymous inf
                                                         <rect key="frame" x="260" y="0.0" width="40" height="40"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sz2-Y8-NK2">
-                                                                <rect key="frame" x="0.0" y="0.0" width="95" height="40"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j2b-dM-yxB">
+                                                                <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                <state key="normal" title="Button" image="ownFullInstagram">
+                                                                <state key="normal" image="ownEmptyInstagram">
                                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </state>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sz2-Y8-NK2">
+                                                                <rect key="frame" x="-27" y="0.0" width="95" height="40"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <state key="normal" image="ownFullInstagram">
+                                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="instagramAction:" destination="UMF-bX-jv4" eventType="touchUpInside" id="2fp-0A-EgX"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </view>
@@ -4398,6 +4426,9 @@ Special- To operate the service, we also may make identifiable and anonymous inf
                                                                 <state key="normal" image="ownFullTwitter">
                                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="twitterAction:" destination="UMF-bX-jv4" eventType="touchUpInside" id="xau-xZ-QMZ"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </view>
@@ -4418,6 +4449,9 @@ Special- To operate the service, we also may make identifiable and anonymous inf
                                                                 <state key="normal" image="ownFullSnapchat">
                                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="snapchatAction:" destination="UMF-bX-jv4" eventType="touchUpInside" id="vi6-5G-LT6"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </view>
@@ -4438,6 +4472,9 @@ Special- To operate the service, we also may make identifiable and anonymous inf
                                                                 <state key="normal" image="ownFullPhone">
                                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="phoneAction:" destination="UMF-bX-jv4" eventType="touchUpInside" id="fY5-4f-r37"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </view>
@@ -4458,6 +4495,9 @@ Special- To operate the service, we also may make identifiable and anonymous inf
                                                                 <state key="normal" title="Button" image="ownFullFacebook">
                                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="facebookAction:" destination="UMF-bX-jv4" eventType="touchUpInside" id="Yu6-B2-ZDv"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </view>
@@ -4470,12 +4510,12 @@ Special- To operate the service, we also may make identifiable and anonymous inf
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ownLine" translatesAutoresizingMaskIntoConstraints="NO" id="CPX-Xe-oux">
-                                                <rect key="frame" x="20" y="74" width="280" height="1"/>
+                                            <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ownLine" translatesAutoresizingMaskIntoConstraints="NO" id="CPX-Xe-oux">
+                                                <rect key="frame" x="20" y="74" width="280" height="3"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ownLine" translatesAutoresizingMaskIntoConstraints="NO" id="1U1-HU-UkT">
-                                                <rect key="frame" x="20" y="177" width="280" height="1"/>
+                                            <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ownLine" translatesAutoresizingMaskIntoConstraints="NO" id="1U1-HU-UkT">
+                                                <rect key="frame" x="20" y="177" width="280" height="3"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NsU-G5-SYo" userLabel="change video button">
@@ -4484,6 +4524,9 @@ Special- To operate the service, we also may make identifiable and anonymous inf
                                                 <state key="normal" backgroundImage="ownchangevid">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="changeVideoAction:" destination="UMF-bX-jv4" eventType="touchUpInside" id="Rgg-7l-tXH"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Change" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="65B-v9-xcd">
                                                 <rect key="frame" x="18" y="112" width="84" height="32"/>
@@ -4500,9 +4543,9 @@ Special- To operate the service, we also may make identifiable and anonymous inf
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="270" translatesAutoresizingMaskIntoConstraints="NO" id="6yQ-Ww-3Hc">
-                                                <rect key="frame" x="25" y="186" width="270" height="120"/>
+                                                <rect key="frame" x="25" y="186" width="270" height="117"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <string key="text">Your video isn’t an interview, so be creative.  Be social and change your video often. All new videos will show up in the feed for all to see, including previous matches. </string>
+                                                <string key="text">Your video isn’t an interview, so be creative.  Be social and change your video often. Even past connections will see your new videos.</string>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -4527,6 +4570,16 @@ Special- To operate the service, we also may make identifiable and anonymous inf
                             <constraint firstAttribute="trailing" secondItem="tvI-1L-jgx" secondAttribute="trailing" id="yL4-FP-x0G"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="backgroundProfilePic" destination="rQf-t1-nM0" id="8iB-Sz-LLC"/>
+                        <outlet property="facebook" destination="E7Q-SV-Q4u" id="TDU-Qe-Zkb"/>
+                        <outlet property="instagram" destination="Sz2-Y8-NK2" id="GKD-5W-uia"/>
+                        <outlet property="nameLabel" destination="TrZ-Lz-2uu" id="OxP-Kt-ha7"/>
+                        <outlet property="phone" destination="HGY-e2-6GH" id="lqs-FB-JSM"/>
+                        <outlet property="profilePic" destination="VK1-ns-3rv" id="VEV-sS-Go3"/>
+                        <outlet property="snapchat" destination="WCH-rQ-xpj" id="4vr-PF-fbV"/>
+                        <outlet property="twitter" destination="Tbj-Dz-Wpc" id="CT1-z4-HWn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yqi-lV-8b7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -4598,6 +4651,7 @@ Special- To operate the service, we also may make identifiable and anonymous inf
         <image name="neworange" width="10" height="10"/>
         <image name="ownBg" width="320" height="568"/>
         <image name="ownEmptyFacebook" width="40" height="40"/>
+        <image name="ownEmptyInstagram" width="40" height="40"/>
         <image name="ownEmptyPhone" width="40" height="40"/>
         <image name="ownEmptySnapchat" width="40" height="40"/>
         <image name="ownEmptyTwitter" width="40" height="40"/>

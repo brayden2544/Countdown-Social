@@ -22,7 +22,6 @@
 
 @implementation UserScoreViewController
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -50,7 +49,7 @@
     [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
     [manager POST:scoreURL parameters:@{} success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"score object %@",responseObject);
-        
+        [self populateScore:responseObject];
             
         }
      
@@ -59,6 +58,112 @@
     }];
 
 }
+-(void)populateScore:(NSDictionary *)score{
+    double video_view_count = [[[score objectForKey:@"video_details" ]objectForKey:@"likeCount"]doubleValue];
+    if ([score objectForKey:@"facebook_view_count"]!= [NSNull null]) {
+        self.facebookClicksLabel.text = [NSString stringWithFormat:@"%@",[score objectForKey:@"facebook_view_count"]];
+    }else{
+        self.facebookClicksLabel.text = @"0";
+
+    }
+    
+    if ([score objectForKey:@"facebook_share_count"] != [NSNull null]) {
+        double facebookShareCount =[[score objectForKey:@"facebook_share_count"]doubleValue];
+        self.facebookRequestLabel.text = [NSString stringWithFormat:@"%.0f%% of people requested your FB.",facebookShareCount/video_view_count *100];
+
+    }else{
+        self.facebookRequestLabel.text = @"0% of people requested your FB";
+    }
+    
+    if ([score objectForKey:@"instagram_view_count"] != [NSNull null]) {
+        self.instagramClicksLabel.text = [NSString stringWithFormat:@"%@",[score objectForKey:@"instagram_view_count"]];
+    }else{
+        self.instagramClicksLabel.text = @"0";
+
+    }
+    
+    if ([score objectForKey:@"instagram_share_count"] != [NSNull null]) {
+        double instagramShareCount =[[score objectForKey:@"instagram_share_count"]doubleValue];
+        self.instagramRequestLabel.text = [NSString stringWithFormat:@"%.0f%% of people requested your Insta.",instagramShareCount/video_view_count *100];
+    }else{
+        self.instagramRequestLabel.text = @"0% of people requested your Insta";
+    }
+    
+    if ([score objectForKey:@"phone_view_count"] != [NSNull null]) {
+        self.phoneClicksLabel.text = [NSString stringWithFormat:@"%@",[score objectForKey:@"phone_view_count"]];
+    }else{
+        self.phoneClicksLabel.text = @"0";
+    }
+    
+    if ([score objectForKey:@"phone_share_count"] != [NSNull null]) {
+        double phoneShareCount =[[score objectForKey:@"phone_share_count"]doubleValue];
+        self.phoneRequestLabel.text = [NSString stringWithFormat:@"%.0f%% of people requested your #.",phoneShareCount/video_view_count*100];
+    }else{
+        self.phoneRequestLabel.text = @"0% of people wanted your #";
+    }
+    
+    if ([score objectForKey:@"snapchat_view_count"] != [NSNull null]) {
+        self.snapchatClicksLabel.text= [NSString stringWithFormat:@"%@",[score objectForKey:@"snapchat_view_count"]];
+    }else{
+        self.snapchatClicksLabel.text= @"0";
+    }
+    if ([score objectForKey:@"snapchat_share_count"] != [NSNull null]) {
+        double snapchatShareCount =[[score objectForKey:@"snapchat_share_count"]doubleValue];
+        self.snapchatRequestLabel.text = [NSString stringWithFormat:@"%.0f%% of people requested your Snap.",snapchatShareCount/video_view_count *100];
+    }else{
+        self.snapchatRequestLabel.text = @"0% of people requested your Snap.";
+    }
+    if ([score objectForKey:@"twitter_view_count"] != [NSNull null]) {
+        self.twitterClicksLabel.text = [NSString stringWithFormat:@"%@",[score objectForKey:@"twitter_view_count"]];
+    }else{
+        self.twitterClicksLabel.text = @"0";
+    }
+    if ([score objectForKey:@"twitter_share_count"] != [NSNull null]) {
+        double twitterShareCount =[[score objectForKey:@"twitter_share_count"]doubleValue];
+        self.twitterRequestLabel.text = [NSString stringWithFormat:@"%.0f%% of people requested your Twitter.",twitterShareCount/video_view_count*100];
+    }else{
+        self.twitterRequestLabel.text = @"0% of people requested your Twitter";
+    }
+    
+    
+    //self.averageScoreLabel.text = [score objectForKey:<#(id)#>]
+    if ([score objectForKey:@"video_details"] != [NSNull null]) {
+        double likeCount = [[[score objectForKey:@"video_details"] objectForKey:@"likeCount"]doubleValue];
+        double passCount = [[[score objectForKey:@"video_details"] objectForKey:@"passCount"]doubleValue];
+        double videoRating = (likeCount /(likeCount + passCount)*5)+5;
+        
+        if ([[NSString stringWithFormat:@"%f",videoRating] isEqualToString:@"nan"]) {
+            self.currentVideoScoreLabel.text =[NSString stringWithFormat:@"5"];
+
+        }else{
+            if (videoRating == 10) {
+                self.currentVideoScoreLabel.text =[NSString stringWithFormat:@"10"];
+
+            }else{
+            self.currentVideoScoreLabel.text =[NSString stringWithFormat:@"%.1f",videoRating];
+            }
+        }
+    }
+    if ([score objectForKey:@"passCount"] != [NSNull null] && [score objectForKey:@"likeCount"] !=[NSNull null]) {
+        double totalLikeCount = [[score  objectForKey:@"likeCount"]doubleValue];
+        double totalPassCount = [[score  objectForKey:@"passCount"]doubleValue];
+        double totalvideoRating = (totalLikeCount /(totalLikeCount + totalPassCount)*5)+5;
+        
+        if ([[NSString stringWithFormat:@"%f",totalvideoRating] isEqualToString:@"nan"]) {
+            self.averageScoreLabel.text =[NSString stringWithFormat:@"5"];
+            
+        }else{
+            if (totalvideoRating == 10) {
+                self.averageScoreLabel.text =[NSString stringWithFormat:@"10"];
+                
+            }else{
+                self.averageScoreLabel.text =[NSString stringWithFormat:@"%.1f",totalvideoRating];
+            }
+        }
+    }
+
+}
+
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
 {
     [[SKPaymentQueue defaultQueue] addTransactionObserver:self];

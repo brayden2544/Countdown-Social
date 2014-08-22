@@ -463,17 +463,17 @@
     /**
      *  iOS7-style sender name labels
      */
-//    JSQMessage *currentMessage = [self.messages objectAtIndex:indexPath.item];
-//    if ([[currentMessage sender] isEqualToString:self.sender]) {
-//        return 0.0f;
-//    }
-//    
-//    if (indexPath.item - 1 > 0) {
-//        JSQMessage *previousMessage = [self.messages objectAtIndex:indexPath.item - 1];
-//        if ([[previousMessage sender] isEqualToString:[currentMessage sender]]) {
-//            return 0.0f;
-//        }
-//    }
+    JSQMessage *currentMessage = [self.messages objectAtIndex:indexPath.item];
+    if ([[currentMessage sender] isEqualToString:self.sender]) {
+        return 0.0f;
+    }
+    
+    if (indexPath.item - 1 > 0) {
+        JSQMessage *previousMessage = [self.messages objectAtIndex:indexPath.item - 1];
+        if ([[previousMessage sender] isEqualToString:[currentMessage sender]]) {
+            return 0.0f;
+        }
+    }
     
     return kJSQMessagesCollectionViewCellLabelHeightDefault;
 }

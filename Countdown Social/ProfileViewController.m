@@ -84,6 +84,7 @@
 }
 
 - (IBAction)presentLeftMenu:(id)sender {
-    [self.sideMenuViewController presentLeftMenuViewController];
-}
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"OwnProfileViewController"]]animated:YES];
+    [self.sideMenuViewController hideMenuViewController];}
+
 @end

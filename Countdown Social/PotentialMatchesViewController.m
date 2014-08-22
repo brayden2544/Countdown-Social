@@ -195,6 +195,44 @@
     if ([obj.potentialMatches count]>0) {
     
         currentPotentialMatch =[obj.potentialMatches objectAtIndex:0];
+        
+        if ([[currentPotentialMatch objectForKey:@"match"]boolValue]==true) {
+            NSLog(@"Currrent video is a connection");
+            self.connectionLabel.hidden = FALSE;
+            NSString *gender;
+            if ([[currentPotentialMatch objectForKey:@"gender"]isEqualToString:@"M" ]) {
+                gender = @"his";
+            }else{
+                gender =@"her";
+            }
+            
+            self.connectionLabel.text = [NSString stringWithFormat:@"You've already connected with %@. If you don't want to see %@ new vids, press the button below",[currentPotentialMatch objectForKey:@"firstName"],gender];
+            self.connectionSkipButton.hidden = FALSE;
+            
+            self.potentialSkipButton.hidden = TRUE;
+            self.potentialConnectButton.hidden = TRUE;
+            
+            self.facebookSwitch.hidden = TRUE;
+            self.phoneSwitch.hidden = TRUE;
+            self.snapchatSwitch.hidden = TRUE;
+            self.twitterSwitch.hidden = TRUE;
+            self.instagramSwitch.hidden = TRUE;
+            
+        }else{
+            NSLog(@"Currrent video not a connection");
+            self.connectionLabel.hidden = TRUE;
+            self.connectionSkipButton.hidden = TRUE;
+            
+            self.potentialSkipButton.hidden = FALSE;
+            self.potentialConnectButton.hidden = FALSE;
+            
+            self.facebookSwitch.hidden = FALSE;
+            self.phoneSwitch.hidden = FALSE;
+            self.snapchatSwitch.hidden = FALSE;
+            self.twitterSwitch.hidden = FALSE;
+            self.instagramSwitch.hidden = FALSE;
+        }
+        
         if ([currentPotentialMatch objectForKey:@"fileURL"]) {
             _loading = FALSE;
             _likeCurrentUser = FALSE;
@@ -343,6 +381,14 @@
 - (IBAction)HoldPlay:(id)sender {
     [self PlayButtonHeld];
 }
+
+- (IBAction)passConnection:(id)sender {
+    if ([currentPotentialMatch count] >0){
+        [self userPass];
+        _likeCurrentUser = false;
+    }
+
+}
 -(void)PlayButtonHeld{
     if( _loading ==FALSE & _likeCurrentUser ==FALSE) {
         _playButtonHeld = TRUE;
@@ -449,7 +495,6 @@
     
     urlAsString = [urlAsString stringByAppendingString:[currentPotentialMatch objectForKey:@"uid"]];
     urlAsString =[urlAsString stringByAppendingString:@"/report"];
-    
     
     
     NSURL *url = [NSURL URLWithString:urlAsString];

@@ -23,6 +23,7 @@
 		6E6FC1EA19884E120045CC90 /* MessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6FC1E919884E120045CC90 /* MessagesViewController.m */; };
 		6E7691CA195387DA006CA5DB /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E7691C9195387DA006CA5DB /* FacebookSDK.framework */; };
 		6E7691CD195398ED006CA5DB /* PotentialMatches.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E7691CC195398ED006CA5DB /* PotentialMatches.m */; };
+		6E858B2C199EE88D00924293 /* OwnProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E858B2B199EE88D00924293 /* OwnProfileViewController.m */; };
 		6E886A44190DB575009E5A92 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E886A43190DB575009E5A92 /* LoginViewController.m */; };
 		6E886A4B190DD4F9009E5A92 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E886A4A190DD4F9009E5A92 /* ViewController.m */; };
 		6E886A4E190E05AC009E5A92 /* SetLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E886A4D190E05AC009E5A92 /* SetLocationViewController.m */; };
@@ -212,6 +213,8 @@
 		6E7691C9195387DA006CA5DB /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		6E7691CB195398ED006CA5DB /* PotentialMatches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PotentialMatches.h; sourceTree = "<group>"; };
 		6E7691CC195398ED006CA5DB /* PotentialMatches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PotentialMatches.m; sourceTree = "<group>"; };
+		6E858B2A199EE88D00924293 /* OwnProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OwnProfileViewController.h; sourceTree = "<group>"; };
+		6E858B2B199EE88D00924293 /* OwnProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OwnProfileViewController.m; sourceTree = "<group>"; };
 		6E886A42190DB575009E5A92 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		6E886A43190DB575009E5A92 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		6E886A49190DD4F9009E5A92 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -618,6 +621,8 @@
 				6EA354FC1965444700F51D70 /* Singletons */,
 				6EB9D6B4192415D10080E1C5 /* VideoPreviewViewController.h */,
 				6EB9D6B5192415D10080E1C5 /* VideoPreviewViewController.m */,
+				6E858B2A199EE88D00924293 /* OwnProfileViewController.h */,
+				6E858B2B199EE88D00924293 /* OwnProfileViewController.m */,
 				6E6FC1E819884E120045CC90 /* MessagesViewController.h */,
 				6E6FC1E919884E120045CC90 /* MessagesViewController.m */,
 				6E6FC1E519880F570045CC90 /* UserProfileViewController.h */,
@@ -1220,6 +1225,7 @@
 				6EFC0E8419818F4A00ED7CB2 /* JSQMessagesToolbarContentView.m in Sources */,
 				6E9192EC197DE82700F8DCDE /* FeedbackViewController.m in Sources */,
 				6ECDEA9E1974791800B06130 /* AFURLSessionManager.m in Sources */,
+				6E858B2C199EE88D00924293 /* OwnProfileViewController.m in Sources */,
 				6ECB30F81952498200AB8854 /* InstagramViewController.m in Sources */,
 				6EFC0E7719818F4A00ED7CB2 /* JSQMessagesCollectionViewLayoutAttributes.m in Sources */,
 				CDD1D4CC1986E23900DB942F /* UIButton+TCCustomFont.m in Sources */,
@@ -1398,7 +1404,7 @@
 					/Users/braydenadams/Documents/FacebookSDK/FacebookSDK.framework/Versions/A,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b92f2c08-03f1-4275-900f-d16c1aabdb72";
+				PROVISIONING_PROFILE = "f92a13f9-8187-4edd-9912-27927a42bf45";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1426,7 +1432,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0710bf8a-7e01-4a65-971f-bc0ef1c0a50f";
+				PROVISIONING_PROFILE = "3196b121-fbaa-4cfd-8d7c-cafd2ab1dbea";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
