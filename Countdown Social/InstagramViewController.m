@@ -102,14 +102,13 @@
     self.instagramWebView.scalesPageToFit = YES;
     
     NSString *stringURL = @"http://www.instagram.com/oauth/authorize/?client_id=932befca29884b378bfa33415fe71da6&redirect_uri=http://localhost:8888/MAMP/&response_type=code";
-    //NSString *stringURl = [stringURL stringByAppendingString:twitterUsername];
     NSURL *url = [NSURL URLWithString:stringURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     [instagramWebView loadRequest:request];
     instagramWebView.delegate = self;
     [self.view addSubview:instagramWebView];
-    //}
+
     
     
 }
@@ -123,7 +122,7 @@
 -(void)instagramUsernameUpload
 {
     NSString *urlAsString = kBaseURL;
-    urlAsString = [urlAsString stringByAppendingString:@"user"];
+    urlAsString = [urlAsString stringByAppendingString:@"user/"];
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     NSString *FbToken = [session accessTokenData].accessToken;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

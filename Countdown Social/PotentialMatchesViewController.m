@@ -35,6 +35,7 @@
 @property NSTimeInterval timeRemaining;
 @property int checkVideoCount;
 @property NSOperationQueue *backgroundQueue;
+@property double profileTime;
 
 @property NSTimer *potentialMatchesTimer;
 
@@ -49,6 +50,7 @@
 @synthesize user;
 @synthesize moviePlayer;
 @synthesize playButton;
+@synthesize profileTime;
 
 
 
@@ -309,8 +311,7 @@
     //set size limitations of current potential match
     self.fbProfilePic.layer.cornerRadius = self.fbProfilePic.frame.size.height/2;
     self.fbProfilePic.layer.masksToBounds = YES;
-//    self.fbProfilePic.layer.borderColor = [UIColor colorWithRed:248 green:248 blue:248 alpha:0.4].CGColor;
-//    self.fbProfilePic.layer.borderWidth = 2.0f;
+
     
 }
 
@@ -368,7 +369,7 @@
 - (void) videoHasFinishedPlaying:(NSNotification *)paramNotification{
             //movie finished playing
         if(_likeCurrentUser == FALSE){
-         
+            
             [self userPass];
             
         }else{
