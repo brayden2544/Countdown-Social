@@ -11,6 +11,7 @@
 #import "Connection.h"
 #import "AppDelegate.h"
 #import "Constants.h"
+#import "Connection.h"
 
 
 @interface ConnectionVideoViewController ()
@@ -27,6 +28,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    Connection *connectionObj = [Connection getInstance];
+    NSDictionary *connection =connectionObj.connection;
+    self.nameLabel.text = [NSString stringWithFormat:@"%@",[[connection objectForKey:@"liked_user"]objectForKey:@"firstName"]];
     _connection = [Connection getInstance];
     _currentConnection = [_connection.connection objectForKey:@"liked_user"];
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
@@ -58,7 +62,8 @@
 
 - (void)playVideo{
     self.moviePlayerView = [[PlayerView alloc]initWithFrame:CGRectMake (0, 100, 320, 320)];
-    self.moviePlayerView.player = [[AVPlayer alloc]initWithURL:_videoUrl];
+    self.currentVideoItem = [[AVPlayerItem alloc]initWithURL:_videoUrl];
+    self.moviePlayerView.player = [[AVPlayer alloc]initWithPlayerItem:self.currentVideoItem];
     //self.currentVideoItem = [AVPlayerItem playerItemWithURL:_videoUrl];
     //[self.moviePlayerView.player replaceCurrentItemWithPlayerItem:self.currentVideoItem];
     self.moviePlayerLayer = [[AVPlayerLayer alloc]init];
@@ -69,6 +74,11 @@
 
 }
 
+
+- (IBAction)replayVideo:(id)sender {
+    [self.moviePlayerView.player seekToTime:kCMTimeZero];
+    [self.moviePlayerView.player play];
+}
 
 - (IBAction)backToProfile:(id)sender {
     [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"]]animated:YES];

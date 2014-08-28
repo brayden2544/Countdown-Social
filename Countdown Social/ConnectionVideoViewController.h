@@ -18,8 +18,10 @@
 @property (nonatomic ,strong) AVPlayerItem *currentVideoItem;
 @property (nonatomic,strong) NSURL *videoUrl;
 @property (nonatomic,strong) PlayerView *moviePlayerView;
+@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 
 
+- (IBAction)replayVideo:(id)sender;
 
 - (IBAction)backToProfile:(id)sender;
 
