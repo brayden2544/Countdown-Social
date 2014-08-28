@@ -36,9 +36,10 @@
 @property int checkVideoCount;
 @property NSOperationQueue *backgroundQueue;
 @property double profileTime;
+@property double videoFinishedTime;
 
 @property NSTimer *potentialMatchesTimer;
-
+@property NSTimer *videoFinishedTimer;
 @property NSTimer *loadingTimer;
 
 @end
@@ -51,6 +52,7 @@
 @synthesize moviePlayer;
 @synthesize playButton;
 @synthesize profileTime;
+@synthesize videoFinishedTime;
 
 
 
@@ -149,12 +151,6 @@
     self.instagramSwitch.activeColor = [UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:0.3];
     [self.instagramSwitch addTarget:self action:@selector(instagram) forControlEvents:UIControlEventValueChanged];
 
-//    self.instagramSwitch.alpha = 0.8;
-//    self.facebookSwitch.alpha = 0.8;
-//    self.phoneSwitch.alpha = 0.8;
-//    self.twitterSwitch.alpha = 0.8;
-//    self.snapchatSwitch.alpha = 0.8;
-
     
     [self.createMatch addSubview:self.instagramSwitch];
     [self.createMatch addSubview:self.facebookSwitch];
@@ -244,6 +240,7 @@
             //Set text for name label
             _nameLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
             [self.nameView startCanvasAnimation];
+            videoFinishedTime = 1.5;
             
             //Load initial instance of self.movieplayer with fileurl of current match
             _videoUrl =[currentPotentialMatch objectForKey:@"fileURL"];
@@ -369,9 +366,7 @@
 - (void) videoHasFinishedPlaying:(NSNotification *)paramNotification{
             //movie finished playing
         if(_likeCurrentUser == FALSE){
-            
-            [self userPass];
-            
+            self.videoFinishedTimer = [NSTimer scheduledTimerWithTimeInterval:.1 target:self selector:@selector(videoFinished) userInfo:nil repeats:YES];
         }else{
             [self nextMatch];
             _likeCurrentUser = FALSE;
@@ -379,6 +374,20 @@
     
       }
 
+-(void)videoFinished{
+    if (videoFinishedTime > 0) {
+        if (_playButtonHeld ==TRUE) {
+            videoFinishedTime -= .1;
+        }
+                self.playButtonLabel.text = @"Hold to Play";
+        [self CaptureSnapshot];
+    }else{
+        if (_playButtonHeld ==TRUE) {
+            [self userPass];
+        }
+    }
+    
+}
 - (IBAction)HoldPlay:(id)sender {
     [self PlayButtonHeld];
 }
@@ -399,7 +408,9 @@
         self.playButtonLabel.text = @"Release to Connect";
         //[self.sideMenuViewController setPanGestureEnabled:NO];
         [self.view bringSubviewToFront:self.moviePlayerView];
-        [self.moviePlayerView.player play];
+        if (videoFinishedTime ==1.5) {
+            [self.moviePlayerView.player play];
+        }
     }
 }
 
@@ -439,6 +450,8 @@
 
 
 -(void) userPass{
+    [self.videoFinishedTimer invalidate];
+    videoFinishedTime = 1.5;
     NSString *urlAsString =kBaseURL;
     urlAsString = [urlAsString stringByAppendingString:@"user/"];
     PotentialMatches *obj =[PotentialMatches getInstance];
@@ -486,6 +499,7 @@
 }
 
 -(void) reportUser{
+    [self.videoFinishedTimer invalidate];
     NSString *urlAsString =kBaseURL;
     urlAsString = [urlAsString stringByAppendingString: @"user/"];
     PotentialMatches *obj =[PotentialMatches getInstance];
@@ -528,7 +542,7 @@
     
 }
 -(void) userLike{
-    
+    [self.videoFinishedTimer invalidate];
     _likeCurrentUser = TRUE;
     NSMutableDictionary *params = [[NSMutableDictionary alloc]init];
     self.blur.hidden = TRUE;
@@ -825,7 +839,9 @@
 - (void)VideoTimer:(NSTimer *)timer{
     //Initialize CountdownTimer
     Float64 timeLeft = CMTimeGetSeconds(self.moviePlayerView.player.currentItem.currentTime);
+    //timeLeft+=videoFinishedTime;
     Float64 duration = CMTimeGetSeconds(self.moviePlayerView.player.currentItem.duration);
+    duration+=videoFinishedTime;
     _timeRemaining =(1 -(timeLeft / duration))*100;
     [countdownTimer changePercentage:_timeRemaining];
     if (_timeRemaining ==100) {
