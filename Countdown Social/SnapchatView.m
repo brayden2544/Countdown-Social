@@ -85,11 +85,6 @@
                              NSData *data,
                              NSError *error){
              if ([data length] >0 && error == nil){
-                 NSString *html =
-                 [[NSString alloc] initWithData:data
-                                       encoding:NSUTF8StringEncoding];
-                 NSLog(html);
-                 
                  id UserJson = [NSJSONSerialization
                                 JSONObjectWithData:data
                                 options:NSJSONReadingAllowFragments
@@ -108,7 +103,6 @@
              else if (error !=nil){
                  NSLog(@"Error happened = %@", error);
                  NSLog(@"POST BROKEN");
-#warning TODO: Create alert and restart app in case of bad server connection.
              }
          }];
     });
