@@ -57,7 +57,6 @@
     
     //Post twitter handle if we don't already have it.    
     
-#warning TODO: Make this if/then statement work correctly.
     //if ([[user objectForKey: @"twitter_username"]isKindOfClass:[NSNull class]]){
         NSLog(@"Twitter username blank");
     //}

@@ -92,10 +92,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationController.navigationBarHidden = YES;
-    User *obj = [User getInstance];
-    NSDictionary *user = obj.user;
-    
+    self.navigationController.navigationBarHidden = YES;    
     // Do any additional setup after loading the view.
     //if ([[user objectForKey:@"instagram_token"]isKindOfClass:[NSNull class]]){
     UIWebView* instagramWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0,57,self.view.frame.size.width,self.view.frame.size.height - 57)];

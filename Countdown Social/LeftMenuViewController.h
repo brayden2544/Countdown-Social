@@ -11,17 +11,7 @@
 #import <FacebookSDK/FBSession.h>
 #import "AppDelegate.h"
 
-@interface LeftMenuViewController : UIViewController{
-    UIImageView *feedbackImage;
-    UIImageView *tellFriendsImage;
-    UIImageView *scoreImage;
-    UIImageView *socialImage;
-    UIImageView *locationImage;
-    UIImageView *profileImage;
-    UIImageView *settingsImage;
-    UIImageView *homeImage;
-    
-}
+@interface LeftMenuViewController : UIViewController
 -(void)presentSocialMethod;
 
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *userProfileImage;
