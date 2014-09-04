@@ -60,7 +60,7 @@
     [self.ConnectionsTableView reloadData];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"cell should be populating");
+    NSLog(@"Connection should be populating");
     static NSString *CellIdentifier = @"connectionCell";
 
     ConnectionsCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -74,12 +74,14 @@
 
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MM/dd"];
-    NSDate *connectionNSDate = [NSDate dateWithTimeIntervalSince1970:[[[connections objectAtIndex:indexPath.row] objectForKey:@"date_time"]doubleValue]/1000];
+    NSDate *connectionNSDate = [NSDate dateWithTimeIntervalSince1970:[[connection objectForKey:@"date_time"]doubleValue]/1000];
     NSLog(@"Date = %@", connectionNSDate);
     NSString *connectionDate = [NSString stringWithFormat:@"%@",[formatter stringFromDate:connectionNSDate ]];
     cell.label.text = [NSString stringWithFormat:@"Connected %@ ",connectionDate];
     
-    if ([[connections objectAtIndex:indexPath.row]objectForKey:@"is_new"]!=[NSNull null] && [[[connections objectAtIndex:indexPath.row]objectForKey:@"is_new"]boolValue]==true)  {
+    if ([connection objectForKey:@"is_new"]&&
+        [connection objectForKey:@"is_new"]!=[NSNull null] &&
+        [[connection objectForKey:@"is_new"]boolValue]==true)  {
         cell.notificationImage.hidden = FALSE;
     }
     else{

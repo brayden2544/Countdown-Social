@@ -125,7 +125,9 @@
         [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"User shown as seen");
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"User not shown as seen%@", error);
+            NSLog(@"User not shown as seen because of errror%@", error);
+            //Run notification status again if first attempt is not successful.
+            [self notificationStatus];
         }];
 
     }
