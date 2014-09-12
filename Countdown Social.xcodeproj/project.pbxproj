@@ -1399,6 +1399,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Countdown Social/Countdown Social-Prefix.pch";
 				INFOPLIST_FILE = "Countdown Social/Countdown Social-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/braydenadams/Documents/FacebookSDK/FacebookSDK.framework/Versions/A,
@@ -1426,6 +1427,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Countdown Social/Countdown Social-Prefix.pch";
 				INFOPLIST_FILE = "Countdown Social/Countdown Social-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/braydenadams/Documents/FacebookSDK/FacebookSDK.framework/Versions/A,

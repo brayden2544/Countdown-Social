@@ -10,22 +10,26 @@
 	<string>Countdown Social</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>A7F66C1D276366EDF39AFCB85FD0ED55453E2934</key>
+		<string>https://github.com/brayden2544/Countdown-Social.git</string>
 		<key>D1906618-1618-40B2-BA47-6B427DAA8CF8</key>
 		<string>https://github.com/brayden2544/Countdown-Social.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Countdown Social.xcodeproj/project.xcworkspace</string>
+	<string>Countdown Social.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>D1906618-1618-40B2-BA47-6B427DAA8CF8</key>
+		<key>A7F66C1D276366EDF39AFCB85FD0ED55453E2934</key>
 		<string>../..</string>
+		<key>D1906618-1618-40B2-BA47-6B427DAA8CF8</key>
+		<string>../../../Countdown Social</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/brayden2544/Countdown-Social.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>D1906618-1618-40B2-BA47-6B427DAA8CF8</string>
+	<string>A7F66C1D276366EDF39AFCB85FD0ED55453E2934</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
@@ -35,6 +39,14 @@
 			<string>D1906618-1618-40B2-BA47-6B427DAA8CF8</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Countdown Social</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>A7F66C1D276366EDF39AFCB85FD0ED55453E2934</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Countdown-Social</string>
 		</dict>
 	</array>
 </dict>

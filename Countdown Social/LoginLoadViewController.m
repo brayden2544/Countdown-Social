@@ -139,6 +139,7 @@
     if ([CLLocationManager locationServicesEnabled]) {
         
         self.currentLocationManager = [[CLLocationManager alloc] init];
+        [self.currentLocationManager requestWhenInUseAuthorization];
         self.currentLocationManager.delegate = self;
         self.currentLocationManager.distanceFilter = 500;
         
