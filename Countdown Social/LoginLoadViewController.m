@@ -126,6 +126,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //Waits for login request to complete from Countdown Api
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:NO];
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector (successfulLogin)
                                             name:@"LoginSuccessful"

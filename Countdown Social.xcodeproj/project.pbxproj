@@ -105,6 +105,7 @@
 		6EF0026E194FC9EF00F32217 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF0026D194FC9EF00F32217 /* Social.framework */; };
 		6EF00270194FCA2000F32217 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF0026F194FCA2000F32217 /* Accounts.framework */; };
 		6EF0DCAF198C0ED5000EA299 /* SevenSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF0DCAE198C0ED5000EA299 /* SevenSwitch.m */; };
+		6EF3419819CB767900A71F64 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF3419719CB767900A71F64 /* RootViewController.m */; };
 		6EFC0DFC1981863800ED7CB2 /* TermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC0DFB1981863800ED7CB2 /* TermsViewController.m */; };
 		6EFC0DFF1981864600ED7CB2 /* PrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC0DFE1981864600ED7CB2 /* PrivacyViewController.m */; };
 		6EFC0E5719818F4A00ED7CB2 /* bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EFC0E0419818F4A00ED7CB2 /* bubble.png */; };
@@ -341,6 +342,8 @@
 		6EF0026F194FCA2000F32217 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		6EF0DCAD198C0ED5000EA299 /* SevenSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SevenSwitch.h; sourceTree = "<group>"; };
 		6EF0DCAE198C0ED5000EA299 /* SevenSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SevenSwitch.m; sourceTree = "<group>"; };
+		6EF3419619CB767900A71F64 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		6EF3419719CB767900A71F64 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		6EFC0DFA1981863800ED7CB2 /* TermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsViewController.h; sourceTree = "<group>"; };
 		6EFC0DFB1981863800ED7CB2 /* TermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsViewController.m; sourceTree = "<group>"; };
 		6EFC0DFD1981864600ED7CB2 /* PrivacyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivacyViewController.h; sourceTree = "<group>"; };
@@ -648,6 +651,8 @@
 				6E886A4A190DD4F9009E5A92 /* ViewController.m */,
 				6E886A42190DB575009E5A92 /* LoginViewController.h */,
 				6E886A43190DB575009E5A92 /* LoginViewController.m */,
+				6EF3419619CB767900A71F64 /* RootViewController.h */,
+				6EF3419719CB767900A71F64 /* RootViewController.m */,
 				CDD1D4B21986E23900DB942F /* CanvasLibrary */,
 				6EFC0E881981907B00ED7CB2 /* JSQSystemSoundPlayer */,
 				6EFC0E0119818F4A00ED7CB2 /* JSQMessagesViewController */,
@@ -1183,6 +1188,7 @@
 				6EC52B3E199019CE00D831F3 /* ConnectionVideoViewController.m in Sources */,
 				6E92E00019628E24009ECE27 /* PBJGLProgram.m in Sources */,
 				6ECDEA971974791800B06130 /* AFHTTPRequestOperationManager.m in Sources */,
+				6EF3419819CB767900A71F64 /* RootViewController.m in Sources */,
 				6EFC0E6A19818F4A00ED7CB2 /* NSString+JSQMessages.m in Sources */,
 				6EC5854D1975BED8008DDFFA /* WaitingAnimation.m in Sources */,
 				CDD1D4CB1986E23900DB942F /* CSNavigationController.m in Sources */,
@@ -1388,7 +1394,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Brayden Adams (RKPYWT3P9D)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1405,7 +1411,8 @@
 					/Users/braydenadams/Documents/FacebookSDK/FacebookSDK.framework/Versions/A,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3584cde5-f899-4716-b273-695ec568b7ef";
+				PROVISIONING_PROFILE = "1909779d-435b-4a24-85b3-fbfe4cafa4c8";
+				SDKROOT = iphoneos8.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1416,7 +1423,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Brayden Adams (RKPYWT3P9D)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1434,7 +1441,8 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3584cde5-f899-4716-b273-695ec568b7ef";
+				PROVISIONING_PROFILE = "4d7b4f51-3a19-4f74-8d79-cb6998ce1607";
+				SDKROOT = iphoneos8.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

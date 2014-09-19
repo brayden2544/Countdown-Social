@@ -81,6 +81,8 @@
         NSLog(@"Successful LOGIN");
         UIViewController *loginloadviewcontrolller = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"LoginLoadViewController"];
         [self.window setRootViewController:loginloadviewcontrolller];
+        [[UIApplication sharedApplication].keyWindow setRootViewController:loginloadviewcontrolller];
+
         [self.window makeKeyAndVisible];
 
        
@@ -97,8 +99,15 @@
         // If the session is closed
         NSLog(@"Session closed");
         // Show the user the logged-out UI
-        UIViewController *loginviewcontrolller = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-        [self.window setRootViewController:loginviewcontrolller];
+//        UIViewController *loginviewcontrolller = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"RootViewController"];
+//        [self.window setRootViewController:loginviewcontrolller];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        
+        UIViewController *mainViewController = [storyboard instantiateViewControllerWithIdentifier:@"Root"];
+        
+        self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        [[UIApplication sharedApplication].keyWindow setRootViewController:mainViewController];
+
     }
     
     // Handle errors

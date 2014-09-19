@@ -12,8 +12,15 @@
 
 @interface LoginViewController : ViewController
 
+@property (strong, nonatomic) IBOutlet UIImageView *pageImage;
+@property (strong, nonatomic) IBOutlet UIPageControl *pageControl;
+@property (strong, nonatomic) IBOutlet UIButton *facebookLoginButton;
+
+@property (strong, nonatomic) UIPageViewController *pageViewController;
+@property NSUInteger pageIndex;
+@property NSString *imageFile;
+
 - (IBAction)buttonTouched:(id)sender;
-@property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePictureView;
 
 
 @end
