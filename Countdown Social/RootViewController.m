@@ -18,7 +18,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _pageImages = @[@"coaching 1.png", @"coaching 2.png", @"coaching 3.png", @"coaching 4.png",@"coaching 5.png",@""];
+    if ((int)[[UIScreen mainScreen] bounds].size.height < 568){
+        _pageImages = @[@"smallcoaching1.png",@"smallcoaching2.png",@"smallcoaching3.png",@"smallcoaching4.png",@"smallcoaching5.png",@""];
+    }else{
+        _pageImages = @[@"coaching 1.png", @"coaching 2.png", @"coaching 3.png", @"coaching 4.png",@"coaching 5.png",@""];
+    }
     // Create page view controller
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
     self.pageViewController.dataSource = self;
