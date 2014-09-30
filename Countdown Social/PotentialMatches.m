@@ -222,7 +222,7 @@
             }
         }
               failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                  NSLog(@"failed");
+                  NSLog(@"failed with : %@",error);
               }];
         
     }

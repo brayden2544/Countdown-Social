@@ -21,6 +21,7 @@
 - (IBAction)presentMenu:(id)sender;
 - (IBAction)presentPrivacy:(id)sender;
 - (IBAction)presentTerms:(id)sender;
+- (IBAction)deleteAccount:(id)sender;
 
 
 @property (strong, nonatomic) IBOutlet UILabel *gayLabel;

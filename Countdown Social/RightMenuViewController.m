@@ -70,11 +70,11 @@
     }
     //NSLog(@"%@",connections);
     connection = [[connections objectAtIndex:indexPath.row]objectForKey:@"liked_user"];
-    //NSLog(@"connection%@", connection);
+    NSLog(@"connection%@", [connections objectAtIndex:indexPath.row]);
 
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MM/dd"];
-    NSDate *connectionNSDate = [NSDate dateWithTimeIntervalSince1970:[[connection objectForKey:@"date_time"]doubleValue]/1000];
+    NSDate *connectionNSDate = [NSDate dateWithTimeIntervalSince1970:[[[connections objectAtIndex:indexPath.row ] objectForKey:@"date_time"]doubleValue]/1000];
     NSLog(@"Date = %@", connectionNSDate);
     NSString *connectionDate = [NSString stringWithFormat:@"%@",[formatter stringFromDate:connectionNSDate ]];
     cell.label.text = [NSString stringWithFormat:@"Connected %@ ",connectionDate];

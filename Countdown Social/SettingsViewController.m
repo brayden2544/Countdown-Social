@@ -11,6 +11,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "AppDelegate.h"
 #import "User.h"
+#import "Constants.h"
 
 @interface SettingsViewController ()
 
@@ -44,6 +45,9 @@
     
 }
 - (IBAction)facebookSignOut:(id)sender {
+    [self logout];
+}
+-(void)logout{
     // If the session state is any of the two "open" states when the button is clicked
     if (FBSession.activeSession.state == FBSessionStateOpen
         || FBSession.activeSession.state == FBSessionStateOpenTokenExtended) {
@@ -79,8 +83,8 @@
     }
     User *obj = [User getInstance];
     
-    NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/";
-    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+    NSString *urlAsString =kBaseURL;
+    urlAsString = [urlAsString stringByAppendingString: @"user/"];    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     NSString *FbToken = [session accessTokenData].accessToken;
     
     
@@ -112,8 +116,26 @@
          [alert show];
          
      }];
-
-
+}
+-(void)deleteUser{
+    User *obj = [User getInstance];
+    NSDictionary *user = obj.user;
+    NSString *urlAsString =kBaseURL;
+    urlAsString = [urlAsString stringByAppendingString: [NSString stringWithFormat:@"user/%@", [user objectForKey:@"uid"]]];
+    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+    NSString *FbToken = [session accessTokenData].accessToken;
+    
+    
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    NSOperationQueue *backgroundQueue = [[NSOperationQueue alloc]init];
+    manager.operationQueue = backgroundQueue;
+    [manager DELETE:urlAsString parameters:@{} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self logout];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self deleteUser];
+    }];
 }
 -(void)uploadOrientation{
     
@@ -129,8 +151,8 @@
     
         User *obj = [User getInstance];
     
-    NSString *urlAsString =@"http://api-dev.countdownsocial.com/user/";
-    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+    NSString *urlAsString = kBaseURL;
+    urlAsString = [urlAsString stringByAppendingString: @"user/"];    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     NSString *FbToken = [session accessTokenData].accessToken;
     
     
@@ -166,10 +188,6 @@
 }
 
 
-
-
-
-
 - (IBAction)sexualOrientationChange:(id)sender {
     [self uploadOrientation];
 }
@@ -192,5 +210,9 @@
     [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"TermsViewController"]]animated:YES];
     [self.sideMenuViewController hideMenuViewController];
 
+}
+
+- (IBAction)deleteAccount:(id)sender {
+    [self deleteUser];
 }
 @end

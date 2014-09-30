@@ -37,9 +37,8 @@
     [[NSNotificationCenter defaultCenter] postNotification:notification];
     
     // Let the device know we want to receive push notifications
-	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:
-     (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
-    
+    [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
     return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
 }
 
@@ -65,9 +64,9 @@
                                           [self sessionStateChanged:session state:state error:error];
                                                                                 }];
     }
-    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
-     (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
-    return YES;
+    [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+        return YES;
 }
 
 // This method will handle ALL the session state changes in the app

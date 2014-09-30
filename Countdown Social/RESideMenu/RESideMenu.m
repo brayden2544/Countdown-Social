@@ -71,7 +71,7 @@
     _contentViewContainer = [[UIView alloc] init];
     
     _animationDuration = 0.35f;
-    _interactivePopGestureRecognizerEnabled = YES;
+    _interactivePopGestureRecognizerEnabled = NO;
   
     _menuViewControllerTransformation = CGAffineTransformMakeScale(1.5f, 1.5f);
     

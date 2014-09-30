@@ -11,11 +11,10 @@
 @interface Constants : NSObject
 
 #ifdef DEBUG
-    //#define kBaseURL @"http://api-dev.countdownsocial.com/"
-    #define kBaseURL @"http://countdown-live.elasticbeanstalk.com/"
+    #define kBaseURL @"http://api-dev.countdownsocial.com/"
 #else
-    //#define kBaseURL @"http://api-live.countdownsocial.com/";
     #define kBaseURL @"http://api-live.countdownsocial.com/";
+
 #endif
 
 @end

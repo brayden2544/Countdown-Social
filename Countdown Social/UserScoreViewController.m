@@ -20,6 +20,7 @@
 
 @end
 
+NSString* buy_restore;
 @implementation UserScoreViewController
 
 - (void)viewDidLoad
@@ -172,10 +173,13 @@
     NSLog(@"%@",[[myProduct objectAtIndex:0] productIdentifier]);
     
     //Since only one product, we do not need to choose from the array. Proceed directly to payment.
-    
+    if ([buy_restore isEqualToString:@"buy"]){
     SKPayment *newPayment = [SKPayment paymentWithProduct:[myProduct objectAtIndex:0]];
     [[SKPaymentQueue defaultQueue] addPayment:newPayment];
-    
+    }
+    else{
+    [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
+    }
 }
 
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
@@ -293,6 +297,21 @@
     
 }
 
+
+-(void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error{
+    //[activityIndicator stopAnimating];
+    
+        // Display an error here.
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Restore Unsuccessful"
+                                                        message:@"Your Restore failed. Please try again."
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+
+}
+
+
 - (void) failedTransaction: (SKPaymentTransaction *)transaction
 {
     //[activityIndicator stopAnimating];
@@ -317,10 +336,18 @@
 }
 
 - (IBAction)ButtonPressed:(id)sender{
+    buy_restore = @"buy";
     SKProductsRequest *request= [[SKProductsRequest alloc]
                                  initWithProductIdentifiers: [NSSet setWithObject: @"userScoreInAppPurchase"]];
     request.delegate = self;
     [request start];
     
+}
+
+- (IBAction)restore:(id)sender {
+    buy_restore = @"restore";
+    SKProductsRequest *request= [[SKProductsRequest alloc]initWithProductIdentifiers: [NSSet setWithObject: @"userScoreInAppPurchase"]];
+    request.delegate = self;
+    [request start];
 }
 @end

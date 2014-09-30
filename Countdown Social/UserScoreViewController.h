@@ -15,7 +15,8 @@
     
 }
 - (IBAction)presentMenu:(id)sender;
--(IBAction)ButtonPressed:(id)sender;
+- (IBAction)ButtonPressed:(id)sender;
+- (IBAction)restore:(id)sender;
 
 @property (nonatomic,strong) NSDictionary *user;
 
