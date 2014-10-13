@@ -52,7 +52,11 @@
             NSMutableArray *tempPotentialMatches = [[NSMutableArray alloc]initWithArray:instance.potentialMatches];
             
             for (id obj in instance.potentialMatches) {
-                
+            if ([obj objectForKey:@"video_uri"]== [NSNull null] ){
+                NSLog(@"no video");
+                //[tempPotentialMatches addObject:obj];
+            }else{
+
                 ///Download Video for Each instance in array
                 NSMutableDictionary *currentPotentialMatch = [[NSMutableDictionary alloc]initWithDictionary:obj];
                 NSString *videoUrlString =[currentPotentialMatch objectForKey:@"video_uri"];
@@ -90,7 +94,10 @@
                                                                                }];
                 [videoDownload resume];
             }
+            }
             instance.potentialMatches = tempPotentialMatches;
+            NSLog(@"(first match)potential matches has:%lu",(unsigned long)[instance.potentialMatches count]);
+
         }
               failure:^(AFHTTPRequestOperation *operation, NSError *error)
          {
@@ -109,12 +116,17 @@
     if ([instance.potentialMatches count] >0) {
         //instance.passedUsers = [instance.potentialMatches objectAtIndex:0];
         NSFileManager *fileManager = [NSFileManager defaultManager];
-        [fileManager removeItemAtURL:[[instance.potentialMatches objectAtIndex:0] objectForKey:@"fileURL"] error:NULL];
-        NSLog(@"Item deleted at: %@",[[instance.potentialMatches objectAtIndex:0] objectForKey:@"fileURL"] );
-        [instance.potentialMatches removeObjectAtIndex:0];
+        if ([[instance.potentialMatches objectAtIndex:0]objectForKey:@"fileURL"]) {
+            [fileManager removeItemAtURL:[[instance.potentialMatches objectAtIndex:0] objectForKey:@"fileURL"] error:NULL];
+            NSLog(@"Item deleted at: %@",[[instance.potentialMatches objectAtIndex:0] objectForKey:@"fileURL"] );
+        }
+
+    [instance.potentialMatches removeObjectAtIndex:0];
+    NSLog(@"Item deleted ");
+
     }
     
-    if ([instance.potentialMatches count] <= 5 ){
+    if ([instance.potentialMatches count] <= 4 ){
         User *obj = [User getInstance];
         NSDictionary *user = obj.user;
         //start filling Potential Matches Queue
@@ -175,6 +187,9 @@
             for (id obj in instance.potentialMatches) {
                 if ([obj objectForKey:@"fileURL"]) {
                     NSLog(@"Video Already Downloaded");
+                }else if ([obj objectForKey:@"video_uri"]== [NSNull null] ){
+                    NSLog(@"no video");
+                    //[tempPotentialMatches addObject:obj];
                 }
                 else{
                     ///Download Video for Each instance in array

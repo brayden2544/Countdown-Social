@@ -60,7 +60,14 @@ NSString* buy_restore;
 
 }
 -(void)populateScore:(NSDictionary *)score{
-    double video_view_count = [[[score objectForKey:@"video_details" ]objectForKey:@"likeCount"]doubleValue];
+    if ([score objectForKey:@"video_details"]!=[NSNull null]){
+    double video_view_count;
+    if ([[score objectForKey:@"video_details"]objectForKey:@"likeCount"]!=[NSNull null]){
+        video_view_count = [[[score objectForKey:@"video_details" ]objectForKey:@"likeCount"]doubleValue];
+    }else{
+        video_view_count =0;
+    }
+
     if ([score objectForKey:@"facebook_view_count"]!= [NSNull null]) {
         self.facebookClicksLabel.text = [NSString stringWithFormat:@"%@",[score objectForKey:@"facebook_view_count"]];
     }else{
@@ -162,7 +169,7 @@ NSString* buy_restore;
             }
         }
     }
-
+    }
 }
 
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response

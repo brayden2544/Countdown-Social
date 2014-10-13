@@ -22,6 +22,7 @@
 @implementation RightMenuViewController
 @synthesize connections;
 @synthesize connection;
+@synthesize lastMessage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -70,24 +71,45 @@
     }
     //NSLog(@"%@",connections);
     connection = [[connections objectAtIndex:indexPath.row]objectForKey:@"liked_user"];
-    NSLog(@"connection%@", [connections objectAtIndex:indexPath.row]);
 
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MM/dd"];
-    NSDate *connectionNSDate = [NSDate dateWithTimeIntervalSince1970:[[[connections objectAtIndex:indexPath.row ] objectForKey:@"date_time"]doubleValue]/1000];
-    NSLog(@"Date = %@", connectionNSDate);
-    NSString *connectionDate = [NSString stringWithFormat:@"%@",[formatter stringFromDate:connectionNSDate ]];
-    cell.label.text = [NSString stringWithFormat:@"Connected %@ ",connectionDate];
-    
-    if ([connection objectForKey:@"is_new"]&&
-        [connection objectForKey:@"is_new"]!=[NSNull null] &&
-        [[connection objectForKey:@"is_new"]boolValue]==true)  {
+    NSLog(@"connection%@", [connections objectAtIndex:indexPath.row]);
+    NSLog(@"IS new??%@",[[connections objectAtIndex:indexPath.row] objectForKey:@"is_new"]);
+    if (
+        [[[connections objectAtIndex:indexPath.row] objectForKey:@"is_new"]boolValue]==1)  {
         cell.notificationImage.hidden = FALSE;
     }
     else{
         cell.notificationImage.hidden = true;
     }
-    if ([connection objectForKey:@"instagram_username"]!=[NSNull null]) {
+
+    
+    if ([[connections objectAtIndex:indexPath.row]objectForKey:@"last_message"]&&
+        [[connections objectAtIndex:indexPath.row]objectForKey:@"last_message"] !=[NSNull null]&&
+        [[[connections objectAtIndex:indexPath.row]objectForKey:@"last_message"] objectForKey:@"content"]&&
+        [[[connections objectAtIndex:indexPath.row]objectForKey:@"last_message"] objectForKey:@"content"]!=[NSNull null]) {
+        lastMessage = [[connections objectAtIndex:indexPath.row]objectForKey:@"last_message"];
+
+        NSString *fullMessage = [NSString stringWithFormat:@"%@",[lastMessage objectForKey:@"content"]];
+        if (fullMessage.length > 20) {
+            NSString *shortMessage = [fullMessage substringWithRange:NSMakeRange(0,20)];
+            cell.label.text = shortMessage;
+        }else{
+            cell.label.text = fullMessage;
+        }
+        if ([lastMessage objectForKey:@"is_new"] !=[NSNull null]&&
+            [[lastMessage objectForKey:@"is_new"]boolValue]==1) {
+            cell.notificationImage.hidden = false;
+        }
+        
+    }else{
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"MM/dd"];
+        NSDate *connectionNSDate = [NSDate dateWithTimeIntervalSince1970:[[[connections objectAtIndex:indexPath.row ] objectForKey:@"date_time"]doubleValue]/1000];
+        NSLog(@"Date = %@", connectionNSDate);
+        NSString *connectionDate = [NSString stringWithFormat:@"%@",[formatter stringFromDate:connectionNSDate ]];
+        cell.label.text = [NSString stringWithFormat:@"Connected %@ ",connectionDate];
+    }
+       if ([connection objectForKey:@"instagram_username"]!=[NSNull null]) {
         //show insta button
         cell.instagramImage.hidden = false;
     }

@@ -1410,8 +1410,9 @@
 					"$(inherited)",
 					/Users/braydenadams/Documents/FacebookSDK/FacebookSDK.framework/Versions/A,
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4d7b4f51-3a19-4f74-8d79-cb6998ce1607";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos8.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -1439,9 +1440,9 @@
 					"$(inherited)",
 					/Users/braydenadams/Documents/FacebookSDK/FacebookSDK.framework/Versions/A,
 				);
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4d7b4f51-3a19-4f74-8d79-cb6998ce1607";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos8.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;

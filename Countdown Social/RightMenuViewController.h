@@ -16,6 +16,7 @@
 
 @property (strong, nonatomic) NSMutableArray *connections;
 @property (strong, nonatomic) NSMutableDictionary *connection;
+@property (strong, nonatomic) NSMutableDictionary *lastMessage;
 
 
 

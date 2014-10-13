@@ -41,6 +41,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden = YES;
+    [self.locationManager requestWhenInUseAuthorization];
     self.setLocationMapView.delegate=self;
     self.user = [User getInstance];
     self.fbProfilePic = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"candidate frame"]];

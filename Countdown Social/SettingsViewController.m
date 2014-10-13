@@ -42,6 +42,16 @@
         self.straightLabel.text = @"Guys";
         self.gayLabel.text = @"Girls";
     }
+    if ([[obj.user objectForKey:@"straight"]boolValue]==1) {
+        [sexualOrientation setOn:true animated:YES];
+    }else{
+        [sexualOrientation setOn:false animated:YES];
+    }
+    if ([[obj.user objectForKey:@"active"]boolValue]==1) {
+        [hideProfile setOn:true animated:YES];
+    }else{
+        [hideProfile setOn:false animated:YES];
+    }
     
 }
 - (IBAction)facebookSignOut:(id)sender {

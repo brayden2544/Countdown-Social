@@ -26,6 +26,7 @@
 @property (retain) UIImageView *blur;
 @property (retain) UIView *darken;
 @property (retain) UIView *potentialMatchesLoadingView;
+@property UIImageView *profilePicView;
 @property (strong, nonatomic) IBOutlet UIView *createMatch;
 @property  BOOL playButtonHeld;
 @property  BOOL likeCurrentUser;
@@ -37,10 +38,12 @@
 @property NSOperationQueue *backgroundQueue;
 @property double profileTime;
 @property double videoFinishedTime;
+@property PotentialMatches *potentialMatchesObject;
 
 @property NSTimer *potentialMatchesTimer;
 @property NSTimer *videoFinishedTimer;
 @property NSTimer *loadingTimer;
+@property NSTimer *profilePicTimer;
 
 @end
 
@@ -58,6 +61,8 @@
 
 - (void)viewDidLoad
 {
+    
+    NSLog(@"ViewDidLoad");
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(videoHasFinishedPlaying:)
                                                  name:AVPlayerItemDidPlayToEndTimeNotification
@@ -76,6 +81,7 @@
     countdownTimer = [[CountdownTimer alloc]init];
     [countdownTimer changePercentage:100];
     [self.view addSubview:countdownTimer];
+    [self.view bringSubviewToFront:countdownTimer];
     
     
     
@@ -85,21 +91,18 @@
     self.moviePlayerView = [[PlayerView alloc]initWithFrame:CGRectMake (0, 100, 320, 320)];
     self.moviePlayerView.player = [[AVPlayer alloc]init];
     [self.view addSubview:self.moviePlayerView];
-
+    
     self.loadingTimer =[NSTimer scheduledTimerWithTimeInterval: .05
                                                         target: self
                                                       selector:@selector(VideoTimer:)
                                                       userInfo: nil repeats:YES];
-
+    
     
     self.blur=[[UIImageView alloc] initWithFrame:CGRectMake (0, 100, 320, 320)];
     
     
-    
     //make countdown timer transparent.
     self.timer.alpha = .7;
-    
-    NSLog(@"ViewDidLoad");
     
     //Create Seven Switches
     CGRect switchRect = CGRectMake(0, 0, 35 , 60);
@@ -133,7 +136,7 @@
     self.snapchatSwitch.borderColor = [UIColor whiteColor];
     self.snapchatSwitch.activeColor = [UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:0.3];
     [self.snapchatSwitch addTarget:self action:@selector(snapchat) forControlEvents:UIControlEventValueChanged];
-
+    
     self.twitterSwitch.thumbTintColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"twitterThumb"]];
     self.twitterSwitch.onTintColor = [UIColor colorWithRed:64/255.0 green:153/255.0 blue:255/255.0 alpha:1];
     self.twitterSwitch.center = CGPointMake(220, 225);
@@ -141,7 +144,7 @@
     self.twitterSwitch.borderColor = [UIColor whiteColor];
     self.twitterSwitch.activeColor = [UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:0.3];
     [self.twitterSwitch addTarget:self action:@selector(twitter) forControlEvents:UIControlEventValueChanged];
-
+    
     
     self.instagramSwitch.thumbTintColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"instagramThumb"]];
     self.instagramSwitch.onTintColor = [UIColor colorWithRed:69/255.0 green:131/255.0 blue:177/255.0 alpha:1];
@@ -150,17 +153,17 @@
     self.instagramSwitch.borderColor = [UIColor whiteColor];
     self.instagramSwitch.activeColor = [UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:0.3];
     [self.instagramSwitch addTarget:self action:@selector(instagram) forControlEvents:UIControlEventValueChanged];
-
+    
     
     [self.createMatch addSubview:self.instagramSwitch];
     [self.createMatch addSubview:self.facebookSwitch];
     [self.createMatch addSubview:self.phoneSwitch];
     [self.createMatch addSubview:self.twitterSwitch];
     [self.createMatch addSubview:self.snapchatSwitch];
-
+    
     //Perform Button Check after switch creation
     [self buttonCheck];
-
+    
     
     //get first match
     [self firstMatch];
@@ -171,13 +174,12 @@
     NSLog(@"first Match");
     
     //Get instance of potential matches
-    PotentialMatches *obj =[PotentialMatches getInstance];
+    _potentialMatchesObject =[PotentialMatches getInstance];
     //Test to see if the array has potential matches
-    if ([obj.potentialMatches count] == 0){
+    if ([_potentialMatchesObject.potentialMatches count] == 0){
         [self.view addSubview:self.potentialMatchesLoadingView];
         _loading = TRUE;
         [NSTimer    scheduledTimerWithTimeInterval:2.0    target:self    selector:@selector(nextMatch)    userInfo:nil repeats:NO];
-        
     }
     //If there are users
     else {
@@ -187,12 +189,12 @@
 
 -(void)checkForVideo{
     //_checkVideoCount +=1;
-            NSLog(@"check for video");
-        //Get current potential match
-        PotentialMatches *obj =[PotentialMatches getInstance];
-    if ([obj.potentialMatches count]>0) {
-    
-        currentPotentialMatch =[obj.potentialMatches objectAtIndex:0];
+    NSLog(@"check for video");
+    //Get current potential match
+    _potentialMatchesObject =[PotentialMatches getInstance];
+    if ([_potentialMatchesObject.potentialMatches count]>0) {
+        
+        currentPotentialMatch =[_potentialMatchesObject.potentialMatches objectAtIndex:0];
         
         if ([[currentPotentialMatch objectForKey:@"match"]boolValue]==true) {
             NSLog(@"Currrent video is a connection");
@@ -236,7 +238,7 @@
             _likeCurrentUser = FALSE;
             
             [self.potentialMatchesLoadingView removeFromSuperview];
-
+            
             //Set text for name label
             _nameLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
             [self.nameView startCanvasAnimation];
@@ -259,20 +261,34 @@
             [self setProfilePic];
             [self playVideo];
         }
-        else{
-            [self.view addSubview:self.potentialMatchesLoadingView];
+        else if ([currentPotentialMatch objectForKey:@"video_uri"]==[NSNull null]){
+            _loading = FALSE;
             _likeCurrentUser = FALSE;
-            _loading = TRUE;
-            [NSTimer    scheduledTimerWithTimeInterval:2.0    target:self    selector:@selector(checkForVideo)    userInfo:nil repeats:NO];
-        }
+            
+            [self.potentialMatchesLoadingView removeFromSuperview];
+            
+            //Set text for name label
+            profileTime = 2.0;
+            _nameLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
+            [self.nameView startCanvasAnimation];
+            [self setProfilePic];
+            [self noVideoProfilePic];
 
-    }
+        }
         else{
             [self.view addSubview:self.potentialMatchesLoadingView];
             _likeCurrentUser = FALSE;
             _loading = TRUE;
             [NSTimer    scheduledTimerWithTimeInterval:2.0    target:self    selector:@selector(checkForVideo)    userInfo:nil repeats:NO];
         }
+        
+    }
+    else{
+        [self.view addSubview:self.potentialMatchesLoadingView];
+        _likeCurrentUser = FALSE;
+        _loading = TRUE;
+        [NSTimer    scheduledTimerWithTimeInterval:2.0    target:self    selector:@selector(checkForVideo)    userInfo:nil repeats:NO];
+    }
 }
 
 //Set profile picture for current potential match
@@ -288,36 +304,85 @@
     
     
     NSString *FbToken = [session accessTokenData].accessToken;
-
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
     manager.responseSerializer = [AFImageResponseSerializer serializer];
     manager.operationQueue = _backgroundQueue;
     [manager GET:picURL parameters:@{@"height":@200,
                                      @"width": @200} success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        self.fbProfilePic.image = responseObject;
+                                         self.fbProfilePic.image = responseObject;
                                          self.imageView.hidden = FALSE;
                                          [self.imageView startCanvasAnimation];
-        NSLog(@"resonse Object %@",responseObject);
 
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Photo failed to load%@",error);
-    }];
-     
+                                         NSLog(@"resonse Object %@",responseObject);
+                                         
+                                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                         NSLog(@"Photo failed to load%@",error);
+                                     }];
+    
     
     //set size limitations of current potential match
     self.fbProfilePic.layer.cornerRadius = self.fbProfilePic.frame.size.height/2;
     self.fbProfilePic.layer.masksToBounds = YES;
+}
+
+-(void)noVideoProfilePic{
+    NSLog(@"noVideoProfilePic");
+    NSString *picURL = kBaseURL;
+    picURL = [picURL stringByAppendingString:[NSString stringWithFormat:@"user/%@/photo", [currentPotentialMatch objectForKey:@"uid"]]];
+    NSLog(@"setProfilePicURL:%@",picURL);
+    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+    self.blur.hidden = TRUE;
+    self.createMatch.hidden = TRUE;
+    self.darken.hidden = TRUE;
+    _profilePicView.hidden = FALSE;
+    
+    NSString *FbToken = [session accessTokenData].accessToken;
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+    manager.responseSerializer = [AFImageResponseSerializer serializer];
+    manager.operationQueue = _backgroundQueue;
+    [manager GET:picURL parameters:@{@"height":@640,
+                                     @"width": @640} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                         _profilePicView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 100, 320, 320)];
+                                         _profilePicView.image = responseObject;
+                                         _videoImage = responseObject;
+                                         [self.view addSubview:_profilePicView];
+                                         [countdownTimer changePercentage:100.0];
+                                         //[self.view bringSubviewToFront:_profilePicView];
+                                         _profilePicView.hidden = TRUE;
+                                         if (playButton.isTouchInside) {
+                                             [self PlayButtonHeld];
+                                         }else{
+                                         [self PlayButtonReleased];
+                                         }
+                                         NSLog(@"resonse Object %@",responseObject);
+                                         
+                                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                         NSLog(@"Photo failed to load%@",error);
+                                     }];
+
 
     
 }
 
 /*Captures Screenshot of Current Matching Video*/
 - (void)CaptureSnapshot{
+    if ([currentPotentialMatch objectForKey:@"video_uri"]==[NSNull null]) {
+
+    }else{
+        CGImageRef imageRef;
     AVAssetImageGenerator *imageGenerator = [[AVAssetImageGenerator alloc]initWithAsset:self.currentVideo];
-    CGImageRef imageRef = [imageGenerator copyCGImageAtTime:self.moviePlayer.currentTime actualTime:NULL error:NULL];
-//    UIImage *thumbnail = [self.moviePlayer thumbnailImageAtTime:self.moviePlayer.currentPlaybackTime
-//                                                     timeOption:MPMovieTimeOptionNearestKeyFrame];
+        if (self.moviePlayer.currentItem >0) {
+            imageRef = [imageGenerator copyCGImageAtTime:self.moviePlayer.currentTime actualTime:NULL error:NULL];
+        }else{
+            imageRef = [imageGenerator copyCGImageAtTime:CMTimeMake(6, 0) actualTime:NULL error:NULL];
+ 
+        }
+    //    UIImage *thumbnail = [self.moviePlayer thumbnailImageAtTime:self.moviePlayer.currentPlaybackTime
+    //                                                     timeOption:MPMovieTimeOptionNearestKeyFrame];
     
     UIImage *thumbnail = [UIImage imageWithCGImage:imageRef];
     CIContext *context = [CIContext contextWithOptions:nil];
@@ -335,7 +400,7 @@
     _videoImage = [UIImage imageWithCGImage:cgImage];
     //create a UIImage for this function to "return" so that ARC can manage the memory of the blur... ARC can't manage CGImageRefs so we need to release it before this function "returns" and ends.
     CGImageRelease(cgImage);//release CGImageRef because ARC doesn't manage this on its own.
-    
+    }
     //once image is captured Blur the image and present it.
     [self BlurImage];
 }
@@ -345,12 +410,12 @@
 -(void)BlurImage{
     
     //Blur Video Screenshot and add it infront of video
-    self.darken=[[UIView alloc] initWithFrame:self.moviePlayerView.frame];
+    self.darken=[[UIView alloc] initWithFrame:CGRectMake(0, 100, 320, 320)];
     self.darken.backgroundColor = [UIColor colorWithRed:34/255.0 green:48/255.0 blue:46/255.0 alpha:1];
     self.darken.alpha = 0.4;
     [self.blur setImage:_videoImage];
     self.blur.userInteractionEnabled = YES;
-    self.blur.frame = self.moviePlayerLayer.frame;
+    self.blur.frame = CGRectMake(0, 100, 320, 320);
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.view addSubview:self.blur];
@@ -364,22 +429,22 @@
 }
 
 - (void) videoHasFinishedPlaying:(NSNotification *)paramNotification{
-            //movie finished playing
-        if(_likeCurrentUser == FALSE){
-            self.videoFinishedTimer = [NSTimer scheduledTimerWithTimeInterval:.1 target:self selector:@selector(videoFinished) userInfo:nil repeats:YES];
-        }else{
-            [self nextMatch];
-            _likeCurrentUser = FALSE;
-        }
+    //movie finished playing
+    if(_likeCurrentUser == FALSE){
+        self.videoFinishedTimer = [NSTimer scheduledTimerWithTimeInterval:.1 target:self selector:@selector(videoFinished) userInfo:nil repeats:YES];
+    }else{
+        [self nextMatch];
+        _likeCurrentUser = FALSE;
+    }
     
-      }
+}
 
 -(void)videoFinished{
     if (videoFinishedTime > 0) {
         if (_playButtonHeld ==TRUE) {
             videoFinishedTime -= .1;
         }
-                self.playButtonLabel.text = @"Hold to Play";
+        self.playButtonLabel.text = @"Hold to Play";
         [self CaptureSnapshot];
     }else{
         if (_playButtonHeld ==TRUE) {
@@ -397,36 +462,62 @@
         [self userPass];
         _likeCurrentUser = false;
     }
-
+    
 }
 -(void)PlayButtonHeld{
+    [self.profilePicTimer invalidate];
     if( _loading ==FALSE & _likeCurrentUser ==FALSE) {
         _playButtonHeld = TRUE;
         self.blur.hidden = TRUE;
         self.createMatch.hidden = TRUE;
         self.darken.hidden = TRUE;
         self.playButtonLabel.text = @"Release to Connect";
-        //[self.sideMenuViewController setPanGestureEnabled:NO];
-        [self.view bringSubviewToFront:self.moviePlayerView];
-        if (videoFinishedTime ==1.5) {
+        if ([currentPotentialMatch objectForKey:@"video_uri"]==[NSNull null]) {
+            NSLog(@"play button held with no video");
+            _profilePicView.hidden = false;
+            [self.view bringSubviewToFront:_profilePicView];
+            NSLog(@"%f",profileTime);
+            self.profilePicTimer = [NSTimer scheduledTimerWithTimeInterval:.05 target:self selector:@selector(ProfileTimer) userInfo:nil repeats:YES];
+            //self.profilePicTimer = [NSTimer timerWithTimeInterval:.1 target:self selector:@selector(ProfileTimer) userInfo:nil repeats:YES];
+
+        }else{
+            [self.view bringSubviewToFront:self.moviePlayerView];
+            if (videoFinishedTime ==1.5) {
             [self.moviePlayerView.player play];
+            }
         }
     }
 }
-
+-(void)changeProfilePicTime{
+//    if (_playButtonHeld ==TRUE) {
+//        profileTime -=.1;
+//        double timeLeft = profileTime/3 *100;
+//        [countdownTimer changePercentage:timeLeft];
+//        NSLog(@"%f",profileTime);
+//    }else{
+//        //[self.profilePicTimer invalidate];
+//    }
+//    if (profileTime <0.1) {
+//        [self userPass];
+//        [self nextMatch];
+//        }
+}
 
 - (IBAction)ReleasePlay:(id)sender {
     [self PlayButtonReleased];
-   }
+}
 -(void)PlayButtonReleased{
     if(_likeCurrentUser ==FALSE & _loading ==FALSE){
         _playButtonHeld = FALSE;
-        //[self.sideMenuViewController setPanGestureEnabled:YES];
+        if ([currentPotentialMatch objectForKey:@"video_uri"]==[NSNull null]) {
+            _profilePicView.hidden = TRUE;
+        }else{
         [self.moviePlayerView.player pause];
+        }
         self.playButtonLabel.text = @"Hold to Play";
         [self CaptureSnapshot];
     }
-
+    
 }
 
 -(void) playVideo{
@@ -462,8 +553,12 @@
     
     urlAsString = [urlAsString stringByAppendingString:[currentPotentialMatch objectForKey:@"uid"]];
     urlAsString =[urlAsString stringByAppendingString:@"/pass/"];
-    urlAsString = [urlAsString stringByAppendingString:[currentPotentialMatch objectForKey:@"video_filename"]];
-
+    if ([currentPotentialMatch objectForKey:@"video_uri"]==[NSNull null]) {
+        urlAsString = [urlAsString stringByAppendingString:[currentPotentialMatch objectForKey:@"uid"]];
+        urlAsString = [urlAsString stringByAppendingString:@".NONE"];
+    }else{
+        urlAsString = [urlAsString stringByAppendingString:[currentPotentialMatch objectForKey:@"video_filename"]];
+    }
     
     
     
@@ -543,11 +638,13 @@
 }
 -(void) userLike{
     [self.videoFinishedTimer invalidate];
+    videoFinishedTime =0;
     _likeCurrentUser = TRUE;
     NSMutableDictionary *params = [[NSMutableDictionary alloc]init];
     self.blur.hidden = TRUE;
     self.createMatch.hidden = TRUE;
     self.darken.hidden = TRUE;
+    self.profilePicView.hidden=TRUE;
     
     if (self.instagramSwitch.isOn == TRUE) {
         [params setValue:@"true" forKey:@"instagram"];
@@ -597,8 +694,12 @@
     urlAsString = [urlAsString stringByAppendingString: @"user/"];
     urlAsString = [urlAsString stringByAppendingString:[currentPotentialMatch objectForKey:@"uid"]];
     urlAsString =[urlAsString stringByAppendingString:@"/like/"];
+    if ([currentPotentialMatch objectForKey:@"video_uri"]==[NSNull null]) {
+        urlAsString = [urlAsString stringByAppendingString:[currentPotentialMatch objectForKey:@"uid"]];
+        urlAsString = [urlAsString stringByAppendingString:@".NONE"];
+    }else{
     urlAsString = [urlAsString stringByAppendingString:[currentPotentialMatch objectForKey:@"video_filename"]];
-
+    }
     
     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
     NSString *FbToken = [session accessTokenData].accessToken;
@@ -625,14 +726,19 @@
             
         }else{
         }
-
+        
     }
           failure:^(AFHTTPRequestOperation *operation,  NSError *error)
      {
          NSLog(@"Error: %@", error);
      }];
+    if ([currentPotentialMatch objectForKey:@"video_uri"]==[NSNull null]) {
+        NSLog(@"checking to see if this works");
+        [self nextMatch];
+    }
+    else{
     [self.moviePlayerView.player play];
-
+    }
     
 }
 
@@ -641,14 +747,16 @@
     
     [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ConnectionViewController"]]animated:YES];
     [self.sideMenuViewController hideMenuViewController];
-  
+    
 }
 
 - (void)nextMatch{
     _likeCurrentUser = FALSE;
-    self.imageView.hidden = YES;
+    self.imageView.hidden = TRUE;
+    self.profilePicView.hidden = TRUE;
+    _profilePicView.hidden = TRUE;
     [PotentialMatches nextMatch];
-
+    
     [self checkForVideo];
 }
 
@@ -683,7 +791,7 @@
             [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ProfileViewController"]]animated:YES];
             [self.sideMenuViewController hideMenuViewController];
         }
-
+        
     }
 }
 
@@ -750,12 +858,12 @@
             addPhone = @"Want him to text you? \n Click below to add your number first.";
         }else{
             addPhone = @"Want to text her? \n Click below to add your number first. ";
-
+            
         }
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:addPhone delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Social Account Settings", nil];
         actionSheet.tag = 0;
         [actionSheet showInView:self.view];
-    }   
+    }
 }
 
 -(void)snapchat{
@@ -774,7 +882,7 @@
         actionSheet.tag = 0;
         [actionSheet showInView:self.view];
     }
-
+    
 }
 
 -(void)twitter{
@@ -822,6 +930,8 @@
             Float64 time_seconds = CMTimeGetSeconds(time);
             NSNumber *time_remaining = [[NSNumber alloc]initWithDouble:time_seconds];
             [currentPotentialMatch setValue:time_remaining forKey:@"time_remaining"];
+        }else if ([currentPotentialMatch objectForKey:@"video_uri"]==[NSNull null]){
+            
         }
     }else{
         [PotentialMatches nextMatch];
@@ -835,36 +945,67 @@
     }
 }
 
+- (void)ProfileTimer{
 
-- (void)VideoTimer:(NSTimer *)timer{
-    //Initialize CountdownTimer
-    Float64 timeLeft = CMTimeGetSeconds(self.moviePlayerView.player.currentItem.currentTime);
-    //timeLeft+=videoFinishedTime;
-    Float64 duration = CMTimeGetSeconds(self.moviePlayerView.player.currentItem.duration);
-    duration+=videoFinishedTime;
-    _timeRemaining =(1 -(timeLeft / duration))*100;
+    if ([currentPotentialMatch objectForKey:@"video_uri"]==[NSNull null]){
+        if (_playButtonHeld ==TRUE) {
+            profileTime -=.05;
+            // [countdownTimer changePercentage:timeLeft];
+            NSLog(@"%f",profileTime);
+        }else{
+            [self.profilePicTimer invalidate];
+        }
+        if (profileTime <0.05) {
+            [self userPass];
+            _profilePicView.hidden = TRUE;
+
+        }
+    
+    _timeRemaining = (profileTime/3)*100;
     [countdownTimer changePercentage:_timeRemaining];
+    NSLog(@"%f",(1-(profileTime/3))*100);
     if (_timeRemaining ==100) {
         _miniWatchButton.hidden = TRUE;
     }
     else if (_timeRemaining >=15){
         _miniWatchButton.hidden = FALSE;
     }
-    
+    }
+}
+
+- (void)VideoTimer:(NSTimer *)timer{
+    Float64 timeLeft;
+    Float64 duration;
+    if ([currentPotentialMatch objectForKey:@"video_uri"]!=[NSNull null]){
+         //Initialize CountdownTimer
+        timeLeft = CMTimeGetSeconds(self.moviePlayerView.player.currentItem.currentTime);
+        //timeLeft+=videoFinishedTime;
+        duration = CMTimeGetSeconds(self.moviePlayerView.player.currentItem.duration);
+        duration+=videoFinishedTime;
+        _timeRemaining =(1-(timeLeft/duration))*100;
+        [countdownTimer changePercentage:_timeRemaining];
+    }
+    if (_timeRemaining ==100) {
+        _miniWatchButton.hidden = TRUE;
+    }
+    else if (_timeRemaining >=15){
+        _miniWatchButton.hidden = FALSE;
+    }
+
 }
 
 
 - (IBAction)Like:(id)sender {
-
-        if ([user objectForKey:@"video_uri"] != [NSNull null]) {
-            [self userLike];
-            
-        }
-        else{
-            UIActionSheet *makeVideo = [[UIActionSheet alloc]initWithTitle:[NSString stringWithFormat:@"%@ can't see you yet! \n Upload a video so you can connect with %@.", [currentPotentialMatch objectForKey:@"firstName"], [currentPotentialMatch objectForKey:@"firstName"]] delegate:self                                                                                    cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Make my video",@"Continue without video", nil];
-            makeVideo.tag = 2;
-            [makeVideo showInView:self.view];
-        }
+    
+    //if ([user objectForKey:@"video_uri"] != [NSNull null]) {
+        [self userLike];
+        
+//    }
+//    else{
+//        UIActionSheet *makeVideo = [[UIActionSheet alloc]initWithTitle:[NSString stringWithFormat:@"%@ can't see you yet! \n Upload a video so you can connect with %@.", [currentPotentialMatch objectForKey:@"firstName"], [currentPotentialMatch objectForKey:@"firstName"]] delegate:self                                                                                    cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Make my video",@"Continue without video", nil];
+//        makeVideo.tag = 2;
+//        [makeVideo showInView:self.view];
+//    }
 }
 
 - (IBAction)presentLeftMenu:(id)sender {
