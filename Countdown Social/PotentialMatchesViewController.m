@@ -235,6 +235,7 @@
         }
         
         if ([currentPotentialMatch objectForKey:@"fileURL"]) {
+            self.moviePlayerView.hidden = false;
             _loading = FALSE;
             _likeCurrentUser = FALSE;
             
@@ -263,6 +264,7 @@
             [self playVideo];
         }
         else if ([currentPotentialMatch objectForKey:@"video_uri"]==[NSNull null]){
+            self.moviePlayerView.hidden = TRUE;
             _loading = FALSE;
             _likeCurrentUser = FALSE;
             

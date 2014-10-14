@@ -244,7 +244,7 @@
         
     }
         if ([instance.potentialMatches count] ==0) {
-       instance.moreMatchesTimer = [NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(moreMatches) userInfo:nil repeats:NO];
+       instance.moreMatchesTimer = [NSTimer scheduledTimerWithTimeInterval:9.0 target:self selector:@selector(moreMatches) userInfo:nil repeats:NO];
     }
 
     return instance;
