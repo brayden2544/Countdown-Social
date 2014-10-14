@@ -42,12 +42,14 @@
             NSLog(@"Connections not downloaded %@",error);
         }];
         urlAsString =kBaseURL;
-        urlAsString = [urlAsString stringByAppendingString:[NSString stringWithFormat:@"user/%@/matches/all", [user objectForKey:@"uid"]]];
+        urlAsString = [urlAsString stringByAppendingString:[NSString stringWithFormat:@"user/%@/matches/new", [user objectForKey:@"uid"]]];
                   [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSMutableArray * newConnections = [[NSMutableArray alloc]initWithArray:instance.connections];
         for (NSDictionary *newConnection in responseObject) {
             for (NSDictionary *connection in newConnections) {
-                if ([[NSString stringWithFormat:@"%@",[[connection objectForKey:@"liked_user"]objectForKey:@"uid"]] isEqualToString:[NSString stringWithFormat:@"%@",[[newConnection objectForKey:@"liked_user"]objectForKey:@"uid"]]]) {
+                NSString *uid = [NSString stringWithFormat:@"%@",[[newConnection objectForKey:@"liked_user"]objectForKey:@"uid"]];
+                NSString *oldUid =[NSString stringWithFormat:@"%@",[[connection objectForKey:@"liked_user"]objectForKey:@"uid"]];
+                if ([uid isEqualToString:oldUid]) {
                     NSMutableDictionary *newConnectionWithNotification = [[NSMutableDictionary alloc]initWithDictionary: newConnection];
                     [newConnectionWithNotification setValue:@true forKey:@"is_new"];
                     [instance.connections replaceObjectAtIndex:[instance.connections indexOfObjectIdenticalTo:connection] withObject:newConnectionWithNotification];

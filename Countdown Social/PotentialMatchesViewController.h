@@ -28,6 +28,8 @@
 @property (nonatomic,strong) NSURL *videoUrl;
 @property (nonatomic,strong) PlayerView *moviePlayerView;
 
+@property (nonatomic, strong)NSTimer *checkForVideoTimer;
+
 
 @property (nonatomic,strong) NSString *name;
 @property (nonatomic, strong) NSDictionary *user;

@@ -188,6 +188,7 @@
 }
 
 -(void)checkForVideo{
+    [self.checkForVideoTimer invalidate];
     //_checkVideoCount +=1;
     NSLog(@"check for video");
     //Get current potential match
@@ -279,7 +280,7 @@
             [self.view addSubview:self.potentialMatchesLoadingView];
             _likeCurrentUser = FALSE;
             _loading = TRUE;
-            [NSTimer    scheduledTimerWithTimeInterval:2.0    target:self    selector:@selector(checkForVideo)    userInfo:nil repeats:NO];
+            self.checkForVideoTimer = [NSTimer    scheduledTimerWithTimeInterval:2.0    target:self    selector:@selector(checkForVideo)    userInfo:nil repeats:NO];
         }
         
     }
@@ -287,7 +288,7 @@
         [self.view addSubview:self.potentialMatchesLoadingView];
         _likeCurrentUser = FALSE;
         _loading = TRUE;
-        [NSTimer    scheduledTimerWithTimeInterval:2.0    target:self    selector:@selector(checkForVideo)    userInfo:nil repeats:NO];
+        self.checkForVideoTimer = [NSTimer    scheduledTimerWithTimeInterval:2.0    target:self    selector:@selector(checkForVideo)    userInfo:nil repeats:NO];
     }
 }
 
@@ -466,7 +467,7 @@
 }
 -(void)PlayButtonHeld{
     [self.profilePicTimer invalidate];
-    if( _loading ==FALSE & _likeCurrentUser ==FALSE) {
+    if( _loading ==FALSE && _likeCurrentUser ==FALSE && playButton.isTouchInside == TRUE) {
         _playButtonHeld = TRUE;
         self.blur.hidden = TRUE;
         self.createMatch.hidden = TRUE;
@@ -477,6 +478,7 @@
             _profilePicView.hidden = false;
             [self.view bringSubviewToFront:_profilePicView];
             NSLog(@"%f",profileTime);
+            [self.profilePicTimer invalidate];
             self.profilePicTimer = [NSTimer scheduledTimerWithTimeInterval:.05 target:self selector:@selector(ProfileTimer) userInfo:nil repeats:YES];
             //self.profilePicTimer = [NSTimer timerWithTimeInterval:.1 target:self selector:@selector(ProfileTimer) userInfo:nil repeats:YES];
 
@@ -547,9 +549,7 @@
     urlAsString = [urlAsString stringByAppendingString:@"user/"];
     PotentialMatches *obj =[PotentialMatches getInstance];
     [obj.passedUsers addObject:currentPotentialMatch];
-    //    NSFileManager *fileManager = [NSFileManager defaultManager];
-    //    [fileManager removeItemAtURL:[currentPotentialMatch objectForKey:@"fileURL"] error:NULL];
-    //    NSLog(@"Item deleted");
+
     
     urlAsString = [urlAsString stringByAppendingString:[currentPotentialMatch objectForKey:@"uid"]];
     urlAsString =[urlAsString stringByAppendingString:@"/pass/"];
@@ -948,14 +948,14 @@
 - (void)ProfileTimer{
 
     if ([currentPotentialMatch objectForKey:@"video_uri"]==[NSNull null]){
-        if (_playButtonHeld ==TRUE) {
+        if (_playButtonHeld ==TRUE &&playButton.isTouchInside == true) {
             profileTime -=.05;
             // [countdownTimer changePercentage:timeLeft];
             NSLog(@"%f",profileTime);
         }else{
             [self.profilePicTimer invalidate];
         }
-        if (profileTime <0.05) {
+        if (profileTime <=0.05 && profileTime >0) {
             [self userPass];
             _profilePicView.hidden = TRUE;
 

@@ -108,7 +108,7 @@
 }
 - (void)notificationStatus{
     Connection *obj = [Connection getInstance];
-    if ([[obj.connection objectForKey:@"is_new"]isEqual:@true]) {
+    if ([[obj.connection objectForKey:@"is_new"]boolValue] ==1 ) {
         NSMutableDictionary *viewedConnection = [[NSMutableDictionary alloc]initWithDictionary: connection];
         [viewedConnection setValue:@false forKeyPath:@"is_new"];
         
@@ -123,7 +123,7 @@
         manager.responseSerializer = [AFJSONResponseSerializer serializer];
         NSDictionary *params = @{};
         [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSLog(@"User shown as seen");
+            NSLog(@"User shown as seen%@", responseObject);
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"User not shown as seen because of errror%@", error);
             //Run notification status again if first attempt is not successful.
