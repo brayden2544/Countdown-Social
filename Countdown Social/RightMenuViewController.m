@@ -17,6 +17,7 @@
 @interface RightMenuViewController ()
 
 @property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 @end
 
 @implementation RightMenuViewController
@@ -47,6 +48,14 @@
     self.ConnectionsTableView.layer.cornerRadius = 5;
     self.ConnectionsTableView.layer.masksToBounds = YES;
     
+    // Initialize the refresh control.
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor purpleColor];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self
+                            action:@selector(updateTable)
+                  forControlEvents:UIControlEventValueChanged];
+
     
 }
 
@@ -59,6 +68,9 @@
     ConnectionsList *obj = [ConnectionsList getInstance];
     connections = obj.connections;
     [self.ConnectionsTableView reloadData];
+    [self.refreshControl endRefreshing];
+    NSLog(@"update Table Called");
+
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"Connection should be populating");
