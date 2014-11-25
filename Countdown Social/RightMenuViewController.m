@@ -18,6 +18,7 @@
 
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) NSMutableDictionary *imageDictionary;
 @end
 
 @implementation RightMenuViewController
@@ -39,6 +40,7 @@
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTable) name:@"newConnections" object:nil];
 
+    _imageDictionary = [[NSMutableDictionary alloc]init];
     ConnectionsList *obj = [ConnectionsList getInstance];
     connections = obj.connections;
     self.ConnectionsTableView.dataSource = self;
@@ -50,13 +52,14 @@
     
     // Initialize the refresh control.
     self.refreshControl = [[UIRefreshControl alloc] init];
-    self.refreshControl.backgroundColor = [UIColor purpleColor];
+    //self.refreshControl.backgroundColor = [UIColor purpleColor];
     self.refreshControl.tintColor = [UIColor whiteColor];
     [self.refreshControl addTarget:self
                             action:@selector(updateTable)
                   forControlEvents:UIControlEventValueChanged];
+    [self.ConnectionsTableView addSubview:self.refreshControl];
+    [NSTimer timerWithTimeInterval:30.0 target:self selector:@selector(updateTable) userInfo:nil repeats:YES];
 
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,8 +68,11 @@
     // Dispose of any resources that can be recreated.
 }
 - (void)updateTable{
+    [ConnectionsList updateMatches];
     ConnectionsList *obj = [ConnectionsList getInstance];
     connections = obj.connections;
+    NSSortDescriptor *dateSort = [NSSortDescriptor sortDescriptorWithKey:@"date_time" ascending:NO];
+    connections = [NSMutableArray arrayWithArray:[connections sortedArrayUsingDescriptors:@[dateSort]]];
     [self.ConnectionsTableView reloadData];
     [self.refreshControl endRefreshing];
     NSLog(@"update Table Called");
@@ -162,19 +168,25 @@
     
     
     NSString *FbToken = [session accessTokenData].accessToken;
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
-    manager.responseSerializer = [AFImageResponseSerializer serializer];
-    [manager GET:picURL parameters:@{@"height":@100,
-                                     @"width": @100} success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                         cell.profilePic.image = responseObject;
-                                         cell.profilePic.layer.cornerRadius = cell.profilePic.layer.frame.size.height/2;
-                                         cell.profilePic.layer.masksToBounds = YES;
-                                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                         NSLog(@"Photo failed to load%@",error);
-                                     }];
-    cell.nameLabel.text = [connection objectForKey:@"firstName"];
+    if ([_imageDictionary objectForKey:[[[connections objectAtIndex:indexPath.row]objectForKey:@"liked_user" ]objectForKey:@"uid"]]) {
+        cell.profilePic.image =[_imageDictionary objectForKey:[[[connections objectAtIndex:indexPath.row]objectForKey:@"liked_user" ]objectForKey:@"uid"]];
+    }
+    else{
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+        manager.responseSerializer = [AFImageResponseSerializer serializer];
+        [manager GET:picURL parameters:@{@"height":@100,
+                                         @"width": @100} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                             cell.profilePic.image = responseObject;
+                                             cell.profilePic.layer.cornerRadius = cell.profilePic.layer.frame.size.height/2;
+                                             cell.profilePic.layer.masksToBounds = YES;
+                                             [_imageDictionary setObject:responseObject forKey:[[[connections objectAtIndex:indexPath.row]objectForKey:@"liked_user" ]objectForKey:@"uid"]];
+                                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                             NSLog(@"Photo failed to load%@",error);
+                                         }];
+
+    }
+        cell.nameLabel.text = [connection objectForKey:@"firstName"];
     
     return cell;
 }

@@ -64,14 +64,14 @@
     }
                    ];
         
-        dispatch_queue_t backgroundQueue= dispatch_queue_create("backgroundQueue", 0);
-        dispatch_async(backgroundQueue, ^{
+        //dispatch_queue_t backgroundQueue= dispatch_queue_create("backgroundQueue", 0);
+        //dispatch_async(backgroundQueue, ^{
             [NSTimer scheduledTimerWithTimeInterval: 90
                                              target: self
                                            selector:@selector(updateMatches)
                                            userInfo: nil repeats:YES];
             
-        });
+        //});
     }); return instance;
     
     

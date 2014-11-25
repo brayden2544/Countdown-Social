@@ -263,7 +263,7 @@
             [self setProfilePic];
             [self playVideo];
         }
-        else if ([currentPotentialMatch objectForKey:@"video_uri"]==[NSNull null]){
+        else if ([currentPotentialMatch objectForKey:@"profilePic"]){
             self.moviePlayerView.hidden = TRUE;
             _loading = FALSE;
             _likeCurrentUser = FALSE;
@@ -271,11 +271,12 @@
             [self.potentialMatchesLoadingView removeFromSuperview];
             
             //Set text for name label
-            profileTime = 2.0;
+            profileTime = 6.0;
             _nameLabel.text = [currentPotentialMatch objectForKey:@"firstName"];
             [self.nameView startCanvasAnimation];
             [self setProfilePic];
             [self noVideoProfilePic];
+
 
         }
         else{
@@ -331,41 +332,27 @@
 }
 
 -(void)noVideoProfilePic{
-    NSLog(@"noVideoProfilePic");
-    NSString *picURL = kBaseURL;
-    picURL = [picURL stringByAppendingString:[NSString stringWithFormat:@"user/%@/photo", [currentPotentialMatch objectForKey:@"uid"]]];
-    NSLog(@"setProfilePicURL:%@",picURL);
-    FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+
     self.blur.hidden = TRUE;
     self.createMatch.hidden = TRUE;
     self.darken.hidden = TRUE;
+    
+    
+    _profilePicView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 100, 320, 320)];
+    [self.view addSubview:_profilePicView];
+    [self.view bringSubviewToFront:_profilePicView];
+    _profilePicView.image = [currentPotentialMatch objectForKey:@"profilePic"];
+    _videoImage =[currentPotentialMatch objectForKey:@"profilePic"];
+    [countdownTimer changePercentage:100.0];
     _profilePicView.hidden = FALSE;
+
+    if (playButton.isTouchInside == TRUE) {
+        [self PlayButtonHeld];
+    }
+        else{
+            [self PlayButtonReleased];
+        }
     
-    NSString *FbToken = [session accessTokenData].accessToken;
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
-    manager.responseSerializer = [AFImageResponseSerializer serializer];
-    manager.operationQueue = _backgroundQueue;
-    [manager GET:picURL parameters:@{@"height":@640,
-                                     @"width": @640} success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                         _profilePicView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 100, 320, 320)];
-                                         _profilePicView.image = responseObject;
-                                         _videoImage = responseObject;
-                                         [self.view addSubview:_profilePicView];
-                                         [countdownTimer changePercentage:100.0];
-                                         //[self.view bringSubviewToFront:_profilePicView];
-                                         _profilePicView.hidden = TRUE;
-                                         if (playButton.isTouchInside) {
-                                             [self PlayButtonHeld];
-                                         }else{
-                                         [self PlayButtonReleased];
-                                         }
-                                         NSLog(@"resonse Object %@",responseObject);
-                                         
-                                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                         NSLog(@"Photo failed to load%@",error);
-                                     }];
 
 
     
@@ -468,15 +455,16 @@
     
 }
 -(void)PlayButtonHeld{
-    [self.profilePicTimer invalidate];
+    //[self.profilePicTimer invalidate];
     if( _loading ==FALSE && _likeCurrentUser ==FALSE && playButton.isTouchInside == TRUE) {
         _playButtonHeld = TRUE;
         self.blur.hidden = TRUE;
         self.createMatch.hidden = TRUE;
         self.darken.hidden = TRUE;
         self.playButtonLabel.text = @"Release to Connect";
-        if ([currentPotentialMatch objectForKey:@"video_uri"]==[NSNull null]) {
+        if ([currentPotentialMatch objectForKey:@"profilePic"]) {
             NSLog(@"play button held with no video");
+            self.moviePlayerView.hidden = TRUE;
             _profilePicView.hidden = false;
             [self.view bringSubviewToFront:_profilePicView];
             NSLog(@"%f",profileTime);
@@ -514,7 +502,7 @@
     if(_likeCurrentUser ==FALSE & _loading ==FALSE){
         _playButtonHeld = FALSE;
         if ([currentPotentialMatch objectForKey:@"video_uri"]==[NSNull null]) {
-            _profilePicView.hidden = TRUE;
+            //_profilePicView.hidden = TRUE;
         }else{
         [self.moviePlayerView.player pause];
         }
@@ -551,7 +539,6 @@
     urlAsString = [urlAsString stringByAppendingString:@"user/"];
     PotentialMatches *obj =[PotentialMatches getInstance];
     [obj.passedUsers addObject:currentPotentialMatch];
-
     
     urlAsString = [urlAsString stringByAppendingString:[currentPotentialMatch objectForKey:@"uid"]];
     urlAsString =[urlAsString stringByAppendingString:@"/pass/"];
@@ -755,8 +742,7 @@
 - (void)nextMatch{
     _likeCurrentUser = FALSE;
     self.imageView.hidden = TRUE;
-    self.profilePicView.hidden = TRUE;
-    _profilePicView.hidden = TRUE;
+    //_profilePicView.hidden = TRUE;
     [PotentialMatches nextMatch];
     
     [self checkForVideo];
@@ -954,18 +940,19 @@
             profileTime -=.05;
             // [countdownTimer changePercentage:timeLeft];
             NSLog(@"%f",profileTime);
-        }else{
-            [self.profilePicTimer invalidate];
-        }
+        
         if (profileTime <=0.05 && profileTime >0) {
+            [self.profilePicTimer invalidate];
             [self userPass];
-            _profilePicView.hidden = TRUE;
+            NSLog(@"time invalidated");
+            //_profilePicView.hidden = TRUE;
 
         }
+        }
     
-    _timeRemaining = (profileTime/3)*100;
+    _timeRemaining = (profileTime/6)*100;
     [countdownTimer changePercentage:_timeRemaining];
-    NSLog(@"%f",(1-(profileTime/3))*100);
+    //NSLog(@"%f",(1-(profileTime/6))*100);
     if (_timeRemaining ==100) {
         _miniWatchButton.hidden = TRUE;
     }

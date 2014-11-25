@@ -55,6 +55,26 @@
             for (id obj in instance.potentialMatches) {
             if ([obj objectForKey:@"video_uri"]== [NSNull null] ){
                 NSLog(@"no video");
+                NSString *FbToken = [session accessTokenData].accessToken;
+                
+                AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+                [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+                NSMutableDictionary *currentPotentialMatch = [[NSMutableDictionary alloc]initWithDictionary:obj];
+                manager.responseSerializer = [AFImageResponseSerializer serializer];
+                NSString *picURL = kBaseURL;
+                picURL = [picURL stringByAppendingString:[NSString stringWithFormat:@"user/%@/photo", [currentPotentialMatch objectForKey:@"uid"]]];
+                [manager GET:picURL parameters:@{@"height":@640,
+                                                 @"width": @640} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                                    NSLog(@"Photo Object %@",responseObject);
+                                                     [currentPotentialMatch setObject:responseObject forKey:@"profilePic"];
+                                                     [tempPotentialMatches replaceObjectAtIndex:[tempPotentialMatches indexOfObjectIdenticalTo:obj] withObject:currentPotentialMatch];
+                                                     
+                                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                                     NSLog(@"Photo failed to load%@",error);
+                                                     [tempPotentialMatches removeObjectAtIndex:[tempPotentialMatches indexOfObjectIdenticalTo:obj]];
+
+                                                 }];
+
                 //[tempPotentialMatches addObject:obj];
             }else{
 
@@ -191,6 +211,27 @@
                     NSLog(@"Video Already Downloaded");
                 }else if ([obj objectForKey:@"video_uri"]== [NSNull null] ){
                     NSLog(@"no video");
+                    NSLog(@"no video");
+                    NSString *FbToken = [session accessTokenData].accessToken;
+                    
+                    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+                    [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+                    NSMutableDictionary *currentPotentialMatch = [[NSMutableDictionary alloc]initWithDictionary:obj];
+                    manager.responseSerializer = [AFImageResponseSerializer serializer];
+                    NSString *picURL = kBaseURL;
+                    picURL = [picURL stringByAppendingString:[NSString stringWithFormat:@"user/%@/photo", [currentPotentialMatch objectForKey:@"uid"]]];
+                    [manager GET:picURL parameters:@{@"height":@640,
+                                                     @"width": @640} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                                         NSLog(@"Photo Object %@",responseObject);
+                                                         [currentPotentialMatch setObject:responseObject forKey:@"profilePic"];
+                                                         [tempPotentialMatches replaceObjectAtIndex:[tempPotentialMatches indexOfObjectIdenticalTo:obj] withObject:currentPotentialMatch];
+                                                         
+                                                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                                         NSLog(@"Photo failed to load%@",error);
+                                                         [tempPotentialMatches removeObjectAtIndex:[tempPotentialMatches indexOfObjectIdenticalTo:obj]];
+
+                                                     }];
+
                     //[tempPotentialMatches addObject:obj];
                 }
                 else{

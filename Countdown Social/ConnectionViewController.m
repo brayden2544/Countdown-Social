@@ -42,14 +42,15 @@
 
 -(void)showConnection{
     //Set Connection Message
-    self.connectionLabel.text = [NSString stringWithFormat:@"New Connection with %@" ,[currentMatch objectForKey:@"firstName"]];
-    [self.viewProfileButton setTitle:[NSString stringWithFormat:@"%@'s Profile",[currentMatch objectForKeyedSubscript:@"firstName"]] forState:UIControlStateNormal];
+    self.connectionLabel.text = [NSString stringWithFormat:@"%@ Wants to Connect!" ,[currentMatch objectForKey:@"firstName"]];
     //Check sex to display message
     if ([[currentMatch objectForKey:@"gender"] isEqualToString:@"M"]) {
-        self.checkOutLabel.text = @"See what he's up to!";
+        self.checkOutLabel.text = @"";
+        [self.viewProfileButton setTitle:[NSString stringWithFormat:@"View His Profile"] forState:UIControlStateNormal];
     }
     else{
-        self.checkOutLabel.text = @"See what she's up to!";
+        [self.viewProfileButton setTitle:[NSString stringWithFormat:@"View Her Profile"] forState:UIControlStateNormal];
+        self.checkOutLabel.text = @"";
     }
     
     //Set Match Image
