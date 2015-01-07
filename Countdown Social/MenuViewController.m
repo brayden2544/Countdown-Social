@@ -47,11 +47,15 @@
 - (void)sideMenu:(RESideMenu *)sideMenu willHideMenuViewController:(UIViewController *)menuViewController
 {
     //NSLog(@"willHideMenuViewController: %@", NSStringFromClass([menuViewController class]));
+    [self.view endEditing:YES];
+
 }
 
 - (void)sideMenu:(RESideMenu *)sideMenu didHideMenuViewController:(UIViewController *)menuViewController
 {
     //NSLog(@"didHideMenuViewController: %@", NSStringFromClass([menuViewController class]));
+    [self.view endEditing:YES];
+
 }
 - (void)sideMenu:(RESideMenu *)sideMenu didRecognizePanGesture:(UIPanGestureRecognizer *)recognizer{
     //NSLog(@"gesture recognized");

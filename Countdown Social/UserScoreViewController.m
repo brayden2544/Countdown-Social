@@ -14,6 +14,7 @@
 #import "AppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "Constants.h"
+#import <Social/Social.h>
 
 
 @interface UserScoreViewController ()
@@ -356,5 +357,124 @@ NSString* buy_restore;
     SKProductsRequest *request= [[SKProductsRequest alloc]initWithProductIdentifiers: [NSSet setWithObject: @"userScoreInAppPurchase"]];
     request.delegate = self;
     [request start];
+}
+
+- (IBAction)tweet:(id)sender {
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
+    {
+        
+        
+        SLComposeViewController *tweetSheet = [SLComposeViewController
+                                               composeViewControllerForServiceType:SLServiceTypeTwitter];
+        
+        
+        [tweetSheet addURL:[NSURL URLWithString:@"http://bit.ly/1vCBxBs"]];
+        [tweetSheet setInitialText:@"Find cool new people nearby with the @CountdownSocial app! Download it here:"];
+        
+        [tweetSheet setCompletionHandler:^(SLComposeViewControllerResult result)
+         {
+             if (result == SLComposeViewControllerResultCancelled)
+             {
+                 NSLog(@"The user cancelled.");
+             }
+             else if (result == SLComposeViewControllerResultDone)
+             {
+                 NSLog(@"The user sent the tweet");
+                 NSString *urlAsString =kBaseURL;
+                 urlAsString = [urlAsString stringByAppendingString: @"user/"];
+                 
+                 FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+                 NSString *FbToken = [session accessTokenData].accessToken;
+                 
+                 
+                 
+                 AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+                 [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+                 NSOperationQueue *backgroundQueue = [[NSOperationQueue alloc]init];
+                 manager.operationQueue = backgroundQueue;
+                 NSDictionary *params = @{@"in_app_purchase":@"true"};
+                 [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                     NSLog(@"JSON: %@", responseObject);
+                     _user = responseObject;
+                     User *obj = [User getInstance];
+                     obj.user = _user;
+                     NSLog(@"show stats view");
+                     self.unpurchasedView.hidden = TRUE;
+                     self.purchasedView.hidden = false;
+                 }
+                       failure:^(AFHTTPRequestOperation *operation, NSError *error)
+                  {
+                      NSLog(@"Error: %@", error);
+                      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Tweet Unsuccessful!!"
+                                                                      message:@"Please try again!"
+                                                                     delegate:self
+                                                            cancelButtonTitle:@"Okay"
+                                                            otherButtonTitles:nil];
+                      [alert show];
+                      
+                  }];
+
+                 
+             }
+         }];
+        [self presentViewController:tweetSheet animated:YES completion:nil];
+    }
+}
+
+- (IBAction)facebook:(id)sender {
+
+        if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+            SLComposeViewController *controller = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+            
+            [controller addURL:[NSURL URLWithString:@"http://bit.ly/1vCBxBs"]];
+            [controller setInitialText:@"Find cool new people nearby with the @CountdownSocial app! Download it here:"];
+            
+            [controller setCompletionHandler:^(SLComposeViewControllerResult result)
+             {
+                 if (result == SLComposeViewControllerResultCancelled)
+                 {
+                     NSLog(@"The user cancelled.");
+                 }
+                 else if (result == SLComposeViewControllerResultDone)
+                 {
+                     NSLog(@"The user shared the post");
+                     NSString *urlAsString =kBaseURL;
+                     urlAsString = [urlAsString stringByAppendingString: @"user/"];
+                     
+                     FBSession *session = [(AppDelegate *)[[UIApplication sharedApplication] delegate] FBsession];
+                     NSString *FbToken = [session accessTokenData].accessToken;
+                     
+                     
+                     
+                     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+                     [manager.requestSerializer setValue:FbToken forHTTPHeaderField:@"Access-Token"];
+                     NSOperationQueue *backgroundQueue = [[NSOperationQueue alloc]init];
+                     manager.operationQueue = backgroundQueue;
+                     NSDictionary *params = @{@"in_app_purchase":@"true"};
+                     [manager POST:urlAsString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                         NSLog(@"JSON: %@", responseObject);
+                         _user = responseObject;
+                         User *obj = [User getInstance];
+                         obj.user = _user;
+                         NSLog(@"show stats view");
+                         self.unpurchasedView.hidden = TRUE;
+                         self.purchasedView.hidden = false;
+                     }
+                           failure:^(AFHTTPRequestOperation *operation, NSError *error)
+                      {
+                          NSLog(@"Error: %@", error);
+                          UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Post Unsuccessful!!"
+                                                                          message:@"Please try again!"
+                                                                         delegate:self
+                                                                cancelButtonTitle:@"Okay"
+                                                                otherButtonTitles:nil];
+                          [alert show];
+                          
+                      }];
+
+                 }
+             }];
+            [self presentViewController:controller animated:YES completion:Nil];
+    }
 }
 @end

@@ -17,6 +17,7 @@
 @synthesize facebookImage;
 @synthesize instagramImage;
 @synthesize twitterImage;
+@synthesize uid;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

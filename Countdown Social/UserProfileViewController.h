@@ -37,6 +37,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *facebookAdded;
 @property (strong, nonatomic) IBOutlet UIButton *instagramAdded;
 @property (strong, nonatomic) IBOutlet UIButton *twitterAdded;
+@property (strong, nonatomic) IBOutlet UIButton *viewVideoButton;
 
 @property (strong, nonatomic) IBOutlet UIButton *phoneButton;
 @property (strong, nonatomic) IBOutlet UIButton *snapButton;

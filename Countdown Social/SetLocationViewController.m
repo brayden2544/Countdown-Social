@@ -39,10 +39,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.setLocationMapView.delegate=self;
+
+    
     // Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden = YES;
-    [self.locationManager requestWhenInUseAuthorization];
-    self.setLocationMapView.delegate=self;
+#ifdef __IPHONE_8_0
+    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_7_1) {
+        // iOS8...
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+#endif
     self.user = [User getInstance];
     self.fbProfilePic = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"candidate frame"]];
     
@@ -57,18 +64,20 @@
     
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(handleLongPress:)];
-    lpgr.minimumPressDuration = 0.3; //user needs to press for .3 seconds
+    lpgr.minimumPressDuration = 0.2; //user needs to press for .3 seconds
     [self.setLocationMapView addGestureRecognizer:lpgr];
     
-    travelModeAnnotation = [[MKPointAnnotation alloc] init];
     mapRegion.span.latitudeDelta = 4;
     mapRegion.span.longitudeDelta = 4;
-    
-    
+
+    travelModeAnnotation = [[MKPointAnnotation alloc] init];
+
+
     
     
     if ([[self.user.user objectForKey:@"vacation_mode"]isEqual:@true]) {
         [self.setLocationMapView removeAnnotation:travelModeAnnotation];
+
         [travelModeSwitch setOn:YES animated:YES];
         CLLocationCoordinate2D vacation_location = CLLocationCoordinate2DMake([[self.user.user objectForKey:@"lat"]doubleValue], [[self.user.user objectForKey:@"long"]doubleValue]);
         mapRegion.center = vacation_location;
@@ -141,9 +150,9 @@
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
     // If it's the user location, just return nil.
-    if ([annotation isKindOfClass:[MKUserLocation class]])
+    if ([annotation isKindOfClass:[MKUserLocation class]]){
         return nil;
-    
+    }
     // Handle any custom annotations.
     if ([annotation isKindOfClass:[MKPointAnnotation class]])
     {
@@ -181,8 +190,10 @@
             pinView.annotation = annotation;
         }
         return pinView;
+
     }
     return nil;
+
 }
 - (void)mapView:(MKMapView *)mapView
 didAddAnnotationViews:(NSArray *)annotationViews
@@ -229,7 +240,6 @@ didAddAnnotationViews:(NSArray *)annotationViews
     if (travelModeSwitch.isOn == FALSE) {
         [self.setLocationMapView removeAnnotation:travelModeAnnotation];
         self.setLocationMapView.showsUserLocation=YES;
-        self.setLocationMapView.delegate=self;
         [self.setLocationMapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
         mapRegion.center = self.setLocationMapView.userLocation.coordinate;
 

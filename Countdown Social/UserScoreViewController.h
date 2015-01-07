@@ -17,6 +17,8 @@
 - (IBAction)presentMenu:(id)sender;
 - (IBAction)ButtonPressed:(id)sender;
 - (IBAction)restore:(id)sender;
+- (IBAction)tweet:(id)sender;
+- (IBAction)facebook:(id)sender;
 
 @property (nonatomic,strong) NSDictionary *user;
 

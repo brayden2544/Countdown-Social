@@ -141,8 +141,15 @@
     if ([CLLocationManager locationServicesEnabled]) {
         
         self.currentLocationManager = [[CLLocationManager alloc] init];
-    
+
+#ifdef __IPHONE_8_0
+    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_7_1) {
+            // iOS8...
         [self.currentLocationManager requestWhenInUseAuthorization];
+
+    }
+#endif
+
         self.currentLocationManager.delegate = self;
         self.currentLocationManager.distanceFilter = 500;
         

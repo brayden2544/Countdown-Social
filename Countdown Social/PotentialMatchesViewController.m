@@ -67,7 +67,7 @@
                                              selector:@selector(videoHasFinishedPlaying:)
                                                  name:AVPlayerItemDidPlayToEndTimeNotification
                                                object:self.moviePlayerView.player];
-    
+    [self.view endEditing:YES];
     [self.potentialMatchesTimer invalidate];
     self.navigationController.navigationBarHidden = YES;
     //Pull in user object and check buttons.

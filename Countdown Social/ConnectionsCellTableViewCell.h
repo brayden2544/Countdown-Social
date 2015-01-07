@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *instagramImage;
 @property (weak, nonatomic) IBOutlet UIImageView *profilePic;
 @property (strong, nonatomic) IBOutlet UILabel *label;
+@property (weak, nonatomic) NSString *uid;
 
 
 @end

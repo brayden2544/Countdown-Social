@@ -66,13 +66,15 @@
                 [manager GET:picURL parameters:@{@"height":@640,
                                                  @"width": @640} success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                                     NSLog(@"Photo Object %@",responseObject);
+                                                     if ([instance.potentialMatches indexOfObject:obj] < [tempPotentialMatches count]){
                                                      [currentPotentialMatch setObject:responseObject forKey:@"profilePic"];
                                                      [tempPotentialMatches replaceObjectAtIndex:[tempPotentialMatches indexOfObjectIdenticalTo:obj] withObject:currentPotentialMatch];
-                                                     
+                                                     }
                                                  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                                      NSLog(@"Photo failed to load%@",error);
+                                                     if ([instance.potentialMatches indexOfObject:obj] < [tempPotentialMatches count]){
                                                      [tempPotentialMatches removeObjectAtIndex:[tempPotentialMatches indexOfObjectIdenticalTo:obj]];
-
+                                                     }
                                                  }];
 
                 //[tempPotentialMatches addObject:obj];
@@ -211,7 +213,6 @@
                     NSLog(@"Video Already Downloaded");
                 }else if ([obj objectForKey:@"video_uri"]== [NSNull null] ){
                     NSLog(@"no video");
-                    NSLog(@"no video");
                     NSString *FbToken = [session accessTokenData].accessToken;
                     
                     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -223,13 +224,15 @@
                     [manager GET:picURL parameters:@{@"height":@640,
                                                      @"width": @640} success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                                          NSLog(@"Photo Object %@",responseObject);
+                                                         if ([tempPotentialMatches indexOfObject:obj] < [tempPotentialMatches count]){
                                                          [currentPotentialMatch setObject:responseObject forKey:@"profilePic"];
                                                          [tempPotentialMatches replaceObjectAtIndex:[tempPotentialMatches indexOfObjectIdenticalTo:obj] withObject:currentPotentialMatch];
-                                                         
+                                                         }
                                                      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                                          NSLog(@"Photo failed to load%@",error);
+                                                         if ([tempPotentialMatches indexOfObject:obj] < [tempPotentialMatches count]){
                                                          [tempPotentialMatches removeObjectAtIndex:[tempPotentialMatches indexOfObjectIdenticalTo:obj]];
-
+                                                         }
                                                      }];
 
                     //[tempPotentialMatches addObject:obj];
@@ -256,7 +259,7 @@
                                                                                                
                                                                                            }else{
                                                                                                [currentPotentialMatch setValue:filePath forKey:@"fileURL"];
-                                                                                               if ([instance.potentialMatches indexOfObject:obj] < [tempPotentialMatches count]){
+                                                                                               if ([tempPotentialMatches indexOfObject:obj] < [tempPotentialMatches count]){
                                                                                                    [tempPotentialMatches replaceObjectAtIndex:[tempPotentialMatches indexOfObjectIdenticalTo:obj] withObject:currentPotentialMatch];
                                                                                                }
                                                                                            }
@@ -383,7 +386,7 @@
                                                                                                
                                                                                            }else{
                                                                                                [currentPotentialMatch setValue:filePath forKey:@"fileURL"];
-                                                                                               if ([instance.potentialMatches indexOfObject:obj] < [tempPotentialMatches count]){
+                                                                                               if ([tempPotentialMatches indexOfObject:obj] < [tempPotentialMatches count]){
                                                                                                    [tempPotentialMatches replaceObjectAtIndex:[tempPotentialMatches indexOfObjectIdenticalTo:obj] withObject:currentPotentialMatch];
                                                                                                }
                                                                                            }

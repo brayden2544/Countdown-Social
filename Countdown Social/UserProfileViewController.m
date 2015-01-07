@@ -85,9 +85,10 @@
     [loadingView addSubview:activityView];
     [socialMediaWebView addSubview:loadingView];
     [self fetchFacebookUrl];
-
-    if ([[connection objectForKey:@"is_new"]boolValue]==true) {
-        
+    if ([[connection objectForKey:@"video_filename"]isKindOfClass:[NSNull class]]) {
+        self.viewVideoButton.hidden = true;
+    }else{
+        self.viewVideoButton.hidden = false;
     }
 
 
