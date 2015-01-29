@@ -69,6 +69,7 @@
         [self.view addSubview:self.moviePlayer.view];
 
         [self.moviePlayer play];
+        
     }
     else {
         NSLog(@"Failed to instanciate video player");
